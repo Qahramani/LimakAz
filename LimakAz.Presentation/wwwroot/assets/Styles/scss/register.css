@@ -1,0 +1,1094 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.customcontainer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.middlecontainer {
+  max-width: 1050px;
+  width: 1050px;
+  margin: 0 auto;
+}
+
+.main-middle-content {
+  background-color: #e5e5e5;
+}
+
+.header-top {
+  background-color: #232331;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-left ul {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  padding-left: 50px;
+}
+.top-left ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: white;
+  font-size: 13px;
+}
+
+.head-icons {
+  color: white;
+  display: flex;
+  gap: 15px;
+  padding-right: 50px;
+  font-size: 14px;
+}
+.head-icons :hover {
+  color: #f15834;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.header-lower {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  gap: 150px;
+  justify-content: space-between;
+}
+
+.main-menu {
+  padding-right: 160px;
+}
+.main-menu .navigation {
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.nav-name {
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+}
+
+.nav-name:hover {
+  color: #f15834;
+  transition: 0.2s;
+}
+
+.outer-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.outer-box-item1, .outer-box-item2, .outer-box-item3, .outer-box-item4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.person-icon-mobile {
+  display: none;
+}
+
+.search-icon-head {
+  font-size: 19px;
+}
+
+.login-tag {
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100px;
+  height: 71px;
+  background-color: #f15834;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.login-btn::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+.login-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.login-btn::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  inset: 0 0 0 0;
+  background: #232331;
+  transition: transform 0.4s ease-in-out;
+}
+
+@media (orientation: landscape) {
+  .login-btn {
+    grid-auto-flow: column;
+    color: white;
+  }
+}
+.img-card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-width: 100%;
+}
+
+.slick-prev {
+  opacity: 40%;
+  left: 100px;
+  z-index: 99;
+}
+
+.slick-next {
+  z-index: 99;
+  right: 100px;
+  opacity: 40% !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: rgb(249, 241, 241) !important;
+  font-size: 45px;
+}
+
+.slick-next, .slick-prev:hover {
+  opacity: 90% !important;
+  color: rgba(240, 248, 255, 0.458);
+}
+
+.slick-dots {
+  bottom: 10px;
+  font-size: 50px;
+}
+.slick-dots li button {
+  font-size: 10px !important;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+}
+
+.tracking-form {
+  width: 1170px;
+  height: 120px;
+  background-color: #f15834;
+  border-radius: 12px;
+  background-image: url(https://limak.az/new_front/assets/revolution/images/object-1.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.order-inf {
+  width: 220px;
+  height: 54px;
+  text-align: center;
+  position: relative;
+  color: white;
+  left: 50px;
+  top: 26px;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.order-form {
+  width: 864px;
+  height: 70px;
+  background-color: white;
+  position: relative;
+  bottom: 32px;
+  left: 280px;
+  border-radius: 10px;
+}
+
+.search-from {
+  width: 300px;
+  height: 50px;
+  display: flex;
+}
+
+.search-input {
+  width: 261px;
+  height: 50px;
+  right: 10px;
+  top: 67px;
+  position: absolute;
+  padding-left: 15px;
+  border: none;
+  background-color: #f5f5f7;
+}
+.search-input:focus {
+  outline: none;
+  background-color: white;
+}
+
+.search-input-icon {
+  position: relative;
+  top: 77px;
+  right: 25px;
+}
+
+.search-input-group {
+  position: relative;
+}
+
+.search-container {
+  position: absolute;
+  display: none;
+  height: 50px;
+}
+.search-container li {
+  list-style-type: none;
+}
+
+.search-link {
+  text-decoration: none;
+  color: black;
+  height: 67px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon-head:hover .search-container {
+  display: block;
+  animation: slideUp 0.3s ease;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%); /* Başlangıç pozisyonu: aşağıda */
+  }
+  to {
+    transform: translateY(0); /* Bitiş pozisyonu: yukarıda */
+  }
+}
+.search-head-input {
+  display: none;
+}
+
+.register-main-pg {
+  width: 1030px;
+  height: 895px;
+}
+
+.register-block {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.register-head {
+  width: 1030px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.register-head h4 {
+  margin: 0;
+}
+
+.register-card-head h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-card-head b {
+  padding-left: 15px;
+}
+
+.register-block-body {
+  background-color: white;
+  border-radius: 8px;
+}
+
+.headfirstLetter {
+  color: #F05835;
+}
+
+.regr-breadcamp-tag {
+  text-decoration: none;
+  color: black;
+}
+.regr-breadcamp-tag:hover {
+  text-decoration: underline;
+  color: #F05835;
+}
+
+.register-breadcamp {
+  display: flex;
+  list-style-type: none;
+  gap: 10px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.form-con-first-row {
+  width: 324px;
+  height: 494px;
+  margin-top: 20px;
+}
+
+.register-card {
+  width: 1030px;
+  height: 752px;
+  padding: 60px 200px;
+}
+
+.form-title {
+  font-size: 17px;
+  font-weight: 700;
+  padding-left: 10px;
+  border-left: 5px solid #F05835;
+  margin-bottom: 25px;
+}
+
+.regr-form-select-person {
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+}
+.regr-form-select-person:focus {
+  outline: none;
+}
+
+.reg-name, .reg-surname {
+  margin-top: 25px;
+  width: 142px;
+  height: 50px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+}
+
+.reg-email {
+  width: 304px;
+  height: 52px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  margin-top: 25px;
+}
+
+.reg-phoneNum {
+  width: 239px;
+  height: 50px;
+  border: none;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.dropdown-select-prefix {
+  width: 64px;
+  height: 50px;
+  top: 20px;
+  border: none;
+  padding-left: 3px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: 1px solid;
+  border-color: rgba(112, 111, 111, 0.3568627451);
+}
+
+.regr-phone-group {
+  display: flex;
+  margin-top: 25px;
+}
+
+#password-regr {
+  margin-top: 25px;
+  width: 142px;
+  height: 50px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-radius: 8px;
+  border: none;
+  padding-left: 15px;
+}
+#password-regr:focus {
+  outline-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+#password-confirmation-regr {
+  margin-top: 25px;
+  width: 142px;
+  height: 50px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+}
+#password-confirmation-regr:focus {
+  outline-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+.hide-eye-pas {
+  background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 10px;
+  top: 1px;
+  right: 29px;
+}
+
+.confr-password-show {
+  background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 10px;
+  top: 1px;
+  right: 25px;
+}
+
+.delivary-office-regr, .notif-type-regr {
+  width: 142px;
+  height: 50px;
+  border: none;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  margin-top: 25px;
+  border-radius: 8px;
+  padding-left: 2px;
+}
+
+.notif-type-regr {
+  padding-left: 10px;
+}
+
+.form-con-second-row {
+  margin-top: 20px;
+}
+
+.select-nation-regr {
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+.serial-number {
+  margin-top: 24px;
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+.date-input-regr {
+  margin-top: 24px;
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+.select-gender-regr {
+  margin-top: 25px;
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+.regr-fin-code {
+  margin-top: 23px;
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+  position: relative;
+}
+
+#Fin {
+  position: relative;
+  margin-left: 278px;
+  bottom: 36px;
+  text-decoration: none;
+  color: #706f6f;
+  width: 20px;
+  height: 20px;
+}
+
+#regr-adress {
+  margin-bottom: 15px;
+  width: 304px;
+  height: 52px;
+  border-radius: 8px;
+  padding-left: 10px;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+  border-color: rgba(112, 111, 111, 0.1647058824);
+}
+
+.passport-modal {
+  width: 1138px !important;
+  height: 788px !important;
+}
+
+.pas-img-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.passport-images img {
+  width: 542px;
+  height: 362px;
+}
+
+#terms-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.form-regr-footer {
+  width: 640px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.form-check-checkbox {
+  padding-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#regr-btn {
+  width: 320px;
+  height: 50px;
+  background: linear-gradient(180deg, #FC7B5D 0%, #F05835 100%);
+  border: none;
+  font-weight: 700;
+}
+
+.modal-terms-title {
+  border-left: 6px solid #F05835;
+  font-weight: 700;
+  padding-left: 15px;
+  font-size: 40px;
+}
+
+.terms-modal-dialog {
+  margin: 0;
+  margin-left: 250px;
+  margin-top: 50px;
+}
+
+.terms-modal-body {
+  width: 1106px;
+  height: 330px;
+}
+
+.terms-modal-content {
+  width: 1106px !important;
+  height: 330px;
+}
+
+.reminder-modal-btn {
+  display: flex;
+  justify-content: end;
+}
+
+.btn-terms-agree {
+  background-color: #F05835;
+  border: none;
+  width: 96px;
+  height: 50px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+}
+
+.modal-content {
+  width: 720px;
+  height: 530px;
+}
+
+#staticBackdrop {
+  padding-right: 160px;
+}
+
+.login {
+  padding-left: 50px;
+}
+
+.login-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.login-modal-head-title {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.login-form-action {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.login-email-input {
+  width: 280px;
+  height: 50px;
+  border-radius: 8px;
+  padding-left: 15px;
+  border: 1px solid #9b9b9b;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+}
+.login-email-input:focus {
+  background-color: white;
+  outline-color: rgba(139, 139, 139, 0.1294117647);
+}
+
+.login-password-input {
+  position: relative;
+}
+
+.visibility-btn-new-password, .visibility-btn-password-confirm {
+  cursor: pointer;
+}
+
+.hide-eye {
+  background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  padding: 12px;
+  left: 245px;
+  margin-top: 13px;
+}
+
+.text-right a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #706f6f;
+}
+
+.login-btn-modal {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #FC7B5D 0%, #F05835 100%);
+  border: none;
+  color: white;
+  font-weight: 700;
+}
+
+.register-btn-modal {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #D1DDE8 0%, #C3CBD3 100%);
+  font-weight: 700;
+  border-radius: 8px;
+}
+.register-btn-modal a {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (max-width: 760px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+  }
+  .customcontainer {
+    width: 375px;
+    margin: 0;
+    padding: 0;
+  }
+  .middlecontainer {
+    max-width: 100%;
+    width: 100%;
+  }
+  .middlecontainer {
+    height: 1450px;
+  }
+  .person-icon-mobile {
+    display: flex;
+    gap: 10px;
+  }
+  .hamburger-menu-icn {
+    margin-top: 2px;
+  }
+  .header-top {
+    display: none;
+  }
+  .header-lower {
+    padding-left: 0;
+    margin-left: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  .outer-box {
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  .menu-order-btn {
+    width: 255px;
+    height: 40px;
+    background-color: #f15834;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 10px;
+  }
+  .nav-item {
+    border-bottom: 1px solid;
+    border-color: rgba(240, 241, 243, 0.292);
+  }
+  .outer-box-item4 {
+    display: none !important;
+  }
+  .main-menu {
+    display: none;
+  }
+  .search-icon-head i {
+    font-size: 18px;
+  }
+  .basket-svg svg {
+    width: 20px;
+    padding-bottom: 2px;
+  }
+  .menu-icon {
+    font-size: 18px;
+    padding-top: 2px;
+  }
+  #offcanvasNavbar {
+    width: 80%;
+    background-color: #232331;
+  }
+  .nav-item a {
+    color: white;
+  }
+  .btn-close-mob-menu {
+    color: #f15834;
+    border: none;
+    background-color: #232331;
+  }
+  .btn-close-mob-menu i {
+    font-size: 25px;
+  }
+  .search-input {
+    width: 270px;
+    height: 50px;
+    top: 67px;
+    position: absolute;
+    padding-left: 15px;
+    border: none;
+    background-color: #f5f5f7;
+  }
+  .search-input:focus {
+    outline: none;
+    background-color: white;
+  }
+  .register-block-body {
+    width: 355px;
+    height: 1328px;
+  }
+  .register-main-pg {
+    width: 355px;
+    height: 1228px;
+  }
+  .register-block {
+    width: 355px;
+    height: 1228px;
+    padding: 10px;
+  }
+  .register-card {
+    width: 313px;
+    height: 1228px;
+    padding: 20px;
+  }
+  .register-card-head {
+    width: 313px;
+  }
+  .register-head {
+    width: 355px;
+    height: 18px;
+    margin-top: 15px;
+  }
+  .register-head h4 {
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .register-breadcamp {
+    font-size: 12px;
+  }
+  .form-regr {
+    width: 313px;
+    height: 1228px;
+    display: flex;
+    flex-direction: column;
+    z-index: 15;
+  }
+  .form-con-first-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-con-second-row {
+    margin-top: 100px;
+  }
+  .form-regr-main-row {
+    display: flex;
+    flex-direction: column;
+  }
+  #password-regr {
+    width: 303px;
+    height: 40px;
+  }
+  #password-confirmation-regr {
+    width: 303px;
+    height: 40px;
+  }
+  .regr-phone-group {
+    width: 303px;
+  }
+  .reg-name, .reg-surname, .reg-email {
+    height: 40px;
+  }
+  .dropdown-select-prefix, .reg-phoneNum {
+    height: 40px;
+  }
+  .delivary-office-regr, .notif-type-regr, .regr-form-select-person {
+    width: 303px;
+    height: 40px;
+  }
+  .select-nation-regr, .serial-number, .date-input-regr, .select-gender-regr, .regr-fin-code {
+    height: 40px;
+  }
+  #regr-adress {
+    height: 40px;
+  }
+  .form-regr-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    height: 100px;
+  }
+  .form-check-checkbox {
+    padding: 0;
+  }
+  .regr-btn {
+    width: 303px;
+    padding-left: 15px;
+  }
+  .modal-terms-title {
+    border-left: 6px solid #F05835;
+    font-weight: 700;
+    padding-left: 15px;
+    font-size: 40px;
+  }
+  .terms-modal-dialog {
+    margin: 0;
+    margin-top: 50px;
+  }
+  .terms-modal-body {
+    width: 368px !important;
+    height: 1153px !important;
+  }
+  .terms-modal-content {
+    width: 368px !important;
+    height: 1153px !important;
+  }
+  .reminder-modal-btn {
+    display: flex;
+    justify-content: end;
+  }
+  .reminder-modal ul {
+    padding-left: 10px;
+  }
+  .btn-terms-agree {
+    background-color: #F05835;
+    border: none;
+    width: 96px;
+    height: 50px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+  }
+  .passport-modal {
+    width: 368px !important;
+    height: 1000px !important;
+  }
+  .pas-img-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .passport-images img {
+    width: 334px;
+    height: 223px;
+  }
+  .modal-content {
+    width: 353px;
+    height: 700px;
+  }
+  #staticBackdrop {
+    padding-right: 160px;
+  }
+  .login {
+    padding-left: 0px;
+  }
+  .login-modal-head {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 0px;
+    padding-left: 10px;
+  }
+  .login-modal-head-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 10px;
+  }
+  .login-form-action {
+    margin-top: 50px;
+    display: flex;
+    padding-left: 5px;
+    flex-direction: column;
+  }
+  .login-email-input {
+    width: 310px;
+    height: 40px;
+    border-radius: 8px;
+    padding-left: 15px;
+    border: 1px solid #9b9b9b;
+    background-color: rgba(139, 139, 139, 0.1294117647);
+  }
+  .login-email-input:focus {
+    background-color: white;
+    outline-color: rgba(139, 139, 139, 0.1294117647);
+  }
+  .login-password-input {
+    position: relative;
+  }
+  .visibility-btn-new-password, .visibility-btn-password-confirm {
+    cursor: pointer;
+  }
+  .hide-eye {
+    background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    padding: 12px;
+    left: 269px;
+    margin-top: 9px;
+  }
+  .text-right a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #706f6f;
+  }
+  .login-btn-modal {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #FC7B5D 0%, #F05835 100%);
+    border: none;
+    color: white;
+    font-weight: 700;
+  }
+  .register-btn-modal {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #D1DDE8 0%, #C3CBD3 100%);
+    font-weight: 700;
+    border-radius: 8px;
+  }
+  .register-btn-modal a {
+    text-decoration: none;
+    color: black;
+  }
+  .remember-me-radio {
+    padding-left: 3px;
+  }
+  .modal-footer-Btn {
+    margin-right: 5px;
+  }
+  .modal-card-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}/*# sourceMappingURL=register.css.map */

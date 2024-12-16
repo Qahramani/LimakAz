@@ -1,0 +1,812 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+
+    .customcontainer{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+    .middlecontainer{
+        max-width: 1050px;
+        width: 1050px;
+        margin: 0 auto;
+    }
+    .main-middle-content{
+        background-color: #e5e5e5;
+    }
+
+    //header top black side ----- HEADER SECTION
+    .header-top{
+        background-color: #232331;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    .top-left{
+        ul{
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            padding-left: 50px;
+            li{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 3px;
+                color:white;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .head-icons{
+        color: white;
+        display: flex;
+        gap: 15px;
+        padding-right: 50px;
+        font-size: 14px;
+        :hover{
+            color: #f15834;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+    }
+    //header top black side ending
+
+    .header-lower{
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding-left: 50px;
+        gap: 150px;
+        justify-content: space-between;
+        
+    }
+
+    .main-menu{
+        padding-right: 160px;
+        .navigation{
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .nav-name{
+        font-size: 13px;
+        text-decoration: none;
+        font-weight: 600;
+        color: black;
+        cursor: pointer;
+        
+    }
+    .nav-name:hover{
+        color: #f15834;
+        transition: 0.2s;
+    }
+
+    .outer-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:10px;
+    }
+
+    .outer-box-item1, .outer-box-item2,.outer-box-item3,.outer-box-item4{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+    }
+    .person-icon-mobile{
+    display: none;
+    }
+
+    .search-icon-head{
+        font-size: 19px;
+    }
+
+    .login-tag{
+        color: white;
+        font-size: 14px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        z-index: 999;
+        text-decoration: none;
+
+    }
+    .login-btn{
+        width: 100px;
+        height: 71px;
+        background-color: #f15834;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+    }
+    .login-btn::before {  
+        transform: scaleX(0);
+        transform-origin: bottom right;
+    }
+    
+    .login-btn:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+    .login-btn::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        inset: 0 0 0 0;
+        background: #232331;
+        transition: transform .4s ease-in-out;
+    }
+
+    @media (orientation: landscape) {
+        .login-btn{
+        grid-auto-flow: column;
+        color: white;
+        }
+    }
+
+    .img-card{
+        img{
+            object-fit: cover;
+            max-width: 100%;
+        }
+    }
+    //slider inside button
+    .slick-prev{
+        opacity: 40%;
+        left: 100px;
+        z-index: 99;
+    }
+    .slick-next{
+        z-index: 99;
+        right: 100px;
+        opacity: 40% !important;
+
+    }
+    
+    .slick-prev:before,
+    .slick-next:before{
+        color: rgb(249, 241, 241) !important;
+        font-size: 45px;
+    }
+
+    .slick-next, .slick-prev:hover{
+        opacity: 90% !important;
+        color: rgba(240, 248, 255, 0.458);
+    }
+    .slick-dots{
+        bottom: 10px;
+        font-size: 50px;
+        li{
+            button{
+                font-size: 10px !important;
+            }
+        }
+    }
+    .slick-dots li button:before{
+        font-size: 10px;
+    }
+
+    .tracking-form{
+        width: 1170px;
+        height: 120px;
+        background-color:#f15834;
+        border-radius: 12px;
+        background-image: url(https://limak.az/new_front/assets/revolution/images/object-1.png);
+        background-repeat: no-repeat;
+        display: inline-block;
+    }
+    .order-inf{
+        width: 220px;
+        height: 54px;
+        text-align: center;
+        position: relative;
+        color: white;
+        left: 50px;
+        top: 26px;
+        font-weight: 700;
+        font-size: 28px;
+    }
+
+    .order-form{
+        width: 864px;
+        height: 70px;
+        background-color: white;
+        position: relative;
+        bottom: 32px;
+        left: 280px;
+        border-radius: 10px;
+    }
+
+
+    // ORDER INPUT SECTIONS
+
+   
+    // TABS DESIGN
+    .nav-tabs{
+        width: 724px;
+        height: 60px;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-tabs-head-list{
+        padding-left: 30px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        img{
+            width: 24px;
+            height: 24px;
+        }
+    }
+    
+    .tabs-head{
+        width: 181px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        color: black;
+        position: relative;
+        display: flex;
+    }
+    .nav-tabs-head-list::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #f05835;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px
+    }
+
+    .order-main-pg{
+        height: 450px;
+    }
+    
+    // ORDER HEAD BREADCAMP STYLE
+    .order-head-title{
+        width: 781px;
+        height: 50px;
+         display: flex;
+         justify-content: space-between;
+    }
+    .contact-breadcamp{
+        display: flex;
+        gap: 10px;
+        list-style-type: none;
+        padding: 0;
+        padding-right: 40px;
+    }
+    
+    // ORDER EMPTY DESIGN
+    .order-card-main-row{
+        padding-top: 40px;
+    }
+    .card-order-item{
+        width: 724px;
+        height: 83px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 8px;
+        margin-top: 25px;
+    }
+    .order-item-title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 800;
+    }
+    .sifr-header-block{
+        width: 724px;
+        height: 45px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    .btn-refresh{
+        width: 135px;
+        height: 40px;
+        cursor: pointer;
+        background-color: #F05835;
+        border: none;
+        font-weight: 600;
+        border-radius: 8px;
+        color: white;
+    }
+    .form-filt-select{
+        width: 190px;
+        height: 40px;
+        background-color: #f5f5f7;
+        border-radius: 8px;
+        padding-left: 15px;
+        &:focus{
+            outline-color: #a3a3a3;
+        }
+        
+    }
+    
+    
+    // SEARCH INPUT ANIMATION
+    
+    .search-from{
+        width: 300px;
+        height: 50px;
+        display: flex;
+    }
+    .search-input{
+        width: 261px;
+        height: 50px;
+        right: 10px;
+        top: 67px;
+        position: absolute;
+        padding-left: 15px;
+        border: none;
+        background-color: #f5f5f7;
+        &:focus{
+        outline:none;
+        background-color: white;
+        }
+    }
+    .search-input-icon{
+        position: relative;
+        top: 77px;
+        right: 25px;
+    }
+    .search-input-group{
+        position: relative;
+    }
+    .search-container{
+        position: absolute;
+        display: none;
+        height: 50px;
+        li{
+        list-style-type: none;
+        }
+    }
+    
+    .search-link{
+        text-decoration: none;
+        color: black;
+        height: 67px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .search-icon-head:hover .search-container{
+        display: block;
+        animation: slideUp 0.3s ease;
+        z-index: 9999;
+        cursor: pointer;
+    }
+    
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%); /* Başlangıç pozisyonu: aşağıda */
+        }
+        to {
+            transform: translateY(0); /* Bitiş pozisyonu: yukarıda */
+        }
+    }
+    .search-head-input{
+    display: none;
+    }
+
+     // LOG IN MODAL DESIGN
+    .modal-content{
+        width: 720px;
+        height: 530px;
+    }
+    #staticBackdrop{
+        padding-right: 160px;
+    }
+    .login{
+        padding-left: 50px;
+    }
+    .login-modal-head{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    .login-modal-head-title{
+        font-size: 25px;
+        font-weight: 700;
+        margin: 0;
+    }
+    .login-form-action{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .login-email-input{
+        width: 280px;
+        height: 50px;
+        border-radius: 8px;
+        padding-left: 15px;
+        border: 1px solid #9b9b9b;
+        background-color: #8b8b8b21;
+        &:focus{
+        background-color: white;
+        outline-color: #8b8b8b21;
+        }
+    }
+    .login-password-input{
+        position: relative;
+    }
+    .visibility-btn-password{
+        cursor: pointer;
+    }
+    .hide-eye{
+        background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        padding: 12px;
+        left: 245px;
+        margin-top: 13px;
+        
+    }
+    .text-right{
+        a{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        color: #706f6f;
+        }
+    }
+    .login-btn-modal{
+        width: 150px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background: linear-gradient(180deg,#FC7B5D 0%,#F05835 100%);
+        border: none;
+        color: white;
+        font-weight: 700;
+    }
+    .register-btn-modal{
+        width: 150px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(180deg,#D1DDE8 0%,#C3CBD3 100%);
+        font-weight: 700;
+        border-radius: 8px;
+        a{
+        text-decoration: none;
+        color: black;
+        }
+    }
+
+
+    //nav tabs border style js
+    .nav-tabs-active{
+        border-bottom: 3px solid #F05835;
+    }
+
+    @media only screen and (max-width: 760px) {
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+        .customcontainer{
+          width: 375px;
+          margin: 0;
+          padding: 0;
+        }
+        .middlecontainer{
+        max-width: 100%;
+        width: 100%;
+        }
+    
+
+        // HEADER
+        
+        .person-icon-mobile{
+        display: flex;
+        gap: 10px;
+        }
+       .hamburger-menu-icn{
+        margin-top: 2px;
+        }
+       
+        .header-top{
+            display: none;
+        }
+        .header-lower {
+            padding-left: 0;
+            margin-left: 10px;
+            display: flex;
+            gap: 10px;
+            }
+            .outer-box{
+            margin-right:5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+       
+        .menu-order-btn{
+          width: 255px;
+          height: 40px;
+          background-color: #f15834;
+          border-radius: 5px;
+          font-size: 18px;
+          font-weight: 400;
+          padding-left: 10px;
+        }
+        .nav-item{
+          border-bottom: 1px solid;
+          border-color: rgba(240, 241, 243, 0.292);
+        }
+        
+        .outer-box-item4{
+            display: none !important;
+        }
+        .main-menu{
+            display: none;
+        }
+        .search-icon-head{
+            i{
+               font-size: 18px;
+            }
+        }
+        .basket-svg{
+            svg{
+                width: 20px;
+                padding-bottom: 2px;
+            }
+        }
+        .menu-icon{
+                font-size: 18px;
+                padding-top: 2px;
+            }
+       
+        #offcanvasNavbar {
+            width: 80%;
+            background-color: #232331;
+        }
+        .nav-item{
+            a{
+                color: white;
+            }
+        }
+     
+        .btn-close-mob-menu{
+            color:#f15834;
+            border: none;
+            background-color: #232331;
+            i{
+                font-size: 25px;
+            }
+        }
+
+        // ORDER LINK RESPONSIVE
+        #exTab2{
+            width: 355px;
+            padding-left: 10px;
+        }
+        .order-card-main-row{
+          width: 353px;
+        }
+        .nav-tabs{
+          width: 345px;
+          height: 53px;
+        }
+        .nav-tabs-head-list{
+          width: 164px;
+          height: 53px;
+        }
+        .order-card-body{
+          width: 353px;
+          height: 788px;
+        }
+        .url-input-block{
+          width: 313px;
+        }
+        .form-control-url{
+          width: 313px;
+          height: 40px;
+        }
+        .form-control-label{
+          width: 313px;
+        }
+        .desc-control-input{
+          width: 313px;
+        }
+        
+
+        // ORDER EMPTY DESIGN RESPONSIVE
+
+        .btn-refresh{
+            width: 95px;
+            height: 42px;
+            margin-left: 10px;
+        }
+        .form-filt-select{
+            padding-left: 15px;
+        }
+
+        .sifr-header-block{
+            width: 348px;
+        }
+        .card-order-item{
+            width: 348px;
+        }
+        .order-card-main-row{
+            width: 355px;
+            padding-top: 40px;
+        }
+
+
+
+        // ORDER HEAD BREADCAMP STYLE RESPONSIVE
+        .order-head-title{
+            width: 355px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            h4{ 
+                font-size: 18px;
+                padding-left: 10px;
+            }
+        }
+        .contact-breadcamp{
+            display: flex;
+            gap: 10px;
+            list-style-type: none;
+            padding: 0;
+            font-size: 12px;
+            span{
+                color: #F05835;
+            }
+        }
+
+        .main-page-breadcamp{
+            text-decoration: none;
+            color: black;
+        }
+
+
+            // MODAL RESPONSIVE LOG IN MODAL DESIGN
+    .modal-content{
+        width: 353px;
+        height: 700px;
+    }
+    #staticBackdrop{
+        padding-right: 160px;
+    }
+    .login{
+        padding-left: 0px;
+    }
+    .login-modal-head{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 0px;
+        padding-left: 10px;
+    }
+    .login-modal-head-title{
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+        padding-left: 10px;
+    }
+    .login-form-action{
+        margin-top: 50px;
+        display: flex;
+        padding-left: 5px;
+        flex-direction: column;
+    }
+    .login-email-input{
+        width: 310px;
+        height: 40px;
+        border-radius: 8px;
+        padding-left: 15px;
+        border: 1px solid #9b9b9b;
+        background-color: #8b8b8b21;
+        &:focus{
+        background-color: white;
+        outline-color: #8b8b8b21;
+        }
+    }
+    .login-password-input{
+        position: relative;
+    }
+    .visibility-btn-password{
+        cursor: pointer;
+    }
+    .hide-eye{
+        background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        padding: 12px;
+        left: 269px;
+        margin-top: 9px;
+        
+    }
+    .text-right{
+        a{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        color: #706f6f;
+        }
+    }
+    .login-btn-modal{
+        width: 150px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background: linear-gradient(180deg,#FC7B5D 0%,#F05835 100%);
+        border: none;
+        color: white;
+        font-weight: 700;
+    }
+    .register-btn-modal{
+        width: 150px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(180deg,#D1DDE8 0%,#C3CBD3 100%);
+        font-weight: 700;
+        border-radius: 8px;
+        a{
+        text-decoration: none;
+        color: black;
+        }
+    }
+    .remember-me-radio{
+        padding-left: 3px;
+    }
+    .modal-footer-Btn{
+        margin-right: 5px;
+    }
+    .modal-card-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+
+
+
+
+    }

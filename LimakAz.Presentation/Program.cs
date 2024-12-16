@@ -1,9 +1,26 @@
+using LimakAz.Application.ServiceRegistration;
+using LimakAz.Persistence.DataInitializers;
+using LimakAz.Persistence.ServiceRegistrations;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddApplicationServices();
+builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddScoped<DbContextInitializer>(); // as identity is already added to container it is enought to add Initializer only
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddMvc().AddViewLocalization();
+
 
 var app = builder.Build();
+
+using(var scope = app.Services.CreateScope())
+{
+    var dataInitializer = scope.ServiceProvider.GetRequiredService<DbContextInitializer>();
+
+    await dataInitializer.InitDatabaseAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -16,6 +33,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+
+app.UseRequestLocalization(locOptions!.Value);
+
 app.UseRouting();
 
 app.UseAuthorization();
@@ -24,4 +45,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+await app.RunAsync();

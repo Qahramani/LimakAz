@@ -1,0 +1,735 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+
+.customcontainer{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+.middlecontainer{
+    max-width: 1050px;
+    width: 1050px;
+    margin: 0 auto;
+}
+.main-middle-content{
+    background-color: #e5e5e5;
+}
+
+//header top black side ----- HEADER SECTION
+.header-top{
+    background-color: #232331;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.top-left{
+    ul{
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        padding-left: 50px;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            color:white;
+            font-size: 13px;
+        }
+    }
+}
+
+.head-icons{
+    color: white;
+    display: flex;
+    gap: 15px;
+    padding-right: 50px;
+    font-size: 14px;
+    :hover{
+        color: #f15834;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+}
+//header top black side ending
+
+.header-lower{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    gap: 150px;
+    justify-content: space-between;
+    
+}
+
+.main-menu{
+    padding-right: 160px;
+    .navigation{
+        display: flex;
+        gap: 20px;
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
+
+.nav-name{
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+       
+}
+.nav-name:hover{
+    color: #f15834;
+    transition: 0.2s;
+}
+
+.outer-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
+
+.outer-box-item1, .outer-box-item2,.outer-box-item3,.outer-box-item4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.person-icon-mobile{
+  display: none;
+}
+
+.search-icon-head{
+    font-size: 19px;
+}
+
+.login-tag{
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    z-index: 999;
+    text-decoration: none;
+
+}
+.login-btn{
+    width: 100px;
+    height: 71px;
+    background-color: #f15834;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.login-btn::before {  
+    transform: scaleX(0);
+    transform-origin: bottom right;
+  }
+  
+  .login-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .login-btn::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    inset: 0 0 0 0;
+    background: #232331;
+    transition: transform .4s ease-in-out;
+  }
+
+  @media (orientation: landscape) {
+    .login-btn{
+      grid-auto-flow: column;
+      color: white;
+    }
+  }
+
+  .img-card{
+    img{
+        object-fit: cover;
+        max-width: 100%;
+    }
+  }
+  //slider inside button
+  .slick-prev{
+    opacity: 40%;
+    left: 100px;
+    z-index: 99;
+  }
+  .slick-next{
+    z-index: 99;
+    right: 100px;
+    opacity: 40% !important;
+
+  }
+ 
+  .slick-prev:before,
+  .slick-next:before{
+    color: rgb(249, 241, 241) !important;
+    font-size: 45px;
+  }
+
+  .slick-next, .slick-prev:hover{
+    opacity: 90% !important;
+    color: rgba(240, 248, 255, 0.458);
+  }
+  .slick-dots{
+    bottom: 10px;
+    font-size: 50px;
+    li{
+        button{
+            font-size: 10px !important;
+        }
+    }
+  }
+  .slick-dots li button:before{
+    font-size: 10px;
+  }
+
+  .tracking-form{
+    width: 1170px;
+    height: 120px;
+    background-color:#f15834;
+    border-radius: 12px;
+    background-image: url(https://limak.az/new_front/assets/revolution/images/object-1.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+  }
+  .order-inf{
+    width: 220px;
+    height: 54px;
+    text-align: center;
+    position: relative;
+    color: white;
+    left: 50px;
+    top: 26px;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  .order-form{
+    width: 864px;
+    height: 70px;
+    background-color: white;
+    position: relative;
+    bottom: 32px;
+    left: 280px;
+    border-radius: 10px;
+  }
+
+  // TARIFF SECTION
+    .tariff-main-pg{
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+      }
+      .tarif-head{
+        display: flex;
+        justify-content: space-between;
+        h4{
+          font-weight: 700;
+          padding-top: 10px;
+          font-size: 25px;
+        }
+      }
+      .tarif-breadcamp{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style-type: none;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        a{
+            text-decoration: none;
+            color: black;
+            &:hover{
+                text-decoration: underline;
+                color: #f15834;
+            }
+        }
+      }
+      .slider-btn{
+        display: none;
+      }
+      .tarif-block{
+        width: 1030px;
+        height: 999px;
+        display: flex; 
+        flex-direction: column;
+        gap: 18px;
+      }
+      .tariff-card-left{
+        width: 515px;
+        height: 899px;
+        background-color: white;
+        border-radius: 6px;
+      }
+      .tariff-card-right{
+        width: 498px;
+        height: 899px;
+        background-color: white;
+        border-radius: 6px;
+      }
+      .tarif-card{
+        display: flex;
+        gap: 15px;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+      .tarif-card-header{
+        width: 515px;
+        height: 70px;
+        display: flex;
+        padding: 24px 20px;
+        gap: 24px;
+        align-items: center;
+        border-bottom: 1px solid #9b9b9b50;
+        h3{
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 0;
+        }
+        img{
+          width: 16px;
+          height: 16px;
+        }
+      }
+      .tarif-item{
+        width: 168px;
+        height: 43px;
+        color: black;
+        font-size: 12px;
+        padding: 0 !important;
+        span{
+          color: black;
+          font-size: 13px;
+          padding-left: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .tarif-item-row{
+        margin-top: 15px;
+        width: 515px;
+        padding-left: 10px;
+        margin-left: 0px;
+        border-bottom: 1px solid #9b9b9b50;
+      }
+      .tarif-table-body{
+        padding: 25px !important;
+        width: 320px;
+        span{
+        font-size: 18px;
+        font-weight: 800;    
+        }
+      }
+      .price-2{
+        display: flex;
+        justify-content: end;
+      } 
+
+      
+      .clicked{
+        color: #f05835;
+        font-weight: 700;
+        span{
+          color: #f05835;
+        }
+      }
+
+
+      
+   // LOG IN MODAL DESIGN
+   .modal-content{
+    width: 720px;
+    height: 530px;
+  }
+  #staticBackdrop{
+    padding-right: 160px;
+  }
+  .login{
+    padding-left: 50px;
+  }
+  .login-modal-head{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .login-modal-head-title{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .login-form-action{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .login-email-input{
+    width: 280px;
+    height: 50px;
+    border-radius: 8px;
+    padding-left: 15px;
+    border: 1px solid #9b9b9b;
+    background-color: #8b8b8b21;
+    &:focus{
+      background-color: white;
+      outline-color: #8b8b8b21;
+    }
+  }
+  .login-password-input{
+    position: relative;
+  }
+  .visibility-btn-password{
+    cursor: pointer;
+  }
+  .hide-eye{
+    background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    padding: 12px;
+    left: 245px;
+    margin-top: 13px;
+    
+  }
+  .text-right{
+    a{
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #706f6f;
+    }
+  }
+  .login-btn-modal{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: linear-gradient(180deg,#FC7B5D 0%,#F05835 100%);
+    border: none;
+    color: white;
+    font-weight: 700;
+  }
+  .register-btn-modal{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg,#D1DDE8 0%,#C3CBD3 100%);
+    font-weight: 700;
+    border-radius: 8px;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+  }
+      
+
+  @media only screen and (max-width: 760px) {
+    *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito Sans', sans-serif;
+    }
+    .customcontainer{
+          width: 375px;
+          margin: 0;
+          padding: 0;
+     }
+      .middlecontainer{
+        max-width: 100%;
+        width: 100%;
+    }
+    
+
+    // HEADER
+    .person-icon-mobile{
+        display: flex;
+        gap: 10px;
+       }
+       .hamburger-menu-icn{
+        margin-top: 2px;
+       }
+       
+        .header-top{
+            display: none;
+        }
+        .header-lower {
+            padding-left: 0;
+            margin-left: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .outer-box{
+            margin-right:5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+       
+        .menu-order-btn{
+          width: 255px;
+          height: 40px;
+          background-color: #f15834;
+          border-radius: 5px;
+          font-size: 18px;
+          font-weight: 400;
+          padding-left: 10px;
+        }
+        .nav-item{
+          border-bottom: 1px solid;
+          border-color: rgba(240, 241, 243, 0.292);
+        }
+        
+        .outer-box-item4{
+            display: none !important;
+        }
+        .main-menu{
+            display: none;
+        }
+        .search-icon-head{
+            i{
+               font-size: 18px;
+            }
+        }
+        .basket-svg{
+            svg{
+                width: 20px;
+                padding-bottom: 2px;
+            }
+        }
+        .menu-icon{
+                font-size: 18px;
+                padding-top: 2px;
+            }
+       
+        #offcanvasNavbar {
+            width: 80%;
+            background-color: #232331;
+        }
+        .nav-item{
+            a{
+                color: white;
+            }
+        }
+     
+        .btn-close-mob-menu{
+            color:#f15834;
+            border: none;
+            background-color: #232331;
+            i{
+                font-size: 25px;
+            }
+        }
+
+        // TARIIFF RESPONSIVE SECTION
+        .tarif-block{
+            width: 355px;
+            height: 978px;
+            margin-left: 10px;
+          }
+          .tariff-main-pg{
+            height: 2013px !important;
+            background-color: #e5e5e5;
+        
+            }
+          .tarif-head{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            h4{
+                font-size: 18px;
+            }
+          }
+          .tarif-breadcamp{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style-type: none;
+            gap: 5px;
+            padding: 0;
+            margin: 0;
+            font-size: 11px;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+          }
+          .slider-btn{
+            display: none;
+            gap: 8px;
+            button{
+              width: 30px;
+              height: 30px;
+              border: none;
+              color: white;
+              cursor: pointer;
+              background-color: #f15834;
+              border-radius: 50px;
+            }
+          }
+          .tarif-table-main{
+            width: 515px;
+          }
+          .tarif-card-header{
+            width: 355px;
+          }
+          .tarif-table{
+            display: flex;
+            width: 355px;
+            border-bottom: 1px solid #9b9b9b50;
+            justify-content: center;
+            align-items: center;
+          }
+          .tarif-table-body{
+            padding: 0 !important;
+            width: 150px !important;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            span{
+              text-align: center;
+            }
+          }
+         .tarif-item-row{
+          width: 350px;
+         }
+         .tarif-card{
+            display: flex;
+            flex-direction: column;
+         }
+
+          // MODAL RESPONSIVE LOG IN MODAL DESIGN
+   .modal-content{
+    width: 353px;
+    height: 700px;
+  }
+  #staticBackdrop{
+    padding-right: 160px;
+  }
+  .login{
+    padding-left: 0px;
+  }
+  .login-modal-head{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 0px;
+    padding-left: 10px;
+  }
+  .login-modal-head-title{
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 10px;
+  }
+  .login-form-action{
+    margin-top: 50px;
+    display: flex;
+    padding-left: 5px;
+    flex-direction: column;
+  }
+  .login-email-input{
+    width: 310px;
+    height: 40px;
+    border-radius: 8px;
+    padding-left: 15px;
+    border: 1px solid #9b9b9b;
+    background-color: #8b8b8b21;
+    &:focus{
+      background-color: white;
+      outline-color: #8b8b8b21;
+    }
+  }
+  .login-password-input{
+    position: relative;
+  }
+  .visibility-btn-password{
+    cursor: pointer;
+  }
+  .hide-eye{
+    background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    padding: 12px;
+    left: 269px;
+    margin-top: 9px;
+    
+  }
+  .text-right{
+    a{
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #706f6f;
+    }
+  }
+  .login-btn-modal{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: linear-gradient(180deg,#FC7B5D 0%,#F05835 100%);
+    border: none;
+    color: white;
+    font-weight: 700;
+  }
+  .register-btn-modal{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg,#D1DDE8 0%,#C3CBD3 100%);
+    font-weight: 700;
+    border-radius: 8px;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .remember-me-radio{
+    padding-left: 3px;
+  }
+  .modal-footer-Btn{
+    margin-right: 5px;
+  }
+  .modal-card-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+}

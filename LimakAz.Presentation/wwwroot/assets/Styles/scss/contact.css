@@ -1,0 +1,698 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.customcontainer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.middlecontainer {
+  max-width: 1050px;
+  width: 1050px;
+  margin: 0 auto;
+}
+
+.main-middle-content {
+  background-color: #e5e5e5;
+}
+
+.header-top {
+  background-color: #232331;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-left ul {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  padding-left: 50px;
+}
+.top-left ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: white;
+  font-size: 13px;
+}
+
+.head-icons {
+  color: white;
+  display: flex;
+  gap: 15px;
+  padding-right: 50px;
+  font-size: 14px;
+}
+.head-icons :hover {
+  color: #f15834;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.header-lower {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  gap: 150px;
+  justify-content: space-between;
+}
+
+.main-menu {
+  padding-right: 160px;
+}
+.main-menu .navigation {
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.nav-name {
+  font-size: 13px;
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+}
+
+.nav-name:hover {
+  color: #f15834;
+  transition: 0.2s;
+}
+
+.outer-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.outer-box-item1, .outer-box-item2, .outer-box-item3, .outer-box-item4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.person-icon-mobile {
+  display: none;
+}
+
+.search-icon-head {
+  font-size: 19px;
+}
+
+.login-tag {
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100px;
+  height: 71px;
+  background-color: #f15834;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.login-btn::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+.login-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.login-btn::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  inset: 0 0 0 0;
+  background: #232331;
+  transition: transform 0.4s ease-in-out;
+}
+
+@media (orientation: landscape) {
+  .login-btn {
+    grid-auto-flow: column;
+    color: white;
+  }
+}
+.img-card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-width: 100%;
+}
+
+.slick-prev {
+  opacity: 40%;
+  left: 100px;
+  z-index: 99;
+}
+
+.slick-next {
+  z-index: 99;
+  right: 100px;
+  opacity: 40% !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: rgb(249, 241, 241) !important;
+  font-size: 45px;
+}
+
+.slick-next, .slick-prev:hover {
+  opacity: 90% !important;
+  color: rgba(240, 248, 255, 0.458);
+}
+
+.slick-dots {
+  bottom: 10px;
+  font-size: 50px;
+}
+.slick-dots li button {
+  font-size: 10px !important;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+}
+
+.tracking-form {
+  width: 1170px;
+  height: 120px;
+  background-color: #f15834;
+  border-radius: 12px;
+  background-image: url(https://limak.az/new_front/assets/revolution/images/object-1.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.order-inf {
+  width: 220px;
+  height: 54px;
+  text-align: center;
+  position: relative;
+  color: white;
+  left: 50px;
+  top: 26px;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.order-form {
+  width: 864px;
+  height: 70px;
+  background-color: white;
+  position: relative;
+  bottom: 32px;
+  left: 280px;
+  border-radius: 10px;
+}
+
+.main-middle-content {
+  padding-top: 40px;
+}
+
+.contact-head {
+  width: 1030px;
+  height: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-breadcamp {
+  display: flex;
+  list-style-type: none;
+  gap: 10px;
+}
+.contact-breadcamp a {
+  text-decoration: none;
+  color: black;
+}
+.contact-breadcamp a:hover {
+  text-decoration: underline;
+  color: #f15834;
+}
+
+.contact-block-body {
+  width: 1030px;
+  height: 3000px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-main-pg {
+  width: 1030px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-block-body {
+  width: 1030px;
+  height: auto;
+  margin-bottom: 90px;
+}
+
+.contact-card-body {
+  width: 1028px;
+  padding: 25px 24px;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.contact-title {
+  display: flex;
+  flex-direction: column;
+  width: 312px;
+  gap: 5px;
+}
+.contact-title img {
+  width: 16px;
+  height: 16px;
+}
+.contact-title h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.contact-text-head {
+  display: flex;
+  gap: 10px;
+}
+
+.contact-article {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-text {
+  font-size: 14px;
+  color: #5f5f5e;
+  margin: 0;
+  padding-left: 5px;
+}
+
+.contact-service-time {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.show-map-collapse {
+  display: flex;
+  width: 312px;
+  height: 18px;
+  gap: 10px;
+  margin-top: 10px;
+  padding-left: 3px;
+}
+.show-map-collapse:hover {
+  text-decoration: underline;
+}
+.show-map-collapse h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+.show-map-collapse img {
+  width: 16px;
+  height: 18px;
+}
+
+.card-left-sect {
+  display: flex;
+  gap: 20px;
+}
+
+.card-map {
+  background-color: white;
+}
+
+.contact-card-body::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 100%;
+  background: #f05835;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.map-body {
+  margin-top: 20px;
+  padding-right: 40px;
+  border-radius: 6px;
+}
+
+.modal-content {
+  width: 720px;
+  height: 530px;
+}
+
+#staticBackdrop {
+  padding-right: 160px;
+}
+
+.login {
+  padding-left: 50px;
+}
+
+.login-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.login-modal-head-title {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.login-form-action {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.login-email-input {
+  width: 280px;
+  height: 50px;
+  border-radius: 8px;
+  padding-left: 15px;
+  border: 1px solid #9b9b9b;
+  background-color: rgba(139, 139, 139, 0.1294117647);
+}
+.login-email-input:focus {
+  background-color: white;
+  outline-color: rgba(139, 139, 139, 0.1294117647);
+}
+
+.login-password-input {
+  position: relative;
+}
+
+.visibility-btn-password {
+  cursor: pointer;
+}
+
+.hide-eye {
+  background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  padding: 12px;
+  left: 245px;
+  margin-top: 13px;
+}
+
+.text-right a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #706f6f;
+}
+
+.login-btn-modal {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #FC7B5D 0%, #F05835 100%);
+  border: none;
+  color: white;
+  font-weight: 700;
+}
+
+.register-btn-modal {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #D1DDE8 0%, #C3CBD3 100%);
+  font-weight: 700;
+  border-radius: 8px;
+}
+.register-btn-modal a {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (max-width: 760px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif;
+  }
+  .customcontainer {
+    width: 375px;
+    margin: 0;
+    padding: 0;
+  }
+  .middlecontainer {
+    max-width: 100%;
+    width: 100%;
+  }
+  .person-icon-mobile {
+    display: flex;
+    gap: 10px;
+  }
+  .hamburger-menu-icn {
+    margin-top: 2px;
+  }
+  .header-top {
+    display: none;
+  }
+  .header-lower {
+    padding-left: 0;
+    margin-left: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  .outer-box {
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  .menu-order-btn {
+    width: 255px;
+    height: 40px;
+    background-color: #f15834;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 10px;
+  }
+  .nav-item {
+    border-bottom: 1px solid;
+    border-color: rgba(240, 241, 243, 0.292);
+  }
+  .outer-box-item4 {
+    display: none !important;
+  }
+  .main-menu {
+    display: none;
+  }
+  .search-icon-head i {
+    font-size: 18px;
+  }
+  .basket-svg svg {
+    width: 20px;
+    padding-bottom: 2px;
+  }
+  .menu-icon {
+    font-size: 18px;
+    padding-top: 2px;
+  }
+  #offcanvasNavbar {
+    width: 80%;
+    background-color: #232331;
+  }
+  .nav-item a {
+    color: white;
+  }
+  .btn-close-mob-menu {
+    color: #f15834;
+    border: none;
+    background-color: #232331;
+  }
+  .btn-close-mob-menu i {
+    font-size: 25px;
+  }
+  .contact-main-pg {
+    width: 375px;
+    height: -moz-max-content;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-card-body {
+    width: 350px;
+    padding: 12px 25px;
+  }
+  .contact-block-body {
+    width: 350px;
+    height: -moz-max-content;
+    height: max-content;
+    margin-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .contact-head {
+    width: 375px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+  }
+  .map-body {
+    width: 350px;
+  }
+  .contact-card-row {
+    display: flex;
+    gap: 10px;
+  }
+  .show-map-collapse {
+    padding: 0;
+  }
+  .modal-content {
+    width: 353px;
+    height: 700px;
+  }
+  #staticBackdrop {
+    padding-right: 160px;
+  }
+  .login {
+    padding-left: 0px;
+  }
+  .login-modal-head {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 0px;
+    padding-left: 10px;
+  }
+  .login-modal-head-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    padding-left: 10px;
+  }
+  .login-form-action {
+    margin-top: 50px;
+    display: flex;
+    padding-left: 5px;
+    flex-direction: column;
+  }
+  .login-email-input {
+    width: 310px;
+    height: 40px;
+    border-radius: 8px;
+    padding-left: 15px;
+    border: 1px solid #9b9b9b;
+    background-color: rgba(139, 139, 139, 0.1294117647);
+  }
+  .login-email-input:focus {
+    background-color: white;
+    outline-color: rgba(139, 139, 139, 0.1294117647);
+  }
+  .login-password-input {
+    position: relative;
+  }
+  .visibility-btn-password {
+    cursor: pointer;
+  }
+  .hide-eye {
+    background-image: url(https://limak.az/new_front/assets/img/icons/opened.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    padding: 12px;
+    left: 269px;
+    margin-top: 9px;
+  }
+  .text-right a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #706f6f;
+  }
+  .login-btn-modal {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #FC7B5D 0%, #F05835 100%);
+    border: none;
+    color: white;
+    font-weight: 700;
+  }
+  .register-btn-modal {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #D1DDE8 0%, #C3CBD3 100%);
+    font-weight: 700;
+    border-radius: 8px;
+  }
+  .register-btn-modal a {
+    text-decoration: none;
+    color: black;
+  }
+  .remember-me-radio {
+    padding-left: 3px;
+  }
+  .modal-footer-Btn {
+    margin-right: 5px;
+  }
+  .modal-card-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}/*# sourceMappingURL=contact.css.map */
