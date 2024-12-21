@@ -1,4 +1,11 @@
-﻿using LimakAz.Persistence.Contexts;
+﻿using LimakAz.Application.Interfaces.Repositories;
+using LimakAz.Application.Interfaces.Repositories.Generic;
+using LimakAz.Application.Interfaces.Services;
+using LimakAz.Persistence.Contexts;
+using LimakAz.Persistence.DataInitializers;
+using LimakAz.Persistence.Implementations.Repositories;
+using LimakAz.Persistence.Implementations.Services;
+using LimakAz.Persistence.Interceptors;
 using LimakAz.Persistence.Localizers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -16,11 +23,30 @@ public static class ServiceRegistrations
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Default")));
 
-        
+        services.AddScoped<DbContextInitializer>();
+        services.AddScoped<BaseEntityInterceptor>();
+
         _addLocalizers(services);
         _addIdentiy(services);
+        _addRepositories(services);
+        _addServices(services);
 
         return services;
+    }
+
+    private static void _addRepositories(IServiceCollection services)
+    {
+      //  services.AddScoped<IRepository, Repository>();
+        services.AddScoped<ILanguageRepository, LanguageRepository>();
+        services.AddScoped<ISettingRepository, SettingRepository>();
+    }
+
+    private static void _addServices(IServiceCollection services)
+    {
+        services.AddScoped<ILanguageService,LanguageService>(); 
+        services.AddScoped<ISettingService,SettingService>(); 
+        services.AddScoped<ICookieService,CookieService>(); 
+        services.AddScoped<ILayoutService,LayoutService>(); 
     }
 
     private static void _addLocalizers(IServiceCollection services)

@@ -7,17 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DBBADDB2-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0286203C-9381-4F14-BCA5-F7A24C2B2423}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5C8A27E2-B5AE-4297-80C1-4685AFF73BB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LimakAz.Domain", "LimakAz.Domain\LimakAz.Domain.csproj", "{A2FC526E-B7E8-42DC-9425-CF690CA3590E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimakAz.Domain", "LimakAz.Domain\LimakAz.Domain.csproj", "{A2FC526E-B7E8-42DC-9425-CF690CA3590E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LimakAz.Application", "LimakAz.Application\LimakAz.Application.csproj", "{E65FDCE6-6839-4F66-98FF-3E578DCD2FC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimakAz.Application", "LimakAz.Application\LimakAz.Application.csproj", "{E65FDCE6-6839-4F66-98FF-3E578DCD2FC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LimakAz.Infrastructure", "LimakAz.Infrastructure\LimakAz.Infrastructure.csproj", "{CA315922-E3BA-46F8-87D7-5BB3606F6CDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimakAz.Infrastructure", "LimakAz.Infrastructure\LimakAz.Infrastructure.csproj", "{CA315922-E3BA-46F8-87D7-5BB3606F6CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LimakAz.Persistence", "LimakAz.Persistence\LimakAz.Persistence.csproj", "{7B16EC0A-BD35-4AA7-A422-C56D000BEB90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimakAz.Persistence", "LimakAz.Persistence\LimakAz.Persistence.csproj", "{7B16EC0A-BD35-4AA7-A422-C56D000BEB90}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C5B7873E-AA28-45CA-B6D6-8D70A6711FB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimakAz.Presentation", "LimakAz.Presentation\LimakAz.Presentation.csproj", "{C866FC98-26F7-488D-BDC3-0200BAB7017E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LimakAz.Presentation", "LimakAz.Presentation\LimakAz.Presentation.csproj", "{4AF131FF-8FBE-45BD-AAD7-73144ABB0D7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{7B16EC0A-BD35-4AA7-A422-C56D000BEB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B16EC0A-BD35-4AA7-A422-C56D000BEB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B16EC0A-BD35-4AA7-A422-C56D000BEB90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C866FC98-26F7-488D-BDC3-0200BAB7017E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C866FC98-26F7-488D-BDC3-0200BAB7017E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C866FC98-26F7-488D-BDC3-0200BAB7017E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C866FC98-26F7-488D-BDC3-0200BAB7017E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF131FF-8FBE-45BD-AAD7-73144ABB0D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF131FF-8FBE-45BD-AAD7-73144ABB0D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF131FF-8FBE-45BD-AAD7-73144ABB0D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF131FF-8FBE-45BD-AAD7-73144ABB0D7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,7 +54,7 @@ Global
 		{E65FDCE6-6839-4F66-98FF-3E578DCD2FC8} = {DBBADDB2-935D-4EA5-A010-067D836017CE}
 		{CA315922-E3BA-46F8-87D7-5BB3606F6CDA} = {0286203C-9381-4F14-BCA5-F7A24C2B2423}
 		{7B16EC0A-BD35-4AA7-A422-C56D000BEB90} = {0286203C-9381-4F14-BCA5-F7A24C2B2423}
-		{C866FC98-26F7-488D-BDC3-0200BAB7017E} = {5C8A27E2-B5AE-4297-80C1-4685AFF73BB8}
+		{4AF131FF-8FBE-45BD-AAD7-73144ABB0D7D} = {C5B7873E-AA28-45CA-B6D6-8D70A6711FB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {508254FC-A91E-4CF8-A2C1-A5086082662A}

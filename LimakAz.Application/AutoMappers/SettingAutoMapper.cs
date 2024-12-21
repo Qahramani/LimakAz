@@ -1,7 +1,4 @@
-﻿using LimakAz.Application.DTOs.SettingDtos;
-using LimakAz.Domain.Entities;
-
-namespace LimakAz.Application.AutoMappers;
+﻿namespace LimakAz.Application.AutoMappers;
 
 internal class SettingAutoMapper : Profile
 {

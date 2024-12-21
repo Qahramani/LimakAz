@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="tariffs" xml:space="preserve">
-    <value>Тарифы</value>
+    <value>ТАРИФЫ</value>
   </data>
   <data name="calculator" xml:space="preserve">
-    <value>Калькулятор</value>
-  </data>
-  <data name="shops" xml:space="preserve">
-    <value>Магазины</value>
+    <value>КАЛЬКУЛЯТОР</value>
   </data>
   <data name="news" xml:space="preserve">
-    <value>Новости</value>
+    <value>НОВОСТИ</value>
   </data>
   <data name="contact" xml:space="preserve">
-    <value>Контакты</value>
+    <value>КОНТАКТЫ</value>
   </data>
   <data name="cargomat" xml:space="preserve">
-    <value>Каргомат</value>
+    <value>КАРГОМАТ</value>
+  </data>
+  <data name="shops" xml:space="preserve">
+    <value>МАГАЗИНЫ</value>
   </data>
 </root>

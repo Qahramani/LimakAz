@@ -1,13 +1,14 @@
 using LimakAz.Application.ServiceRegistration;
 using LimakAz.Persistence.DataInitializers;
 using LimakAz.Persistence.ServiceRegistrations;
+using LimakAz.Infrastructure.ServiceRegistraions;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
-builder.Services.AddScoped<DbContextInitializer>(); // as identity is already added to container it is enought to add Initializer only
+builder.Services.AddInfrastructureService();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc().AddViewLocalization();
@@ -40,6 +41,11 @@ app.UseRequestLocalization(locOptions!.Value);
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+  name: "areas",
+  pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+);
 
 app.MapControllerRoute(
     name: "default",

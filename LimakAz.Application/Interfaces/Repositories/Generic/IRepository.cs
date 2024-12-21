@@ -7,19 +7,27 @@ namespace LimakAz.Application.Interfaces.Repositories.Generic;
 public interface IRepository<T> where T : BaseEntity
 
 {
-    Task<T?> GetAsync(int id, bool enableTracking = true);
+    Task<T?> GetAsync(int id, bool ignoreFilter = false);
     Task<T?> GetAsync(Expression<Func<T, bool>> predicate,
                       Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-                      Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, bool enableTracking = true);
+                      bool ignoreFilter = false);
 
-    Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null,
+    IQueryable<T> GetAll(Expression<Func<T, bool>>? predicate = null,
                       Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-                      Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, bool enableTracking = true);
-    //Task<Paginate<T>> GetPagesAsync(Expression<Func<T, bool>>? predicate = null,
-    //                                Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
-    //                                Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-    //                                int index = 0, int size = 10, bool enableTracking = true);
+                      bool ignoreFilter = false);
+    IQueryable<T> GetPages(Expression<Func<T, bool>>? predicate = null,
+                                Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+                                int page = 1, int limit = 10, bool ignoreFilter = false);
+
+
+    IQueryable<T> OrderBy(IQueryable<T> query, Expression<Func<T, object>> predicate);
+    IQueryable<T> OrderByDescending(IQueryable<T> query, Expression<Func<T, object>> predicate);
+    Task<int> SaveChangesAsync();
+    Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate, 
+                            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, bool ignoreFilter = false);
     Task<T> CreateAsync(T entity);
-    Task<T> UpdateAsync(T entity);
-    Task<T> RemoveAsync(T entity);
+    T UpdateAsync(T entity);
+    void HardDelete(T entity);
+    void SoftDelete(T entity);
+    void Repair(T entity);
 }

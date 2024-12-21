@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.27.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LimakAz.Application\LimakAz.Application.csproj" />
+  </ItemGroup>
+
 </Project>

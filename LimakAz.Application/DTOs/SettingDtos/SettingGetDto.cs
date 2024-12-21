@@ -1,6 +1,6 @@
-﻿namespace LimakAz.Application.DTOs.SettingDtos;
+﻿namespace LimakAz.Application.DTOs;
 
-public class SettingGetDto : IDto
+public class SettingGetDto 
 {
     public int Id { get; set; }
     public string Key { get; set; } = null!;

@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using LimakAz.Application.Interfaces.Services
+@using LimakAz.Persistence.Localizers
+@inject ILayoutService _layoutService;
+@inject LayoutLocalizer _localizer;
+@{
+    var selectedLanguage = await _layoutService.GetSelectedLanguageAsync();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -83,25 +90,25 @@
                 <nav class="nav main-menu">
                     <ul class="navigation">
                         <li class="list-unstyled">
-                            <a class="nav-name">TARİFLƏR</a>
+                            <a class="nav-name">@_localizer.GetValue("tariffs")</a>
                         </li>
                         <li class="list-unstyled">
-                            <a class="nav-name">KALKULYATOR</a>
+                            <a class="nav-name">@_localizer.GetValue("calculator")</a>
                         </li>
                         <li class="list-unstyled">
-                            <a class="nav-name">MAĞAZALAR</a>
+                            <a class="nav-name">@_localizer.GetValue("shops")</a>
                         </li>
                         <li class="list-unstyled">
-                            <a class="nav-name">XƏBƏRLƏR</a>
+                            <a class="nav-name">@_localizer.GetValue("news")</a>
                         </li>
                         <li class="list-unstyled">
                             <a class="nav-name">ENDİRİMLƏR</a>
                         </li>
                         <li class="list-unstyled">
-                            <a class="nav-name">ƏLAQƏ</a>
+                            <a class="nav-name">@_localizer.GetValue("contact")</a>
                         </li>
                         <li class="list-unstyled">
-                            <a class="nav-name">KARGOMAT</a>
+                            <a class="nav-name">@_localizer.GetValue("cargomat")</a>
                         </li>
                     </ul>
                 </nav>
@@ -159,8 +166,19 @@
             </div>
             <div class="outer-box">
                 <div class="outer-box-item1 nav-lang gap-2">
-                    <img src="https://limak.az/new_front/assets/img/icons/ru-flag.svg" alt="">
-                    <a>RU</a>
+                    @if (selectedLanguage.IsoCode == "az")
+                    {
+                        <a asp-controller="localizer" asp-action="changeculture" asp-route-culture="ru"><img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1734637244/LimakAz/b55ggglcanxmip63hats.png" width="23" alt=""></a>
+
+                        <span>RU</span>
+                    }
+                    else
+                    {
+                        <a asp-controller="localizer" asp-action="changeculture" asp-route-culture="az"><img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1734639279/LimakAz/y7c5f2ufcommjovmdfw3.png" width="25" alt=""></a>
+
+                        <span>AZ</span>
+                    }
+
                 </div>
                 <div class="outer-box-item2 search-icon-head">
                     <a class="search-link">
