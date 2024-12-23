@@ -22,8 +22,22 @@ public class SettingController : Controller
         return View(settings);
     }
 
-    public IActionResult Update(SettingUpdateDto dto)
+
+    public async Task<IActionResult> Update(int id)
     {
-        return View();
+        var setting = await _settingService.GetUpdateDtoAsync(id);
+
+        return View(setting);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(SettingUpdateDto dto)
+    {
+        var result = await _settingService.UpdateAsync(dto, ModelState);
+
+        if(result is false)
+            return View(result);
+
+        return Redirect(nameof(Index));
     }
 }

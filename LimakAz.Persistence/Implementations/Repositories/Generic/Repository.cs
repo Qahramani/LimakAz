@@ -25,7 +25,7 @@ internal class Repository<T> : IRepository<T> where T : BaseEntity
         return entityEntry.Entity;
     }
 
-    public T UpdateAsync(T entity)
+    public T Update(T entity)
     {
         var entityEntry = _table.Update(entity);
 

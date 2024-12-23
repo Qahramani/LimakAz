@@ -26,7 +26,7 @@ public interface IRepository<T> where T : BaseEntity
     Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate, 
                             Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, bool ignoreFilter = false);
     Task<T> CreateAsync(T entity);
-    T UpdateAsync(T entity);
+    T Update(T entity);
     void HardDelete(T entity);
     void SoftDelete(T entity);
     void Repair(T entity);

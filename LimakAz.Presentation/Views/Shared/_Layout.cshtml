@@ -4,6 +4,7 @@
 @inject LayoutLocalizer _localizer;
 @{
     var selectedLanguage = await _layoutService.GetSelectedLanguageAsync();
+    var settings = await _layoutService.GetSettingsDictionary();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amerika və Türkiyədən kargo | Limak kargo şirkəti</title>
+    <title>@settings["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -48,14 +49,14 @@
                              class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                         </svg>
-                        <span class="fs-8 fw-medium ">Səbail rayonu, Lermontov küç. 40A</span>
+                        <span class="fs-8 fw-medium ">@settings["Address"]</span>
                     </li>
                     <li class="list-unstyled">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="25" fill="#f15834"
                              class="bi bi-clock-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                         </svg>
-                        <span class="fs-8 fw-medium  ">Bazar ertəsi-şənbə</span>
+                        <span class="fs-8 fw-medium  ">@settings["WorkingHours"]</span>
                     </li>
                     <li class="list-unstyled">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f15834"
@@ -63,17 +64,17 @@
                             <path fill-rule="evenodd"
                                   d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
                         </svg>
-                        <span class="fw-medium">*9595</span>
+                        <span class="fw-medium">*@settings["SupportPhone"]</span>
                     </li>
 
                 </ul>
             </div>
             <div class="top-right">
                 <div class="head-icons">
-                    <i class="fa-brands fa-square-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-telegram"></i>
-                    <i class="fa-brands fa-youtube"></i>
+                    <a href="@settings["FacebookLink"]"><i class="fa-brands fa-square-facebook"></i></a>
+                    <a href="@settings["InstagramLink"]"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="@settings["TwitterLink"]"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="@settings["YoutubeLink"]"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -348,19 +349,19 @@
                         <a href="#">Əlaqə</a>
                     </div>
                     <div class="footer-social-mobile">
-                        <a href="https://www.facebook.com/Limakaz/">
+                        <a href="@settings["FacebookLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/facebook.svg" alt="">
                         </a>
-                        <a href="https://www.instagram.com/limak.az/">
+                        <a href="@settings["InstagramLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/instagram.svg" alt="">
                         </a>
-                        <a href="https://t.me/limak_az">
+                        <a href="@settings["TwitterLink"]">
                             <img src="https://limak.az/front/new/img/telegram.png" alt="">
                         </a>
-                        <a href="https://www.youtube.com/channel/UCz0okQvJ53Ml9agfGGjgyVg">
+                        <a href="@settings["YoutubeLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/youtube.svg" alt="">
                         </a>
-                        <a href="https://www.tiktok.com/limak.az">
+                        <a href="@settings["TiktokLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/tik-tok.png" alt="">
                         </a>
                     </div>
@@ -378,19 +379,19 @@
                         <img src="https://limak.az/new_front/assets/img/hot-line.svg" alt="">
                     </a>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/Limakaz/">
+                        <a href="@settings["FacebookLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/facebook.svg" alt="">
                         </a>
-                        <a href="https://www.instagram.com/limak.az/">
+                        <a href="@settings["InstagramLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/instagram.svg" alt="">
                         </a>
-                        <a href="https://t.me/limak_az">
+                        <a href="@settings["TwitterLink"]">
                             <img src="https://limak.az/front/new/img/telegram.png" alt="">
                         </a>
-                        <a href="https://www.youtube.com/channel/UCz0okQvJ53Ml9agfGGjgyVg">
+                        <a href="@settings["YoutubeLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/youtube.svg" alt="">
                         </a>
-                        <a href="https://www.tiktok.com/limak.az">
+                        <a href="@settings["TiktokLink"]">
                             <img src="https://limak.az/new_front/assets/img/icons/tik-tok.png" alt="">
                         </a>
                     </div>
@@ -399,9 +400,7 @@
             <div class="footer-bottom">
                 <div class="footer-copy">
                     <span>
-                        © 2019 - 2024
-                        <a href="#">Limak.az</a>
-                        | Bütün hüquqlar qorunur
+                        @settings["Copyright"]
                     </span>
                 </div>
                 <div class="footer-payment">

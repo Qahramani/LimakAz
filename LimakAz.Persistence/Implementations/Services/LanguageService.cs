@@ -1,6 +1,4 @@
 ﻿using LimakAz.Application.DTOs.LanguageDtos;
-using LimakAz.Application.Interfaces.Repositories;
-using LimakAz.Application.Interfaces.Services;
 using System.Linq.Expressions;
 
 namespace LimakAz.Persistence.Implementations.Services;
@@ -16,7 +14,7 @@ internal class LanguageService : ILanguageService
         _mapper = mapper;
     }
 
-    public  List<LanguageGetDto> GetLanguagesAsync()
+    public async Task<List<LanguageGetDto>> GetAllAsync()
     {
         var languages =  _repository.GetAll();
 
@@ -24,6 +22,15 @@ internal class LanguageService : ILanguageService
 
         return dtos;
     }
+
+    //public async Task<LanguageGetDto> GetAsync(int id)
+    //{
+    //    var language = await _repository.GetAsync(id);
+
+    //    var dto = _mapper.Map<LanguageGetDto>(language);
+
+    //    return dto;
+    //}
 
     public async Task<LanguageGetDto> GetLanguageAsync(Expression<Func<Language, bool>> predicate)
     {
@@ -33,4 +40,6 @@ internal class LanguageService : ILanguageService
 
         return dto;
     }
+
+   
 }
