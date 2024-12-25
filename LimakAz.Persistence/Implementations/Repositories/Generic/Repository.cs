@@ -85,6 +85,9 @@ internal class Repository<T> : IRepository<T> where T : BaseEntity
     {
         IQueryable<T> query = _table.AsQueryable();
 
+        if (include != null)
+            query = include(query);
+
         if (ignoreFilter)
             query = query.IgnoreQueryFilters();
 
@@ -93,24 +96,28 @@ internal class Repository<T> : IRepository<T> where T : BaseEntity
         return entity;
     }
 
-    public IQueryable<T> GetPages(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, int page = 1, int limit = 10, bool ignoreFilter = false)
+    //public IQueryable<T> GetPages(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, int page = 1, int limit = 10, bool ignoreFilter = false)
+    //{
+    //    IQueryable<T> query = _table.AsQueryable();
+
+    //    if (predicate != null)
+    //        query = query.Where(predicate);
+
+    //    if (include != null)
+    //        query = include(query);
+
+    //    if (ignoreFilter)
+    //        query = query.IgnoreQueryFilters();
+
+    //    query = query.Skip((page - 1) * limit).Take(limit);
+
+    //    return query;
+    //}
+    public IQueryable<T> Paginate(IQueryable<T> query, int limit, int page = 1)
     {
-        IQueryable<T> query = _table.AsQueryable();
-
-        if (predicate != null)
-            query = query.Where(predicate);
-
-        if (include != null)
-            query = include(query);
-
-        if (ignoreFilter)
-            query = query.IgnoreQueryFilters();
-
-        query = query.Skip((page - 1) * limit).Take(limit);
-
-        return query;
+        IQueryable<T> result = query.Skip((page - 1) * limit).Take(limit);
+        return result;
     }
-
 
     public async Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, bool ignoreFilter = false)
     {

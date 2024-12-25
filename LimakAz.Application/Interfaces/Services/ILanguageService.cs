@@ -4,7 +4,8 @@ using System.Linq.Expressions;
 
 namespace LimakAz.Application.Interfaces.Services;
 
-public interface ILanguageService : IGetService<LanguageGetDto>
+public interface ILanguageService 
 {
     Task<LanguageGetDto> GetLanguageAsync(Expression<Func<Language, bool>> predicate);
+    List<LanguageGetDto> GetAll();
 }

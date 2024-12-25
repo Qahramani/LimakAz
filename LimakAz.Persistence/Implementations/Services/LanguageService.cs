@@ -1,7 +1,9 @@
 ﻿using LimakAz.Application.DTOs.LanguageDtos;
+using LimakAz.Domain.Enums;
 using System.Linq.Expressions;
 
 namespace LimakAz.Persistence.Implementations.Services;
+
 
 internal class LanguageService : ILanguageService
 {
@@ -14,7 +16,7 @@ internal class LanguageService : ILanguageService
         _mapper = mapper;
     }
 
-    public async Task<List<LanguageGetDto>> GetAllAsync()
+    public List<LanguageGetDto> GetAll()
     {
         var languages =  _repository.GetAll();
 
@@ -41,5 +43,4 @@ internal class LanguageService : ILanguageService
         return dto;
     }
 
-   
 }

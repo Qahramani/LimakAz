@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Areas.Admin.Controllers;
 
-[Area("admin")]
+[Area("Admin")]
 public class SettingController : Controller
 {
     private readonly ISettingService _settingService;
@@ -15,9 +15,9 @@ public class SettingController : Controller
         _settingService = settingService;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var settings = await _settingService.GettAllAsync();
+        var settings =   _settingService.GetAll();
 
         return View(settings);
     }
@@ -25,7 +25,7 @@ public class SettingController : Controller
 
     public async Task<IActionResult> Update(int id)
     {
-        var setting = await _settingService.GetUpdateDtoAsync(id);
+        var setting = await _settingService.GetUpdatedDtoAsync(id);
 
         return View(setting);
     }
@@ -36,8 +36,10 @@ public class SettingController : Controller
         var result = await _settingService.UpdateAsync(dto, ModelState);
 
         if(result is false)
-            return View(result);
+        {
+            return View(dto);
+        }
 
-        return Redirect(nameof(Index));
+        return RedirectToAction(nameof(Index));
     }
 }

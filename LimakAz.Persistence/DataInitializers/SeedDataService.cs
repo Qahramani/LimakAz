@@ -7,6 +7,9 @@ public static class SeedDataService
     public static void AddSeedData(this ModelBuilder modelBuilder)
     {
         modelBuilder.AddLanguages();
+        modelBuilder.AddGenders();
+        modelBuilder.AddCertificates(); 
+        modelBuilder.AddCategories();
         modelBuilder.AddSettings();
     }
 
@@ -15,6 +18,44 @@ public static class SeedDataService
         modelBuilder.Entity<Language>().HasData(
             new Language { Id = 1, Name = "AZE", IsoCode = "az", ImagePath = "" },
             new Language { Id = 2, Name = "RU", IsoCode = "ru", ImagePath = "" }
+            );
+    }
+    public static void AddGenders(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Gender>().HasData(
+            new Gender { Id = 1 },
+            new Gender { Id = 2 }
+            );
+        modelBuilder.Entity<GenderDetail>().HasData(
+           new GenderDetail { Id = 1, Name = "Qadin", GenderId = 1, LanguageId = 1 },
+           new GenderDetail { Id = 2, Name = "Kişi", GenderId = 2, LanguageId = 1 },
+           new GenderDetail { Id = 3, Name = "Женщина", GenderId = 1, LanguageId = 2 },
+           new GenderDetail { Id = 4, Name = "Мужчина", GenderId = 2, LanguageId = 2 }
+           );
+
+    }
+    public static void AddCertificates(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Certificate>().HasData(
+            new Certificate { Id = 1, ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/fhe6fq69cr1lqamzvhsm.png", Link = "https://www.iata.org/" },
+            new Certificate { Id = 2, ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/usq5qshiktvvcioeu0xe.png", Link = "https://www.turkishairlines.com/" },
+            new Certificate { Id = 3, ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/qtiaad8swg6yvs8jobdj.png", Link = "https://fiata.org/" },
+            new Certificate { Id = 4, ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/ovgeyi6xr3eahskj0u8f.png", Link = "https://limaklogistic.com/tr" },
+            new Certificate { Id = 5, ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/m9q1xavaxdofuxsc380m.png", Link = "https://www.silkwaywest.com/" },
+            new Certificate { Id = 6, ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/l9ropu52ecsgkqyd3uej.png", Link = "https://apagroup.az/az" }
+            );
+    }
+    public static void AddCategories(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Category>().HasData(
+            new Category { Id = 1, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, LogoPath = "" },
+            new Category { Id = 2, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, LogoPath = "" }
+            );
+        modelBuilder.Entity<CategoryDetail>().HasData(
+            new CategoryDetail { Id = 1, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Qeyim", CategoryId = 1, LanguageId = 1},
+            new CategoryDetail { Id = 2, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Одежда", CategoryId = 1, LanguageId = 2},
+            new CategoryDetail { Id = 3, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Kosmetika", CategoryId = 2, LanguageId = 1},
+            new CategoryDetail { Id = 4, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Косметика", CategoryId = 2, LanguageId = 2}
             );
     }
     public static void AddSettings(this ModelBuilder modelBuilder)

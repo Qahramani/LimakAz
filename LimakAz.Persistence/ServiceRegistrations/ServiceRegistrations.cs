@@ -39,11 +39,17 @@ public static class ServiceRegistrations
       //  services.AddScoped<IRepository, Repository>();
         services.AddScoped<ILanguageRepository, LanguageRepository>();
         services.AddScoped<ISettingRepository, SettingRepository>();
+        services.AddScoped<ICertificateRepository, CertificateRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IShopRepository, ShopRepository>();
+        services.AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
+        services.AddScoped<ISliderRepository, SliderRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
     {
         services.AddScoped<ILanguageService,LanguageService>(); 
+        services.AddScoped<ICertificateService,CertificateService>(); 
         services.AddScoped<ISettingService,SettingService>(); 
         services.AddScoped<ICookieService,CookieService>(); 
         services.AddScoped<ILayoutService,LayoutService>(); 

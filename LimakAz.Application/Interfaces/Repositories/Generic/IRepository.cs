@@ -15,10 +15,10 @@ public interface IRepository<T> where T : BaseEntity
     IQueryable<T> GetAll(Expression<Func<T, bool>>? predicate = null,
                       Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
                       bool ignoreFilter = false);
-    IQueryable<T> GetPages(Expression<Func<T, bool>>? predicate = null,
-                                Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
-                                int page = 1, int limit = 10, bool ignoreFilter = false);
-
+    //IQueryable<T> GetPages(Expression<Func<T, bool>>? predicate = null,
+    //                            Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+    //                            int page = 1, int limit = 10, bool ignoreFilter = false);
+    IQueryable<T> Paginate(IQueryable<T> query, int limit, int page = 1);
 
     IQueryable<T> OrderBy(IQueryable<T> query, Expression<Func<T, object>> predicate);
     IQueryable<T> OrderByDescending(IQueryable<T> query, Expression<Func<T, object>> predicate);

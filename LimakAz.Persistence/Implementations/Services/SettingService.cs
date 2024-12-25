@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace LimakAz.Persistence.Implementations.Services;
@@ -7,11 +8,13 @@ internal class SettingService : ISettingService
 {
     private readonly ISettingRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ILanguageService _languageService;
 
-    public SettingService(ISettingRepository repository, IMapper mapper)
+    public SettingService(ISettingRepository repository, IMapper mapper, ILanguageService languageService)
     {
         _repository = repository;
         _mapper = mapper;
+        _languageService = languageService;
     }
 
     public Task<bool> CreateAsync(SettingCreateDto dto, ModelStateDictionary ModelState)
@@ -24,13 +27,18 @@ internal class SettingService : ISettingService
         throw new NotImplementedException();
     }
 
-    public async Task<List<SettingGetDto>> GetAllAsync()
+    public List<SettingGetDto> GetAll()
     {
         var settings = _repository.GetAll(include: x => x.Include(x => x.SettingDetails));
 
         var dtos = _mapper.Map<List<SettingGetDto>>(settings);
 
         return dtos;
+    }
+
+    public Task<PaginateDto<SettingGetDto>> GetPages(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
+    {
+        throw new NotImplementedException();
     }
 
     public Task<Dictionary<string, string>> GetSettingDictionaryAsync(int languageId)
@@ -58,10 +66,23 @@ internal class SettingService : ISettingService
         if (!ModelState.IsValid)
             return false;
 
+
+
         var setting = await _repository.GetAsync(x => x.Id == dto.Id, x => x.Include(x=> x.SettingDetails));
 
         if (setting == null)
-            throw new NotFoundException("Not Found");
+            throw new NotFoundException("tapilmadi");
+
+        foreach (var detail in dto.SettingDetails)
+        {
+            var existLanguage = await _languageService.GetLanguageAsync(x => x.Id == detail.LanguageId);
+
+            if (existLanguage == null)
+            {
+                ModelState.AddModelError("", "Nə isə yanlış oldu, yenidən sınayın");
+                return false;
+            }
+        }
 
         setting = _mapper.Map(dto, setting);
 

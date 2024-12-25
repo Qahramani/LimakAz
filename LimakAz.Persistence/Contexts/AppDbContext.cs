@@ -20,16 +20,29 @@ public class AppDbContext : IdentityDbContext<AppUser>
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         builder.AddSeedData();
 
-       // builder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
+       builder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
+       builder.Entity<News>().HasQueryFilter(x => !x.IsDeleted);
+       builder.Entity<NewsDetail>().HasQueryFilter(x => !x.IsDeleted);
     
         base.OnModelCreating(builder);
     }
 
     public DbSet<Language> Languages { get; set; } = null!;
+    public DbSet<Certificate> Certificates{ get; set; } = null!;
+    public DbSet<Slider> Sliders{ get; set; } = null!;
     public DbSet<Setting> Settings { get; set; } = null!;
     public DbSet<SettingDetail> SettingDetails { get; set; } = null!;
     public DbSet<Gender> Genders { get; set; } = null!;
     public DbSet<GenderDetail> GenderDetails { get; set; } = null!;
-    public DbSet<Location> Locations { get; set; } = null!; 
-    public DbSet<LocationDetail> LocationDetails { get; set; } = null!; 
+    //public DbSet<WareHouse> Locations { get; set; } = null!; 
+    //public DbSet<WareHouseDetail> LocationDetails { get; set; } = null!; 
+    public DbSet<Shop> Shops{ get; set; } = null!;
+    public DbSet<ShopCategory> ShopCategories{ get; set; } = null!;
+    public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<CategoryDetail> CategoryDetails { get; set; } = null!;
+    public DbSet<Country> Countries { get; set; } = null!;
+    public DbSet<CountryDetail> CountryDetails{ get; set; } = null!;
+    public DbSet<News> News{ get; set; } = null!;
+    public DbSet<NewsDetail> NewDetails{ get; set; } = null!;
+
 }

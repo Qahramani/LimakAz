@@ -9,3 +9,4 @@ internal class LanguageRepository : Repository<Language>, ILanguageRepository
     {
     }
 }
+

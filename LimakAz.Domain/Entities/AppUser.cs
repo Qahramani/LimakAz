@@ -13,9 +13,12 @@ public class AppUser : IdentityUser
     public DateTime BirthDate { get; set; } 
     public string Address { get; set; } = null!;
     public bool IsActive { get; set; } = true;
-    public bool IsTermsAccepted { get; set; } = false;
-    public int LocationId { get; set; }
-    public Location? Location { get; set; }
+    //public bool IsTermsAccepted { get; set; } = false;
+    public int WareHouseId { get; set; }
+    public WareHouse? WareHouse { get; set; }
     public int GenderId { get; set; }
     public Gender? Gender { get; set; }
+    public decimal AZNBalance { get; set; } 
+    public decimal TRYBalance { get; set; } 
+
 }
