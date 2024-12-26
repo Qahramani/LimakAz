@@ -27,6 +27,13 @@ public class AppDbContext : IdentityDbContext<AppUser>
         base.OnModelCreating(builder);
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.AddInterceptors(_entityInterceptor);
+
+        base.OnConfiguring(optionsBuilder);
+    }
+
     public DbSet<Language> Languages { get; set; } = null!;
     public DbSet<Certificate> Certificates{ get; set; } = null!;
     public DbSet<Slider> Sliders{ get; set; } = null!;

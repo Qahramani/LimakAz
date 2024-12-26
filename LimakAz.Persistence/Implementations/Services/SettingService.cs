@@ -36,7 +36,7 @@ internal class SettingService : ISettingService
         return dtos;
     }
 
-    public Task<PaginateDto<SettingGetDto>> GetPages(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
+    public Task<PaginateDto<SettingGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         throw new NotImplementedException();
     }

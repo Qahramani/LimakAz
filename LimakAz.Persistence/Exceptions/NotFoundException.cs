@@ -4,7 +4,7 @@ namespace LimakAz.Persistence.Exceptions;
 
 public class NotFoundException : Exception, IBaseException
 {
-    public NotFoundException(string message = "Not Found") : base(message)  
+    public NotFoundException(string message = "Tapilmadi") : base(message)  
     {
         
     }

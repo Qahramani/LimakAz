@@ -4,8 +4,8 @@ internal class CertificateAutoMapper : Profile
 {
     public CertificateAutoMapper()
     {
-        CreateMap<Certificate, CertificateGetDto>();
-        CreateMap<Certificate, CertificateCreateDto>();
-        CreateMap<Certificate, CertificateUpdateDto>();
+        CreateMap<Certificate, CertificateGetDto>().ReverseMap();
+        CreateMap<Certificate, CertificateCreateDto>().ReverseMap();
+        CreateMap<Certificate, CertificateUpdateDto>().ReverseMap();
     }
 }

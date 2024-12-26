@@ -23,8 +23,8 @@ public static class ServiceRegistrations
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Default")));
 
-        services.AddScoped<DbContextInitializer>();
         services.AddScoped<BaseEntityInterceptor>();
+        services.AddScoped<DbContextInitializer>();
 
         _addLocalizers(services);
         _addIdentiy(services);
@@ -44,6 +44,7 @@ public static class ServiceRegistrations
         services.AddScoped<IShopRepository, ShopRepository>();
         services.AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
         services.AddScoped<ISliderRepository, SliderRepository>();
+        services.AddScoped<INewsRepository, NewsRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -53,6 +54,7 @@ public static class ServiceRegistrations
         services.AddScoped<ISettingService,SettingService>(); 
         services.AddScoped<ICookieService,CookieService>(); 
         services.AddScoped<ILayoutService,LayoutService>(); 
+        services.AddScoped<INewsService,NewsService>(); 
     }
 
     private static void _addLocalizers(IServiceCollection services)

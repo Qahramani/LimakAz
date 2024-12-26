@@ -15,7 +15,7 @@ public class CertificateController : Controller
 
     public async Task<IActionResult> Index(int page = 1)
     {
-        var items = await _certificateService.GetPages(page :  page, limit : 3);
+        var items = await _certificateService.GetPagesAsync(page :  page, limit : 3);
 
         return View(items);
     }
@@ -35,6 +35,32 @@ public class CertificateController : Controller
             return View(dto);
         }
         return RedirectToAction(nameof(Index)); 
+    }
+
+    public async Task<IActionResult> Update(int id)
+    {
+        var dto = await _certificateService.GetUpdatedDtoAsync(id);
+
+        return View(dto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(CertificateCreateDto dto)
+    {
+        var result = await _certificateService.CreateAsync(dto, ModelState);
+
+        if (!result)
+        {
+            return View(dto);
+        }
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+      await _certificateService.DeleteAsync(id);
+
+       return RedirectToAction(nameof(Index));
     }
 
 }

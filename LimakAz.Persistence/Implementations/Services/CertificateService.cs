@@ -1,10 +1,7 @@
-﻿
-using Azure.Core;
-using LimakAz.Domain.Enums;
+﻿using LimakAz.Domain.Enums;
 using LimakAz.Persistence.Helpers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
@@ -29,12 +26,12 @@ internal class CertificateService : ICertificateService
 
         if (!dto.ImageFile.CheckSize())
         {
-            ModelState.AddModelError("", "");
+            ModelState.AddModelError("", "Şəkilin həcmi böyükdür");
             return false;
         }
         if (!dto.ImageFile.CheckType())
         {
-            ModelState.AddModelError("", "");
+            ModelState.AddModelError("", "Doğru şəkil formatı daxil edin");
             return false;
         }
 
@@ -51,9 +48,15 @@ internal class CertificateService : ICertificateService
         return true;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+       var certificate = await _repository.GetAsync(id);
+
+        if (certificate == null)
+            throw new NotFoundException();
+
+        _repository.HardDelete(certificate);
+        await _repository.SaveChangesAsync();   
     }
 
     public List<CertificateGetDto> GetAll()
@@ -65,7 +68,7 @@ internal class CertificateService : ICertificateService
         return dtos;
     }
 
-    public async Task<PaginateDto<CertificateGetDto>> GetPages(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
+    public async Task<PaginateDto<CertificateGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         var query = _repository.GetAll();
 
@@ -96,13 +99,54 @@ internal class CertificateService : ICertificateService
 
     }
 
-    public Task<CertificateUpdateDto> GetUpdatedDtoAsync(int id)
+    public async Task<CertificateUpdateDto> GetUpdatedDtoAsync(int id)
     {
-        throw new NotImplementedException();
+        var certificate = await _repository.GetAsync(id);
+
+        if (certificate == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<CertificateUpdateDto>(certificate);
+
+        return dto;
     }
 
-    public Task<bool> UpdateAsync(CertificateUpdateDto dto, ModelStateDictionary ModelState)
+    public async Task<bool> UpdateAsync(CertificateUpdateDto dto, ModelStateDictionary ModelState)
     {
-        throw new NotImplementedException();
+        if (!ModelState.IsValid)
+            return false;
+
+
+        var certificate = await _repository.GetAsync(dto.Id);
+
+        if (certificate == null)
+            throw new NotFoundException();
+
+        if (dto.ImageFile != null)
+        {
+            if (!dto.ImageFile.CheckSize())
+            {
+                ModelState.AddModelError("", "Şəkilin həcmi böyükdür");
+                return false;
+            }
+            if (!dto.ImageFile.CheckType())
+            {
+                ModelState.AddModelError("", "Doğru şəkil formatı daxil edin");
+                return false;
+            }
+
+            await _cloudinaryService.FileDeleteAsync(certificate.ImagePath);
+
+            var imagePath = await _cloudinaryService.FileCreateAsync(dto.ImageFile);
+
+            dto.ImagePath = imagePath;
+        }
+
+        certificate = _mapper.Map(dto, certificate);
+
+        _repository.Update(certificate);
+        await _repository.SaveChangesAsync();
+
+        return true;
     }
 }

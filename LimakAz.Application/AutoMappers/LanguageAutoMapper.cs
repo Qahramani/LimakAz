@@ -6,6 +6,6 @@ internal class LanguageAutoMapper : Profile
 {
     public LanguageAutoMapper()
     {
-        CreateMap<Language, LanguageGetDto>();
+        CreateMap<Language, LanguageGetDto>().ReverseMap();
     }
 }
