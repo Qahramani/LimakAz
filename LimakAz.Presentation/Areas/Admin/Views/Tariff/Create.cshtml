@@ -1,0 +1,53 @@
+﻿@model TariffCreateDto
+
+@{
+    ViewData["Title"] = "Create Tariff for " ;
+}
+
+<h2>Create Tariff for </h2>
+
+<form asp-action="Create" method="post" id="tariffForm">
+    <input type="hidden" asp-for="CountryId" />
+
+    <!-- Display current MinValue dynamically -->
+    <div class="form-group">
+        <label asp-for="MinValue">Minimum Value (kg)</label>
+        <input type="number" asp-for="MinValue" class="form-control" readonly />
+    </div>
+
+    <!-- Allow user to enter MaxValue -->
+    <div class="form-group">
+        <label asp-for="MaxValue">Maximum Value (kg)</label>
+        <input type="number" step="0.001" asp-for="MaxValue" class="form-control" id="maxValueInput" />
+        <span asp-validation-for="MaxValue" class="text-danger"></span>
+    </div>
+
+    <!-- Allow user to set Price -->
+    <div class="form-group">
+        <label asp-for="Price">Price (per kg)</label>
+        <input type="number" step="0.01" asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <!-- Optional Note -->
+    <div class="form-group">
+        <label asp-for="@Model.TariffDetails.FirstOrDefault().Note">Note</label>
+        <textarea asp-for="@Model.TariffDetails.FirstOrDefault().Note" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<script>
+    // Automatically adjust MinValue based on MaxValue
+    const minValueInput = document.querySelector('input[asp-for="MinValue"]');
+    const maxValueInput = document.getElementById('maxValueInput');
+
+    maxValueInput.addEventListener('input', function () {
+        const maxValue = parseFloat(maxValueInput.value);
+        if (!isNaN(maxValue)) {
+            // Update MinValue for the next tariff dynamically
+            minValueInput.value = (maxValue + 0.001).toFixed(3);
+        }
+    });
+</script>

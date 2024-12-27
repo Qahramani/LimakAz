@@ -5,6 +5,7 @@ using LimakAz.Persistence.Contexts;
 using LimakAz.Persistence.DataInitializers;
 using LimakAz.Persistence.Implementations.Repositories;
 using LimakAz.Persistence.Implementations.Services;
+using LimakAz.Persistence.Implementations.Services.UI;
 using LimakAz.Persistence.Interceptors;
 using LimakAz.Persistence.Localizers;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +46,8 @@ public static class ServiceRegistrations
         services.AddScoped<IShopCategoryRepository, ShopCategoryRepository>();
         services.AddScoped<ISliderRepository, SliderRepository>();
         services.AddScoped<INewsRepository, NewsRepository>();
+        services.AddScoped<ITariffRepository, TariffRepository>();
+        services.AddScoped<ICountryRepository, CountryRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -55,6 +58,8 @@ public static class ServiceRegistrations
         services.AddScoped<ICookieService,CookieService>(); 
         services.AddScoped<ILayoutService,LayoutService>(); 
         services.AddScoped<INewsService,NewsService>(); 
+        services.AddScoped<ITariffService,TariffService>(); 
+        services.AddScoped<ICountryService,CountryService>(); 
     }
 
     private static void _addLocalizers(IServiceCollection services)

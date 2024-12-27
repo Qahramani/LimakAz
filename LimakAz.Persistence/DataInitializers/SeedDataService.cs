@@ -52,10 +52,10 @@ public static class SeedDataService
             new Category { Id = 2, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, LogoPath = "" }
             );
         modelBuilder.Entity<CategoryDetail>().HasData(
-            new CategoryDetail { Id = 1, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Qeyim", CategoryId = 1, LanguageId = 1},
-            new CategoryDetail { Id = 2, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Одежда", CategoryId = 1, LanguageId = 2},
-            new CategoryDetail { Id = 3, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Kosmetika", CategoryId = 2, LanguageId = 1},
-            new CategoryDetail { Id = 4, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, Name = "Косметика", CategoryId = 2, LanguageId = 2}
+            new CategoryDetail { Id = 1, Name = "Qeyim", CategoryId = 1, LanguageId = 1},
+            new CategoryDetail { Id = 2,  Name = "Одежда", CategoryId = 1, LanguageId = 2},
+            new CategoryDetail { Id = 3, Name = "Kosmetika", CategoryId = 2, LanguageId = 1},
+            new CategoryDetail { Id = 4, Name = "Косметика", CategoryId = 2, LanguageId = 2}
             );
     }
     public static void AddSettings(this ModelBuilder modelBuilder)

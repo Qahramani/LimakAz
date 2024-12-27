@@ -1,6 +1,6 @@
 ﻿namespace LimakAz.Domain.Entities;
 
-public class WareHouse : BaseEntity
+public class WareHouse : BaseAuditableEntity
 {
     public string Name { get; set; } = null!;
     public string Title { get; set; } = null!;

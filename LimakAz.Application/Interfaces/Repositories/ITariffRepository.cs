@@ -2,6 +2,6 @@
 
 namespace LimakAz.Application.Interfaces.Repositories;
 
-public interface ISettingRepository : IRepository<Setting>
+public interface ITariffRepository : IRepository<Tariff>
 {
 }

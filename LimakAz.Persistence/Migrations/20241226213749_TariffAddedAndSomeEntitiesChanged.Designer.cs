@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241226213749_TariffAddedAndSomeEntitiesChanged")]
+    partial class TariffAddedAndSomeEntitiesChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,21 +172,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 27, 11, 25, 25, 309, DateTimeKind.Utc).AddTicks(4078),
+                            CreatedAt = new DateTime(2024, 12, 26, 21, 37, 46, 871, DateTimeKind.Utc).AddTicks(594),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2024, 12, 27, 11, 25, 25, 309, DateTimeKind.Utc).AddTicks(4080),
+                            UpdatedAt = new DateTime(2024, 12, 26, 21, 37, 46, 871, DateTimeKind.Utc).AddTicks(596),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 27, 11, 25, 25, 309, DateTimeKind.Utc).AddTicks(4084),
+                            CreatedAt = new DateTime(2024, 12, 26, 21, 37, 46, 871, DateTimeKind.Utc).AddTicks(600),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2024, 12, 27, 11, 25, 25, 309, DateTimeKind.Utc).AddTicks(4085),
+                            UpdatedAt = new DateTime(2024, 12, 26, 21, 37, 46, 871, DateTimeKind.Utc).AddTicks(601),
                             UpdatedBy = "default"
                         });
                 });
@@ -312,24 +315,7 @@ namespace LimakAz.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -1297,7 +1283,7 @@ namespace LimakAz.Persistence.Migrations
             modelBuilder.Entity("LimakAz.Domain.Entities.Tariff", b =>
                 {
                     b.HasOne("LimakAz.Domain.Entities.Country", "Country")
-                        .WithMany("Tariffs")
+                        .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1314,7 +1300,7 @@ namespace LimakAz.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.Tariff", "Tariff")
-                        .WithMany("TariffDetails")
+                        .WithMany()
                         .HasForeignKey("TariffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1385,8 +1371,6 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("CountryDetails");
 
                     b.Navigation("Shops");
-
-                    b.Navigation("Tariffs");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Gender", b =>
@@ -1402,11 +1386,6 @@ namespace LimakAz.Persistence.Migrations
             modelBuilder.Entity("LimakAz.Domain.Entities.Setting", b =>
                 {
                     b.Navigation("SettingDetails");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.Tariff", b =>
-                {
-                    b.Navigation("TariffDetails");
                 });
 #pragma warning restore 612, 618
         }

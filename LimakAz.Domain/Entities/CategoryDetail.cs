@@ -1,6 +1,6 @@
 ﻿namespace LimakAz.Domain.Entities;
 
-public class CategoryDetail : BaseAuditableEntity
+public class CategoryDetail : BaseEntity
 {
     public string Name { get; set; } = null!;
     public int CategoryId { get; set; }

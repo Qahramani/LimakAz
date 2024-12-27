@@ -1,0 +1,44 @@
+﻿@model CountryCreateDto
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-description">
+                Yarat
+            </p>
+            <form method="post" class="forms-sample" enctype="multipart/form-data">
+
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <input asp-for="@Model.CountryDetails[0].LanguageId" value="1" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="@Model.CountryDetails[0].Name">Azərbaycanca Ad</label>
+                    <input class="form-control" required asp-for="@Model.CountryDetails[0].Name" placeholder="Dəyər daxil edin">
+                    <span asp-validation-for="@Model.CountryDetails[0].Name" class="text-danger"></span>
+                </div>
+                <hr />
+
+                <input asp-for="@Model.CountryDetails[1].LanguageId" value="2" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="@Model.CountryDetails[1].Name">Rusca Ad</label>
+                    <input class="form-control" required asp-for="@Model.CountryDetails[1].Name" placeholder="Dəyər daxil edin">
+                    <span asp-validation-for="@Model.CountryDetails[1].Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" required asp-for="ImageFile" placeholder="dəyər daxil edin">
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Yarat</button>
+
+                <a class="btn btn-light" asp-action="Index">Ləğv et</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

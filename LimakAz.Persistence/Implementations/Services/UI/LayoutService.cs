@@ -2,7 +2,7 @@
 using LimakAz.Application.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace LimakAz.Persistence.Implementations.Services;
+namespace LimakAz.Persistence.Implementations.Services.UI;
 
 internal class LayoutService : ILayoutService
 {
