@@ -1,4 +1,5 @@
 ﻿using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace LimakAz.Persistence.Implementations.Services;
@@ -7,11 +8,56 @@ internal class TariffService : ITariffService
 {
     private readonly ITariffRepository _repository;
     private readonly IMapper _mapper;
+    private readonly ICountryService _countryService;
 
-    public TariffService(ITariffRepository repository, IMapper mapper)
+    public TariffService(ITariffRepository repository, IMapper mapper, ICountryService countryService)
     {
         _repository = repository;
         _mapper = mapper;
+        _countryService = countryService;
+    }
+
+    public async Task<bool> CreateAsync(TariffCreateDto dto, ModelStateDictionary ModelState)
+    {
+        if (!ModelState.IsValid)
+            return false;
+
+        if (dto.MinValue < 0 || dto.MaxValue < 0 || dto.MinValue >= dto.MaxValue)
+        {
+            ModelState.AddModelError("", "Ceki ucun duzgun deyerler elave ediniz");
+            return false;
+        }
+
+        if (dto.Price < 0)
+        {
+            ModelState.AddModelError("", "Duzgun Mebleq elave ediniz");
+            return false;
+        }
+
+        var isExistRange = await _repository.IsExistAsync(x => !(x.MaxValue <= dto.MinValue || x.MinValue >= dto.MaxValue) && x.CountryId == dto.CountryId);
+
+        if (isExistRange)
+        {
+            ModelState.AddModelError("", "Bu kilo araliginda tariff mevcuddur");
+            return false;
+        }
+
+        var tariff = _mapper.Map<Tariff>(dto);
+        await _repository.CreateAsync(tariff);
+        await _repository.SaveChangesAsync();
+
+        return true;
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var tariff = await _repository.GetAsync(id);
+
+        if (tariff == null)
+            throw new NotFoundException();
+
+         _repository.SoftDelete(tariff);
+        await _repository.SaveChangesAsync();
     }
 
     public List<TariffGetDto> GetAll()
@@ -25,7 +71,7 @@ internal class TariffService : ITariffService
 
     public async Task<PaginateDto<TariffGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
-        var query = _repository.GetAll(include: x => x.Include(x => x.TariffDetails.Where(x => x.LanguageId == (int)language)));
+        var query = _repository.GetAll();
 
         var count = query.Count();
 
@@ -36,7 +82,7 @@ internal class TariffService : ITariffService
 
         if (page < 1)
             page = 1;
-        
+
 
         query = _repository.Paginate(query, limit, page);
 
@@ -55,4 +101,64 @@ internal class TariffService : ITariffService
 
         return paginateDto;
     }
+    public async Task<List<TariffGetDto>> GetTariffsByCountry(int countryId, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var existingCountry = await _countryService.GetAsync(countryId);
+
+        if (existingCountry == null)
+            throw new NotFoundException("Bu Id de olke tapilmadi");
+
+        var tariffs = _repository.GetAll(x => x.CountryId == countryId);
+
+        tariffs.OrderBy(x => x.MinValue);
+
+        var dtos = _mapper.Map<List<TariffGetDto>>(tariffs);
+
+        return dtos;
+    }
+
+    public async Task<TariffUpdateDto> GetUpdatedDtoAsync(int id)
+    {
+        var tariff = await _repository.GetAsync(id);
+
+        if (tariff == null)
+            throw new NotFoundException();
+
+        var dto=_mapper.Map<TariffUpdateDto>(tariff);
+
+        return dto;
+    }
+
+    public async Task<bool> UpdateAsync(TariffUpdateDto dto, ModelStateDictionary ModelState)
+    {
+        if (!ModelState.IsValid)
+            return false;
+
+
+        var isExistRange = await _repository.IsExistAsync(x => !(x.MaxValue <= dto.MinValue || x.MinValue >= dto.MaxValue) && x.CountryId == dto.CountryId);
+
+        if (isExistRange)
+        {
+            ModelState.AddModelError("", "Bu kilo araliginda tariff mevcuddur");
+            return false;
+        }
+
+        var isCountryExist = await _countryService.GetAsync(dto.CountryId);
+
+        if (isCountryExist == null)
+            throw new NotFoundException("Bu Id de olke tapilmadi");
+
+        var tariff = await _repository.GetAsync(dto.Id);
+
+        if (tariff == null)
+            throw new NotFoundException();
+
+        tariff = _mapper.Map(dto, tariff);
+        await _repository.CreateAsync(tariff);
+        await _repository.SaveChangesAsync();
+
+        return true;
+    }
+
+
 }

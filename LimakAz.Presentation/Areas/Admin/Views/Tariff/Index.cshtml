@@ -1,4 +1,4 @@
-﻿@model PaginateDto<TariffGetDto>
+﻿@model List<TariffGetDto>
 @{
     int count = 1;
 }
@@ -7,7 +7,8 @@
         <div class="card-body">
             <h4 class="card-title">Slaydlar</h4>
             <p class="card-description">
-                <a asp-action="Create" class="btn btn-success">Yenisini yarat</a>
+                <a asp-action="Create" asp-route-countryId="@ViewData["CountryId"]" class="btn btn-success">Yenisini yarat</a>
+                <a asp-controller="Country" asp-action="Index" class="btn btn-github">Geriye qayit</a>
             </p>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -32,17 +33,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Items)
+                        @foreach (var item in Model)
                         {
                             <tr>
                                 <td class="py-1">
                                     @(count++)
                                 </td>
                                 <td>
-                                    @item.MinValue - @item.MaxValue (@if (item.TariffDetails.FirstOrDefault()?.Note != null)
-                                    {
-                                        @item.TariffDetails.FirstOrDefault()!.Note
-                                    })
+                                    @item.MinValue - @item.MaxValue kg
                                 </td>
                                 <td>
                                     @item.Price AZN
@@ -51,7 +49,7 @@
                                     @item.CreatedAt
                                 </td>
                                 <td>
-                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning"><i class="mdi mdi-grease-pencil"></i></a>
+                                    <a asp-action="Update" asp-route-countryId="@ViewData["CountryId"]" asp-route-id="@item.Id" class="btn btn-warning"><i class="mdi mdi-grease-pencil"></i></a>
                                     <a href="javascript:void(0);" class="btn btn-danger deleteBtn" onclick="showDeleteModal('@item.Id')">
                                         <i class="mdi mdi-delete"></i>
                                     </a>
@@ -66,19 +64,6 @@
                 </table>
 
             </div>
-            <br />
-            <br />
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link @(Model.CurrentPage==1 ? "disabled" : "")" asp-action="Index" asp-route-page="@(Model.CurrentPage-1)">Əvvəlki</a></li>
-                    @for (int i = 1; i <= Model.PageCount; i++)
-                    {
-                        <li class="page-item"><a class="page-link @(Model.CurrentPage==i ? "active" : "")" asp-action="Index" asp-route-page="@i">@i</a></li>
-                    }
-
-                    <li class="page-item @(Model.CurrentPage==Model.PageCount ? "disabled" : "")"><a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage+1)">Sonrakı</a></li>
-                </ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -104,9 +89,5 @@
     </div>
 </div>
 <script>
-    function showDeleteModal(id) {
-        const deleteUrl = `@Url.Action("Delete")/${id}`;
-        document.getElementById('confirmDeleteButton').setAttribute('href', deleteUrl);
-        $('#deleteConfirmationModal').modal('show');
-    }
+    const controllerName = '@ViewContext.RouteData.Values["controller"]';
 </script>

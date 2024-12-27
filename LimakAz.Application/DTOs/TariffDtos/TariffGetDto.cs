@@ -7,7 +7,6 @@ public class TariffGetDto : IDto
     public decimal MaxValue { get; set; }
     public decimal Price { get; set; }
     public DateTime CreatedAt { get; set; }
-    public List<TariffDetailGetDto> TariffDetails { get; set; } = [];
 }
 public class TariffCreateDto : IDto
 {
@@ -15,7 +14,6 @@ public class TariffCreateDto : IDto
     public decimal MaxValue { get; set; }
     public decimal Price { get; set; }
     public int CountryId { get; set; } 
-    public List<TariffDetailCreateDto> TariffDetails { get; set; } = [];
 }
 
 public class TariffUpdateDto : IDto
@@ -25,6 +23,5 @@ public class TariffUpdateDto : IDto
     public decimal MaxValue { get; set; }
     public decimal Price { get; set; }
     public int CountryId { get; set; }
-    public List<TariffDetailUpdateDto> TariffDetails { get; set; } = [];
 }
 

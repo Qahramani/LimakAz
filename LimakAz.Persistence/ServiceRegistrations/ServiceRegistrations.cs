@@ -56,10 +56,13 @@ public static class ServiceRegistrations
         services.AddScoped<ICertificateService,CertificateService>(); 
         services.AddScoped<ISettingService,SettingService>(); 
         services.AddScoped<ICookieService,CookieService>(); 
-        services.AddScoped<ILayoutService,LayoutService>(); 
         services.AddScoped<INewsService,NewsService>(); 
         services.AddScoped<ITariffService,TariffService>(); 
-        services.AddScoped<ICountryService,CountryService>(); 
+        services.AddScoped<ICountryService,CountryService>();
+        
+
+        services.AddScoped<ILayoutService,LayoutService>(); 
+        services.AddScoped<IHomeService,HomeService>(); 
     }
 
     private static void _addLocalizers(IServiceCollection services)

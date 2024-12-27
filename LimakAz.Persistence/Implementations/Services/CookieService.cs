@@ -1,5 +1,6 @@
 ﻿using LimakAz.Application.DTOs.LanguageDtos;
 using LimakAz.Application.Interfaces.Services;
+using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 
@@ -23,5 +24,19 @@ internal class CookieService : ICookieService
         var selectedLanguage = await _languageService.GetLanguageAsync(x => x.IsoCode == isoCode);
 
         return selectedLanguage;
+    }
+
+    public async Task<LanguageType> GetSelectedLanguageTypeAsync()
+    {
+        var language = await GetSelectedLanguageAsync();
+
+        var type = LanguageType.Azerbaijan;
+
+        if(language.IsoCode == "az")
+            type = LanguageType.Azerbaijan;
+        if (language.IsoCode == "ru")
+            type = LanguageType.Russian;
+
+        return type;
     }
 }

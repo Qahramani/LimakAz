@@ -25,6 +25,4 @@ public class CountryUpdateDto : IDto
     public int Id { get; set; }
     public IFormFile? ImageFile { get; set; } 
     public List<CountryDetailUpdateDto> CountryDetails { get; set; } = [];
-    //public ICollection<Shop> Shops { get; set; } = [];
-    //public ICollection<Tariff> Tariffs { get; set; } = [];
 }

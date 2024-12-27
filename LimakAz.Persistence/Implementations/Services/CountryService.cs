@@ -116,7 +116,7 @@ internal class CountryService : ICountryService
         if (!ModelState.IsValid)
             return false;
 
-        var country = await _repository.GetAsync(dto.Id);
+        var country = await _repository.GetAsync(x => x.Id == dto.Id, x => x.Include(x => x.CountryDetails));
 
         if (country == null)
             throw new NotFoundException();
@@ -181,10 +181,19 @@ internal class CountryService : ICountryService
 
     private static Func<IQueryable<Country>, IIncludableQueryable<Country, object>> _getWithIncludes(LanguageType language)
     {
-        return x => x.Include(x => x.CountryDetails.Where(x => x.LanguageId == (int)language)).Include(x => x.Tariffs).ThenInclude(x => x.TariffDetails);
+        return x => x.Include(x => x.CountryDetails.Where(x => x.LanguageId == (int)language)).Include(x => x.Tariffs);
     }
     private static Func<IQueryable<Country>, IIncludableQueryable<Country, object>> _getWithIncludes()
     {
-        return x => x.Include(x => x.CountryDetails).Include(x => x.Tariffs).ThenInclude(x => x.TariffDetails);
+        return x => x.Include(x => x.CountryDetails).Include(x => x.Tariffs);
+    }
+
+    public async Task<CountryGetDto?> GetAsync(int Id)
+    {
+        var country = await _repository.GetAsync(Id);
+
+        var dto = _mapper.Map<CountryGetDto>(country);
+
+        return dto;
     }
 }

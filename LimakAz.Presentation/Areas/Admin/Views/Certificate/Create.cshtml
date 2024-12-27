@@ -14,23 +14,33 @@
                     <span asp-validation-for="Link" class="text-danger"></span>
                 </div>
 
-                @* <div class="form-group">
-                    <input class="form-control" required asp-for="ImageFile" placeholder="Dəyər daxil edin">
-                    <span asp-validation-for="ImageFile" class="text-danger"></span>
-                </div> *@
-
-
                 <div class="form-group">
-                    <label for="ImageFile">Select Image</label>
-                    <input type="file" class="form-control" id="ImageFile" name="ImageFile" accept="image/*" onchange="showCropper(this)">
+                    <label for="ImageFile">Upload Image</label>
+
+                    <!-- Custom Styled Upload Button -->
+                    <div class="custom-file-upload">
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('ImageFile').click()">Choose Image</button>
+                        <span id="fileName" class="ml-2">No file selected</span>
+                    </div>
+
+                    <!-- Hidden File Input -->
+                    <input type="file"
+                           asp-for="ImageFile"
+                           id="ImageFile"
+                           accept="image/*"
+                           style="display: none;"
+                           onchange="updateFileName(event); previewImage(event)"
+                           required />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                    <!-- Image Preview -->
+                    <div class="mt-3">
+                        <p><strong>Preview:</strong></p>
+                        <img id="imagePreview" src="#" alt="No image selected" style="max-width: 200px; display: none; border: 1px solid #ccc; padding: 5px;" />
+                    </div>
                 </div>
-                <div id="cropper-container" style="display: none;">
-                    <img id="image-preview" style="max-width: 100%;" />
-                </div>
-                <button type="button" class="btn btn-primary" id="crop-button" style="display: none;" onclick="cropImage()">Crop</button>
-                <br />
-                <br />
-                <br />
+
+
                 <button type="submit" class="btn btn-primary mr-2">Yarat</button>
 
                 <a class="btn btn-light" asp-action="Index">Ləğv et</a>
@@ -39,103 +49,6 @@
         </div>
     </div>
 </div>
-
-
-<style>
-    #cropper-container {
-        border: 1px solid #ccc;
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #f9f9f9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #crop-button {
-        margin-top: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-        #crop-button:hover {
-            background-color: #0056b3;
-        }
-
-    #image-preview {
-        max-width: 100%;
-        max-height: 400px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-    }
-
-</style>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-
-
-<script>
-    let cropper;
-    let croppedBlob;
-
-    function showCropper(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const imagePreview = document.getElementById('image-preview');
-                imagePreview.src = e.target.result;
-                document.getElementById('cropper-container').style.display = 'block';
-                document.getElementById('crop-button').style.display = 'inline-block';
-
-                // Destroy the previous cropper instance if it exists
-                if (cropper) {
-                    cropper.destroy();
-                }
-
-                cropper = new Cropper(imagePreview, {
-                    aspectRatio: 378 / 100, // Fixed aspect ratio
-                    viewMode: 1, // Ensures the crop box stays within the canvas
-                    autoCropArea: 1, // Automatically maximizes the crop area
-                    data: {
-                        width: 378, // Default crop width
-                        height: 100, // Default crop height
-                    },
-                    cropBoxResizable: true, // Allow users to resize the crop box
-                    cropBoxMovable: true, // Allow users to move the crop box
-                    dragMode: 'move', // Let users move the image inside the canvas
-                });
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function cropImage() {
-        const canvas = cropper.getCroppedCanvas({
-            width: 100, // Fixed output width
-            height: 378, // Fixed output height
-        });
-
-        canvas.toBlob((blob) => {
-            croppedBlob = blob;
-
-            // Update the file input for form submission
-            const file = new File([blob], "cropped-image.jpg", { type: "image/jpeg" });
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(file);
-            document.getElementById('ImageFile').files = dataTransfer.files;
-
-            alert('Image cropped and ready for submission.');
-        });
-    }
-
-</script>
 
 
 

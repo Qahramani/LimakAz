@@ -96,10 +96,3 @@
         </div>
     </div>
 </div>
-<script>
-    function showDeleteModal(id) {
-        const deleteUrl = `@Url.Action("Delete")/${id}`;
-        document.getElementById('confirmDeleteButton').setAttribute('href', deleteUrl);
-        $('#deleteConfirmationModal').modal('show');
-    }
-</script>

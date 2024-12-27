@@ -130,7 +130,7 @@ internal class NewsService : INewsService
             return false;
 
         
-        var news = await _repository.GetAsync(dto.Id);
+        var news = await _repository.GetAsync(x => x.Id == dto.Id, x => x.Include(x => x.NewsDetails));
 
         if (news == null)
             throw new NotFoundException();
