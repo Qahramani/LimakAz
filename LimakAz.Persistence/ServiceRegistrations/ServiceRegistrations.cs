@@ -60,6 +60,8 @@ public static class ServiceRegistrations
         services.AddScoped<ITariffService,TariffService>(); 
         services.AddScoped<ICountryService,CountryService>();
         services.AddScoped<ICategoryService,CategoryService>();
+        services.AddScoped<IShopService,ShopService>();
+        services.AddScoped<IShopCategoryService,ShopCategoryService>();
         
 
         services.AddScoped<ILayoutService,LayoutService>(); 

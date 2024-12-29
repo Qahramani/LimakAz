@@ -14,17 +14,18 @@ public class ShopController : Controller
         _shopService = shopService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var dtos = _shopService.GetAll();
+        var dtos = await _shopService.GetPagesAsync();
 
         return View(dtos);
     }
 
-    public async IActionResult Create()
+    public IActionResult Create()
     {
-        var dto = 
-        return View();
+        var dto = _shopService.GetCreateDto(new ShopCreateDto());
+
+        return View(dto);
     }
 
     [HttpPost]
@@ -33,16 +34,19 @@ public class ShopController : Controller
         var result = await _shopService.CreateAsync(dto, ModelState);
 
         if (!result)
+        {
+            dto =  _shopService.GetCreateDto(dto);
             return View(dto);
+        }
 
         return RedirectToAction(nameof(Index));
     }
 
     public async Task<IActionResult> Update(int id)
     {
-        var country = await _shopService.GetUpdatedDtoAsync(id);
+        var dto = await _shopService.GetUpdatedDtoAsync(id);
 
-        return View(country);
+        return View(dto);
     }
 
     [HttpPost]
@@ -50,7 +54,11 @@ public class ShopController : Controller
     {
         var result = await _shopService.UpdateAsync(dto, ModelState);
         if (!result)
+        {
+            dto = await _shopService.GetUpdatedDtoAsync(dto.Id);
             return View(dto);
+
+        }
 
         return RedirectToAction(nameof(Index));
     }

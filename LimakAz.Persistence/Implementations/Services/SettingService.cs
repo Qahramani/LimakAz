@@ -1,4 +1,5 @@
-﻿using LimakAz.Domain.Enums;
+﻿using LimakAz.Domain.Entities;
+using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,18 @@ internal class SettingService : ISettingService
         return dtos;
     }
 
+    public async Task<SettingGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var setting = await _repository.GetAsync(x => x.Id == id, x => x.Include(x => x.SettingDetails.Where(x => x.LanguageId == (int)language)));
+
+        if (setting == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<SettingGetDto>(setting);
+
+        return dto;
+    }
+
     public Task<PaginateDto<SettingGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         throw new NotImplementedException();
@@ -49,6 +62,11 @@ internal class SettingService : ISettingService
         var dto = _mapper.Map<SettingUpdateDto>(setting);
 
         return dto;
+    }
+
+    public async Task<bool> IsExistAsync(int id)
+    {
+        return await _repository.IsExistAsync(x => x.Id == id);
     }
 
     public async Task<bool> UpdateAsync(SettingUpdateDto dto, ModelStateDictionary ModelState)

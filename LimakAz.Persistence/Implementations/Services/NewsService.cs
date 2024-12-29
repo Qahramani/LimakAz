@@ -79,6 +79,18 @@ internal class NewsService : INewsService
         return dtos;
     }
 
+    public async Task<NewsGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var news = await _repository.GetAsync(x => x.Id == id, x => x.Include(x => x.NewsDetails.Where(x => x.LanguageId == (int)language)));
+
+        if (news == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<NewsGetDto>(news);
+
+        return dto;
+    }
+
     public async Task<PaginateDto<NewsGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         var query = _repository.GetAll(include : x => x.Include(x => x.NewsDetails.Where(x => x.LanguageId == (int)language)));
@@ -121,6 +133,11 @@ internal class NewsService : INewsService
         var dto = _mapper.Map<NewsUpdateDto>(news);
 
         return dto;
+    }
+
+    public async Task<bool> IsExistAsync(int id)
+    {
+        return await _repository.IsExistAsync(x => x.Id == id);
     }
 
     public async Task<bool> UpdateAsync(NewsUpdateDto dto, ModelStateDictionary ModelState)

@@ -69,18 +69,18 @@ internal class CountryService : ICountryService
         if (!ModelState.IsValid)
             return false;
 
-        if (!dto.ImageFile.CheckSize())
+        if (!dto.ImageFile!.CheckSize())
         {
             ModelState.AddModelError("", "Şəkilin həcmi böyükdür");
             return false;
         }
-        if (!dto.ImageFile.CheckType())
+        if (!dto.ImageFile!.CheckType())
         {
             ModelState.AddModelError("", "Şəkil formatı yanlışdır");
             return false;
         }
 
-        var existingCountyName = await _repository.GetAsync(x => x.CountryDetails.FirstOrDefault().Name.ToLower() == dto.CountryDetails.FirstOrDefault().Name.ToLower());
+        var existingCountyName = await _repository.GetAsync(x => x.CountryDetails.FirstOrDefault()!.Name.ToLower() == dto.CountryDetails.FirstOrDefault()!.Name!.ToLower());
 
         if (existingCountyName != null)
         {
@@ -206,5 +206,22 @@ internal class CountryService : ICountryService
         var dto = _mapper.Map<CountryGetDto>(country);
 
         return dto;
+    }
+
+    public async Task<CountryGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var country = await _repository.GetAsync(x => x.Id == id, _getWithIncludes());
+
+        if (country == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<CountryGetDto>(country);
+
+        return dto;
+    }
+
+    public async Task<bool> IsExistAsync(int id)
+    {
+        return await _repository.IsExistAsync(x => x.Id == id);
     }
 }

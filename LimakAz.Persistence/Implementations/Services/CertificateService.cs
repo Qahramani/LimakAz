@@ -68,6 +68,18 @@ internal class CertificateService : ICertificateService
         return dtos;
     }
 
+    public async Task<CertificateGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var certificate = await _repository.GetAsync(x => x.Id == id );
+
+        if (certificate == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<CertificateGetDto>(certificate);
+
+        return dto;
+    }
+
     public async Task<PaginateDto<CertificateGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         var query = _repository.GetAll();
@@ -109,6 +121,11 @@ internal class CertificateService : ICertificateService
         var dto = _mapper.Map<CertificateUpdateDto>(certificate);
 
         return dto;
+    }
+
+    public async Task<bool> IsExistAsync(int id)
+    {
+        return await  _repository.IsExistAsync(x => x.Id == id);
     }
 
     public async Task<bool> UpdateAsync(CertificateUpdateDto dto, ModelStateDictionary ModelState)

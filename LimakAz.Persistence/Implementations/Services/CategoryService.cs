@@ -1,13 +1,8 @@
-﻿using LimakAz.Application.Interfaces.Services;
-using LimakAz.Domain.Entities;
-using LimakAz.Domain.Enums;
+﻿using LimakAz.Domain.Enums;
 using LimakAz.Persistence.Helpers;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System.Diagnostics.Metrics;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
@@ -89,14 +84,14 @@ internal class CategoryService : ICategoryService
 
     public List<CategoryGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
-        var categories = _repository.GetAll(include : _getWithIncludes(language));
+        var categories = _repository.GetAll(include: _getWithIncludes(language));
 
         var dtos = _mapper.Map<List<CategoryGetDto>>(categories);
 
         return dtos;
     }
 
-   
+
 
     public async Task<PaginateDto<CategoryGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
@@ -197,6 +192,18 @@ internal class CategoryService : ICategoryService
         return true;
     }
 
+    public async Task<CategoryGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var category = await _repository.GetAsync(x => x.Id == id, _getWithIncludes());
+
+        if (category == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<CategoryGetDto>(category);
+
+        return dto;
+    }
+
     private static Func<IQueryable<Category>, IIncludableQueryable<Category, object>> _getWithIncludes(LanguageType language)
     {
         return x => x.Include(x => x.CategoryDetails.Where(x => x.LanguageId == (int)language));
@@ -204,5 +211,10 @@ internal class CategoryService : ICategoryService
     private static Func<IQueryable<Category>, IIncludableQueryable<Category, object>> _getWithIncludes()
     {
         return x => x.Include(x => x.CategoryDetails);
+    }
+
+    public async Task<bool> IsExistAsync(int id)
+    {
+       return await _repository.IsExistAsync(x => x.Id == id);
     }
 }

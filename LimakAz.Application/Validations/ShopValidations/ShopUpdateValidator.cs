@@ -2,11 +2,10 @@
 
 namespace LimakAz.Application.Validations.ShopValidations;
 
-public class ShopCreateValidator : AbstractValidator<ShopCreateDto>
+public class ShopUpdateValidator : AbstractValidator<ShopUpdateDto>
 {
-    public ShopCreateValidator()
+    public ShopUpdateValidator()
     {
-        RuleFor(x => x.ImageFile).NotEmpty().WithMessage("Şəkil boş ola bilməz");
         RuleFor(x => x.CountryId).NotEmpty().WithMessage("Boş ola bilməz");
         RuleFor(d => d.Link)
                 .NotEmpty().WithMessage("Boş ola bilməz")

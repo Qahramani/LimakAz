@@ -18,7 +18,7 @@ public class ShopCreateDto : IDto
     public IFormFile? ImageFile{ get; set; }
     public string? Link { get; set; }
     public int CountryId { get; set; }
-    public List<SelectListItem> Countries { get; set; } = [];
+    public List<CountryGetDto> Countries { get; set; } = [];
     public List<int> SelectedCategoryIds { get; set; } = [];
     public List<SelectListItem> Categories { get; set; } = [];
 }
@@ -29,7 +29,7 @@ public class ShopUpdateDto : IDto
     public string? Link { get; set; }
     public int CountryId { get; set; }
     public IFormFile? ImageFile { get; set; }
-    public List<SelectListItem> Countries { get; set; } = [];
-    public List<int> CategoryIds { get; set; } = [];
+    public List<CountryGetDto> Countries { get; set; } = [];
+    public List<int> SelectedCategoryIds { get; set; } = [];
     public List<SelectListItem> Categories { get; set; } = [];
 }

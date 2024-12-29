@@ -1,4 +1,4 @@
-﻿@model ShopCreateDto
+﻿@model ShopUpdateDto
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -26,12 +26,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Kategoriya(lar) seç)</label>
+                    <label>Kategoriya(lar) seç</label>
                     <select asp-items="Model.Categories" asp-for="SelectedCategoryIds" class="form-control" placeholder="tags" multiple="multiple"></select>
                     <span asp-validation-for="SelectedCategoryIds"></span>
                 </div>
 
-                
+
                 <!-- Image Upload Section -->
                 <div class="form-group">
                     <label for="ImageFile">Şəkil seç</label>
@@ -44,8 +44,7 @@
                            id="ImageFile"
                            accept="image/*"
                            style="display: none;"
-                           onchange="updateFileName(event); previewImage(event)"
-                            />
+                           onchange="updateFileName(event); previewImage(event)" />
                     <span asp-validation-for="ImageFile" class="text-danger"></span>
 
                     <div class="mt-3">
