@@ -24,18 +24,18 @@ internal class CertificateService : ICertificateService
         if (!ModelState.IsValid)
             return false;
 
-        if (!dto.ImageFile.CheckSize())
+        if (!dto.ImageFile!.CheckSize())
         {
             ModelState.AddModelError("", "Şəkilin həcmi böyükdür");
             return false;
         }
-        if (!dto.ImageFile.CheckType())
+        if (!dto.ImageFile!.CheckType())
         {
-            ModelState.AddModelError("", "Doğru şəkil formatı daxil edin");
+            ModelState.AddModelError("", "Şəkil formatı yanlışdır");
             return false;
         }
 
-        var imagePath = await _cloudinaryService.FileCreateAsync(dto.ImageFile);
+        var imagePath = await _cloudinaryService.FileCreateAsync(dto.ImageFile!);
 
         dto.ImagePath = imagePath;
 
@@ -59,7 +59,7 @@ internal class CertificateService : ICertificateService
         await _repository.SaveChangesAsync();   
     }
 
-    public List<CertificateGetDto> GetAll()
+    public List<CertificateGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
        var certificates = _repository.GetAll();
 
@@ -139,7 +139,7 @@ internal class CertificateService : ICertificateService
 
             var imagePath = await _cloudinaryService.FileCreateAsync(dto.ImageFile);
 
-            dto.ImagePath = imagePath;
+            certificate.ImagePath = imagePath;
         }
 
         certificate = _mapper.Map(dto, certificate);

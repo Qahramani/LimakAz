@@ -1,4 +1,5 @@
-﻿using LimakAz.Domain.Enums;
+﻿using LimakAz.Domain.Entities;
+using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,7 +61,7 @@ internal class TariffService : ITariffService
         await _repository.SaveChangesAsync();
     }
 
-    public List<TariffGetDto> GetAll()
+    public List<TariffGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
         var tariffs = _repository.GetAll();
 

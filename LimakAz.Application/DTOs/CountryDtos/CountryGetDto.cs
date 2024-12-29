@@ -14,7 +14,7 @@ public class CountryGetDto : IDto
 public class CountryCreateDto : IDto
 {
     public string? ImagePath { get; set; }
-    public IFormFile ImageFile { get; set; } = null!;
+    public IFormFile? ImageFile { get; set; }
     public List<CountryDetailCreateDto> CountryDetails { get; set; } = [];
     //public ICollection<Shop> Shops { get; set; } = [];
     //public ICollection<Tariff> Tariffs { get; set; } = [];
@@ -26,3 +26,4 @@ public class CountryUpdateDto : IDto
     public IFormFile? ImageFile { get; set; } 
     public List<CountryDetailUpdateDto> CountryDetails { get; set; } = [];
 }
+

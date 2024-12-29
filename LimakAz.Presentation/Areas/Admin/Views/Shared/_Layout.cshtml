@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/admin/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="~/admin/images/favicon.png" />
+    <link rel="stylesheet" href="~/admin/css/custom.css">
 </head>
 <body>
     <div class="container-scroller">
@@ -182,8 +183,11 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" asp-controller="category" asp-action="index">Categorys</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="country" asp-action="index">Countries</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="certificate" asp-action="index">Certificates</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="news" asp-action="index">News</a></li>
                                 <li class="nav-item"> <a class="nav-link" asp-controller="setting" asp-action="index">Settings</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
                             </ul>
                         </div>
                     </li>

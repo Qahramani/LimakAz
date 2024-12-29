@@ -9,12 +9,12 @@ public class CountryDetailGetDto : IDto
 
 public class CountryDetailCreateDto : IDto
 {
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } 
     public int LanguageId { get; set; }
 }
 public class CountryDetailUpdateDto : IDto
 {
     public int Id { get; set; }
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } 
     public int LanguageId { get; set; }
 }

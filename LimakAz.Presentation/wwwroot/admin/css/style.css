@@ -17955,10 +17955,14 @@ a.text-info:hover, a.text-info:focus {
 a.text-warning:hover, a.text-warning:focus {
   color: #b38700 !important;
 }
-
-.text-danger {
-  color: #ff4747 !important;
-}
+/*
+form .text-danger {
+    font-size: 0.85rem !important;
+    font-family: 'Roboto Mono', monospace !important;
+    color: #e74c3c !important;
+    margin-top: 8px !important;
+    display: block !important;
+}*/
 
 a.text-danger:hover, a.text-danger:focus {
   color: #fa0000 !important;

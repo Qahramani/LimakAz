@@ -12,7 +12,7 @@ public static class ServiceRegistrations
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         services.AddFluentValidationAutoValidation();
-        services.AddValidatorsFromAssemblyContaining(typeof(SettingCreateDtoValidator));
+        services.AddValidatorsFromAssemblyContaining(typeof(SettingUpdateDtoValidator));
 
         return services;
     }

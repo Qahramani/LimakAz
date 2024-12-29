@@ -45,9 +45,9 @@ public class CertificateController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Update(CertificateCreateDto dto)
+    public async Task<IActionResult> Update(CertificateUpdateDto dto)
     {
-        var result = await _certificateService.CreateAsync(dto, ModelState);
+        var result = await _certificateService.UpdateAsync(dto, ModelState);
 
         if (!result)
         {

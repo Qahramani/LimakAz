@@ -13,12 +13,11 @@ public class CertificateCreateDto : IDto
 {
     public string Link { get; set; } = null!;
     public string? ImagePath { get; set; }
-    public IFormFile ImageFile { get; set; } = null!;
+    public IFormFile? ImageFile { get; set; } 
 }
 public class CertificateUpdateDto : IDto
 {
     public int Id { get; set; }
-    public string Link { get; set; } = null!;
-    public string? ImagePath { get; set; }
+    public string? Link { get; set; }
     public IFormFile? ImageFile { get; set; }
 }

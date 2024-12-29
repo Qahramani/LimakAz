@@ -59,6 +59,7 @@ public static class ServiceRegistrations
         services.AddScoped<INewsService,NewsService>(); 
         services.AddScoped<ITariffService,TariffService>(); 
         services.AddScoped<ICountryService,CountryService>();
+        services.AddScoped<ICategoryService,CategoryService>();
         
 
         services.AddScoped<ILayoutService,LayoutService>(); 

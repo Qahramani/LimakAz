@@ -17,19 +17,9 @@ internal class SettingService : ISettingService
         _languageService = languageService;
     }
 
-    public Task<bool> CreateAsync(SettingCreateDto dto, ModelStateDictionary ModelState)
+    public List<SettingGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public List<SettingGetDto> GetAll()
-    {
-        var settings = _repository.GetAll(include: x => x.Include(x => x.SettingDetails));
+        var settings = _repository.GetAll(include: x => x.Include(x => x.SettingDetails.Where(x => x.LanguageId == (int)language)));
 
         var dtos = _mapper.Map<List<SettingGetDto>>(settings);
 
@@ -65,8 +55,6 @@ internal class SettingService : ISettingService
     {
         if (!ModelState.IsValid)
             return false;
-
-
 
         var setting = await _repository.GetAsync(x => x.Id == dto.Id, x => x.Include(x=> x.SettingDetails));
 

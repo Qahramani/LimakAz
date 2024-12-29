@@ -139,7 +139,7 @@
                                                 <span class="card-text-head">@item.NewsDetails.FirstOrDefault()?.Title</span>
                                                 <p class="card-date">
                                                     <i class="fa-solid fa-calendar-days"></i>
-                                                    <span>@item.CreatedAt</span>
+                                                    <span>@item.UpdatedAt</span>
                                                 </p>
                                             </div>
                                         </div>
@@ -403,56 +403,15 @@
                     </div>
                     <div class="mySwiper">
                         <div class="sertf-body">
+                            @foreach (var item in Model.Certificates.Items)
+                            {
+                                
                             <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://www.iata.org/">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678780850.png" alt="">
+                                <a class="sertf-card-tag" href="@item.Link">
+                                    <img src="@item.ImagePath" alt="">
                                 </a>
                             </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://www.turkishairlines.com/">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678780922.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="#">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678780875.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://limaklogistic.com/tr">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678780898.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://www.silkwaywest.com/">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678780947.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://apagroup.az/az">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678795184.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://norma.az/">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678795449.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://vesti.az/">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678795496.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="https://www.kapitalbank.az/en">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1678795621.png" alt="">
-                                </a>
-                            </div>
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="hhttps://pintravel.az/">
-                                    <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/1681299204.png" alt="">
-                                </a>
-                            </div>
+                            }
                         </div>
 
                     </div>

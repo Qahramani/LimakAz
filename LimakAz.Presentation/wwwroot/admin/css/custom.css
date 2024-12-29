@@ -1,0 +1,8 @@
+﻿/* custom-style.css */
+.text-danger {
+    font-size: 0.85rem !important; /* Smaller font size */
+    font-family: 'Roboto Mono', monospace !important; /* Robotic font */
+    color: #e74c3c !important; /* Custom red */
+    margin-top: 8px !important; /* Add space above */
+    display: block !important; /* Ensure it is block-level */
+}

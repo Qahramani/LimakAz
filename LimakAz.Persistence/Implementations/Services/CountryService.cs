@@ -21,9 +21,9 @@ internal class CountryService : ICountryService
         _cloudinaryService = cloudinaryService;
     }
 
-    public List<CountryGetDto> GetAll()
+    public List<CountryGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
-        var countries = _repository.GetAll(include: _getWithIncludes(LanguageType.Azerbaijan));
+        var countries = _repository.GetAll(include: _getWithIncludes(language));
 
         var dtos = _mapper.Map<List<CountryGetDto>>(countries);
 
@@ -76,7 +76,7 @@ internal class CountryService : ICountryService
         }
         if (!dto.ImageFile.CheckType())
         {
-            ModelState.AddModelError("", "Doğru şəkil formatı daxil edin");
+            ModelState.AddModelError("", "Şəkil formatı yanlışdır");
             return false;
         }
 
@@ -121,12 +121,23 @@ internal class CountryService : ICountryService
         if (country == null)
             throw new NotFoundException();
 
-        var existingCountryName = await _repository.GetAsync(x => x.CountryDetails.FirstOrDefault().Name.ToLower() == dto.CountryDetails.FirstOrDefault().Name.ToLower() && x.Id != dto.Id);
+        var existingCountryName = await _repository.GetAsync(x => x.CountryDetails.FirstOrDefault()!.Name.ToLower() == dto.CountryDetails.FirstOrDefault()!.Name!.ToLower() && x.Id != dto.Id);
 
         if (existingCountryName != null)
         {
             ModelState.AddModelError("", "Bu adda ölkə mövcuddur");
             return false;
+        }
+
+        foreach (var detail in dto.CountryDetails)
+        {
+            var existLanguage = await _languageService.GetLanguageAsync(x => x.Id == detail.LanguageId);
+
+            if (existLanguage == null)
+            {
+                ModelState.AddModelError("", "Nə isə yanlış oldu, yenidən sınayın");
+                return false;
+            }
         }
 
         if (dto.ImageFile != null)
@@ -138,7 +149,7 @@ internal class CountryService : ICountryService
             }
             if (!dto.ImageFile.CheckType())
             {
-                ModelState.AddModelError("", "Doğru şəkil formatı daxil edin");
+                ModelState.AddModelError("", "Şəkil formatı yanlışdır");
                 return false;
             }
 
