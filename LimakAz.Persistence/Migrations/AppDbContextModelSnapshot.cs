@@ -169,21 +169,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 27, 14, 56, 44, 205, DateTimeKind.Utc).AddTicks(6772),
+                            CreatedAt = new DateTime(2024, 12, 30, 18, 46, 50, 725, DateTimeKind.Utc).AddTicks(9341),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2024, 12, 27, 14, 56, 44, 205, DateTimeKind.Utc).AddTicks(6773),
+                            UpdatedAt = new DateTime(2024, 12, 30, 18, 46, 50, 725, DateTimeKind.Utc).AddTicks(9341),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 27, 14, 56, 44, 205, DateTimeKind.Utc).AddTicks(6776),
+                            CreatedAt = new DateTime(2024, 12, 30, 18, 46, 50, 725, DateTimeKind.Utc).AddTicks(9345),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2024, 12, 27, 14, 56, 44, 205, DateTimeKind.Utc).AddTicks(6777),
+                            UpdatedAt = new DateTime(2024, 12, 30, 18, 46, 50, 725, DateTimeKind.Utc).AddTicks(9346),
                             UpdatedBy = "default"
                         });
                 });
@@ -627,6 +627,11 @@ namespace LimakAz.Persistence.Migrations
                         {
                             Id = 12,
                             Key = "Title"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Key = "SupportLineImage"
                         });
                 });
 
@@ -824,6 +829,20 @@ namespace LimakAz.Persistence.Migrations
                             LanguageId = 2,
                             SettingId = 12,
                             Value = "Грузы из Америки и Турции Тарифы | Limak.az - цены на доставку"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            LanguageId = 1,
+                            SettingId = 13,
+                            Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583341/LimakAz/ggh5cyvitqg56p1avgef.svg"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            LanguageId = 2,
+                            SettingId = 13,
+                            Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583605/LimakAz/zkp51genu3lmjahjuox7.svg"
                         });
                 });
 
@@ -1258,7 +1277,7 @@ namespace LimakAz.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.Shop", "Shop")
-                        .WithMany()
+                        .WithMany("ShopCategories")
                         .HasForeignKey("ShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1357,6 +1376,11 @@ namespace LimakAz.Persistence.Migrations
             modelBuilder.Entity("LimakAz.Domain.Entities.Setting", b =>
                 {
                     b.Navigation("SettingDetails");
+                });
+
+            modelBuilder.Entity("LimakAz.Domain.Entities.Shop", b =>
+                {
+                    b.Navigation("ShopCategories");
                 });
 #pragma warning restore 612, 618
         }

@@ -135,4 +135,19 @@
   <data name="shops" xml:space="preserve">
     <value>MAĞAZALAR</value>
   </data>
+  <data name="login" xml:space="preserve">
+    <value>DAXIL OL</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>HAQQIMIZDA</value>
+  </data>
+  <data name="rules" xml:space="preserve">
+    <value>QAYDALAR</value>
+  </data>
+  <data name="questions" xml:space="preserve">
+    <value>SUALLAR</value>
+  </data>
+  <data name="confidentialitry" xml:space="preserve">
+    <value>GİZLİLİK ŞƏRTLƏRİ</value>
+  </data>
 </root>

@@ -1,0 +1,163 @@
+﻿  <!-- Main Start -->
+<main id="main"
+      style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat; background-size: 100%; background-position: top center;"
+      class="bg-full">
+    <div class="main-container">
+        <!-- Currency -->
+        <div class="shop">
+            <div class="block">
+                <div class="block-header">
+                    <h2 class="block-title">MAĞAZALAR</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span>Mağazalar</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-body">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-3 col-12">
+                            <div class="card card-sidebar">
+                                <ul class="nav flex-column" id="categoryFilter">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" class="nav-link category-item @(Model.SelectedCategoryId == null ? "active" : "")"
+                                           data-category-id="">
+                                            <img src="https://example.com/all-categories-icon.png" alt="All Categories"
+                                                 style="width:18px; height:18px; margin-right:8px;">
+                                            Bütün kateqoriyalar
+                                        </a>
+                                    </li>
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="javascript:void(0)" class="nav-link category-item @(category.CategoryId == Model.SelectedCategoryId ? "active" : "")"
+                                               data-category-id="@category.CategoryId">
+                                                <img src="@Url.Content("~/assets2/images/category-icons/" + category.Image)" alt="@category.Name"
+                                                     style="width:18px; height:18px; margin-right:8px;">
+                                                @category.Name
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 col-lg-9 col-12">
+                            <div>
+                                <ul id="countryFilter headerList" class="nav nav nav-tabs card-tabs-nav">
+                                    @foreach (var country in Model.Countries)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="javascript:void(0)" class="nav-link country-item @(country.CountryId == Model.SelectedCountryId ? "active" : "")"
+                                               data-country-id="@country.CountryId">
+                                                <img src="@country.ImagePath" alt="@country.Name"
+                                                     style="width:18px; height:18px; margin-right:8px;">
+                                                @country.Name
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="store-list">
+                                <div data-id="1" class="active active-tab tab-pane">
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-4 col-6 item-box" data-item="electronic">
+                                            <a href=" http://limak.link/r?url=https://odakpazar.com/"
+                                               target="_blank" class="store-item">
+                                                <article class="card">
+                                                    <img src="https://limakaz.com/storage/shops/422.png"
+                                                         alt="Odak Pazar-dən çatdırılma" class="card-img"
+                                                         style="width: 70%;">
+                                                </article>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Main End -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const countryFilterItems = document.querySelectorAll("#countryFilter .country-item");
+        const categoryFilterItems = document.querySelectorAll("#categoryFilter .category-item");
+        const storeListContainer = document.getElementById("storeList");
+
+        let selectedCountryId = null;
+        let selectedCategoryId = null;
+
+        // Function to fetch and update the shops based on filters
+        function updateShops() {
+            const params = new URLSearchParams();
+            if (selectedCountryId) params.append("countryId", selectedCountryId);
+            if (selectedCategoryId) params.append("categoryId", selectedCategoryId);
+
+            fetch(`/Shops/GetFilteredShops?${params.toString()}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        renderShops(data.data);
+                    } else {
+                        console.error("Error fetching shops:", data);
+                    }
+                })
+                .catch((error) => console.error("Fetch error:", error));
+        }
+
+        // Function to render shops dynamically
+        function renderShops(shops) {
+            storeListContainer.innerHTML = ""; // Clear existing shops
+            if (shops.length === 0) {
+                storeListContainer.innerHTML = "<p>No shops found for the selected filters.</p>";
+                return;
+            }
+            shops.forEach((shop) => {
+                const shopHtml = `
+                    <div class="col-md-6 col-lg-4 col-6 item-box">
+                        <a href="${shop.Url}" target="_blank" class="store-item">
+                            <article class="card">
+                                <img src="${shop.ImageUrl}" alt="${shop.Name}" class="card-img" style="width: 70%;">
+                                <div class="card-body">
+                                    <h5 class="card-title">${shop.Name}</h5>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                `;
+                storeListContainer.insertAdjacentHTML("beforeend", shopHtml);
+            });
+        }
+
+        // Event listeners for filtering
+        countryFilterItems.forEach((item) => {
+            item.addEventListener("click", function () {
+                selectedCountryId = this.getAttribute("data-country-id");
+                countryFilterItems.forEach((i) => i.classList.remove("active"));
+                this.classList.add("active");
+                updateShops();
+            });
+        });
+
+        categoryFilterItems.forEach((item) => {
+            item.addEventListener("click", function () {
+                selectedCategoryId = this.getAttribute("data-category-id");
+                categoryFilterItems.forEach((i) => i.classList.remove("active"));
+                this.classList.add("active");
+                updateShops();
+            });
+        });
+
+        // Initial load of shops
+        updateShops();
+    });
+
+</script>

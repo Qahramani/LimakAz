@@ -62,6 +62,7 @@ public static class ServiceRegistrations
         services.AddScoped<ICategoryService,CategoryService>();
         services.AddScoped<IShopService,ShopService>();
         services.AddScoped<IShopCategoryService,ShopCategoryService>();
+        services.AddScoped<ISliderService,SliderService>();
         
 
         services.AddScoped<ILayoutService,LayoutService>(); 

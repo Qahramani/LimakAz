@@ -1,25 +1,15 @@
-﻿
-@model HomeGetDto
+﻿@model HomeGetDto
 
 <div class="main-middle-content">
     <!-- First Top slider -->
     <div class="customcontainer top-slider">
         <div class=" imgCarousel">
-            <a class="img-card">
-                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/image-1700567054.jpg" alt="">
-            </a>
-            <a class="img-card">
-                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/image-1688121418.jpeg" alt="">
-            </a>
-            <a class="img-card">
-                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/image-1700218281.jpg" alt="">
-            </a>
-            <a class="img-card">
-                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/image-1700218452.jpg" alt="">
-            </a>
-            <a class="img-card">
-                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/sliders/image-1700218030.jpg" alt="">
-            </a>
+            @foreach (var item in Model.Sliders.Items)
+            {
+                <a class="img-card">
+                    <img  src="@item.ImagePath" alt="">
+                </a>
+            }
         </div>
 
     </div>
@@ -63,46 +53,15 @@
                         <div class="markets-body">
                             <div class="store-list">
                                 <div class="row store-list-items ">
-                                    <a href="https://www.sellinicanta.com/" class="col-6 col-md-4 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/473.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://osmanlidogaltas.com/" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/624.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://jeffreestarcosmetics.com/" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/699.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://lilakutu.com/" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/413.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://www.ayakkabicafe.com/" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/410.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://www.ifondi.com/" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/379.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://www.bbeox.com/" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/585.png" alt="">
-                                        </div>
-                                    </a>
-                                    <a href="https://oldnavy.gap.com/browse/home.do?ssiteID=GAP&redirected_by=bon.az" class="col-6 col-md-3 col-sm-4">
-                                        <div class="store-item">
-                                            <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/shops/280.png" alt="">
-                                        </div>
-                                    </a>
+                                    @foreach (var item in Model.Shops.Items)
+                                    {
+
+                                        <a href="@item.Link" class="col-6 col-md-4 col-sm-4">
+                                            <div class="store-item">
+                                                <img src="@item.ImagePath" alt="">
+                                            </div>
+                                        </a>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -129,24 +88,24 @@
                             <div class=" main-pg-news">
                                 @foreach (var item in Model.News.Items)
                                 {
-                                    
-                                <div class="news-card-1  col-xl-3 col-xxl-3 col-sm-6 col-12 col">
-                                    <a href="#" class="news-card">
-                                        <div class="card-text">
-                                            <img src="@item.ImagePath"
-                                                 alt="Yeni il bayraminiz mubarek!">
-                                            <div class="card-body">
-                                                <span class="card-text-head">@item.NewsDetails.FirstOrDefault()?.Title</span>
-                                                <p class="card-date">
-                                                    <i class="fa-solid fa-calendar-days"></i>
-                                                    <span>@item.UpdatedAt</span>
-                                                </p>
+
+                                    <div class="news-card-1  col-xl-3 col-xxl-3 col-sm-6 col-12 col">
+                                        <a href="#" class="news-card">
+                                            <div class="card-text">
+                                                <img src="@item.ImagePath"
+                                                     alt="Yeni il bayraminiz mubarek!">
+                                                <div class="card-body">
+                                                    <span class="card-text-head">@item.NewsDetails.FirstOrDefault()?.Title</span>
+                                                    <p class="card-date">
+                                                        <i class="fa-solid fa-calendar-days"></i>
+                                                        <span>@item.UpdatedAt</span>
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                }   
-                                
+                                        </a>
+                                    </div>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -405,12 +364,12 @@
                         <div class="sertf-body">
                             @foreach (var item in Model.Certificates.Items)
                             {
-                                
-                            <div class="sertf-card swiper-slide">
-                                <a class="sertf-card-tag" href="@item.Link">
-                                    <img src="@item.ImagePath" alt="">
-                                </a>
-                            </div>
+
+                                <div class="sertf-card swiper-slide">
+                                    <a class="sertf-card-tag" href="@item.Link">
+                                        <img src="@item.ImagePath" alt="">
+                                    </a>
+                                </div>
                             }
                         </div>
 

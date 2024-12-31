@@ -135,4 +135,19 @@
   <data name="shops" xml:space="preserve">
     <value>МАГАЗИНЫ</value>
   </data>
+  <data name="login" xml:space="preserve">
+    <value>ВОЙТИ</value>
+  </data>
+  <data name="about" xml:space="preserve">
+    <value>О НАС</value>
+  </data>
+  <data name="rules" xml:space="preserve">
+    <value>ПРАВИЛА</value>
+  </data>
+  <data name="questions" xml:space="preserve">
+    <value>ВОПРОСЫ</value>
+  </data>
+  <data name="confidentialitry" xml:space="preserve">
+    <value>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</value>
+  </data>
 </root>
