@@ -1,0 +1,267 @@
+﻿
+<link rel="stylesheet" href="~/assets/Styles/scss/calculator.css">
+<link rel="stylesheet" href="~/assets/Styles/scss/footer.css">
+<link rel="stylesheet" href="~/assets/Styles/css/main.css">
+
+
+<div class="main-middle-content">
+
+    <!-- Middle Sections -->
+    <div>
+        <!-- Middle Section -->
+        <div class="middlecontainer">
+
+            <!-- CALCULATOR Plans -->
+
+            <div class="calculator-main-pg">
+                <div class="calculator-block">
+                    <div class="calc-head">
+                        <div>
+                            <h4>Kalkulyator</h4>
+                        </div>
+                        <ol class="calc-breadcamp">
+                            <li>
+                                <a href="#" class="calc-breadcamp-tag">Ana səhifə</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <span>Kalkulyator</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="calc-container">
+                        <div class="row calc-card-row">
+                            <div class="col-lg-8 col-12">
+                                <div class="calc-card">
+                                    <form class="form-calc">
+                                        <div class="form-calc-head">
+                                            <div class="form-calc-title" >
+                                                <img src="https://limak.az/new_front/assets/img/icons/box.svg"
+                                                     alt="">
+                                                <h3>Kalkulyator</h3>
+                                            </div>
+                                            <div class="form-calc-reset">
+                                                <button class="calc-resetBtn" type="button">
+                                                    <img src="https://limak.az/new_front/assets/img/icons/reset.svg"
+                                                         alt="">
+                                                    <span>Kalkulyatoru sıfırla</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row calc-input">
+                                            <div class="col-6">
+                                                <select class="select-region">
+                                                    <option value="1">Türkiyə</option>
+                                                    <option value="2">Amerika</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="select-filial" id="">
+                                                    <option value="1">Bakı-İçərişəhər</option>
+                                                    <option value="2">Bakı-Xalqlar</option>
+                                                    <option value="3">Xırdalan</option>
+                                                    <option value="4">Sumqayıt</option>
+                                                    <option value="5">Gəncə</option>
+                                                    <option value="6">Zaqatala</option>
+                                                    <option value="7">Balakən</option>
+                                                    <option value="8">Bakı-Gənclik</option>
+                                                    <option value="9">Bakıxanov</option>
+                                                    <option value="10">Xətai</option>
+                                                    <option value="11">İnşaatçılar</option>
+                                                    <option value="12">Badamdar</option>
+                                                    <option value="13">Həzi Aslanov</option>
+                                                    <option value="14">Zabrat</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group">
+                                                    <div>
+                                                        <input class="weight" min="0" type="number" name="weight"
+                                                               placeholder="Çəki">
+                                                    </div>
+                                                    <div class="input-weight">
+                                                        <button type="submit">
+                                                            kg
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <input class="input-count" type="number" name="count" min="1"
+                                                       value="1" placeholder="Bağlama sayı">
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group">
+                                                    <div>
+                                                        <input type="number" placeholder="En">
+                                                    </div>
+                                                    <div class="input-en">
+                                                        <button>sm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group">
+                                                    <div>
+                                                        <input type="number" placeholder="Uzunluq">
+                                                    </div>
+                                                    <div class="input-uzun">
+                                                        <button>sm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="input-group">
+                                                    <div>
+                                                        <input type="number" placeholder="Hündürlük">
+                                                    </div>
+                                                    <div class="input-height">
+                                                        <button>sm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="select-region">
+                                                    <option value="1">Standart</option>
+                                                    <option value="2">Maye</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6 total-lbl">
+                                                <div class="calc-total">
+                                                    <div class="total-label">
+                                                        <span>Cəmi:</span>
+                                                    </div>
+                                                    <div class="total-price">
+                                                        <span class="all-count">AZN 0.00 | $0.00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-12 calc-Btn">
+                                                <button type="submit" class="form-calc-btn">Hesabla</button>
+                                            </div>
+                                            <div class="col-sm-6 col-12 calc-info-icn">
+                                                <div class="form-info"
+                                                     tooltip='Seçdiyiniz məhsulların toplam məbləğini "Konvertor" yazılan hissəyə qeyd edin. Kalkulyatorda ödəyəcəyiniz toplam məbləğ manat ilə göstəriləcək'>
+                                                    <i class="fa-solid fa-circle-info"></i>
+                                                </div>
+                                            </div>
+                                            <div id="tariff-data-turkey"
+                                                 data-azn-price="1.70"
+                                                 data-usd-price="1.00"
+                                                 data-onekg-azn-price="7.65"
+                                                 data-onekg-usd-price="4.50">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="currency-card">
+                                    <div class="currency-exc">
+                                        <div class="form-exc-body">
+                                            <div class="form-exc-header">
+                                                <div class="form-exc-title">
+                                                    <img src="https://limak.az/new_front//assets/img/icons/calculator.svg"
+                                                         alt="">
+                                                    <h3>Məzənnə kalkulyatoru</h3>
+                                                </div>
+                                            </div>
+                                            <form class="currency-calc-form">
+                                                <div class="input-group currency-input-calc">
+                                                    <input class="currency-input1" min="0" placeholder="0.0" type="number">
+                                                    <div>
+                                                        <select class="currency-type">
+                                                            <option value="1">USD</option>
+                                                            <option value="2">TRY</option>
+                                                            <option value="3">AZN</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group currency-input-calc">
+                                                    <input class="currency-input2" min="0" placeholder="0.0" type="number">
+                                                    <div>
+                                                        <select class="currency-type">
+                                                            <option value="1">AZN</option>
+                                                            <option value="2">TRY</option>
+                                                            <option value="3">AZN</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <p class="currency-form-info">
+                                                    Günün məzənnəsinə uyğun hesablanır.
+                                                </p>
+                                            </form>
+                                            <div class="form-exc-table">
+                                                <div class="form-calc-title">
+                                                    <img src="https://limak.az/new_front//assets/img/icons/change.svg"
+                                                         alt="">
+                                                    <h3>Günlük məzənnə</h3>
+                                                </div>
+                                                <table>
+                                                    <tbody role="rowgroup">
+                                                        <tr role="row"
+                                                            class="daily-currency-info daily-curren-bord">
+                                                            <td>
+                                                                <img src="https://limak.az/new_front//assets/img/icons/tr-circle.svg"
+                                                                     alt="">
+                                                                <span>1</span>
+                                                            </td>
+                                                            <td>
+                                                                <strong>TRY</strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr role="row"
+                                                            class="daily-currency-info daily-curren-bord">
+                                                            <td>
+                                                                <img src="https://limak.az/new_front//assets/img/icons/az-circle.svg"
+                                                                     alt="">
+                                                                <span>0.0562</span>
+                                                            </td>
+                                                            <td>
+                                                                <strong>AZN</strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr role="row" class="daily-currency-info">
+                                                            <td>
+                                                                <img src="https://limak.az/new_front//assets/img/icons/usa-circle.svg"
+                                                                     alt="">
+                                                                <span>0.0329628</span>
+                                                            </td>
+                                                            <td>
+                                                                <strong>USD</strong>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="currency-card-info">
+                            <h3 class="card-info-title">Qeyd:</h3>
+                            <p>
+                                Sifariş olunan bağlamanın çatdırılma haqqı çəkiyə görə hesablanır. Ölçüsü 1 metrdən
+                                böyük olan bağlamaların çatdırılma haqqı isə həcmi çəkiyə görə müəyyən edilir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/assets/Js/common.js"></script>
+<script src="~/assets/Js/calculator.js"></script>

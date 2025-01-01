@@ -1,4 +1,5 @@
-﻿* {
+@charset "UTF-8";
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,7 +15,7 @@
 
 .middlecontainer {
   max-width: 1050px;
-  width: 1050px;
+  width: 731px;
   margin: 0 auto;
 }
 
@@ -161,7 +162,8 @@
   }
 }
 .img-card img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-width: 100%;
 }
 
@@ -232,161 +234,386 @@
   border-radius: 10px;
 }
 
-.news-details-block {
-  padding-top: 40px;
-  padding-bottom: 60px;
-}
-
-.news-details-head {
-  display: flex;
-  justify-content: space-between;
-}
-.news-details-head h4 {
-  font-weight: 700;
-  padding-top: 10px;
-  font-size: 16px;
-}
-
-.news-details-breadcamp {
+.nav-tabs {
+  width: 724px;
+  height: 60px;
+  background-color: white;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  list-style-type: none;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
 }
-.news-details-breadcamp a {
+
+.nav-tabs-head-list {
+  width: 230px;
+  height: 60px;
+  padding-left: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tabs-head {
+  width: 181px;
   text-decoration: none;
-  color: black;
-}
-.news-details-breadcamp a:hover {
-  text-decoration: underline;
-  color: #f15834;
-}
-
-.news-details-row {
-  padding-top: 30px;
-}
-
-.news-card-text {
-  width: 610px;
-}
-.news-card-text span {
-  font-size: 14px;
-}
-
-.news-card-title {
-  padding-left: 20px;
   font-weight: 700;
-  padding-top: 25px;
+  font-size: 18px;
+  color: black;
+  position: relative;
+  display: flex;
 }
 
-.news-details-footer {
+.nav-tabs-head-list::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #f05835;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.order-main-pg {
+  height: 750px;
+}
+
+.order-head-title {
+  width: 781px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  padding-right: 30px;
 }
 
-.news-card-date {
+.settings-breadcamp {
   display: flex;
-  justify-content: center;
   gap: 10px;
-}
-.news-card-date span {
+  list-style-type: none;
+  padding: 0;
+  padding-right: 40px;
   font-size: 14px;
-  color: #636262;
 }
-
-.news-details-share-button {
-  text-decoration: none;
-}
-.news-details-share-button img {
-  width: 24px;
-  height: 25px;
-}
-
-.news-card-body {
-  padding: 30px;
-}
-
-.news-card {
+.settings-breadcamp a {
   text-decoration: none;
   color: black;
 }
+.settings-breadcamp a:hover {
+  color: #F05835;
+  text-decoration: underline;
+}
 
-.sidebar-head {
-  width: 328px;
-  height: 55px;
-  padding: 15px;
+.card-order-item {
+  width: 724px;
+  height: 288px;
   display: flex;
-  justify-content: space-between;
-}
-.sidebar-head i {
-  color: #f15834;
-}
-
-.sidebar-head-text {
-  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  margin-top: 25px;
 }
 
-.card-img-left {
-  width: 94px;
-  height: 63px;
-}
-
-.card-title {
-  font-size: 13px;
-  margin: 0;
-}
-
-.news-side-bar-article {
+.order-item-title {
   display: flex;
-  gap: 10px;
-  padding: 10px;
-  border-bottom: 1px solid rgba(99, 98, 98, 0.3960784314);
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
 }
 
-.news-sidebar-article-body {
+.order-item-card {
+  padding: 25px;
+}
+
+.setting-info-row {
+  display: flex;
+  row-gap: 15px;
+}
+
+.setting-name, .setting-surname, .setting-offce, .setting-date, .setting-email, .setting-notfc-type {
+  width: 321px;
+  height: 40px;
+  padding-left: 15px;
+  border-radius: 8px;
+  border: 1px solid #b3b5b7;
+  background-color: #e9ecef;
+}
+.setting-name:focus, .setting-surname:focus, .setting-offce:focus, .setting-date:focus, .setting-email:focus, .setting-notfc-type:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+.dropdown-numb {
+  display: flex;
+  flex-direction: row;
+}
+
+.setting-mobile-select {
+  width: 62px;
+  height: 40px;
+}
+
+.settings-mobile {
+  width: 259px;
+  height: 40px;
+}
+
+.saveBtn {
+  width: 321px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(180deg, #fc7b5d 0%, #f05835 100%);
+}
+
+.setting-notfc-type, .setting-offce, .setting-date, .settings-mobile, .setting-mobile-select {
+  background-color: #f5f5f7;
+}
+
+.setting-mobile-select {
+  border: 1px solid #b3b5b7;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.settings-mobile {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 1px solid #b3b5b7;
+  padding-left: 10px;
+}
+.settings-mobile:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+.form-safety {
+  padding: 25px;
+}
+
+.setting-item-tab1 {
+  height: 428px;
+}
+
+.form-pass-info-img {
+  width: 311px;
+  height: 348px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.safety-row {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.news-card-date-sidebar {
-  font-size: 12px;
+.card-pasw-step-one {
+  width: 311px;
+  height: 114px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
-.news-card-date-sidebar span {
-  color: #636262;
+.card-pasw-step-one h3 {
+  font-size: 18px;
+  border-left: 4px solid #F05835;
+  padding-left: 10px;
 }
 
-.backBtnBlock {
-  width: 80px;
-  height: 30px;
-  border-radius: 20px;
+.old-pasw-item {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  background-color: #f15834;
+  border: 1px solid #b3b5b7;
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.current-pass {
+  width: 275px;
+  height: 40px;
+  border: none;
+  padding-left: 15px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: #e9ecef;
+}
+.current-pass:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+.show-password {
+  height: 40px;
+  width: 35px;
+  border: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: #e9ecef;
+}
+
+#newPass {
+  width: 311px;
+  height: 40px;
+  border: 1px solid #b3b5b7;
+  border-radius: 8px;
+  padding-left: 15px;
+  background-color: #e9ecef;
+}
+#newPass:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+#newPassRepaeat {
+  width: 311px;
+  height: 40px;
+  border: 1px solid #b3b5b7;
+  border-radius: 8px;
+  padding-left: 15px;
+  background-color: #e9ecef;
+}
+#newPassRepaeat:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+.card-pasw-step-second {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.card-pasw-step-second h3 {
+  font-size: 18px;
+  border-left: 4px solid #F05835;
+  padding-left: 10px;
+}
+
+.save-btn-pass-tabs {
+  width: 154px;
+  height: 40px;
+  background: linear-gradient(180deg, #fc7b5d 0%, #f05835 100%);
+  border-radius: 8px;
   color: white;
-  margin-left: 270px;
+  border: none;
+  font-weight: 700;
   margin-top: 20px;
 }
-.backBtnBlock i {
-  color: white;
-  font-weight: 700;
+
+.settings-sv-row {
+  display: flex;
+  row-gap: 20px;
 }
 
-.backBtn {
-  background: none;
+.settings-item-sv {
+  display: block;
+  padding: 25px;
+}
+
+.pass-series, .settings-fincode, .select-citizen, .select-gender {
+  width: 321px;
+  height: 40px;
+  padding-left: 15px;
+  border-radius: 8px;
+  border: 1px solid #b3b5b7;
+  background-color: #e9ecef;
+}
+.pass-series:focus, .settings-fincode:focus, .select-citizen:focus, .select-gender:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+.settings-address {
+  width: 670px;
+  height: 40px;
+  padding-left: 15px;
+  border-radius: 8px;
+  border: 1px solid #b3b5b7;
+  background-color: #e9ecef;
+}
+.settings-address:focus {
+  background-color: white;
+  outline: 1px solid #b3b5b7;
+}
+
+.saveBtn-sv {
+  width: 670px;
+  height: 40px;
+  padding-left: 15px;
+  border-radius: 8px;
   border: none;
-  font-size: 16px;
+  background: linear-gradient(180deg, #fc7b5d 0%, #f05835 100%);
   color: white;
   font-weight: 600;
+  margin-top: 20px;
+}
+
+.search-from {
+  width: 300px;
+  height: 50px;
+  display: flex;
+}
+
+.search-input {
+  width: 261px;
+  height: 50px;
+  right: 10px;
+  top: 67px;
+  position: absolute;
+  padding-left: 15px;
+  border: none;
+  background-color: #f5f5f7;
+}
+.search-input:focus {
+  outline: none;
+  background-color: white;
+}
+
+.search-input-icon {
+  position: relative;
+  top: 77px;
+  right: 25px;
+}
+
+.search-input-group {
+  position: relative;
+}
+
+.search-container {
+  position: absolute;
+  display: none;
+  height: 50px;
+}
+.search-container li {
+  list-style-type: none;
+}
+
+.search-link {
   text-decoration: none;
+  color: black;
+  height: 67px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon-head:hover .search-container {
+  display: block;
+  animation: slideUp 0.3s ease;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%); /* Başlangıç pozisyonu: aşağıda */
+  }
+  to {
+    transform: translateY(0); /* Bitiş pozisyonu: yukarıda */
+  }
+}
+.search-head-input {
+  display: none;
 }
 
 .modal-content {
@@ -489,6 +716,13 @@
   color: black;
 }
 
+.nav-tabs-active {
+  border-bottom: 3px solid #F05835;
+}
+.nav-tabs-active a {
+  color: #F05835;
+}
+
 @media only screen and (max-width: 760px) {
   * {
     margin: 0;
@@ -573,49 +807,81 @@
   .btn-close-mob-menu i {
     font-size: 25px;
   }
-  .news-details-head {
-    padding-left: 12px;
-    padding-right: 12px;
+  #exTab2 {
+    width: 355px;
+    padding-left: 10px;
   }
-  .details-row {
+  .order-card-main-row {
+    width: 353px;
+  }
+  .nav-tabs {
+    width: 345px;
+    height: 53px;
+  }
+  .nav-tabs-head-list {
+    width: 164px;
+    height: 53px;
+  }
+  .order-card-body {
+    width: 353px;
+    height: 788px;
+  }
+  .url-input-block {
+    width: 313px;
+  }
+  .form-control-url {
+    width: 313px;
+    height: 40px;
+  }
+  .form-control-label {
+    width: 313px;
+  }
+  .desc-control-input {
+    width: 313px;
+  }
+  .btn-refresh {
+    width: 95px;
+    height: 42px;
     margin-left: 10px;
   }
-  .news-details-row {
-    width: 375px;
+  .form-filt-select {
+    padding-left: 15px;
+  }
+  .sifr-header-block {
+    width: 348px;
+  }
+  .card-order-item {
+    width: 348px;
+    height: -moz-max-content;
+    height: max-content;
+  }
+  .order-card-main-row {
+    width: 355px;
+    padding-top: 40px;
+  }
+  .order-head-title {
+    width: 355px;
+    height: 50px;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
   }
-  .news-card-text {
-    width: 310px;
+  .order-head-title h4 {
+    font-size: 18px;
+    padding-left: 10px;
   }
-  .news-card-text span {
-    font-size: 14px;
-  }
-  .news-card-body {
-    width: 320px;
-    padding: 20px;
-  }
-  .news-card-date {
+  .settings-breadcamp {
     display: flex;
-    justify-content: start;
+    gap: 10px;
+    list-style-type: none;
+    padding: 0;
+    font-size: 12px;
   }
-  .news-details-footer {
-    width: 320px;
-    display: flex;
-    flex-direction: column;
+  .settings-breadcamp span {
+    color: #F05835;
   }
-  .news-sidebar-article-body {
-    padding-top: 10px;
-  }
-  .news-card {
-    height: 120px !important;
-  }
-  .news-side-bar-article {
-    padding: 20px;
-    height: 120px;
-  }
-  .backBtnBlock {
-    margin-left: 130px;
+  .main-page-breadcamp {
+    text-decoration: none;
+    color: black;
   }
   .modal-content {
     width: 353px;
@@ -717,4 +983,41 @@
     justify-content: center;
     align-items: center;
   }
-}
+  .nav-tabs-head-list {
+    width: 110px;
+    height: 52px;
+  }
+  .tabs-head {
+    font-size: 14px;
+  }
+  .setting-info-row {
+    width: 293px;
+    height: 462px;
+  }
+  .setting-name, .setting-surname, .setting-offce, .setting-date, .setting-email, .saveBtn {
+    width: 273px;
+    height: 40px;
+  }
+  .form-pass-info-img {
+    width: 253px;
+    height: 143px;
+    padding-left: 50px;
+    padding-top: 30px;
+  }
+  .save-btn-pass-tabs {
+    width: 311px;
+    height: 40px;
+  }
+  .settings-item-sv-body {
+    width: 335px;
+  }
+  .pass-series, .settings-fincode, .select-citizen, .select-gender {
+    width: 126px;
+    height: 40px;
+    padding-left: 8px;
+  }
+  .settings-address, .saveBtn-sv {
+    width: 287px;
+    height: 40px;
+  }
+}/*# sourceMappingURL=user-settings.css.map */

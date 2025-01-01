@@ -11,7 +11,7 @@ public class ShopGetDto : IDto
     public int CountryId { get; set; }
     public string? CountryName { get; set; }
 }
-Shop
+
 public class ShopCreateDto : IDto
 {
     public string? ImagePath { get; set; }

@@ -14,20 +14,20 @@
 
                 <div class="form-group">
                     <label asp-for="MinValue">Minimal çəki</label>
-                    <input step="0.01"  class="form-control" required asp-for="MinValue" placeholder="Dəyər daxil edin">
+                    <input step="0.001" type="number" class="form-control" required asp-for="MinValue" placeholder="Dəyər daxil edin">
                     <span asp-validation-for="MinValue" class="text-danger"></span>
                 </div>
                 <hr />
 
                 <div class="form-group">
                     <label asp-for="MaxValue">Maximal çəki</label>
-                    <input step ="0.01" class="form-control" required asp-for="MaxValue" placeholder="Dəyər daxil edin">
+                    <input step ="0.001" type="number"  class="form-control" required asp-for="MaxValue" placeholder="Dəyər daxil edin">
                     <span asp-validation-for="MaxValue" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="MaxValue">Qiymət(Azn)</label>
-                    <input step="0.01" class="form-control" required asp-for="Price" placeholder="Dəyər daxil edin">
+                    <input step="0.001" type="number"  class="form-control" required asp-for="Price" placeholder="Dəyər daxil edin">
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
@@ -42,3 +42,11 @@
 
 
 
+<script>
+    document.querySelector('form').addEventListener('submit', function () {
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.value = input.value.replace(',', '.');
+        });
+    });
+</script>
