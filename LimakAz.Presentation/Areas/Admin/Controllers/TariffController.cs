@@ -42,7 +42,7 @@ public class TariffController : Controller
         if(!result)
             return View(dto);
 
-        return RedirectToAction(nameof(Index), new { countyId = dto.CountryId});
+        return RedirectToAction(nameof(Index), new { countryId = dto.CountryId});
     }
 
     public async Task<IActionResult> Update(int id, int countryId)

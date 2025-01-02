@@ -68,6 +68,8 @@ internal class NewsService : INewsService
             throw new NotFoundException();
 
         _repository.SoftDelete(news);
+
+        await _repository.SaveChangesAsync();
     }
 
     public List<NewsGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)

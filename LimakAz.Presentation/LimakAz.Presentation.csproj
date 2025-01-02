@@ -1,196 +1,200 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<ItemGroup>
+		<Content Remove="compilerconfig.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="compilerconfig.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="wwwroot\assets\node_modules\.package-lock.json" />
+		<Content Include="wwwroot\assets\node_modules\anymatch\package.json" />
+		<Content Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json" />
+		<Content Include="wwwroot\assets\node_modules\binary-extensions\package.json" />
+		<Content Include="wwwroot\assets\node_modules\braces\package.json" />
+		<Content Include="wwwroot\assets\node_modules\chokidar\package.json" />
+		<Content Include="wwwroot\assets\node_modules\fill-range\package.json" />
+		<Content Include="wwwroot\assets\node_modules\glob-parent\package.json" />
+		<Content Include="wwwroot\assets\node_modules\immutable\package.json" />
+		<Content Include="wwwroot\assets\node_modules\is-binary-path\package.json" />
+		<Content Include="wwwroot\assets\node_modules\is-extglob\package.json" />
+		<Content Include="wwwroot\assets\node_modules\is-glob\package.json" />
+		<Content Include="wwwroot\assets\node_modules\is-number\package.json" />
+		<Content Include="wwwroot\assets\node_modules\normalize-path\package.json" />
+		<Content Include="wwwroot\assets\node_modules\picomatch\package.json" />
+		<Content Include="wwwroot\assets\node_modules\readdirp\package.json" />
+		<Content Include="wwwroot\assets\node_modules\sass\package.json" />
+		<Content Include="wwwroot\assets\node_modules\source-map-js\package.json" />
+		<Content Include="wwwroot\assets\node_modules\to-regex-range\package.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="wwwroot\assets\node_modules\.package-lock.json" />
-    <Content Include="wwwroot\assets\node_modules\anymatch\package.json" />
-    <Content Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json" />
-    <Content Include="wwwroot\assets\node_modules\binary-extensions\package.json" />
-    <Content Include="wwwroot\assets\node_modules\braces\package.json" />
-    <Content Include="wwwroot\assets\node_modules\chokidar\package.json" />
-    <Content Include="wwwroot\assets\node_modules\fill-range\package.json" />
-    <Content Include="wwwroot\assets\node_modules\glob-parent\package.json" />
-    <Content Include="wwwroot\assets\node_modules\immutable\package.json" />
-    <Content Include="wwwroot\assets\node_modules\is-binary-path\package.json" />
-    <Content Include="wwwroot\assets\node_modules\is-extglob\package.json" />
-    <Content Include="wwwroot\assets\node_modules\is-glob\package.json" />
-    <Content Include="wwwroot\assets\node_modules\is-number\package.json" />
-    <Content Include="wwwroot\assets\node_modules\normalize-path\package.json" />
-    <Content Include="wwwroot\assets\node_modules\picomatch\package.json" />
-    <Content Include="wwwroot\assets\node_modules\readdirp\package.json" />
-    <Content Include="wwwroot\assets\node_modules\sass\package.json" />
-    <Content Include="wwwroot\assets\node_modules\source-map-js\package.json" />
-    <Content Include="wwwroot\assets\node_modules\to-regex-range\package.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="compilerconfig.json" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\CODEOWNERS" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\CONTRIBUTING.md" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\dependabot.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\ISSUE_TEMPLATE\bug_report.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\ISSUE_TEMPLATE\config.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\ISSUE_TEMPLATE\feature_request.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\release-drafter.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\SUPPORT.md" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\browserstack.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\bundlewatch.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\codeql.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\css.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\docs.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\js.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\lint.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\node-sass.yml" />
+		<None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\release-notes.yml" />
+		<None Include="wwwroot\assets\node_modules\.bin\sass" />
+		<None Include="wwwroot\assets\node_modules\.bin\sass.cmd" />
+		<None Include="wwwroot\assets\node_modules\.bin\sass.ps1" />
+		<None Include="wwwroot\assets\node_modules\anymatch\index.js" />
+		<None Include="wwwroot\assets\node_modules\anymatch\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\anymatch\README.md" />
+		<None Include="wwwroot\assets\node_modules\binary-extensions\index.js" />
+		<None Include="wwwroot\assets\node_modules\binary-extensions\license" />
+		<None Include="wwwroot\assets\node_modules\binary-extensions\readme.md" />
+		<None Include="wwwroot\assets\node_modules\braces\CHANGELOG.md" />
+		<None Include="wwwroot\assets\node_modules\braces\index.js" />
+		<None Include="wwwroot\assets\node_modules\braces\lib\compile.js" />
+		<None Include="wwwroot\assets\node_modules\braces\lib\constants.js" />
+		<None Include="wwwroot\assets\node_modules\braces\lib\expand.js" />
+		<None Include="wwwroot\assets\node_modules\braces\lib\parse.js" />
+		<None Include="wwwroot\assets\node_modules\braces\lib\stringify.js" />
+		<None Include="wwwroot\assets\node_modules\braces\lib\utils.js" />
+		<None Include="wwwroot\assets\node_modules\braces\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\braces\README.md" />
+		<None Include="wwwroot\assets\node_modules\chokidar\index.js" />
+		<None Include="wwwroot\assets\node_modules\chokidar\lib\constants.js" />
+		<None Include="wwwroot\assets\node_modules\chokidar\lib\fsevents-handler.js" />
+		<None Include="wwwroot\assets\node_modules\chokidar\lib\nodefs-handler.js" />
+		<None Include="wwwroot\assets\node_modules\chokidar\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\chokidar\README.md" />
+		<None Include="wwwroot\assets\node_modules\fill-range\index.js" />
+		<None Include="wwwroot\assets\node_modules\fill-range\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\fill-range\README.md" />
+		<None Include="wwwroot\assets\node_modules\glob-parent\CHANGELOG.md" />
+		<None Include="wwwroot\assets\node_modules\glob-parent\index.js" />
+		<None Include="wwwroot\assets\node_modules\glob-parent\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\glob-parent\README.md" />
+		<None Include="wwwroot\assets\node_modules\immutable\dist\immutable.es.js" />
+		<None Include="wwwroot\assets\node_modules\immutable\dist\immutable.js" />
+		<None Include="wwwroot\assets\node_modules\immutable\dist\immutable.js.flow" />
+		<None Include="wwwroot\assets\node_modules\immutable\dist\immutable.min.js" />
+		<None Include="wwwroot\assets\node_modules\immutable\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\immutable\README.md" />
+		<None Include="wwwroot\assets\node_modules\is-binary-path\index.js" />
+		<None Include="wwwroot\assets\node_modules\is-binary-path\license" />
+		<None Include="wwwroot\assets\node_modules\is-binary-path\readme.md" />
+		<None Include="wwwroot\assets\node_modules\is-extglob\index.js" />
+		<None Include="wwwroot\assets\node_modules\is-extglob\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\is-extglob\README.md" />
+		<None Include="wwwroot\assets\node_modules\is-glob\index.js" />
+		<None Include="wwwroot\assets\node_modules\is-glob\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\is-glob\README.md" />
+		<None Include="wwwroot\assets\node_modules\is-number\index.js" />
+		<None Include="wwwroot\assets\node_modules\is-number\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\is-number\README.md" />
+		<None Include="wwwroot\assets\node_modules\normalize-path\index.js" />
+		<None Include="wwwroot\assets\node_modules\normalize-path\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\normalize-path\README.md" />
+		<None Include="wwwroot\assets\node_modules\picomatch\CHANGELOG.md" />
+		<None Include="wwwroot\assets\node_modules\picomatch\index.js" />
+		<None Include="wwwroot\assets\node_modules\picomatch\lib\constants.js" />
+		<None Include="wwwroot\assets\node_modules\picomatch\lib\parse.js" />
+		<None Include="wwwroot\assets\node_modules\picomatch\lib\picomatch.js" />
+		<None Include="wwwroot\assets\node_modules\picomatch\lib\scan.js" />
+		<None Include="wwwroot\assets\node_modules\picomatch\lib\utils.js" />
+		<None Include="wwwroot\assets\node_modules\picomatch\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\picomatch\README.md" />
+		<None Include="wwwroot\assets\node_modules\readdirp\index.js" />
+		<None Include="wwwroot\assets\node_modules\readdirp\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\readdirp\README.md" />
+		<None Include="wwwroot\assets\node_modules\sass\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\sass\README.md" />
+		<None Include="wwwroot\assets\node_modules\sass\sass.dart.js" />
+		<None Include="wwwroot\assets\node_modules\sass\sass.default.cjs" />
+		<None Include="wwwroot\assets\node_modules\sass\sass.default.js" />
+		<None Include="wwwroot\assets\node_modules\sass\sass.js" />
+		<None Include="wwwroot\assets\node_modules\sass\sass.node.js" />
+		<None Include="wwwroot\assets\node_modules\sass\sass.node.mjs" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\CHANGELOG.md" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\array-set.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\base64-vlq.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\base64.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\binary-search.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\mapping-list.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\quick-sort.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\source-map-consumer.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\source-map-generator.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\source-node.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\lib\util.js" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\README.md" />
+		<None Include="wwwroot\assets\node_modules\source-map-js\source-map.js" />
+		<None Include="wwwroot\assets\node_modules\to-regex-range\index.js" />
+		<None Include="wwwroot\assets\node_modules\to-regex-range\LICENSE" />
+		<None Include="wwwroot\assets\node_modules\to-regex-range\README.md" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="compilerconfig.json" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\CODEOWNERS" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\CONTRIBUTING.md" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\dependabot.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\ISSUE_TEMPLATE\bug_report.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\ISSUE_TEMPLATE\config.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\ISSUE_TEMPLATE\feature_request.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\release-drafter.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\SUPPORT.md" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\browserstack.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\bundlewatch.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\codeql.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\css.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\docs.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\js.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\lint.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\node-sass.yml" />
-    <None Include="wwwroot\assets2\vendors\bootstrap-5.1.3\.github\workflows\release-notes.yml" />
-    <None Include="wwwroot\assets\node_modules\.bin\sass" />
-    <None Include="wwwroot\assets\node_modules\.bin\sass.cmd" />
-    <None Include="wwwroot\assets\node_modules\.bin\sass.ps1" />
-    <None Include="wwwroot\assets\node_modules\anymatch\index.js" />
-    <None Include="wwwroot\assets\node_modules\anymatch\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\anymatch\README.md" />
-    <None Include="wwwroot\assets\node_modules\binary-extensions\index.js" />
-    <None Include="wwwroot\assets\node_modules\binary-extensions\license" />
-    <None Include="wwwroot\assets\node_modules\binary-extensions\readme.md" />
-    <None Include="wwwroot\assets\node_modules\braces\CHANGELOG.md" />
-    <None Include="wwwroot\assets\node_modules\braces\index.js" />
-    <None Include="wwwroot\assets\node_modules\braces\lib\compile.js" />
-    <None Include="wwwroot\assets\node_modules\braces\lib\constants.js" />
-    <None Include="wwwroot\assets\node_modules\braces\lib\expand.js" />
-    <None Include="wwwroot\assets\node_modules\braces\lib\parse.js" />
-    <None Include="wwwroot\assets\node_modules\braces\lib\stringify.js" />
-    <None Include="wwwroot\assets\node_modules\braces\lib\utils.js" />
-    <None Include="wwwroot\assets\node_modules\braces\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\braces\README.md" />
-    <None Include="wwwroot\assets\node_modules\chokidar\index.js" />
-    <None Include="wwwroot\assets\node_modules\chokidar\lib\constants.js" />
-    <None Include="wwwroot\assets\node_modules\chokidar\lib\fsevents-handler.js" />
-    <None Include="wwwroot\assets\node_modules\chokidar\lib\nodefs-handler.js" />
-    <None Include="wwwroot\assets\node_modules\chokidar\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\chokidar\README.md" />
-    <None Include="wwwroot\assets\node_modules\fill-range\index.js" />
-    <None Include="wwwroot\assets\node_modules\fill-range\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\fill-range\README.md" />
-    <None Include="wwwroot\assets\node_modules\glob-parent\CHANGELOG.md" />
-    <None Include="wwwroot\assets\node_modules\glob-parent\index.js" />
-    <None Include="wwwroot\assets\node_modules\glob-parent\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\glob-parent\README.md" />
-    <None Include="wwwroot\assets\node_modules\immutable\dist\immutable.es.js" />
-    <None Include="wwwroot\assets\node_modules\immutable\dist\immutable.js" />
-    <None Include="wwwroot\assets\node_modules\immutable\dist\immutable.js.flow" />
-    <None Include="wwwroot\assets\node_modules\immutable\dist\immutable.min.js" />
-    <None Include="wwwroot\assets\node_modules\immutable\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\immutable\README.md" />
-    <None Include="wwwroot\assets\node_modules\is-binary-path\index.js" />
-    <None Include="wwwroot\assets\node_modules\is-binary-path\license" />
-    <None Include="wwwroot\assets\node_modules\is-binary-path\readme.md" />
-    <None Include="wwwroot\assets\node_modules\is-extglob\index.js" />
-    <None Include="wwwroot\assets\node_modules\is-extglob\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\is-extglob\README.md" />
-    <None Include="wwwroot\assets\node_modules\is-glob\index.js" />
-    <None Include="wwwroot\assets\node_modules\is-glob\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\is-glob\README.md" />
-    <None Include="wwwroot\assets\node_modules\is-number\index.js" />
-    <None Include="wwwroot\assets\node_modules\is-number\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\is-number\README.md" />
-    <None Include="wwwroot\assets\node_modules\normalize-path\index.js" />
-    <None Include="wwwroot\assets\node_modules\normalize-path\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\normalize-path\README.md" />
-    <None Include="wwwroot\assets\node_modules\picomatch\CHANGELOG.md" />
-    <None Include="wwwroot\assets\node_modules\picomatch\index.js" />
-    <None Include="wwwroot\assets\node_modules\picomatch\lib\constants.js" />
-    <None Include="wwwroot\assets\node_modules\picomatch\lib\parse.js" />
-    <None Include="wwwroot\assets\node_modules\picomatch\lib\picomatch.js" />
-    <None Include="wwwroot\assets\node_modules\picomatch\lib\scan.js" />
-    <None Include="wwwroot\assets\node_modules\picomatch\lib\utils.js" />
-    <None Include="wwwroot\assets\node_modules\picomatch\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\picomatch\README.md" />
-    <None Include="wwwroot\assets\node_modules\readdirp\index.js" />
-    <None Include="wwwroot\assets\node_modules\readdirp\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\readdirp\README.md" />
-    <None Include="wwwroot\assets\node_modules\sass\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\sass\README.md" />
-    <None Include="wwwroot\assets\node_modules\sass\sass.dart.js" />
-    <None Include="wwwroot\assets\node_modules\sass\sass.default.cjs" />
-    <None Include="wwwroot\assets\node_modules\sass\sass.default.js" />
-    <None Include="wwwroot\assets\node_modules\sass\sass.js" />
-    <None Include="wwwroot\assets\node_modules\sass\sass.node.js" />
-    <None Include="wwwroot\assets\node_modules\sass\sass.node.mjs" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\CHANGELOG.md" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\array-set.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\base64-vlq.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\base64.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\binary-search.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\mapping-list.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\quick-sort.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\source-map-consumer.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\source-map-generator.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\source-node.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\lib\util.js" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\README.md" />
-    <None Include="wwwroot\assets\node_modules\source-map-js\source-map.js" />
-    <None Include="wwwroot\assets\node_modules\to-regex-range\index.js" />
-    <None Include="wwwroot\assets\node_modules\to-regex-range\LICENSE" />
-    <None Include="wwwroot\assets\node_modules\to-regex-range\README.md" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\LimakAz.Infrastructure\LimakAz.Infrastructure.csproj" />
+		<ProjectReference Include="..\LimakAz.Persistence\LimakAz.Persistence.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LimakAz.Infrastructure\LimakAz.Infrastructure.csproj" />
-    <ProjectReference Include="..\LimakAz.Persistence\LimakAz.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\anymatch\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\chokidar\types\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\immutable\dist\immutable.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\is-binary-path\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\readdirp\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\compile.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\exception.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\importer.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\exception.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\function.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\importer.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\options.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\plugin_this.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\render.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_location.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_span.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\options.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\util\promise_or.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\argument_list.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\boolean.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\calculation.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\color.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\function.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\list.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\map.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\mixin.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\number.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\string.d.ts" />
-    <TypeScriptCompile Include="wwwroot\assets\node_modules\source-map-js\source-map.d.ts" />
-  </ItemGroup>
+	<ItemGroup>
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\anymatch\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\chokidar\types\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\immutable\dist\immutable.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\is-binary-path\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\readdirp\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\compile.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\exception.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\importer.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\exception.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\function.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\importer.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\options.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\plugin_this.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\render.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_location.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_span.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\options.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\util\promise_or.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\argument_list.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\boolean.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\calculation.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\color.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\function.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\index.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\list.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\map.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\mixin.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\number.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\string.d.ts" />
+		<TypeScriptCompile Include="wwwroot\assets\node_modules\source-map-js\source-map.d.ts" />
+	</ItemGroup>
 
 </Project>

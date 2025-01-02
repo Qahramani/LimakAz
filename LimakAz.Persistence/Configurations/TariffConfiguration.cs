@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LimakAz.Persistence.Configurations
+namespace LimakAz.Persistence.Configurations;
+
+internal class TariffConfiguration : IEntityTypeConfiguration<Tariff>
 {
-    internal class TariffConfiguration
+    public void Configure(EntityTypeBuilder<Tariff> builder)
     {
+        builder.Property(x => x.MinValue).HasColumnType("decimal(6,3)");
+        builder.Property(x => x.MaxValue).HasColumnType("decimal(6,3)");
+        builder.Property(x => x.Price).HasColumnType("decimal(10,3)");
     }
 }

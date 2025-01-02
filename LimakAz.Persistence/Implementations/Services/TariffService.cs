@@ -1,5 +1,4 @@
-﻿using LimakAz.Domain.Entities;
-using LimakAz.Domain.Enums;
+﻿using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,14 +9,19 @@ internal class TariffService : ITariffService
     private readonly ITariffRepository _repository;
     private readonly IMapper _mapper;
     private readonly ICountryService _countryService;
+    private readonly ILocalPointService _localPointService;
 
-    public TariffService(ITariffRepository repository, IMapper mapper, ICountryService countryService)
+
+    public TariffService(ITariffRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService)
     {
         _repository = repository;
         _mapper = mapper;
         _countryService = countryService;
+        _localPointService = localPointService;
     }
 
+
+  
     public async Task<bool> CreateAsync(TariffCreateDto dto, ModelStateDictionary ModelState)
     {
         if (!ModelState.IsValid)
@@ -35,7 +39,7 @@ internal class TariffService : ITariffService
             return false;
         }
 
-        var isExistRange = await _repository.IsExistAsync(x => !(x.MaxValue <= dto.MinValue || x.MinValue >= dto.MaxValue) && x.CountryId == dto.CountryId);
+        var isExistRange = await _repository.IsExistAsync(x => !(x.MaxValue < dto.MinValue || x.MinValue > dto.MaxValue) && x.CountryId == dto.CountryId);
 
         if (isExistRange)
         {
@@ -57,7 +61,7 @@ internal class TariffService : ITariffService
         if (tariff == null)
             throw new NotFoundException();
 
-         _repository.SoftDelete(tariff);
+        _repository.SoftDelete(tariff);
         await _repository.SaveChangesAsync();
     }
 
@@ -137,7 +141,7 @@ internal class TariffService : ITariffService
         if (tariff == null)
             throw new NotFoundException();
 
-        var dto=_mapper.Map<TariffUpdateDto>(tariff);
+        var dto = _mapper.Map<TariffUpdateDto>(tariff);
 
         return dto;
     }
@@ -153,7 +157,7 @@ internal class TariffService : ITariffService
             return false;
 
 
-        var isExistRange = await _repository.IsExistAsync(x => !(x.MaxValue <= dto.MinValue || x.MinValue >= dto.MaxValue) && x.Id != dto.Id  && x.CountryId == dto.CountryId);
+        var isExistRange = await _repository.IsExistAsync(x => !(x.MaxValue < dto.MinValue || x.MinValue > dto.MaxValue) && x.Id != dto.Id && x.CountryId == dto.CountryId);
 
         if (isExistRange)
         {
@@ -176,7 +180,7 @@ internal class TariffService : ITariffService
         await _repository.SaveChangesAsync();
 
         return true;
-        }
+    }
 
 
 }

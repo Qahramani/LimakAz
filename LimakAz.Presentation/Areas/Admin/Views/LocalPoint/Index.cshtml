@@ -1,0 +1,89 @@
+﻿@model List<LocalPointGetDto>
+@{
+    int count = 1;
+}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <p class="card-description">
+                <a asp-action="Create" class="btn btn-success">Yenisini yarat</a>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Adı
+                            </th>
+                            <th>
+                                Iş saatları
+                            </th>
+                            <th>
+                                Proseslər
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="py-1">
+                                    @(count++)
+                                </td>
+                                <td>
+                                    @item.LocalPointDetails.FirstOrDefault()?.Name
+                                </td>
+                                <td>
+                                    @item.LocalPointDetails.FirstOrDefault()?.WorkingHourse
+                                </td>
+                                <td>
+                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning"><i class="mdi mdi-grease-pencil"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-danger deleteBtn" onclick="showDeleteModal('@item.Id')">
+                                        <i class="mdi mdi-delete"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Təsdiqləyin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bu elementi silmək istədiyinizə əminsiniz?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ləğv et</button>
+                <a id="confirmDeleteButton" class="btn btn-danger">Sil</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const controllerName = '@ViewContext.RouteData.Values["controller"]';
+</script>

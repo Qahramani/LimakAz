@@ -1,4 +1,5 @@
 ﻿using LimakAz.Domain.Enums;
+using LimakAz.Domain.Enums;
 using LimakAz.Persistence.Helpers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;

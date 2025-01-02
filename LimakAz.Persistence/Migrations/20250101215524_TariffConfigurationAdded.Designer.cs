@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250101215524_TariffConfigurationAdded")]
+    partial class TariffConfigurationAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,21 +172,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 2, 1, 11, 30, 283, DateTimeKind.Utc).AddTicks(5487),
+                            CreatedAt = new DateTime(2025, 1, 1, 21, 55, 22, 441, DateTimeKind.Utc).AddTicks(3443),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 2, 1, 11, 30, 283, DateTimeKind.Utc).AddTicks(5489),
+                            UpdatedAt = new DateTime(2025, 1, 1, 21, 55, 22, 441, DateTimeKind.Utc).AddTicks(3444),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 2, 1, 11, 30, 283, DateTimeKind.Utc).AddTicks(5497),
+                            CreatedAt = new DateTime(2025, 1, 1, 21, 55, 22, 441, DateTimeKind.Utc).AddTicks(3447),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 2, 1, 11, 30, 283, DateTimeKind.Utc).AddTicks(5498),
+                            UpdatedAt = new DateTime(2025, 1, 1, 21, 55, 22, 441, DateTimeKind.Utc).AddTicks(3448),
                             UpdatedBy = "default"
                         });
                 });
@@ -484,71 +487,6 @@ namespace LimakAz.Persistence.Migrations
                             IsoCode = "ru",
                             Name = "RU"
                         });
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.LocalPoint", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LocalPoints");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.LocalPointDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LocalPointId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WorkingHourse")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
-
-                    b.HasIndex("LocalPointId");
-
-                    b.ToTable("LocalPointDetails");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.News", b =>
@@ -1284,25 +1222,6 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.LocalPointDetail", b =>
-                {
-                    b.HasOne("LimakAz.Domain.Entities.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LimakAz.Domain.Entities.LocalPoint", "LocalPoint")
-                        .WithMany("LocalPointDetails")
-                        .HasForeignKey("LocalPointId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-
-                    b.Navigation("LocalPoint");
-                });
-
             modelBuilder.Entity("LimakAz.Domain.Entities.NewsDetail", b =>
                 {
                     b.HasOne("LimakAz.Domain.Entities.Language", "Language")
@@ -1450,11 +1369,6 @@ namespace LimakAz.Persistence.Migrations
             modelBuilder.Entity("LimakAz.Domain.Entities.Gender", b =>
                 {
                     b.Navigation("GenderDetails");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.LocalPoint", b =>
-                {
-                    b.Navigation("LocalPointDetails");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.News", b =>

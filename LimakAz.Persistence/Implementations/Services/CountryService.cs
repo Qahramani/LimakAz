@@ -188,6 +188,8 @@ internal class CountryService : ICountryService
             throw new NotFoundException();
 
         _repository.SoftDelete(country);
+
+        await _repository.SaveChangesAsync();
     }
 
     private static Func<IQueryable<Country>, IIncludableQueryable<Country, object>> _getWithIncludes(LanguageType language)
