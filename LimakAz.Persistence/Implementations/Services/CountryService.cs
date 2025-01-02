@@ -1,4 +1,4 @@
-﻿using LimakAz.Application.Interfaces.Services;
+﻿using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.Enums;
 using LimakAz.Persistence.Helpers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;

@@ -1,6 +1,6 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using LimakAz.Application.Interfaces.Services;
+using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.AppSettingModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

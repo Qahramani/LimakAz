@@ -1,4 +1,6 @@
-﻿using LimakAz.Domain.Enums;
+﻿using LimakAz.Application.Interfaces.Services.External;
+using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,18 +12,19 @@ internal class TariffService : ITariffService
     private readonly IMapper _mapper;
     private readonly ICountryService _countryService;
     private readonly ILocalPointService _localPointService;
+    private readonly ICurrencyService _currencyService;
 
-
-    public TariffService(ITariffRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService)
+    public TariffService(ITariffRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ICurrencyService currencyService)
     {
         _repository = repository;
         _mapper = mapper;
         _countryService = countryService;
         _localPointService = localPointService;
+        _currencyService = currencyService;
     }
 
 
-  
+
     public async Task<bool> CreateAsync(TariffCreateDto dto, ModelStateDictionary ModelState)
     {
         if (!ModelState.IsValid)
@@ -130,6 +133,39 @@ internal class TariffService : ITariffService
         tariffs.OrderBy(x => x.MinValue);
 
         var dtos = _mapper.Map<List<TariffGetDto>>(tariffs);
+
+        return dtos;
+    }
+
+    public async Task<List<TariffUiGetDto>> GetTariffsUiDtosAsync(LanguageType language = LanguageType.Azerbaijan)
+    {
+        var countries =  _countryService.GetAll(language);
+        var points = _localPointService.GetAll(language);
+        List<TariffUiGetDto> dtos = [];
+
+        var UsdCoefficient = await  _currencyService.GetCurrencyCoefficientAsync("USD");
+
+        foreach (var country in countries)
+        {
+
+            TariffUiGetDto dto = new();
+
+            dto.CountryName = country.CountryDetails.FirstOrDefault()!.Name;
+            dto.ImagePath = country.ImagePath;
+            dto.LocalPoints = points.Select(x => x.LocalPointDetails.FirstOrDefault()?.Name).ToList()!;
+
+            foreach (var tariff in country.Tariffs)
+            {
+                dto.Tariffs.Add(new FormattedTariffGetDto
+                {
+                    Value = $"{tariff.MinValue} - {tariff.MaxValue}",
+                    PriceInAZN = $"{tariff.Price} AZN",
+                    PriceInUSD = $"{Math.Round(tariff.Price / UsdCoefficient, 2)} USD"
+                });
+            }
+            
+            dtos.Add(dto);
+        }
 
         return dtos;
     }

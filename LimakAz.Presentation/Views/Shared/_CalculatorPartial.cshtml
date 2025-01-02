@@ -1,0 +1,146 @@
+﻿@inject ICurrencyService _service;
+@{
+    var currencyUSD = await _service.GetCurrencyCoefficientAsync("USD");
+    var currencyTRY = await _service.GetCurrencyCoefficientAsync("TRY");
+}
+
+<div class="currency-card">
+    <div class="currency-exc">
+        <div class="form-exc-body">
+            <div class="form-exc-header">
+                <div class="form-exc-title">
+                    <img src="https://limak.az/new_front//assets/img/icons/calculator.svg"
+                         alt="">
+                    <h3>Məzənnə kalkulyatoru</h3>
+                </div>
+            </div>
+            <form class="currency-calc-form">
+                <div class="input-group currency-input-calc">
+                    <input class="currency-input1"
+                           min="0"
+                           placeholder="Məbləğ (0.0)"
+                           type="number">
+                    <div>
+                        <select class="currency-type1">
+                            <option value="USD">USD</option>
+                            <option value="TRY">TRY</option>
+                            <option value="AZN">AZN</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group currency-input-calc">
+                    <input class="currency-input2"
+                           min="0"
+                           placeholder="Məbləğ (0.0)"
+                           type="number"
+                           readonly>
+                    <div>
+                        <select class="currency-type2">
+                            <option value="AZN">AZN</option>
+                            <option value="TRY">TRY</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <p class="currency-form-info">
+                    Günün məzənnəsinə uyğun hesablanır.
+                </p>
+            </form>
+            <div class="form-exc-table">
+                <div class="form-calc-title">
+                    <img src="https://limak.az/new_front//assets/img/icons/change.svg"
+                         alt="">
+                    <h3>Günlük məzənnə</h3>
+                </div>
+                <table>
+                        <tr role="row"
+                            class="daily-currency-info daily-curren-bord">
+                            <td>
+                                <img src="https://limak.az/new_front//assets/img/icons/az-circle.svg"
+                                     alt="">
+                                <span>1</span>
+                            </td>
+                            <td>
+                                <strong>AZN</strong>
+                            </td>
+                        </tr>
+                    <tbody role="rowgroup">
+                        <tr role="row"
+                            class="daily-currency-info daily-curren-bord">
+                            <td>
+                                <img src="https://limak.az/new_front//assets/img/icons/tr-circle.svg"
+                                     alt="">
+                                <span>@currencyTRY</span>
+                            </td>
+                            <td>
+                                <strong>TRY</strong>
+                            </td>
+                        </tr>
+                        <tr role="row" class="daily-currency-info">
+                            <td>
+                                <img src="https://limak.az/new_front//assets/img/icons/usa-circle.svg"
+                                     alt="">
+                                <span>@currencyUSD</span>
+                            </td>
+                            <td>
+                                <strong>USD</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const input1 = document.querySelector(".currency-input1"); 
+        const input2 = document.querySelector(".currency-input2");
+        const select1 = document.querySelector(".currency-type1"); 
+        const select2 = document.querySelector(".currency-type2");
+        
+        input1.addEventListener("input", handleConversion); 
+        select1.addEventListener("change", handleConversion);
+        select2.addEventListener("change", handleConversion); 
+
+        async function handleConversion() {
+            const amount = parseFloat(input1.value) || 0; 
+            const fromCurrency = select1.value; 
+            const toCurrency = select2.value; 
+
+            if (amount <= 0) {
+                input2.value = "0.00";
+                return;
+            }
+
+            const convertedAmount = await convertCurrency(amount, fromCurrency, toCurrency);
+            if (convertedAmount !== undefined && !isNaN(convertedAmount)) {
+                input2.value = convertedAmount.toString();
+            } else {
+                console.error("Converted amount is invalid:", convertedAmount);
+                input2.value = "Error";
+            }
+        }
+
+        async function convertCurrency(amount, fromCurrency, toCurrency) {
+            try {
+                const response = await fetch(`/currency/convert?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`);
+
+                if (!response.ok) {
+                    console.error("Error fetching conversion data:", response.statusText);
+                    return 0;
+                }
+
+                const data = await response.json();
+                return data.convertedAmount;
+            } catch (error) {
+                console.error("Error during conversion:", error);
+                return 0;
+            }
+        }
+    });
+
+</script>

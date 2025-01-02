@@ -1,7 +1,6 @@
 ﻿
-<link rel="stylesheet" href="~/assets/Styles/scss/calculator.css">
-<link rel="stylesheet" href="~/assets/Styles/scss/footer.css">
-<link rel="stylesheet" href="~/assets/Styles/css/main.css">
+<link rel="stylesheet" href="~/assets/Styles/css/calculator.css">
+<link rel="stylesheet" href="~/assets/Styles/css/footer.css">
 
 
 <div class="main-middle-content">
@@ -158,87 +157,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-12">
-                                <div class="currency-card">
-                                    <div class="currency-exc">
-                                        <div class="form-exc-body">
-                                            <div class="form-exc-header">
-                                                <div class="form-exc-title">
-                                                    <img src="https://limak.az/new_front//assets/img/icons/calculator.svg"
-                                                         alt="">
-                                                    <h3>Məzənnə kalkulyatoru</h3>
-                                                </div>
-                                            </div>
-                                            <form class="currency-calc-form">
-                                                <div class="input-group currency-input-calc">
-                                                    <input class="currency-input1" min="0" placeholder="0.0" type="number">
-                                                    <div>
-                                                        <select class="currency-type">
-                                                            <option value="1">USD</option>
-                                                            <option value="2">TRY</option>
-                                                            <option value="3">AZN</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="input-group currency-input-calc">
-                                                    <input class="currency-input2" min="0" placeholder="0.0" type="number">
-                                                    <div>
-                                                        <select class="currency-type">
-                                                            <option value="1">AZN</option>
-                                                            <option value="2">TRY</option>
-                                                            <option value="3">AZN</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <p class="currency-form-info">
-                                                    Günün məzənnəsinə uyğun hesablanır.
-                                                </p>
-                                            </form>
-                                            <div class="form-exc-table">
-                                                <div class="form-calc-title">
-                                                    <img src="https://limak.az/new_front//assets/img/icons/change.svg"
-                                                         alt="">
-                                                    <h3>Günlük məzənnə</h3>
-                                                </div>
-                                                <table>
-                                                    <tbody role="rowgroup">
-                                                        <tr role="row"
-                                                            class="daily-currency-info daily-curren-bord">
-                                                            <td>
-                                                                <img src="https://limak.az/new_front//assets/img/icons/tr-circle.svg"
-                                                                     alt="">
-                                                                <span>1</span>
-                                                            </td>
-                                                            <td>
-                                                                <strong>TRY</strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr role="row"
-                                                            class="daily-currency-info daily-curren-bord">
-                                                            <td>
-                                                                <img src="https://limak.az/new_front//assets/img/icons/az-circle.svg"
-                                                                     alt="">
-                                                                <span>0.0562</span>
-                                                            </td>
-                                                            <td>
-                                                                <strong>AZN</strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr role="row" class="daily-currency-info">
-                                                            <td>
-                                                                <img src="https://limak.az/new_front//assets/img/icons/usa-circle.svg"
-                                                                     alt="">
-                                                                <span>0.0329628</span>
-                                                            </td>
-                                                            <td>
-                                                                <strong>USD</strong>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <partial name="_CalculatorPartial"></partial>
                             </div>
                         </div>
                         <div class="currency-card-info">
@@ -255,6 +174,10 @@
     </div>
 
 </div>
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>

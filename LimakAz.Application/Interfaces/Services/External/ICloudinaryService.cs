@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace LimakAz.Application.Interfaces.Services;
+namespace LimakAz.Application.Interfaces.Services.External;
 
 public interface ICloudinaryService
 {

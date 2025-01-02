@@ -3,15 +3,17 @@ using LimakAz.Persistence.DataInitializers;
 using LimakAz.Persistence.ServiceRegistrations;
 using LimakAz.Infrastructure.ServiceRegistraions;
 using Microsoft.Extensions.Options;
+using LimakAz.Application.Interfaces.Services.External;
+using LimakAz.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureService();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc().AddViewLocalization();
+
 
 
 var app = builder.Build();

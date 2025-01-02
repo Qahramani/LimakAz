@@ -7,7 +7,7 @@ public class LocalPointDetailGetDto : IDto
     public string? Description { get; set; }
     public string? WorkingHourse { get; set; } 
     public int LocalPointId { get; set; }
-    public LocalPoint? LocalPoint { get; set; }
+    public LocalPointGetDto? LocalPoint { get; set; }
     public int LanguageId { get; set; }
 }
 public class LocalPointDetailCreateDto : IDto
