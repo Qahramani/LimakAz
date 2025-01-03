@@ -49,6 +49,7 @@ public static class ServiceRegistrations
         services.AddScoped<ITariffRepository, TariffRepository>();
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ILocalPointRepository, LocalPointRepository>();
+        services.AddScoped<IContentRepository, ContentRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -65,6 +66,7 @@ public static class ServiceRegistrations
         services.AddScoped<IShopCategoryService,ShopCategoryService>();
         services.AddScoped<ISliderService,SliderService>();
         services.AddScoped<ILocalPointService,LocalPointService>();
+        services.AddScoped<IContentService,ContentService>();
         
 
         services.AddScoped<ILayoutService,LayoutService>(); 

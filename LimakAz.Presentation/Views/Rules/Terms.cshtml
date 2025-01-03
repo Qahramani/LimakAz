@@ -1,0 +1,90 @@
+﻿<style>
+    .content {
+        display: none; /* Hide content by default */
+        margin-top: 10px;
+    }
+
+    .content-box.active .content {
+        display: block; /* Show content when the box is active */
+    }
+
+    .label {
+        cursor: pointer; /* Indicate it's clickable */
+        font-weight: bold;
+    }
+
+</style> 
+
+<!-- Main Start -->
+<main id="main"
+      style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat;background-size: 100%; background-position: top center;"
+      class="bg-full">
+    <div class="main-container">
+        <!-- Terms Start -->
+        <section id="terms">
+            <div class="block">
+                <div class="block-header">
+                    <h2 class="block-title">Suallar</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span>Qaydalar</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-body">
+                    <div class="accordion">
+                        <div class="content-box mb-20 active">
+                            <div class="label">
+                                Çatdırılma və malların təhvil verilməsi necə həyata keçirilir ?
+                            </div>
+                            <div class="content">
+                                <p>
+                                    Türkiyədən həftədə 6 dəfə, Amerikadan isə həftədə 1 dəfə daşınma həyata
+                                    keçirilir. Bağlamalar ofislərimizə daxil olandan 3 saat sonra təhvil verilməyə
+                                    başlanılır.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content-box mb-20">
+                            <div class="label">
+                                Nə qədər məbləğdə sifariş edə bilərəm?
+                            </div>
+                            <div class="content">
+                                <p>
+                                    Azərbaycan Respublikası qanunvericiliyinə görə, fiziki şəxslər 30 təqvim günü
+                                    ərzində kommersiya məqsədi olmadan 300 ABŞ dolları məbləğində rüsumsuz limitdən
+                                    istifadə edə bilərlər.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Terms End -->
+    </div>
+</main>
+<!-- Main End -->
+
+<script>
+    document.querySelectorAll('.content-box .label').forEach(label => {
+        label.addEventListener('click', () => {
+            const contentBox = label.parentElement;
+
+            // Toggle active class on the clicked content box
+            contentBox.classList.toggle('active');
+
+            // Optional: Close other content boxes if you want only one open at a time
+            document.querySelectorAll('.content-box').forEach(box => {
+                if (box !== contentBox) {
+                    box.classList.remove('active');
+                }
+            });
+        });
+    });
+
+</script>

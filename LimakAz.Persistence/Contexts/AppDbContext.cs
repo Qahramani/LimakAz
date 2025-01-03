@@ -24,6 +24,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
        builder.Entity<News>().HasQueryFilter(x => !x.IsDeleted);
        builder.Entity<Tariff>().HasQueryFilter(x => !x.IsDeleted);
        builder.Entity<LocalPoint>().HasQueryFilter(x => !x.IsDeleted);
+       builder.Entity<Content>().HasQueryFilter(x => !x.IsDeleted);
     
         base.OnModelCreating(builder);
     }
@@ -55,4 +56,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<Tariff> Tariffs { get; set; } = null!;
     public DbSet<LocalPoint> LocalPoints{ get; set; } = null!;
     public DbSet<LocalPointDetail> LocalPointDetails{ get; set; } = null!;
+    public DbSet<Content> Contents{ get; set; } = null!;
+    public DbSet<ContentDetail> ContentDetails{ get; set; } = null!;
+
 }

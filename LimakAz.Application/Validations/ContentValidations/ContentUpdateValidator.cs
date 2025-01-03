@@ -1,0 +1,22 @@
+﻿using FluentValidation;
+using LimakAz.Application.DTOs.ContentDtos;
+
+namespace LimakAz.Application.Validations.ContentValidations;
+
+public class ContentUpdateValidator : AbstractValidator<ContentUpdateDto>
+{
+    public ContentUpdateValidator()
+    {
+        RuleFor(x => x.PageType).NotEmpty().WithMessage("Boş ola bilməz")
+            .IsInEnum().WithMessage("Düzgün dəyər daxil edin");
+        RuleForEach(x => x.ContentDetails).ChildRules(details =>
+        {
+            details.RuleFor(x => x.Key)
+            .NotEmpty().WithMessage("Boş ola bilməz")
+                .MaximumLength(2048).WithMessage("Uzunluq 2048 simvoldan artıq ola bilməz");
+            details.RuleFor(x => x.Value)
+           .NotEmpty().WithMessage("Boş ola bilməz")
+               .MaximumLength(2048).WithMessage("Uzunluq 2048 simvoldan artıq ola bilməz");
+        });
+    }
+}
