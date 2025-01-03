@@ -13,12 +13,12 @@
                 <input asp-for="@Model.ContentDetails[0].LanguageId" value="1" type="hidden" />
                 <div class="form-group">
                     <label asp-for="@Model.ContentDetails[0].Key">Azərbaycanca başlıq</label>
-                    <input class="form-control" required asp-for="@Model.ContentDetails[0].Key" placeholder="Dəyər daxil edin">
+                    <textarea asp-for="@Model.ContentDetails[0].Key" required class="form-control" rows="5" placeholder="Dəyər daxil edin"></textarea>
                     <span asp-validation-for="@Model.ContentDetails[0].Key" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.ContentDetails[0].Value">Azərbaycanca kontent</label>
-                    <input class="form-control" required asp-for="@Model.ContentDetails[0].Value" placeholder="Dəyər daxil edin">
+                    <textarea asp-for="@Model.ContentDetails[0].Value" required class="form-control" rows="5" placeholder="Dəyər daxil edin"></textarea>
                     <span asp-validation-for="@Model.ContentDetails[0].Value" class="text-danger"></span>
                 </div>
                 <hr />
@@ -26,15 +26,23 @@
                 <input asp-for="@Model.ContentDetails[1].LanguageId" value="2" type="hidden" />
                 <div class="form-group">
                     <label asp-for="@Model.ContentDetails[1].Key">Rusca başlıq</label>
-                    <input class="form-control" required asp-for="@Model.ContentDetails[1].Key" placeholder="Dəyər daxil edin">
+                    <textarea asp-for="@Model.ContentDetails[1].Key" required class="form-control" rows="5" placeholder="Dəyər daxil edin"></textarea>
                     <span asp-validation-for="@Model.ContentDetails[1].Key" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.ContentDetails[1].Value">Rusca kontent</label>
-                    <input class="form-control" required asp-for="@Model.ContentDetails[1].Value" placeholder="Dəyər daxil edin">
+                    <textarea asp-for="@Model.ContentDetails[1].Value" required class="form-control" rows="5" placeholder="Dəyər daxil edin"></textarea>
                     <span asp-validation-for="@Model.ContentDetails[1].Value" class="text-danger"></span>
                 </div>
 
+                <label for="PageType">Page Type</label>
+                <select id="PageType" name="PageType" class="form-control">
+                    <option value="">-- Select Page Type --</option>
+                    <option value="1" selected>Terms</option>
+                    <option value="2">Privacy</option>
+                    <option value="3">FAQ</option>
+                </select>
+                <span asp-validation-for="PageType" class="text-danger"></span>
 
                 <button type="submit" class="btn btn-primary mr-2"> Yenilə</button>
 

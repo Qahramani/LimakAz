@@ -98,7 +98,7 @@ internal class CountryService : ICountryService
                 return false;
             }
         }
-        var imagePath = await _cloudinaryService.FileCreateAsync(dto.ImageFile);
+        var imagePath = await _cloudinaryService.FileCreateAsync(dto.ImageFile!);
 
         dto.ImagePath = imagePath;
 

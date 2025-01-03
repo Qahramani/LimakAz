@@ -1,0 +1,83 @@
+﻿@model List<ContentGetDto>﻿
+@inject ContentLocalizer _localizer;
+<style>
+     .content {
+         display: none; /* Hide content by default */
+         margin-top: 10px;
+     }
+
+     .content-box.active .content {
+         display: block; /* Show content when the box is active */
+     }
+
+     .label {
+         cursor: pointer; /* Indicate it's clickable */
+         font-weight: bold;
+     }
+
+</style>
+
+<!-- Main Start -->
+<main id="main"
+      style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat; background-size: 100%; background-position: top center;"
+      class="bg-full">
+    <div class="main-container">
+        <!-- Terms Start -->
+        <section id="terms">
+            <div class="block">
+                <div class="block-header">
+                    <h2 class="block-title">@_localizer.GetValue("Questions")</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span>@_localizer.GetValue("Questions")</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-body">
+                    <div class="accordion">
+                        @foreach (var item in Model)
+                        {
+                            
+                        <div class="content-box mb-20">
+                            <div class="label">
+                                @item.ContentDetails.FirstOrDefault()?.Key
+
+                            </div>
+                            <div class="content">
+                                <p>
+                                        @item.ContentDetails.FirstOrDefault()?.Value
+                                </p>
+                            </div>
+                        </div>
+                       
+                        } 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Terms End -->
+    </div>
+</main>
+<!-- Main End -->
+
+<script>
+    document.querySelectorAll('.content-box .label').forEach(label => {
+        label.addEventListener('click', () => {
+            const contentBox = label.parentElement;
+
+            // Toggle active class on the clicked content box
+            contentBox.classList.toggle('active');
+
+            // Optional: Close other content boxes if you want only one open at a time
+            document.querySelectorAll('.content-box').forEach(box => {
+                if (box !== contentBox) {
+                    box.classList.remove('active');
+                }
+            });
+        });
+    });
+
+</script>

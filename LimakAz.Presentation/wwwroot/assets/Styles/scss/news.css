@@ -1,4 +1,4 @@
-* {
+﻿* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -161,8 +161,7 @@
   }
 }
 .img-card img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   max-width: 100%;
 }
 
@@ -243,8 +242,7 @@
 .news-card img {
   width: 310px;
   height: 200px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   box-sizing: border-box;
 }
 
@@ -634,4 +632,4 @@
     justify-content: center;
     align-items: center;
   }
-}/*# sourceMappingURL=news.css.map */
+}

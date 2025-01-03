@@ -1,4 +1,4 @@
-﻿@model PaginateDto<NewsGetDto>
+﻿@model PaginateDto<ContentGetDto>
 @{
     int count = 1;
 }
@@ -17,10 +17,10 @@
                                 #
                             </th>
                             <th>
-                                Şəkil
+                                Başlıq
                             </th>
                             <th>
-                                Başlıq
+                                Tipi
                             </th>
                             <th>
                                 Son dəyişdirilmə tarixi
@@ -39,10 +39,10 @@
                                     @(count++)
                                 </td>
                                 <td>
-                                    <img src="@item.ImagePath" />
+                                    @item.ContentDetails.FirstOrDefault()?.Key
                                 </td>
                                 <td>
-                                    @item.NewsDetails.FirstOrDefault()?.Title
+                                    @item.PageType
                                 </td>
                                 <td>
                                     @item.UpdatedAt

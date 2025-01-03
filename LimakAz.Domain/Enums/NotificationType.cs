@@ -3,6 +3,6 @@ namespace LimakAz.Domain.Enums;
 
 public enum NotificationType
 {
-    SMS,
+    SMS=1,
     Whatsapp
 }

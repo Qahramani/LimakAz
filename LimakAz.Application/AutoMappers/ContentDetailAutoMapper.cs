@@ -1,6 +1,4 @@
-﻿using LimakAz.Application.DTOs.ContentDetailDtos;
-
-namespace LimakAz.Application.AutoMappers;
+﻿namespace LimakAz.Application.AutoMappers;
 
 internal class ContentDetailAutoMapper : Profile
 {

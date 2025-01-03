@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using LimakAz.Application.DTOs.ContentDtos;
 
 namespace LimakAz.Application.Validations.ContentValidations;
 
@@ -13,7 +12,7 @@ public class ContentCreateValidator : AbstractValidator<ContentCreateDto>
         {
             details.RuleFor(x => x.Key)
             .NotEmpty().WithMessage("Boş ola bilməz")
-                .MaximumLength(2048).WithMessage("Uzunluq 2048 simvoldan artıq ola bilməz");
+                .MaximumLength(256).WithMessage("Uzunluq 256 simvoldan artıq ola bilməz");
             details.RuleFor(x => x.Value)
            .NotEmpty().WithMessage("Boş ola bilməz")
                .MaximumLength(2048).WithMessage("Uzunluq 2048 simvoldan artıq ola bilməz");

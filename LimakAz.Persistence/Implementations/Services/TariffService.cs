@@ -159,7 +159,7 @@ internal class TariffService : ITariffService
                 dto.Tariffs.Add(new FormattedTariffGetDto
                 {
                     Value = $"{tariff.MinValue} - {tariff.MaxValue}",
-                    PriceInAZN = $"{tariff.Price} AZN",
+                    PriceInAZN = $"{Math.Round(tariff.Price,2)} AZN",
                     PriceInUSD = $"{Math.Round(tariff.Price / UsdCoefficient, 2)} USD"
                 });
             }

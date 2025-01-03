@@ -8,9 +8,11 @@ public static class SeedDataService
     {
         modelBuilder.AddLanguages();
         modelBuilder.AddGenders();
-        modelBuilder.AddCertificates(); 
+        modelBuilder.AddCertificates();
         modelBuilder.AddCategories();
         modelBuilder.AddSettings();
+        modelBuilder.AddCitizenShips();
+        modelBuilder.AddUserPositions();
     }
 
     public static void AddLanguages(this ModelBuilder modelBuilder)
@@ -52,10 +54,10 @@ public static class SeedDataService
             new Category { Id = 2, CreatedBy = "default", CreatedAt = DateTime.UtcNow, UpdatedBy = "default", UpdatedAt = DateTime.UtcNow, IsDeleted = false, LogoPath = "" }
             );
         modelBuilder.Entity<CategoryDetail>().HasData(
-            new CategoryDetail { Id = 1, Name = "Qeyim", CategoryId = 1, LanguageId = 1},
-            new CategoryDetail { Id = 2,  Name = "Одежда", CategoryId = 1, LanguageId = 2},
-            new CategoryDetail { Id = 3, Name = "Kosmetika", CategoryId = 2, LanguageId = 1},
-            new CategoryDetail { Id = 4, Name = "Косметика", CategoryId = 2, LanguageId = 2}
+            new CategoryDetail { Id = 1, Name = "Qeyim", CategoryId = 1, LanguageId = 1 },
+            new CategoryDetail { Id = 2, Name = "Одежда", CategoryId = 1, LanguageId = 2 },
+            new CategoryDetail { Id = 3, Name = "Kosmetika", CategoryId = 2, LanguageId = 1 },
+            new CategoryDetail { Id = 4, Name = "Косметика", CategoryId = 2, LanguageId = 2 }
             );
     }
     public static void AddSettings(this ModelBuilder modelBuilder)
@@ -116,10 +118,39 @@ public static class SeedDataService
 
                new SettingDetail { Id = 25, Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583341/LimakAz/ggh5cyvitqg56p1avgef.svg", SettingId = 13, LanguageId = 1 },
               new SettingDetail { Id = 26, Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583605/LimakAz/zkp51genu3lmjahjuox7.svg", SettingId = 13, LanguageId = 2 },
-            
+
               new SettingDetail { Id = 27, Value = "info@limak.az", SettingId = 14, LanguageId = 1 },
               new SettingDetail { Id = 28, Value = "info@limak.az", SettingId = 14, LanguageId = 2 }
 
               );
     }
+    public static void AddCitizenShips(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<CitizenShip>().HasData(
+            new CitizenShip { Id = 1 },
+            new CitizenShip { Id = 2 }
+            );
+
+        modelBuilder.Entity<CitizenShipDetail>().HasData(
+            new CitizenShipDetail { Id = 1, Name = "Fiziki şəxs", CitizenShipId = 1, LanguageId = 1 },
+            new CitizenShipDetail { Id = 2, Name = "Физическое лицо", CitizenShipId = 1, LanguageId = 2 },
+            new CitizenShipDetail { Id = 3, Name = "Hüquq şəxs", CitizenShipId = 2, LanguageId = 1 },
+            new CitizenShipDetail { Id = 4, Name = "Юридическое лицо", CitizenShipId = 2, LanguageId = 2 }
+            );
+    }
+    public static void AddUserPositions(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<UserPosition>().HasData(
+            new UserPosition { Id = 1 },
+            new UserPosition { Id = 2 }
+            );
+
+        modelBuilder.Entity<UserPositionDetail>().HasData(
+            new UserPositionDetail { Id = 1, Name = "Azərbaycan", UserPositionId = 1, LanguageId = 1 },
+            new UserPositionDetail { Id = 2, Name = "Азербайджан", UserPositionId = 1, LanguageId = 2 },
+            new UserPositionDetail { Id = 3, Name = "Xarici", UserPositionId = 2, LanguageId = 1 },
+            new UserPositionDetail { Id = 4, Name = "Другое", UserPositionId = 2, LanguageId = 2 }
+            );
+    }
+
 }

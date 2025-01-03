@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model List<ContentGetDto>
+@inject ContentLocalizer _localizer;
+<style>
     .content {
         display: none; /* Hide content by default */
         margin-top: 10px;
@@ -24,43 +26,34 @@
         <section id="terms">
             <div class="block">
                 <div class="block-header">
-                    <h2 class="block-title">Suallar</h2>
+                    <h2 class="block-title">@_localizer.GetValue("Rules")</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana səhifə</a>
+                            <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <span>Qaydalar</span>
+                            <span>@_localizer.GetValue("Rules")</span>
                         </li>
                     </ul>
                 </div>
                 <div class="block-body">
                     <div class="accordion">
-                        <div class="content-box mb-20 active">
-                            <div class="label">
-                                Çatdırılma və malların təhvil verilməsi necə həyata keçirilir ?
-                            </div>
-                            <div class="content">
-                                <p>
-                                    Türkiyədən həftədə 6 dəfə, Amerikadan isə həftədə 1 dəfə daşınma həyata
-                                    keçirilir. Bağlamalar ofislərimizə daxil olandan 3 saat sonra təhvil verilməyə
-                                    başlanılır.
-                                </p>
-                            </div>
-                        </div>
+                        @foreach (var item in Model)
+                        {
+                            
                         <div class="content-box mb-20">
                             <div class="label">
-                                Nə qədər məbləğdə sifariş edə bilərəm?
+                                @item.ContentDetails.FirstOrDefault()?.Key
+
                             </div>
                             <div class="content">
                                 <p>
-                                    Azərbaycan Respublikası qanunvericiliyinə görə, fiziki şəxslər 30 təqvim günü
-                                    ərzində kommersiya məqsədi olmadan 300 ABŞ dolları məbləğində rüsumsuz limitdən
-                                    istifadə edə bilərlər.
+                                        @item.ContentDetails.FirstOrDefault()?.Value
                                 </p>
                             </div>
                         </div>
-
+                       
+                        } 
                     </div>
                 </div>
             </div>

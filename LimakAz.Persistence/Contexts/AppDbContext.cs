@@ -58,5 +58,8 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<LocalPointDetail> LocalPointDetails{ get; set; } = null!;
     public DbSet<Content> Contents{ get; set; } = null!;
     public DbSet<ContentDetail> ContentDetails{ get; set; } = null!;
-
+    public DbSet<UserPosition> UserPositions{ get; set; } = null!;
+    public DbSet<UserPositionDetail> UserPositionDetails { get; set; } = null!;
+    public DbSet<CitizenShip> CitizenShips{ get; set; } = null!;
+    public DbSet<CitizenShipDetail> CitizenShipDetails { get; set; } = null!;
 }

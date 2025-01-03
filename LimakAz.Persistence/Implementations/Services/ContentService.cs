@@ -1,6 +1,4 @@
-﻿using LimakAz.Application.DTOs.ContentDtos;
-using LimakAz.Application.Interfaces.Services;
-using LimakAz.Domain.Enums;
+﻿using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -165,5 +163,14 @@ internal class ContentService : IContentService
     private static Func<IQueryable<Content>, IIncludableQueryable<Content, object>> _getWithIncludes()
     {
         return x => x.Include(x => x.ContentDetails);
+    }
+
+    public List<ContentGetDto> GetByPageType(PageType pageType, LanguageType language)
+    {
+        var contents = _repository.GetAll(x => x.PageType == pageType , _getWithIncludes(language));
+
+        var dtos = _mapper.Map<List<ContentGetDto>>(contents);
+
+        return dtos;
     }
 }

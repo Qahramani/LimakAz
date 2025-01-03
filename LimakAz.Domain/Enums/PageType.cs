@@ -3,7 +3,7 @@ namespace LimakAz.Domain.Enums;
 
 public enum PageType
 {
-    Terms,
+    Terms =1 ,
     Privacy,
     FAQ
 }

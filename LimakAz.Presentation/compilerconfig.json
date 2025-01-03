@@ -6,5 +6,9 @@
   {
     "outputFile": "wwwroot/assets/Styles/scss/footer.css",
     "inputFile": "wwwroot/assets/Styles/scss/footer.scss"
+  },
+  {
+    "outputFile": "wwwroot/assets/Styles/scss/news.css",
+    "inputFile": "wwwroot/assets/Styles/scss/news.scss"
   }
 ]

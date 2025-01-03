@@ -95,6 +95,7 @@ public static class ServiceRegistrations
         services.AddSingleton<HomeLocalizer>();
         services.AddSingleton<TariffsLocalizer>();
         services.AddSingleton<ContactLocalizer>();
+        services.AddSingleton<ContentLocalizer>();
     }
 
     private static void _addIdentiy(IServiceCollection services)
