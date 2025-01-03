@@ -90,6 +90,9 @@ public static class ServiceRegistrations
           });
 
         services.AddSingleton<LayoutLocalizer>();
+        services.AddSingleton<HomeLocalizer>();
+        services.AddSingleton<TariffsLocalizer>();
+        services.AddSingleton<ContactLocalizer>();
     }
 
     private static void _addIdentiy(IServiceCollection services)

@@ -1,0 +1,115 @@
+﻿@model List<LocalPointGetDto>
+@inject ContactLocalizer _localizer;    
+@inject ILayoutService _layoutService
+@{
+    var settings = await _layoutService.GetSettingsDictionary();
+}
+<div class="main-middle-content">
+    <!-- Middle Section -->
+    <div class="middlecontainer">
+        <!-- Tariff Plans -->
+        <div class="contact-main-pg">
+            <div class="contact-block">
+                <div class="contact-head">
+                    <div>
+                        <h4>@_localizer.GetValue("Contact")</h4>
+                    </div>
+                    <ol class="contact-breadcamp">
+                        <li>
+                            <a asp-controller="home">@_localizer.GetValue("Home")</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <span>@_localizer.GetValue("Contact")</span>
+                        </li>
+                    </ol>
+                </div>
+                <div class="contact-block-body">
+                    @foreach (var item in Model)
+                    {
+                        
+                    <div class="contact-card-body">
+                        <div class="row contact-card-row ">
+                            <div class="col-md-4 col-12">
+                                <div class="contact-article">
+                                    <div class="contact-title">
+                                        <div class="contact-text-head">
+                                            <img src="https://limak.az/new_front/assets/img/icons/location.svg"
+                                                 alt="">
+                                            <h3>@item.LocalPointDetails.FirstOrDefault()?.Name</h3>
+                                        </div>
+                                        <div class="contact-text-body">
+                                                <p class="contact-text">@item.LocalPointDetails.FirstOrDefault()?.Description</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="show-map-collapse" data-bs-toggle="collapse" href="#map-icerisher"
+                                     role="button" aria-expanded="false" name="colapse-1" aria-controls="collapseExample">
+                                    <img src="https://limak.az/new_front/assets/img/icons/map.svg" alt="">
+                                        <h3>@_localizer.GetValue("SeeMap")</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="contact-article">
+                                    <div class="contact-title">
+                                        <div class="contact-text-head">
+                                            <img src="https://limak.az/new_front/assets/img/icons/warehouse.svg"
+                                                 alt="">
+                                                <h3> @_localizer.GetValue("Warehouse")</h3>
+                                        </div>
+                                        <div class="contact-text-body">
+                                                <p class="contact-text">@item.LocalPointDetails.FirstOrDefault()?.WorkingHourse</p>
+                                        </div>
+                                    </div>
+                                    <div class="contact-title">
+                                        <div class="contact-text-head">
+                                            <img src="https://limak.az/new_front/assets/img/icons/bag.svg" alt="">
+                                                <h3>@_localizer.GetValue("OrderService")</h3>
+                                        </div>
+                                        <div class="contact-text-body">
+                                                <p class="contact-text">24 @_localizer.GetValue("Hour")</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="contact-title card-left-sect">
+                                    <div class="contact-text-head">
+                                        <img src="https://limak.az/new_front/assets/img/icons/phone.svg" alt="">
+                                            <h3>*@settings["SupportPhone"]</h3>
+                                    </div>
+                                    <div class="contact-text-head">
+                                        <img src="https://limak.az/new_front/assets/img/icons/mail.svg" alt="">
+                                            <h3>@settings["Email"]</h3>
+                                    </div>
+                                    <div class="contact-service-time">
+                                        <div class="contact-text-head">
+                                            <img src="https://limak.az/new_front/assets/img/icons/callcenter.svg"
+                                                 alt="">
+                                                <h3>@_localizer.GetValue("CustomerService")</h3>
+                                        </div>
+                                        <div class="contact-text-body">
+                                                <p class="contact-text">24 @_localizer.GetValue("Hour")</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-map">
+                            <div class="card-map-body collapse" id="map-icerisher">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125539.0399205363!2d47.68967282422346!3d40.091375673508246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d164e83a7d9%3A0x899cce04d36a5797!2zTGltYWsgLSBTw7xyyZl0bGkga2FyZ28geGlkbcmZdGk!5e0!3m2!1sen!2saz!4v1706562233441!5m2!1sen!2saz"
+                                        width="1030" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade" class="map-body"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

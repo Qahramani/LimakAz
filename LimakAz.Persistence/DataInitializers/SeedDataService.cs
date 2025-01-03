@@ -73,7 +73,8 @@ public static class SeedDataService
             new Setting { Id = 10, Key = "AppstoreLink" },
             new Setting { Id = 11, Key = "GoogleplayLink" },
             new Setting { Id = 12, Key = "Title" },
-            new Setting { Id = 13, Key = "SupportLineImage" }
+            new Setting { Id = 13, Key = "SupportLineImage" },
+            new Setting { Id = 14, Key = "Email" }
             );
 
         modelBuilder.Entity<SettingDetail>().HasData(
@@ -114,7 +115,11 @@ public static class SeedDataService
               new SettingDetail { Id = 24, Value = "Грузы из Америки и Турции Тарифы | Limak.az - цены на доставку", SettingId = 12, LanguageId = 2 },
 
                new SettingDetail { Id = 25, Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583341/LimakAz/ggh5cyvitqg56p1avgef.svg", SettingId = 13, LanguageId = 1 },
-              new SettingDetail { Id = 26, Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583605/LimakAz/zkp51genu3lmjahjuox7.svg", SettingId = 13, LanguageId = 2 }
-            );
+              new SettingDetail { Id = 26, Value = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735583605/LimakAz/zkp51genu3lmjahjuox7.svg", SettingId = 13, LanguageId = 2 },
+            
+              new SettingDetail { Id = 27, Value = "info@limak.az", SettingId = 14, LanguageId = 1 },
+              new SettingDetail { Id = 28, Value = "info@limak.az", SettingId = 14, LanguageId = 2 }
+
+              );
     }
 }

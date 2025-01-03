@@ -2,13 +2,13 @@
 
 namespace LimakAz.Persistence.Localizers;
 
-public class LayoutLocalizer
+public class HomeLocalizer
 {
     private readonly IStringLocalizer _localizer;
 
-    public LayoutLocalizer(IStringLocalizerFactory factory)
+    public HomeLocalizer(IStringLocalizerFactory localizer)
     {
-        _localizer = factory.Create("Layout", "LimakAz.Presentation");
+        _localizer = localizer.Create("Home", "LimakAz.Presentation");
     }
 
     public string GetValue(string key)

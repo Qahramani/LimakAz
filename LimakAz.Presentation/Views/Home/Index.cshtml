@@ -1,5 +1,6 @@
-﻿@model HomeGetDto
-
+﻿
+@model HomeGetDto
+@inject HomeLocalizer _localizer;
 <div class="main-middle-content">
     <!-- First Top slider -->
     <div class="customcontainer top-slider">
@@ -19,7 +20,7 @@
         <!-- Orden section(sifarish et) -->
         <div class="customcontainer order-sc d-flex justify-content-center">
             <div class="tracking-form">
-                <h4 class="order-inf">Sifariş vermək asandır!</h4>
+                <h4 class="order-inf">@_localizer.GetValue("EasyOrder")</h4>
                 <form class="order-form">
                     <div class="row-div">
                         <div class="form-group form-inp">
@@ -27,11 +28,11 @@
                                 <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z" />
                                 <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z" />
                             </svg>
-                            <input class="order-inp" type="text" placeholder="Məhsulun linkini əlavə et">
+                            <input class="order-inp" type="text" placeholder="@_localizer.GetValue("AddLink")">
                         </div>
                         <div class="form-group  ">
                             <button class="main-order-btn login-btn " type="submit">
-                                <span class="login-tag">SİFARİŞ ET</span>
+                                <span class="login-tag">@_localizer.GetValue("Order")</span>
                             </button>
                         </div>
                     </div>
@@ -48,7 +49,7 @@
                 <div class="home">
                     <div class="block-market">
                         <div class="markets-header">
-                            <h4>MAĞAZALAR</h4>
+                            <h4>@_localizer.GetValue("Shops")</h4>
                         </div>
                         <div class="markets-body">
                             <div class="store-list">
@@ -66,8 +67,8 @@
                             </div>
                         </div>
                         <div class="markets-foot">
-                            <a href="#" class="more-btn">
-                                Daha çox
+                            <a asp-controller="shops" class="more-btn">
+                                @_localizer.GetValue("More")
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
                         </div>
@@ -81,7 +82,7 @@
             <div class="news-main-pg">
                 <div class="news-block">
                     <div class="news-head">
-                        <h4>YENİLİKLƏR VƏ ELANLAR</h4>
+                        <h4>@_localizer.GetValue("NewsAndUpdates")</h4>
                     </div>
                     <div class="news-body">
                         <div class="news-list-items">
@@ -110,8 +111,8 @@
                         </div>
                     </div>
                     <div class="news-foot">
-                        <a href="#" class="more-btn ">
-                            Daha çox
+                        <a asp-controller="news" class="more-btn ">
+                            @_localizer.GetValue("More")
                             <i class="fa-solid fa-arrow-right-long"></i>
                         </a>
                     </div>
@@ -119,246 +120,13 @@
             </div>
 
             <!-- Tariff Plans -->
-            <div class="tariff-main-pg">
-                <div class="tarif-block">
-                    <div class="tarif-head">
-                        <div>
-                            <h4>ÖLKƏLƏR ÜZRƏ TARİFLƏR</h4>
-                        </div>
-                        <div class="slider-btn">
-                            <button class="move-prev" type="button">
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </button>
-                            <button class="move-next" type="button">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="slider-container">
-                        <div class="tarif-card">
-                            <div class="tariff-card-left card-slide">
-                                <div class="tarif-card-header">
-                                    <img src="https://limak.az/new_front/assets/img/icons/tr-circle.svg" alt="">
-                                    <h3>Türkiyə</h3>
-                                </div>
-                                <div style="width: 350px;">
-                                    <div class="row tarif-item-row">
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakı-İçərişəhər</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakı-Xalqlar Dostluğu</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Xırdalan</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Sumqayıt</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Gəncə</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Zaqatala</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Balakən</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakı-Gənclik</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakıxanov</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Xətai</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>İnşaatçılar</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Badamdar</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Həzi Aslanov</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Zabrat</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="tarif-price">
-                                    <table class="table">
-                                        <tbody class="tarif-table-main">
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body table-body-mob">
-                                                    <span class="weight-1">0 - 0.1 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body table-body-mob">
-                                                    <span class="price-2">1.70 AZN | 1.00 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.101 - 0.25 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">3.40 AZN | 2.00 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.251 - 0.5 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">5.10 AZN | 3.00 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.501 - 0.7 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">6.80 AZN | 4.00 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.701 - 1 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">7.65 AZN | 4.50 $</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tariff-card-right card-slide">
-                                <div class="tarif-card-header">
-                                    <img src="https://limak.az/new_front/assets/img/icons/usa-circle.svg" alt="">
-                                    <h3>Amerika</h3>
-                                </div>
-                                <div>
-                                    <div class="row tarif-item-row">
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakı-İçərişəhər</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakı-Xalqlar Dostluğu</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Xırdalan</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Sumqayıt</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Gəncə</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Zaqatala</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Balakən</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakı-Gənclik</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Bakıxanov</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Xətai</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>İnşaatçılar</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Badamdar</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Həzi Aslanov</span>
-                                        </a>
-                                        <a class="tarif-item col-md-2">
-                                            <span>Zabrat</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="tarif-price">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0 - 0.1 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">4.17 AZN | 2.45 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.101 - 0.25 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">6.71 AZN | 3.95 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.251 - 0.5 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">5.10 AZN | 3.00 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.501 - 0.7 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">6.80 AZN | 4.00 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">0.701 - 1 kg</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">7.65 AZN | 4.50 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">1.001 - 10 kg - hər kg üçün</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">13.52 AZN | 7.95 $</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tarif-table">
-                                                <td class="tarif-table-body">
-                                                    <span class="weight-1">10 - kg -dan artıq hər kg üçün</span>
-                                                </td>
-                                                <td class="tarif-table-body">
-                                                    <span class="price-2">12.24 AZN | 7.20 $</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <partial name="_TariffPartial" model="@Model.Tariffs"></partial>
 
             <!-- Sertificates Section -->
             <div class="sertf-main-pg">
                 <div class="sertf-block">
                     <div class="sertf-head">
-                        <h4>SERTİFİKATLARIMIZ VƏ TƏRƏDAŞLARIMIZ</h4>
+                        <h4>@_localizer.GetValue("CertificatesAndNews")</h4>
                     </div>
                     <div class="mySwiper">
                         <div class="sertf-body">
