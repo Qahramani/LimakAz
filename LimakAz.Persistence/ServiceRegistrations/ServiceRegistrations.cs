@@ -1,4 +1,5 @@
-﻿using LimakAz.Application.Interfaces.Repositories;
+﻿using LimakAz.Application.Interfaces.Helpers;
+using LimakAz.Application.Interfaces.Repositories;
 using LimakAz.Application.Interfaces.Repositories.Generic;
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Persistence.Contexts;
@@ -50,6 +51,9 @@ public static class ServiceRegistrations
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ILocalPointRepository, LocalPointRepository>();
         services.AddScoped<IContentRepository, ContentRepository>();
+        services.AddScoped<IGenderRepository, GenderRepository>();
+        services.AddScoped<IUserPositionRepository, UserPositionRepository>();
+        services.AddScoped<ICitizenShipRepository, CitizenShipRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -67,7 +71,12 @@ public static class ServiceRegistrations
         services.AddScoped<ISliderService,SliderService>();
         services.AddScoped<ILocalPointService,LocalPointService>();
         services.AddScoped<IContentService,ContentService>();
+        services.AddScoped<IGenderService,GenderService>();
+        services.AddScoped<IUserPositionService, UserPositionService>();
+        services.AddScoped<ICitizenShipService,CitizenShipService>();
+        services.AddScoped<IAuthService,AuthService>();
         
+        services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
 
         services.AddScoped<ILayoutService,LayoutService>(); 
         services.AddScoped<IHomeService,HomeService>(); 
@@ -96,6 +105,8 @@ public static class ServiceRegistrations
         services.AddSingleton<TariffsLocalizer>();
         services.AddSingleton<ContactLocalizer>();
         services.AddSingleton<ContentLocalizer>();
+        services.AddSingleton<ValidationMessagesLocalizer>();
+        
     }
 
     private static void _addIdentiy(IServiceCollection services)

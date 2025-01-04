@@ -1,4 +1,6 @@
-﻿<div class="main-middle-content">
+﻿@model RegisterDto
+
+<div class="main-middle-content">
 
     <!-- Middle Sections -->
     <div>
@@ -11,6 +13,7 @@
                         <div>
                             <h4>İSTİFADƏÇİ QEYDİYYATI</h4>
                         </div>
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         <ol class="register-breadcamp">
                             <li>
                                 <a href="#" class="regr-breadcamp-tag">Ana səhifə</a>
@@ -29,7 +32,7 @@
                                 <img src="" alt="">
                                 <h3 class="register-card-head-first">İSTİFADƏÇİ <b>QEYDİYYATI</b></h3>
                             </div>
-                            <form class="form-regr needs-validation">
+                            <form class="form-regr needs-validation" method="post">
                                 <div class="row form-regr-main-row">
                                     <div class="col-md-6 col-12 form-con-first-row">
                                         <h3 class="form-title">
@@ -37,23 +40,23 @@
                                         </h3>
                                         <div class="row">
                                             <div class="col-12">
-                                                <select class="regr-form-select-person">
-                                                    <option value="1">Fiziki şəxs</option>
-                                                    <option value="2">Hüquqi şəxs</option>
+                                                <select class="regr-form-select-person" asp-for="UserPositionId" asp-items="Model.UserPositions">
+                                                    <option disabled="disabled">Secin</option>
                                                 </select>
+                                                <span class="text-danger" asp-validation-for="UserPositionId"></span>
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="Ad" required="required"
-                                                       class="form-control reg-name" id="validationCustom04" required>
+                                                <input asp-for="Firstname" placeholder="E-mail" class="form-control reg-name" required>
+                                            <span class="text-danger" asp-validation-for="Firstname"></span>
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" placeholder="Soyad" required="required"
-                                                       class="form-control reg-surname" id="validationCustom05"
-                                                       required>
+                                                <input asp-for="Lastname" placeholder="Surname"  class="form-control reg-surname" required>
+                                                <span class="text-danger" asp-validation-for="Lastname"></span>
                                             </div>
                                             <div class="col-12">
-                                                <input type="email" placeholder="E-mail" required="required"
+                                                <input asp-for="Email" placeholder="E-mail"
                                                        class="form-control reg-email" id="validationCustom06" required>
+                                                <span class="text-danger" asp-validation-for="Email"></span>
                                             </div>
                                             <div class="col-12">
                                                 <div class="regr-phone-group" role="group">
@@ -61,67 +64,63 @@
                                                         <div class="dropdown b-dropdown btn-group">
                                                             <!-- <button type="button">050</button> -->
                                                             <select class="dropdown-select-prefix">
-                                                                <option value="1">
+                                                                <option value="50">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">050</a>
                                                                 </option>
-                                                                <option value="2">
+                                                                <option value="99">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">099</a>
                                                                 </option>
-                                                                <option value="3">
+                                                                <option value="55">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">055</a>
                                                                 </option>
-                                                                <option value="4">
+                                                                <option value="51">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">051</a>
                                                                 </option>
-                                                                <option value="5">
+                                                                <option value="70">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">070</a>
                                                                 </option>
-                                                                <option value="6">
+                                                                <option value="77">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">077</a>
-                                                                </option>
-                                                                <option value="7">
-                                                                    <a href="#" target="_self"
-                                                                       class="dropdown-option">010</a>
                                                                 </option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <input type="number" placeholder="Telefon" required="required"
+                                                    <input asp-for="PhoneNumber" placeholder="Telefon"
                                                            class="form-control reg-phoneNum" id="validationCustom"
                                                            required>
+                                                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                                                 </div>
                                             </div>
                                             <div class="pass col-md-6 col-12">
                                                 <input id="password-regr" autocomplete="new-password"
-                                                       type="password" placeholder="Şifrə"
+                                                       asp-for="Password" placeholder="Şifrə"
                                                        required="required">
                                                 <a class="visibility-btn-new-password">
                                                     <span class="hide-eye-pas shop-p"></span>
                                                 </a>
+                                                <span class="text-danger" asp-validation-for="Password"></span>
                                             </div>
                                             <div class="pass col-md-6 col-12">
-                                                <input id="password-confirmation-regr" type="password"
+                                                <input id="password-confirmation-regr" asp-for="ConfirmPassword"
                                                        autocomplete="current-password"
                                                        placeholder="Şifrənin təkrarı" required="required">
                                                 <a class="visibility-btn-password-confirm">
                                                     <span class="confr-password-show shop-p"></span>
                                                 </a>
+                                                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
                                             </div>
                                             <div class="col-md-6 col-12">
-                                                <select id="deliveryOffice" class="delivary-office-regr">
-                                                    <option disabled="disabled">Çatdırılma ofisi</option>
-                                                    <option value="1">Bakı-İçərişəhər</option>
-                                                    <option value="2">Bakı-Xalqlar</option>
-                                                    <option value="3">Bakı-Gənclik</option>
-                                                    <option value="4">Xırdalan</option>
-                                                    <option value="5">Sumqayıt</option>
-                                                </select>
+                                                <div class="col-12">
+                                                    <select class="delivary-office-regr" asp-for="LocalPointId" asp-items="Model.LocalPoints">
+                                                        <option disabled="disabled">Çatdırılma ofisi</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <select class="notif-type-regr">
@@ -138,35 +137,39 @@
                                         </h3>
                                         <div class="row">
                                             <div class="col-12">
-                                                <select class="select-nation-regr">
-                                                    <option disabled="disabled" value="0">Vətəndaşlığı</option>
-                                                    <option value="Azərbaycan">Azərbaycan</option>
-                                                    <option value="Xarici">Digər</option>
-
-                                                </select>
+                                
+                                                <div class="col-12">
+                                                    <select class="select-nation-regr" asp-for="CitizenShipId" asp-items="Model.CitizenShips">
+                                                        <option disabled="disabled">Seçin</option>
+                                                    </select>
+                                                    <span class="text-danger" asp-validation-for="CitizenShipId"></span>
+                                                </div>
                                             </div>
                                             <div class="col-12">
-                                                <input type="text" placeholder="Seriya nömrəsi" required="required"
+                                                <input asp-for="SerialNumber" placeholder="Seriya nömrəsi" required="required"
                                                        id="serial-num" class="serial-number form-control">
+                                                <span class="text-danger" asp-validation-for="SerialNumber"></span>
                                             </div>
                                             <div class="col-12">
                                                 <div>
                                                     <div class="date-input">
-                                                        <input type="date" class="date-input-regr form-control"
-                                                               max="2007-01-01" id="validationCustom08"
+                                                        <input asp-for="BirthDate" class="date-input-regr form-control"
+                                                               id="validationCustom08" max="2030-01-01"
                                                                required="required">
+                                                        <span class="text-danger" asp-validation-for="BirthDate"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <select class="select-gender-regr">
-                                                    <option disabled="disabled" value="0">Cinsi</option>
+                                                    <option disabled="disabled">Cinsi</option>
                                                     <option value="1">Kişi</option>
                                                     <option value="2">Qadın</option>
                                                 </select>
+                                                <span class="text-danger" asp-validation-for="GenderId"></span>
                                             </div>
                                             <div class="col-12">
-                                                <input type="text" placeholder="FİN*"
+                                                <input asp-for="FinCode" placeholder="FİN*"
                                                        id="regr-fin validationCustom07"
                                                        class="form-control regr-fin-code" required="required">
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleFin"
@@ -198,23 +201,26 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <span class="text-danger" asp-validation-for="FinCode"></span>
                                             </div>
                                             <div class="col-12">
-                                                <input type="text" id="regr-adress" required="required"
+                                                <input asp-for="Address" id="regr-adress" required="required"
                                                        placeholder="Ş/V-dəki ünvan" class="form-control">
+                                                <span class="text-danger" asp-validation-for="Address"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-regr-footer">
                                         <div class="form-check-checkbox">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
+                                                <input class="form-check-input" asp-for="IsTermsAccepted" type="checkbox" value=""
                                                        id="invalidCheck" required>
                                                 <label class="form-check-label" for="invalidCheck">
-                                                    <a id="terms-link" data-bs-toggle="modal"
+                                                    <a  id="terms-link" data-bs-toggle="modal"
                                                        data-bs-target="#exampleTermandCondi" required="required">
                                                         İstifadəçi qaydaları ilə razıyam
                                                     </a>
+                                                    <span class="text-danger" asp-validation-for="IsTermsAccepted"></span>
                                                 </label>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleTermandCondi" tabindex="-1"
@@ -329,7 +335,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-submit btn-primary">
+                                        <button type="submit" class="btn btn-submit btn-primary">
                                             <span>QEYDİYYAT</span>
                                         </button>
                                     </div>

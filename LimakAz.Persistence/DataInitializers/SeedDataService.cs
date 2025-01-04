@@ -132,10 +132,10 @@ public static class SeedDataService
             );
 
         modelBuilder.Entity<CitizenShipDetail>().HasData(
-            new CitizenShipDetail { Id = 1, Name = "Fiziki şəxs", CitizenShipId = 1, LanguageId = 1 },
-            new CitizenShipDetail { Id = 2, Name = "Физическое лицо", CitizenShipId = 1, LanguageId = 2 },
-            new CitizenShipDetail { Id = 3, Name = "Hüquq şəxs", CitizenShipId = 2, LanguageId = 1 },
-            new CitizenShipDetail { Id = 4, Name = "Юридическое лицо", CitizenShipId = 2, LanguageId = 2 }
+            new CitizenShipDetail { Id = 1, Name = "Azərbaycan", CitizenShipId = 1, LanguageId = 1 },
+            new CitizenShipDetail { Id = 2, Name = "Азербайджан", CitizenShipId = 1, LanguageId = 2 },
+            new CitizenShipDetail { Id = 3, Name = "Xarici", CitizenShipId = 2, LanguageId = 1 },
+            new CitizenShipDetail { Id = 4, Name = "Другое", CitizenShipId = 2, LanguageId = 2 }
             );
     }
     public static void AddUserPositions(this ModelBuilder modelBuilder)
@@ -146,10 +146,10 @@ public static class SeedDataService
             );
 
         modelBuilder.Entity<UserPositionDetail>().HasData(
-            new UserPositionDetail { Id = 1, Name = "Azərbaycan", UserPositionId = 1, LanguageId = 1 },
-            new UserPositionDetail { Id = 2, Name = "Азербайджан", UserPositionId = 1, LanguageId = 2 },
-            new UserPositionDetail { Id = 3, Name = "Xarici", UserPositionId = 2, LanguageId = 1 },
-            new UserPositionDetail { Id = 4, Name = "Другое", UserPositionId = 2, LanguageId = 2 }
+            new UserPositionDetail { Id = 1, Name = "Fiziki şəxs", UserPositionId = 1, LanguageId = 1 },
+            new UserPositionDetail { Id = 2, Name = "Физическое лицо", UserPositionId = 1, LanguageId = 2 },
+            new UserPositionDetail { Id = 3, Name = "Hüquq şəxs", UserPositionId = 2, LanguageId = 1 },
+            new UserPositionDetail { Id = 4, Name = "Юридическое лицо", UserPositionId = 2, LanguageId = 2 }
             );
     }
 

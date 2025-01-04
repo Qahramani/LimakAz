@@ -165,4 +165,41 @@
   <data name="UserPosition_Required" xml:space="preserve">
     <value>Выбор позиции пользователя обязателен.</value>
   </data>
+  <data name="Invalid_Input" xml:space="preserve">
+    <value>Введите правильное значение.</value>
+  </data>
+  <data name="Address_Length" xml:space="preserve">
+    <value>Адрес должен быть длиной от 10 до 200 символов.</value>
+  </data>
+  <data name="SerialNumber_Length" xml:space="preserve">
+    <value>Серийный номер должен состоять из 9 символов.
+</value>
+  </data>
+  <data name="SerialNumber_Format" xml:space="preserve">
+    <value>Серийный номер должен начинаться с двух букв, за которыми следуют семь цифр.
+</value>
+  </data>
+  <data name="PhoneNumber_Required" xml:space="preserve">
+    <value>Номер телефона не может быть пустым.
+</value>
+  </data>
+  <data name="PhoneNumber_Length" xml:space="preserve">
+    <value>Номер телефона должен состоять из 7 цифр.
+</value>
+  </data>
+  <data name="PhoneNumber_Numeric" xml:space="preserve">
+    <value>Номер телефона должен содержать только цифры.
+</value>
+  </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value>Электронная почта '{0}' уже используется.</value>
+  </data>
+  <data name="ConfirmPassword_Required" xml:space="preserve">
+    <value>Подтверждение пароля не может быть пустым.
+</value>
+  </data>
+  <data name="Passwords_NotMatch" xml:space="preserve">
+    <value>Пароли должны совпадать.
+</value>
+  </data>
 </root>

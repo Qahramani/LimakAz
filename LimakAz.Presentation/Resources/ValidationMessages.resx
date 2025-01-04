@@ -166,4 +166,34 @@
   <data name="UserPosition_Required" xml:space="preserve">
     <value>İstifadəçi mövqeyi seçimi tələb olunur.</value>
   </data>
+  <data name="Invalid_Input" xml:space="preserve">
+    <value>Düzgün dəyər daxil edin.</value>
+  </data>
+  <data name="Address_Length" xml:space="preserve">
+    <value>Ünvan 10-200 simvol arasında olmalıdır.</value>
+  </data>
+  <data name="SerialNumber_Length" xml:space="preserve">
+    <value>Seriya nömrəsi 9 simvoldan ibarət olmalıdır. </value>
+  </data>
+  <data name="SerialNumber_Format" xml:space="preserve">
+    <value>Seriya nömrəsi ilk iki hərf və yeddi rəqəmdən ibarət olmalıdır. </value>
+  </data>
+  <data name="PhoneNumber_Required" xml:space="preserve">
+    <value>Telefon nömrəsi boş ola bilməz. </value>
+  </data>
+  <data name="PhoneNumber_Length" xml:space="preserve">
+    <value>Telefon nömrəsi 7 rəqəmdən ibarət olmalıdır. </value>
+  </data>
+  <data name="PhoneNumber_Numeric" xml:space="preserve">
+    <value>Telefon nömrəsi yalnız rəqəmlərdən ibarət olmalıdır. </value>
+  </data>
+  <data name="DuplicateEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConfirmPassword_Required" xml:space="preserve">
+    <value>Təkrar şifrə boş ola bilməz. </value>
+  </data>
+  <data name="Passwords_NotMatch" xml:space="preserve">
+    <value>Şifrələr eyni olmalıdır. </value>
+  </data>
 </root>

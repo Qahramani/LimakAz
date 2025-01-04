@@ -10,6 +10,7 @@ public static class ServiceRegistrations
     {
         services.AddScoped<ICloudinaryService, CloudinaryService>();
         services.AddScoped<ICurrencyService, CurrencyService>();
+        services.AddScoped<IEmailService, EmailService>();
         services.AddHttpClient<CurrencyService>();
 
         return services;
