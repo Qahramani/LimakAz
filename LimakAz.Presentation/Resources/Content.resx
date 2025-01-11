@@ -129,4 +129,23 @@
   <data name="Policy" xml:space="preserve">
     <value>Policy</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ConcurrencyFailure" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value />
+  </data>
 </root>

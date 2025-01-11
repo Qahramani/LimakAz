@@ -83,7 +83,7 @@
                     display: block;
                   }
                   .hide-eye {
-                    background: url(../../assets/images/opened.svg) center
+                    background: url(../../assets2/images/opened.svg) center
                       no-repeat;
                   }
                 }
@@ -96,7 +96,7 @@
                 transition: background-color 0.15s ease-in-out,
                   border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
                 background-color: #f5f5f7;
-                background-image: url(../../assets/images/caret-down.svg);
+                background-image: url(../../assets2/images/caret-down.svg);
                 outline: none;
                 background-repeat: no-repeat;
                 background-position-x: calc(100% - 15px);

@@ -46,7 +46,8 @@
                     <img id="image-cropper-preview" style="max-width: 100%;" />
                 </div>
                 <button type="button" class="btn btn-primary" id="crop-button" style="display: none;" onclick="cropImage()">Crop</button>
-
+                <br />
+                <br />
                 <button type="submit" class="btn btn-primary mr-2">Yarat</button>
                 <a class="btn btn-light" asp-action="Index">Ləğv et</a>
 
@@ -94,7 +95,7 @@
                 }
 
                 cropper = new Cropper(cropperPreview, {
-                    aspectRatio: 100 / 30, // Set your desired width-to-height ratio here
+                    aspectRatio: 130 / 30, // Set your desired width-to-height ratio here
                     viewMode: 1,
                     autoCropArea: 1,
                 });

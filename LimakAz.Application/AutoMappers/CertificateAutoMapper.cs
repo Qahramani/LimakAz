@@ -1,4 +1,4 @@
-﻿namespace LimakAz.Application.AutoMappers;
+﻿    namespace LimakAz.Application.AutoMappers;
 
 internal class CertificateAutoMapper : Profile
 {

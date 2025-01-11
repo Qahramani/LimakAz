@@ -23,7 +23,7 @@ public class RegisterDtoValidator : AbstractValidator<RegisterDto>
         RuleFor(x => x.SerialNumber)
             .NotEmpty().WithMessage(messageProvider.GetValue("SerialNumber_Required"))
             .Length(9).WithMessage(messageProvider.GetValue("SerialNumber_Length")) 
-            .Matches(@"^[a-zA-Z]{2}[0-9]{7}$").WithMessage("SerialNumber_Format");
+            .Matches(@"^[a-zA-Z]{2}[0-9]{7}$").WithMessage(messageProvider.GetValue("SerialNumber_Format"));
 
         RuleFor(x => x.Address)
             .NotEmpty().WithMessage(messageProvider.GetValue("Address_Required"))
@@ -61,7 +61,7 @@ public class RegisterDtoValidator : AbstractValidator<RegisterDto>
 
         RuleFor(x => x.ConfirmPassword)
             .NotEmpty().WithMessage(messageProvider.GetValue("ConfirmPassword_Required"))
-            .Equal(x => x.Password).WithMessage("Passwords_NotMatch.");
+            .Equal(x => x.Password).WithMessage(messageProvider.GetValue("Passwords_NotMatch"));
     }
 
 }

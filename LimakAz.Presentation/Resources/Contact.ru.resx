@@ -132,10 +132,10 @@
   <data name="OrderService" xml:space="preserve">
     <value>Заказать услугу</value>
   </data>
-  <data name="CustomService" xml:space="preserve">
-    <value>Обслуживание клиентов</value>
-  </data>
   <data name="Hour" xml:space="preserve">
     <value>часа</value>
+  </data>
+  <data name="CustomService" xml:space="preserve">
+    <value>Обслуживание клиентов</value>
   </data>
 </root>

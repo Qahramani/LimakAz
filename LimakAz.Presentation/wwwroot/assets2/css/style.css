@@ -7006,7 +7006,7 @@ header {
                   margin-left: 0;
                   width: 12px;
                   height: 8px;
-                  background-image: url(../../assets/images/caret-down-gray-mini.svg); }
+                  background-image: url(../../assets2/images/caret-down-gray-mini.svg); }
                 header .navbar .container-nav .navbar-wrapper .navbar-right-col .user-panel-account .container-user-panel .btn-group ul {
                   position: absolute;
                   transform: translate3d(-77px, 16px, 0px);
@@ -7307,7 +7307,7 @@ main {
         position: absolute;
         width: 121px;
         height: 79px;
-        background-image: url("../../assets/images/rectangle-bottom.svg");
+        background-image: url("../../assets2/images/rectangle-bottom.svg");
         background-size: 100%;
         bottom: -8px;
         left: -0.5px;
@@ -7316,7 +7316,7 @@ main {
         content: "";
         width: 121px;
         height: 79px;
-        background-image: url("../../assets/images/rectangle-top.svg");
+        background-image: url("../../assets2/images/rectangle-top.svg");
         background-repeat: no-repeat;
         position: absolute;
         top: -8.5px;
@@ -7385,7 +7385,7 @@ main {
             z-index: 999; }
             #hero .container-hero .register-card .register-card-main .register-card-padding .register-card-form .register-card-form-input .group .visibility-btn .show {
               display: block;
-              background-image: url("../../assets/images/opened.svg");
+              background-image: url("../../assets2/images/opened.svg");
               background-repeat: no-repeat;
               background-position: center;
               height: 50px; }
@@ -7394,7 +7394,7 @@ main {
       #hero .container-hero .register-card .register-card-main .register-card-padding .register-card-form .custom-select {
         -webkit-appearance: none;
         background-color: #f5f5f7;
-        background-image: url(../../assets/images/caret-down.svg);
+        background-image: url(../../assets2/images/caret-down.svg);
         background-repeat: no-repeat;
         background-position-x: calc(100% - 15px);
         background-position-y: center;
@@ -7493,8 +7493,8 @@ main {
         word-wrap: break-word;
         background-color: #fff;
         background-clip: border-box;
-        border: 1 px solid rgba(0, 0, 0, 0.125);
-        border-radius: 0.25 rem;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
         background: #fff;
         border-radius: 8px;
         margin-top: 10px;
@@ -7746,7 +7746,7 @@ main {
             content: "";
             width: 8px;
             height: 11px;
-            background: url(../../assets/images/caret-right.svg) no-repeat;
+            background: url(../../assets2/images/caret-right.svg) no-repeat;
             margin-right: 10px;
             padding: 0; }
     #main .main-container .calculator .block .block-body .row .card {
@@ -7798,7 +7798,7 @@ main {
                 text-decoration: underline; }
         #main .main-container .calculator .block .block-body .row .card .form-calc .row .custom-select {
           background-color: #f5f5f7;
-          background-image: url(../../assets/images/caret-down.svg);
+          background-image: url(../../assets2/images/caret-down.svg);
           background-repeat: no-repeat;
           background-position-x: calc(100% - 15px);
           background-position-y: center;
@@ -8046,7 +8046,7 @@ main {
             width: 9px;
             height: 6px;
             border: none;
-            background-image: url(../../assets/images/caret-down.svg);
+            background-image: url(../../assets2/images/caret-down.svg);
             background-repeat: no-repeat;
             margin-left: 0; }
           #main .main-container .calculator .block .block-body .row .card .form-exc .form-exc-body form .input-group .input-group-append .dropdown-menu {
@@ -8293,7 +8293,7 @@ main {
             content: "";
             width: 8px;
             height: 11px;
-            background: url(../../assets/images/caret-right.svg) no-repeat;
+            background: url(../../assets2/images/caret-right.svg) no-repeat;
             margin-right: 10px;
             padding: 0; }
     #main .main-container .block .block-body .currency-div {
@@ -8412,7 +8412,7 @@ main {
       font-size: 15px;
       line-height: 22px;
       margin-top: 25px;
-      background: url(../../assets/images/disc-color.svg) no-repeat left 5px;
+      background: url(../../assets2/images/disc-color.svg) no-repeat left 5px;
       padding-left: 22px;
       font-weight: 500; }
       #main .main-container .privacy .block .block-body .card .card-body .card-text h5 {
@@ -8602,7 +8602,7 @@ header .user-panel-account {
         margin-left: 0;
         width: 12px;
         height: 8px;
-        background-image: url(../../assets/images/caret-down-gray-mini.svg); }
+        background-image: url(../../assets2/images/caret-down-gray-mini.svg); }
       header .user-panel-account .container-user-panel .btn-group ul {
         position: absolute;
         transform: translate3d(-77px, 16px, 0px);
@@ -8928,7 +8928,7 @@ header #userPanel-nav {
         width: 9px;
         height: 6px;
         border: none;
-        background-image: url(../../assets/images/caret-down.svg);
+        background-image: url(../../assets2/images/caret-down.svg);
         background-repeat: no-repeat;
         margin-left: 0; }
       #user-panel .row .aside .card-custom .form-exc .form-exc-body form .input-group .input-group-append .dropdown-menu {
@@ -9086,7 +9086,7 @@ header #userPanel-nav {
       appearance: none;
       transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       background-color: #f5f5f7;
-      background-image: url(../../assets/images/caret-down.svg);
+      background-image: url(../../assets2/images/caret-down.svg);
       background-repeat: no-repeat;
       background-position-x: calc(100% - 15px);
       background-position-y: center;
@@ -9389,7 +9389,7 @@ header #userPanel-nav {
         width: 9px;
         height: 6px;
         border: none;
-        background-image: url(../../assets/images/caret-down.svg);
+        background-image: url(../../assets2/images/caret-down.svg);
         background-repeat: no-repeat;
         margin-left: 0; }
       #user-panel .row .aside .card-custom .form-exc .form-exc-body form .input-group .input-group-append .dropdown-menu {
@@ -9547,7 +9547,7 @@ header #userPanel-nav {
       appearance: none;
       transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       background-color: #f5f5f7;
-      background-image: url(../../assets/images/caret-down.svg);
+      background-image: url(../../assets2/images/caret-down.svg);
       background-repeat: no-repeat;
       background-position-x: calc(100% - 15px);
       background-position-y: center;
@@ -9850,7 +9850,7 @@ header #userPanel-nav {
         width: 9px;
         height: 6px;
         border: none;
-        background-image: url(../../assets/images/caret-down.svg);
+        background-image: url(../../assets2/images/caret-down.svg);
         background-repeat: no-repeat;
         margin-left: 0; }
       #user-panel .row .aside .card-custom .form-exc .form-exc-body form .input-group .input-group-append .dropdown-menu {
@@ -10009,7 +10009,7 @@ header #userPanel-nav {
       appearance: none;
       transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       background-color: #f5f5f7;
-      background-image: url(../../assets/images/caret-down.svg);
+      background-image: url(../../assets2/images/caret-down.svg);
       background-repeat: no-repeat;
       background-position-x: calc(100% - 15px);
       background-position-y: center;
@@ -10425,7 +10425,7 @@ header #userPanel-nav {
         width: 9px;
         height: 6px;
         border: none;
-        background-image: url(../../assets/images/caret-down.svg);
+        background-image: url(../../assets2/images/caret-down.svg);
         background-repeat: no-repeat;
         margin-left: 0; }
       #user-panel .row .aside .card-custom .form-exc .form-exc-body form .input-group .input-group-append .dropdown-menu {
@@ -10752,7 +10752,7 @@ header #userPanel-nav {
   appearance: none;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   background-color: #f5f5f7;
-  background-image: url(../../assets/images/caret-down.svg);
+  background-image: url(../../assets2/images/caret-down.svg);
   background-repeat: no-repeat;
   background-position-x: calc(100% - 15px);
   background-position-y: center;
@@ -11140,7 +11140,7 @@ header #userPanel-nav {
       vertical-align: middle;
       transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       background-color: #f5f5f7;
-      background-image: url(../../assets/images/caret-down.svg);
+      background-image: url(../../assets2/images/caret-down.svg);
       background-repeat: no-repeat;
       background-position-x: calc(100% - 15px);
       background-position-y: center;
@@ -11275,7 +11275,7 @@ header #userPanel-nav {
         height: 50px;
         display: block; }
       .register .block .block-body .card-auth .form-reg .row .row .pass .visiblity-btn .hide-eye {
-        background: url(../../assets/images/opened.svg) center no-repeat; }
+        background: url(../../assets2/images/opened.svg) center no-repeat; }
   .register .block .block-body .card-auth .form-reg .row .row .custom-select {
     display: inline-block;
     padding: 0.5rem 2.9rem 0.5rem 1.2rem;
@@ -11283,7 +11283,7 @@ header #userPanel-nav {
     vertical-align: middle;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     background-color: #f5f5f7;
-    background-image: url(../../assets/images/caret-down.svg);
+    background-image: url(../../assets2/images/caret-down.svg);
     outline: none;
     background-repeat: no-repeat;
     background-position-x: calc(100% - 15px);
@@ -11400,7 +11400,7 @@ header #userPanel-nav {
               height: 100px !important;
               display: block !important; }
               .login-sec .modal-content .modal-body .modal-site .login .block .block-body .card-auth .row .card-auth-form .input-group .visiblity-btn-password .show-password.hide-eye {
-                background: url(../../assets/images/opened.svg) center no-repeat; }
+                background: url(../../assets2/images/opened.svg) center no-repeat; }
         .login-sec .modal-content .modal-body .modal-site .login .block .block-body .card-auth .row .card-auth-form .form-group {
           margin-top: 20px;
           margin-bottom: 20px;

@@ -187,7 +187,8 @@
   <data name="PhoneNumber_Numeric" xml:space="preserve">
     <value>Telefon nömrəsi yalnız rəqəmlərdən ibarət olmalıdır. </value>
   </data>
-  <data name="DuplicateEmail" xml:space="preserve">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DuplicateEmail" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
   <data name="ConfirmPassword_Required" xml:space="preserve">
@@ -195,5 +196,95 @@
   </data>
   <data name="Passwords_NotMatch" xml:space="preserve">
     <value>Şifrələr eyni olmalıdır. </value>
+  </data>
+  <data name="InvalidInputException" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidRoleName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LoginAlreadyAssociated" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotFoundException" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordRequiresUniqueChars" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RecoveryCodeRedemptionFailed" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnconfirmedEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UserAlreadyHasPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UserAlreadyInRole" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UserLockoutNotEnabled" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UserNotInRole" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Email_Length" xml:space="preserve">
+    <value>Emailin uzunluğu 100 simvoldan az olmalıdır.</value>
+  </data>
+  <data name="Email_Required" xml:space="preserve">
+    <value>Email tələb olunur.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Şifrə tələb olunur</value>
+  </data>
+  <data name="Password_Length" xml:space="preserve">
+    <value>Şifrənin uzunluğu 100 simvoldan uzun ola bilməz</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BlockedUser" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConcurrencyFailure" xml:space="preserve">
+    <value />
   </data>
 </root>

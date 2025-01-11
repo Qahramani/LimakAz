@@ -202,4 +202,94 @@
     <value>Пароли должны совпадать.
 </value>
   </data>
+  <data name="InvalidInputException" xml:space="preserve">
+    <value>Произошла непредвиденная ошибка. Повторите попытку.</value>
+  </data>
+  <data name="InvalidRoleName" xml:space="preserve">
+    <value>Роль '{0}' недействительна.</value>
+  </data>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Токен недействителен.</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Имя пользователя '{0}' недействительно.</value>
+  </data>
+  <data name="LoginAlreadyAssociated" xml:space="preserve">
+    <value>Этот логин уже связан с другим пользователем.</value>
+  </data>
+  <data name="NotFoundException" xml:space="preserve">
+    <value>Информация не найдена</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Неверный пароль.</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>Пароль должен содержать хотя бы одну цифру ('0'-'9').</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>Пароль должен содержать хотя бы одну строчную букву ('a'-'z').</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>Пароль должен содержать хотя бы один не буквенно-цифровой символ.</value>
+  </data>
+  <data name="PasswordRequiresUniqueChars" xml:space="preserve">
+    <value>Пароль должен содержать как минимум {0} уникальных символов.</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>Пароль должен содержать хотя бы одну заглавную букву ('A'-'Z').</value>
+  </data>
+  <data name="PasswordTooShort" xml:space="preserve">
+    <value>Пароль должен быть не короче {0} символов.</value>
+  </data>
+  <data name="RecoveryCodeRedemptionFailed" xml:space="preserve">
+    <value>Ошибка при использовании кода восстановления.</value>
+  </data>
+  <data name="UnconfirmedEmail" xml:space="preserve">
+    <value>Вы должны подтвердить свою учетную запись электронной почты, чтобы получить доступ к учетной записи. Письмо с подтверждением было отправлено повторно.</value>
+  </data>
+  <data name="UserAlreadyHasPassword" xml:space="preserve">
+    <value>У пользователя уже есть пароль.</value>
+  </data>
+  <data name="UserAlreadyInRole" xml:space="preserve">
+    <value>Пользователь уже имеет роль '{0}'.</value>
+  </data>
+  <data name="UserLockoutNotEnabled" xml:space="preserve">
+    <value>Блокировка для пользователя не активирована.</value>
+  </data>
+  <data name="UserNotInRole" xml:space="preserve">
+    <value>Пользователь не имеет роль '{0}'.</value>
+  </data>
+  <data name="Email_Length" xml:space="preserve">
+    <value>Электронная почта должна меньше 100 символов.</value>
+  </data>
+  <data name="Email_Required" xml:space="preserve">
+    <value>Электронная почта обязательна.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Пароль обязателен</value>
+  </data>
+  <data name="Password_Length" xml:space="preserve">
+    <value>Длина пароли не может быть больше 100 символов</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Имя пользователя или пароль неверны.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Электронная почта '{0}' недействительна.</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>Имя пользователя '{0}' уже занято.</value>
+  </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value>Произошла ошибка синхронизации.</value>
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>Роль '{0}' уже существует.</value>
+  </data>
+  <data name="BlockedUser" xml:space="preserve">
+    <value>Пользователь заблокирован, повторите попытку через 3 минут.</value>
+  </data>
+  <data name="ConcurrencyFailure" xml:space="preserve">
+    <value>Произошла ошибка синхронизации.</value>
+  </data>
 </root>

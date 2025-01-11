@@ -1,0 +1,17 @@
+﻿@model PaginateDto<ShopGetDto>
+<div class="row">
+    @foreach (var item in Model?.Items ?? new())
+    {
+        
+    <div class="col-md-6 col-lg-4 col-6 item-box" data-item="electronic">
+        <a href="@item.Link"
+           target="_blank" class="store-item">
+            <article class="card">
+                <img src="@item.ImagePath"
+                     alt="Odak Pazar-dən çatdırılma" class="card-img"
+                     style="width: 70%;">
+            </article>
+        </a>
+    </div>
+    }
+</div>

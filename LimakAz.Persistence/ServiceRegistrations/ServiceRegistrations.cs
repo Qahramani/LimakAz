@@ -1,9 +1,7 @@
 ﻿using LimakAz.Application.Interfaces.Helpers;
-using LimakAz.Application.Interfaces.Repositories;
-using LimakAz.Application.Interfaces.Repositories.Generic;
-using LimakAz.Application.Interfaces.Services;
 using LimakAz.Persistence.Contexts;
 using LimakAz.Persistence.DataInitializers;
+using LimakAz.Persistence.Helpers;
 using LimakAz.Persistence.Implementations.Repositories;
 using LimakAz.Persistence.Implementations.Services;
 using LimakAz.Persistence.Implementations.Services.UI;
@@ -33,12 +31,13 @@ public static class ServiceRegistrations
         _addRepositories(services);
         _addServices(services);
 
+
         return services;
     }
 
     private static void _addRepositories(IServiceCollection services)
     {
-      //  services.AddScoped<IRepository, Repository>();
+        //  services.AddScoped<IRepository, Repository>();
         services.AddScoped<ILanguageRepository, LanguageRepository>();
         services.AddScoped<ISettingRepository, SettingRepository>();
         services.AddScoped<ICertificateRepository, CertificateRepository>();
@@ -58,28 +57,34 @@ public static class ServiceRegistrations
 
     private static void _addServices(IServiceCollection services)
     {
-        services.AddScoped<ILanguageService,LanguageService>(); 
-        services.AddScoped<ICertificateService,CertificateService>(); 
-        services.AddScoped<ISettingService,SettingService>(); 
-        services.AddScoped<ICookieService,CookieService>(); 
-        services.AddScoped<INewsService,NewsService>(); 
-        services.AddScoped<ITariffService,TariffService>(); 
-        services.AddScoped<ICountryService,CountryService>();
-        services.AddScoped<ICategoryService,CategoryService>();
-        services.AddScoped<IShopService,ShopService>();
-        services.AddScoped<IShopCategoryService,ShopCategoryService>();
-        services.AddScoped<ISliderService,SliderService>();
-        services.AddScoped<ILocalPointService,LocalPointService>();
-        services.AddScoped<IContentService,ContentService>();
-        services.AddScoped<IGenderService,GenderService>();
+        services.AddScoped<ILanguageService, LanguageService>();
+        services.AddScoped<ICertificateService, CertificateService>();
+        services.AddScoped<ISettingService, SettingService>();
+        services.AddScoped<ICookieService, CookieService>();
+        services.AddScoped<INewsService, NewsService>();
+        services.AddScoped<ITariffService, TariffService>();
+        services.AddScoped<ICountryService, CountryService>();
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<IShopService, ShopService>();
+        services.AddScoped<IShopCategoryService, ShopCategoryService>();
+        services.AddScoped<ISliderService, SliderService>();
+        services.AddScoped<ILocalPointService, LocalPointService>();
+        services.AddScoped<IContentService, ContentService>();
+        services.AddScoped<IGenderService, GenderService>();
         services.AddScoped<IUserPositionService, UserPositionService>();
-        services.AddScoped<ICitizenShipService,CitizenShipService>();
-        services.AddScoped<IAuthService,AuthService>();
-        
-        services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
+        services.AddScoped<ICitizenShipService, CitizenShipService>();
+        services.AddScoped<IAuthService, AuthService>();
 
-        services.AddScoped<ILayoutService,LayoutService>(); 
-        services.AddScoped<IHomeService,HomeService>(); 
+        services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
+        services.AddScoped<IFilePathHelper,FilePathHelper>();
+
+        services.AddScoped<ILayoutService, LayoutService>();
+        services.AddScoped<IHomeService, HomeService>();
+
+        //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        //services.AddScoped<IUrlHelper, UrlHelper>();
+        //services.AddHttpContextAccessor();
+
     }
 
     private static void _addLocalizers(IServiceCollection services)
@@ -106,12 +111,12 @@ public static class ServiceRegistrations
         services.AddSingleton<ContactLocalizer>();
         services.AddSingleton<ContentLocalizer>();
         services.AddSingleton<ValidationMessagesLocalizer>();
-        
+
     }
 
     private static void _addIdentiy(IServiceCollection services)
     {
-        services.AddIdentity<AppUser,IdentityRole>(options =>
+        services.AddIdentity<AppUser, IdentityRole>(options =>
         {
             options.Password.RequiredLength = 6;
             options.Password.RequireNonAlphanumeric = false;
@@ -126,7 +131,8 @@ public static class ServiceRegistrations
 
             options.User.RequireUniqueEmail = true;
         }).AddEntityFrameworkStores<AppDbContext>()
-        .AddDefaultTokenProviders();
+        .AddDefaultTokenProviders()
+        .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
     }
 }

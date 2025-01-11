@@ -15,7 +15,7 @@ internal class CountryService : ICountryService
     private readonly ICloudinaryService _cloudinaryService;
     public CountryService(ICountryRepository countryRepository, IMapper mapper, ILanguageService languageService, ICloudinaryService cloudinaryService)
     {
-        this._repository = countryRepository;
+        _repository = countryRepository;
         _mapper = mapper;
         _languageService = languageService;
         _cloudinaryService = cloudinaryService;

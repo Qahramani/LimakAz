@@ -129,4 +129,22 @@
   <data name="Policy" xml:space="preserve">
     <value>Политика конфиденциальности</value>
   </data>
+  <data name="ConcurrencyFailure" xml:space="preserve">
+    <value>Пользователь заблокирован, повторите попытку через 10 минут.</value>
+  </data>
+  <data name="DefaultError" xml:space="preserve">
+    <value>Произошла ошибка синхронизации.</value>
+  </data>
+  <data name="DuplicateRoleName" xml:space="preserve">
+    <value>Роль '{0}' уже существует.</value>
+  </data>
+  <data name="DuplicateUserName" xml:space="preserve">
+    <value>Имя пользователя '{0}' уже занято.</value>
+  </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Имя пользователя или пароль неверны.</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Электронная почта '{0}' недействительна.</value>
+  </data>
 </root>

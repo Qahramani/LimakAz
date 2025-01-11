@@ -19,6 +19,7 @@ public class RegisterDto
     public decimal TRYBalance { get; set; }
     public bool IsTermsAccepted { get; set; } = true;
     public NotificationType NotificationType { get; set; }
+    public NumberPrefixType NumberPrefixType { get; set; }
     public DateTime BirthDate { get; set; }
     public int LocalPointId { get; set; }
     public List<SelectListItem> LocalPoints { get; set; } = [];
@@ -28,4 +29,11 @@ public class RegisterDto
     public List<SelectListItem> CitizenShips { get; set; } = [];
     public int UserPositionId { get; set; }
     public List<SelectListItem> UserPositions { get; set; } = [];
+}
+
+public class LoginDto
+{
+    public string? Email { get; set; }
+    public string? Password { get; set; }
+    public bool RememberMe { get; set; } = false;
 }

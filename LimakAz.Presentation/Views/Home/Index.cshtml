@@ -1,14 +1,19 @@
 ﻿
 @model HomeGetDto
 @inject HomeLocalizer _localizer;
+
+
+
+
+
 <div class="main-middle-content">
     <!-- First Top slider -->
     <div class="customcontainer top-slider">
-        <div class=" imgCarousel">
+        <div class=" imgCarousel" style="position: relative; width: 100%; height: 300px; overflow: hidden;">
             @foreach (var item in Model.Sliders.Items)
             {
                 <a class="img-card">
-                    <img  src="@item.ImagePath" alt="">
+                    <img src="@item.ImagePath" alt="" style="width: 100%; height: 300px; object-fit: cover;">
                 </a>
             }
         </div>

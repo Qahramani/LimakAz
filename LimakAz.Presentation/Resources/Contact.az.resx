@@ -132,10 +132,10 @@
   <data name="OrderService" xml:space="preserve">
     <value>Sifariş et xidməti</value>
   </data>
-  <data name="CustomService" xml:space="preserve">
-    <value>Müştəri xidməti</value>
-  </data>
   <data name="Hour" xml:space="preserve">
     <value>saat</value>
+  </data>
+  <data name="CustomService" xml:space="preserve">
+    <value>Müştəri xidməti</value>
   </data>
 </root>

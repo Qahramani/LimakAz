@@ -13,7 +13,7 @@
                         <div>
                             <h4>İSTİFADƏÇİ QEYDİYYATI</h4>
                         </div>
-                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        
                         <ol class="register-breadcamp">
                             <li>
                                 <a href="#" class="regr-breadcamp-tag">Ana səhifə</a>
@@ -46,7 +46,7 @@
                                                 <span class="text-danger" asp-validation-for="UserPositionId"></span>
                                             </div>
                                             <div class="col-6">
-                                                <input asp-for="Firstname" placeholder="E-mail" class="form-control reg-name" required>
+                                                <input asp-for="Firstname" placeholder="FirstName" class="form-control reg-name" required>
                                             <span class="text-danger" asp-validation-for="Firstname"></span>
                                             </div>
                                             <div class="col-6">
@@ -63,7 +63,7 @@
                                                     <div class="phone-prefix-regr">
                                                         <div class="dropdown b-dropdown btn-group">
                                                             <!-- <button type="button">050</button> -->
-                                                            <select class="dropdown-select-prefix">
+                                                            <select class="dropdown-select-prefix" asp-for="NumberPrefixType" >
                                                                 <option value="50">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">050</a>
@@ -94,7 +94,7 @@
                                                     <input asp-for="PhoneNumber" placeholder="Telefon"
                                                            class="form-control reg-phoneNum" id="validationCustom"
                                                            required>
-                                                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                                                    <span class="text-danger" style="margin-left:10px" asp-validation-for="PhoneNumber"></span>
                                                 </div>
                                             </div>
                                             <div class="pass col-md-6 col-12">
@@ -123,7 +123,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
-                                                <select class="notif-type-regr">
+                                                <select class="notif-type-regr" asp-for="NotificationType">
                                                     <option disabled="disabled">Bildiriş tipi</option>
                                                     <option value="1">SMS</option>
                                                     <option value="2">Whatsapp</option>
@@ -161,7 +161,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <select class="select-gender-regr">
+                                                <select class="select-gender-regr" asp-for="GenderId">
                                                     <option disabled="disabled">Cinsi</option>
                                                     <option value="1">Kişi</option>
                                                     <option value="2">Qadın</option>
@@ -172,6 +172,7 @@
                                                 <input asp-for="FinCode" placeholder="FİN*"
                                                        id="regr-fin validationCustom07"
                                                        class="form-control regr-fin-code" required="required">
+                                                <span class="text-danger" asp-validation-for="FinCode"></span>
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleFin"
                                                    id="Fin">
                                                     <i class="fa-solid fa-circle-info"></i>
@@ -188,20 +189,19 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="passport-images">
-                                                                    <img src="https://limak.az/new_front/assets/images/passport/1.svg"
+                                                                    <img src="https://limak.az/new_front/assets2/images/passport/1.svg"
                                                                          alt="">
-                                                                    <img src="https://limak.az/new_front/assets/images/passport/2.svg"
+                                                                    <img src="https://limak.az/new_front/assets2/images/passport/2.svg"
                                                                          alt="">
-                                                                    <img src="https://limak.az/new_front/assets/images/passport/3.svg"
+                                                                    <img src="https://limak.az/new_front/assets2/images/passport/3.svg"
                                                                          alt="">
-                                                                    <img src="https://limak.az/new_front/assets/images/passport/4.svg"
+                                                                    <img src="https://limak.az/new_front/assets2/images/passport/4.svg"
                                                                          alt="">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="text-danger" asp-validation-for="FinCode"></span>
                                             </div>
                                             <div class="col-12">
                                                 <input asp-for="Address" id="regr-adress" required="required"
@@ -213,15 +213,16 @@
                                     <div class="form-regr-footer">
                                         <div class="form-check-checkbox">
                                             <div class="form-check">
-                                                <input class="form-check-input" asp-for="IsTermsAccepted" type="checkbox" value=""
+                                                <input class="form-check-input" asp-for="IsTermsAccepted" type="checkbox"
                                                        id="invalidCheck" required>
                                                 <label class="form-check-label" for="invalidCheck">
                                                     <a  id="terms-link" data-bs-toggle="modal"
                                                        data-bs-target="#exampleTermandCondi" required="required">
                                                         İstifadəçi qaydaları ilə razıyam
                                                     </a>
-                                                    <span class="text-danger" asp-validation-for="IsTermsAccepted"></span>
                                                 </label>
+                                                <br />
+                                                    <span class="text-danger" asp-validation-for="IsTermsAccepted"></span>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="exampleTermandCondi" tabindex="-1"
                                                      aria-labelledby="exampleTermsLabel" aria-hidden="true">
@@ -342,6 +343,7 @@
                                 </div>
                             </form>
                         </div>
+                        <strong><div class="text-danger" asp-validation-summary="ModelOnly"></div></strong>
                     </div>
 
                 </div>

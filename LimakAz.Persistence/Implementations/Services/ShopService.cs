@@ -252,7 +252,7 @@ internal class ShopService : IShopService
     }
     private static Func<IQueryable<Shop>, IIncludableQueryable<Shop, object>> _getWithIncludes()
     {
-        return x => x.Include(x => x.Country).ThenInclude(x => x.CountryDetails).Include(x => x.ShopCategories).ThenInclude(x => x.Category).ThenInclude(x => x.CategoryDetails);
+        return x => x.Include(x => x.Country).ThenInclude(x => x!.CountryDetails).Include(x => x.ShopCategories).ThenInclude(x => x.Category).ThenInclude(x => x!.CategoryDetails);
     }
 
 
@@ -272,5 +272,40 @@ internal class ShopService : IShopService
         var dto = _mapper.Map<ShopGetDto>(shop);
 
         return dto;
+    }
+
+    public async Task<PaginateDto<ShopGetDto>> GetFileteredShopsAsync(int categoryId, int countryId, LanguageType languageType = LanguageType.Azerbaijan)
+    {
+        var query = _repository.GetAll(include: _getWithIncludes());
+
+        if(countryId != 0)
+        {
+            if (!(await _countryService.IsExistAsync(countryId)))
+                throw new NotFoundException();
+
+            query = query.Where(x => x.CountryId == countryId);
+        }
+
+        if (categoryId != 0)
+        {
+            if (!(await _countryService.IsExistAsync(categoryId)))
+                throw new NotFoundException();
+
+            query = query.Where(x => x.ShopCategories.Any(x => x.CategoryId == categoryId));
+        }
+
+        var shops =  await _repository.Paginate(query, 9, 1).ToListAsync();
+
+        
+        var dtos = _mapper.Map<List<ShopGetDto>>(shops);
+
+        PaginateDto<ShopGetDto> paginateDto = new()
+        {
+            Items = dtos ?? new(),
+            CurrentPage = 1,
+            PageCount = 9
+        };
+       
+        return paginateDto;
     }
 }

@@ -175,24 +175,24 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                            <i class="mdi mdi-circle-outline menu-icon"></i>
-                            <span class="menu-title">Services</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" asp-controller="category" asp-action="index">Categorys</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="country" asp-action="index">Countries</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="certificate" asp-action="index">Certificates</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="news" asp-action="index">News</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="setting" asp-action="index">Settings</a></li>
-                                <li class="nav-item"> <a class="nav-link" asp-controller="slider" asp-action="index">Sliders</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                                <i class="mdi mdi-circle-outline menu-icon"></i>
+                                <span class="menu-title">Services</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="category" asp-action="index">Categorys</a></li>
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="country" asp-action="index">Countries</a></li>
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="certificate" asp-action="index">Certificates</a></li>
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="news" asp-action="index">News</a></li>
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="setting" asp-action="index">Settings</a></li>
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="slider" asp-action="index">Sliders</a></li>
+                                </ul>
 
-                        </div>
-                    </li>
+                            </div>
+                        </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/forms/basic_elements.html">
                             <i class="mdi mdi-view-headline menu-icon"></i>
@@ -245,6 +245,13 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
     <script src="~/admin/js/utilities.js"></script>
 
     <!-- container-scroller -->
@@ -259,7 +266,7 @@
     <!-- inject:js -->
     <script src="~/admin/js/off-canvas.js"></script>
     <script src="~/admin/js/hoverable-collapse.js"></script>
-    <script src="~/admin/js/template.js"></script>
+    @* <script src="~/admin/js/template.js"></script> *@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="~/admin/js/dashboard.js"></script>

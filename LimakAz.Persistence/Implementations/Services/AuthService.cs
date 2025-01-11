@@ -1,9 +1,11 @@
 ﻿using LimakAz.Application.Interfaces.Helpers;
 using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -13,6 +15,7 @@ namespace LimakAz.Persistence.Implementations.Services;
 internal class AuthService : IAuthService
 {
     private readonly UserManager<AppUser> _userManager;
+    private readonly SignInManager<AppUser> _signInManager;
     private readonly IMapper _mapper;
     private readonly IEmailService _emailService;
     private readonly IHttpContextAccessor _contextAccessor;
@@ -23,8 +26,11 @@ internal class AuthService : IAuthService
     private readonly ICitizenShipService _cityShipService;
     private readonly IUserPositionService _userPositionService;
     private readonly IValidationMessageProvider _localizer;
-
-    public AuthService(ILocalPointService localPointService, IGenderService genderService, ICitizenShipService cityShipService, IUserPositionService userPositionService, IMapper mapper, IEmailService emailService, IUrlHelper urlHelper, IHttpContextAccessor contextAccessor, UserManager<AppUser> userManager, IValidationMessageProvider localizer)
+    private readonly IFilePathHelper _fileHelper;
+    public AuthService(ILocalPointService localPointService, IGenderService genderService, ICitizenShipService cityShipService,
+                       IUserPositionService userPositionService, IMapper mapper, IEmailService emailService, IHttpContextAccessor contextAccessor,
+                       UserManager<AppUser> userManager, IValidationMessageProvider localizer, IUrlHelperFactory urlHelperFactory,
+                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager,  IFilePathHelper fileHelper)
     {
         _localPointService = localPointService;
         _genderService = genderService;
@@ -32,11 +38,14 @@ internal class AuthService : IAuthService
         _userPositionService = userPositionService;
         _mapper = mapper;
         _emailService = emailService;
-        _urlHelper = urlHelper;
         _contextAccessor = contextAccessor;
         _userManager = userManager;
         _localizer = localizer;
-        _staticFilesPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "Connex.Business", "StaticFiles");
+        var root = _fileHelper.GetSolutionRoot();
+        _staticFilesPath = Path.Combine(root, "Infrastructure", "LimakAz.Infrastructure", "StaticFiles");
+
+        _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
+        _signInManager = signInManager;
     }
 
     public RegisterDto GetRegisterDto(RegisterDto dto, LanguageType language = LanguageType.Azerbaijan)
@@ -71,7 +80,7 @@ internal class AuthService : IAuthService
         };
 
         return dto;
-        
+
     }
 
     public async Task<bool> RegisterAsync(RegisterDto dto, ModelStateDictionary ModelState)
@@ -110,6 +119,14 @@ internal class AuthService : IAuthService
             return false;
         }
 
+        isValid = Enum.IsDefined(typeof(NumberPrefixType), dto.NumberPrefixType);
+
+        if (!isValid)
+        {
+            ModelState.AddModelError("NumberPrefixType", _localizer.GetValue("Invalid_Input"));
+            return false;
+        }
+
         var isLocalPointValid = await _localPointService.IsExistAsync(dto.LocalPointId);
 
         if (!isLocalPointValid)
@@ -128,6 +145,10 @@ internal class AuthService : IAuthService
 
         var user = _mapper.Map<AppUser>(dto);
 
+        user.PhoneNumber = ((int)(dto.NumberPrefixType)).ToString() + dto.PhoneNumber;
+
+        user.UserName = dto.Firstname + "_" + Guid.NewGuid().ToString().Substring(0, 5);
+
         var result = await _userManager.CreateAsync(user, dto.Password!);
 
         if (!result.Succeeded)
@@ -138,16 +159,13 @@ internal class AuthService : IAuthService
 
         await _userManager.AddToRoleAsync(user, RoleType.Member.ToString());
 
-        await _sendConfirmEmailToken(user);
+        await _sendConfirmEmailTokenAsync(user);
 
         return true;
     }
 
 
-
-
-
-    private async Task _sendConfirmEmailToken(AppUser user)
+    private async Task _sendConfirmEmailTokenAsync(AppUser user)
     {
         string confirmEmailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
@@ -177,15 +195,69 @@ internal class AuthService : IAuthService
 
     private async Task<string> _getTemplateContentAsync(string url, string username, string filename)
     {
-        string path = Path.Combine(_staticFilesPath, filename);
+        string path = Path.Combine(_staticFilesPath,filename);
 
-        using StreamReader streamReader = new StreamReader(path);
-        string result = await streamReader.ReadToEndAsync();
+            if (!File.Exists(path))
+            throw new FileNotFoundException("Bele bir Template tapilmadi");
 
-        result = result.Replace("[REPLACE_URL]", url);
-        result = result.Replace("[REPLACE_USERNAME]", username);
+        string templateContent;
+        using(var reader = new StreamReader(path))
+        {
+            templateContent = await reader.ReadToEndAsync();
+        }
 
-        streamReader.Close();
-        return result;
+        templateContent = templateContent.Replace("{{UserName}}", username).Replace("{{Url}}", url);
+
+        return templateContent;
     }
+
+    public async Task<bool> LoginAsync(LoginDto dto, ModelStateDictionary ModelState)
+    {
+        if (!ModelState.IsValid)
+            return false;
+
+        var user = await _userManager.FindByEmailAsync(dto.Email!);
+
+        if(user == null)
+        {
+            ModelState.AddModelError("", _localizer.GetValue("InvalidCredentials"));
+            return false;
+        }
+
+        if(user.EmailConfirmed == false)
+        {
+            ModelState.AddModelError("", _localizer.GetValue("UnconfirmedEmail"));
+            await _sendConfirmEmailTokenAsync(user);
+            return false;
+        }
+
+        var result = await _signInManager.PasswordSignInAsync(user, dto.Password!, dto.RememberMe, true);
+
+        if (!result.Succeeded)
+        {
+            if (result.IsLockedOut)
+            {
+                ModelState.AddModelError("", _localizer.GetValue("BlockedUser"));
+                return false;
+            }
+            ModelState.AddModelError("", _localizer.GetValue("InvalidCredentials"));
+            return false;
+        }
+
+        return true;
+    }
+
+    //private async Task<string> _getTemplateContentAsync(string url, string username, string filename)
+    //{
+    //    string path = Path.Combine(_staticFilesPath, filename);
+
+    //    using StreamReader streamReader = new StreamReader(path);
+    //    string result = await streamReader.ReadToEndAsync();
+
+    //    result = result.Replace("[REPLACE_URL]", url);
+    //    result = result.Replace("[REPLACE_USERNAME]", username);
+
+    //    streamReader.Close();
+    //    return result;
+    //}
 }

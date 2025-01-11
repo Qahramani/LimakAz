@@ -7,7 +7,7 @@ public class ContentLocalizer
     private readonly IStringLocalizer _stringLocalizer;
     public ContentLocalizer(IStringLocalizerFactory stringLocalizer)
     {
-        _stringLocalizer = stringLocalizer.Create("Content", "LimakAz.Persistence");
+        _stringLocalizer = stringLocalizer.Create("Content", "LimakAz.Presentation");
     }
 
     public string GetValue(string key)
