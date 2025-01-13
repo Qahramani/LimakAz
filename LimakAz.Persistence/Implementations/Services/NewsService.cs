@@ -1,8 +1,10 @@
 ﻿using LimakAz.Application.Interfaces.Services.External;
+using LimakAz.Domain.Entities;
 using LimakAz.Domain.Enums;
 using LimakAz.Persistence.Helpers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
@@ -91,6 +93,34 @@ internal class NewsService : INewsService
         var dto = _mapper.Map<NewsGetDto>(news);
 
         return dto;
+    }
+
+    public async Task<NewsDetailsUiDto> GetNewsDetailsUiAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    {
+        var selectedNews = await _repository.GetAsync(x => x.Id == id, _getWithIncludes(language));
+
+        if (selectedNews == null)
+            throw new NotFoundException();
+
+        var recommendedNews = await _repository.GetAll(x => x.Id != id, _getWithIncludes(language)).Take(5).ToListAsync();
+
+        recommendedNews.OrderByDescending(x => x.UpdatedBy);
+
+        var selectedDto = _mapper.Map<NewsGetDto>(selectedNews);
+        var recommendedDtos = _mapper.Map<List<NewsGetDto>>(recommendedNews);
+
+        NewsDetailsUiDto dto = new()
+        {
+            SelectedNews = selectedDto,
+            RecommendedNews = recommendedDtos
+        };
+
+        return dto;
+    }
+
+    private static Func<IQueryable<News>, IIncludableQueryable<News, object>> _getWithIncludes(LanguageType language)
+    {
+        return x => x.Include(x => x.NewsDetails.Where(x => x.LanguageId == (int)language));
     }
 
     public async Task<PaginateDto<NewsGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)

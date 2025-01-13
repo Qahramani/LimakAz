@@ -1,5 +1,4 @@
-﻿
-@inject ILayoutService _layoutService;
+﻿@inject ILayoutService _layoutService;
 @inject LayoutLocalizer _localizer;
 @{
     var selectedLanguage = await _layoutService.GetSelectedLanguageAsync();
@@ -35,19 +34,27 @@
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="~/assets/Styles/scss/index.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/main.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/footer.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/calculator.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/tariff.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/news.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/news-details.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/contact.css">
-    <link rel="stylesheet" href="~/assets/Styles/scss/register.css">
 
-    
+    @if (ViewData["Template"]?.ToString() == "Template2")
+    {
+         <link rel="stylesheet" href="~/assets2/css/style.css">
+    }
+    else
+    {
 
-    <link rel="stylesheet" href="~/assets2/css/style.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/main.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/calculator.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/tariff.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/news.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/news-details.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/contact.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/register.css">
+    }
+
+   
+        <link rel="stylesheet" href="~/assets/Styles/scss/footer.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/index.css">
+    <link rel="stylesheet" href="~/mine/ruxel.css">
 </head>
 
 <body>
@@ -106,7 +113,7 @@
                             <a asp-controller="tariffs" asp-action="index" class="nav-name">@_localizer.GetValue("tariffs")</a>
                         </li>
                         <li class="list-unstyled">
-                            <a asp-controller="calculator" asp-action="index"  class="nav-name">@_localizer.GetValue("calculator")</a>
+                            <a asp-controller="calculator" asp-action="index" class="nav-name">@_localizer.GetValue("calculator")</a>
                         </li>
                         <li class="list-unstyled">
                             <a asp-controller="shops" asp-action="index" class="nav-name">@_localizer.GetValue("shops")</a>
@@ -217,91 +224,13 @@
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                     </svg>
                 </div>
-                <div class="outer-box-item4 login-btn">
+                <div class="outer-box-item4 login-btn"> 
                     <a href="" type="button" class="login-tag " data-bs-toggle="modal" data-bs-target="#staticBackdrop">@_localizer.GetValue("login")</a>
                 </div>
                 <!-- LOG IN MODAL -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="login">
-                                    <div class="modal-block">
-                                        <div class="modal-block-body">
-                                            <div class="modal-card">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="login-modal-head">
-                                                            <img class="login-modal-icon" src="https://limak.az/new_front/assets/img/icons/user-color.svg" alt="">
-                                                            <h1 class="login-modal-head-title upper">HESABA DAXIL OL</h1>
-                                                        </div>
-                                                        <form action="" class="login-form-action">
-                                                            <div asp-validation-summary="ModelOnly"></div>
-                                                            <input type="email" name="email" id="login-email" required="required"
-                                                                   placeholder="E-mail*" class="login-email-input">
-                                                            <div class="login-password-input">
-                                                                <input type="password" name="password" id="login-password"
-                                                                       placeholder="Şifrə*" class="login-email-input" required="required">
-                                                                <a class="visibility-btn-password">
-                                                                    <span class="show-password hide-eye">
+                <partial name="_LoginModalPartial" model="new LoginDto()"></partial>
 
-                                                                    </span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="remember-me-radio">
-                                                                <div>
-                                                                    <div class="row">
-                                                                        <div class="col-5">
-                                                                            <div>
-                                                                                <input id="__Rem-Me" class="_rememberMe" type="checkbox" value="">
-                                                                                <label for="__Rem-Me">Məni xatırla</label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-7">
-                                                                            <div class="text-right">
-                                                                                <a href="#">
-                                                                                    <img src="https://limak.az/new_front/assets/img/icons/help.svg" alt="">
-                                                                                    <span>Şifrəni unutmusuz</span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <div class="login-submit">
-                                                                        <button type="submit" class="login-btn-modal">
-                                                                            <span>Daxil ol</span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <div class="register-btn-modal">
-                                                                        <a asp-controller="account" asp-action="register" target="_self" class="register-btn">QEYDIYYAT</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-md-6 col-12">
-                                                        <div class="modal-card-img login-modal-right">
-                                                            <img src="https://limak.az/new_front/assets/img/login-image.svg"
-                                                                 class="login-modal-img" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="person-icon-mobile">
                     <div>
                         <a href="" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -421,6 +350,45 @@
         </div>
     </footer>
 
+    <script>
+        document.querySelector('.login-form-action').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevents the default form submission behavior
+
+            const form = event.target; // Gets the form element
+            const formData = new FormData(form); // Collects all form data
+            console.log(formData);
+            fetch(form.action, {
+                method: 'POST', // Send as a POST request
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData // Send form data
+            })
+                .then(response => response.text()) // Get the HTML response
+                .then(html => {
+                    console.log(html); // Log the HTML response to the console
+                    const modalContent = document.querySelector('#staticBackdrop .modal-content');
+                    modalContent.innerHTML = html;
+
+                    console.log(modalContent);
+
+                    // Force reflow by toggling a class or similar method
+                    modalContent.offsetHeight;
+                    const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+                        backdrop: 'static', // Dinamik modal üçün dəstək verir
+                        keyboard: false
+                    });
+                    modal.show();
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+
+    </script>
+
 
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
@@ -439,6 +407,11 @@
 
 
     <script src="~/assets2/js/store.js"></script>
+
+    
+
+
+
 </body>
 
 </html>

@@ -1,5 +1,4 @@
-﻿using LimakAz.Application.DTOs;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace LimakAz.Application.DTOs;
 

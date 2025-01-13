@@ -28,12 +28,16 @@ public class AccountController : Controller
         return View(dto);
     }
 
+    [HttpPost]  
     public async Task<IActionResult> Login(LoginDto dto)
     {
+
         var result = await _authService.LoginAsync(dto, ModelState);
 
         if (!result)
-            return View(dto);
+        {
+            return PartialView("_LoginModalPartial", dto);
+        }
 
         return RedirectToAction("Index","Home");
     }

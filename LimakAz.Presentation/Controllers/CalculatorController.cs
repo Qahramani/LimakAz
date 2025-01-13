@@ -1,21 +1,37 @@
-﻿using LimakAz.Application.Interfaces.Services.External;
+﻿using LimakAz.Application.DTOs;
+using LimakAz.Application.Interfaces.Services;
+using LimakAz.Application.Interfaces.Services.External;
+using LimakAz.Application.Interfaces.Services.UI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
 
 public class CalculatorController : Controller
 {
-    private readonly ICurrencyService _currencyService;
+    private readonly ICalculatorService _calculatorService;
+    private readonly ICookieService _cookieService;
 
-    public CalculatorController(ICurrencyService currencyService)
+    public CalculatorController(ICalculatorService calculatorService, ICookieService cookieService)
     {
-        _currencyService = currencyService;
+        _calculatorService = calculatorService;
+        _cookieService = cookieService;
     }
 
     public async Task<IActionResult> Index()
     {
-        var result = await _currencyService.GetCurrencyCoefficientAsync("USD");
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
 
-        return View();
+        var dto =  _calculatorService.GetCalculatorDto(language);
+
+        return View(dto);
+    }
+    [HttpPost]
+    public async Task<IActionResult> Index(CalculatorDto dto)
+    {
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+        var resultDto = await _calculatorService.CalculateAsync(dto);
+
+        return View(resultDto);
     }
 }

@@ -43,8 +43,6 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<SettingDetail> SettingDetails { get; set; } = null!;
     public DbSet<Gender> Genders { get; set; } = null!;
     public DbSet<GenderDetail> GenderDetails { get; set; } = null!;
-    //public DbSet<WareHouse> Locations { get; set; } = null!; 
-    //public DbSet<WareHouseDetail> LocationDetails { get; set; } = null!; 
     public DbSet<Shop> Shops{ get; set; } = null!;
     public DbSet<ShopCategory> ShopCategories{ get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;

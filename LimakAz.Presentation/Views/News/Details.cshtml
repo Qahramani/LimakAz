@@ -1,4 +1,9 @@
-﻿    
+﻿@model NewsDetailsUiDto    
+@inject NewsLocalizer _localizer;
+@inject ILayoutService _layoutService;
+@{
+    var settings = await _layoutService.GetSettingsDictionary();
+}
 <div class="main-middle-content">
 
     <!-- Middle Sections -->
@@ -10,66 +15,52 @@
                 <div class="news-details-block">
                     <div class="news-details-head">
                         <div>
-                            <h4>Xəbərlər və yeniliklər</h4>
+                            <h4>@_localizer.GetValue("NewsAndUpdates")</h4>
                         </div>
                         <ol class="news-details-breadcamp">
                             <li>
-                                <a href="#">Ana səhifə</a>
+                                <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-angle-right"></i>
                             </li>
                             <li>
-                                <span>Xəbərlər</span>
+                                <span>@_localizer.GetValue("News")</span>
                             </li>
                         </ol>
                     </div>
                     <div class="row news-details-row">
                         <div class="details-row col-md-8 col-12">
                             <article class="card news-card-details">
-                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg" alt="">
+                                <img src="@Model.SelectedNews?.ImagePath" alt="">
                                 <div class="news-card-body">
-                                    <h4 class="news-card-title">Yeni İliniz Mübarək</h4>
+                                    <h4 class="news-card-title">@Model.SelectedNews?.NewsDetails.FirstOrDefault()?.Title</h4>
                                     <p class="card-text">
                                     <p class="news-card-text">
                                         <span>
-                                            Limak.az ailəsi olaraq xalqımızı 31 dekabr Dünya azərbaycanlılarının həmrəylik günü və
-                                            qarşıdan gələn Yeni il bayramı münasibətilə təbrik edirik!
+                                                @Model.SelectedNews?.NewsDetails.FirstOrDefault()?.Description
                                         </span>
                                     </p>
-                                    <p class="news-card-text">
-                                        <span>
-                                            Bayram günlərində də onlayn alış-veriş edərək endirim fürsətlərini dəyərləndirin.
-                                            Amerika və Türkiyədən sifarişləriniz Limak.az vasitəsilə sizə ən qısa zamanda sürətlə çatdırılacaq.
-                                            Trendyol sifarişlərinizin Azərbaycana birbaşa çatdırılmasını da həyata keçiririk.
-                                        </span>
-                                    </p>
-                                    <p class="news-card-text">
-                                        <span>
-                                            Bağlamalarınızı filiallardan, sizə ən yaxın kargomtlardan və kuryerlərimiz vasitəsilə təhvil ala bilərsiniz.
-                                        </span>
-                                    </p>
-                                    <span class="card-text-last">📌 Uzağı yaxın etdik!</span>
-                                    </p>
+                                    
                                     <div class="news-details-footer">
                                         <p class="news-card-date">
                                             <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                            <span>2023-12-29 11:50:10</span>
+                                            <span>@Model.SelectedNews?.UpdatedAt</span>
                                         </p>
                                         <div class="news-details-share">
-                                            <a class="news-details-share-button" href="https://www.instagram.com/limak.az/">
+                                            <a class="news-details-share-button" href="@settings["FacebookLink"]">
                                                 <img src="https://limak.az/new_front//assets/img/icons/facebook.svg" alt="">
                                             </a>
-                                            <a class="news-details-share-button" href="https://www.instagram.com/limak.az/">
+                                            <a class="news-details-share-button" href="@settings["InstagramLink"]">
                                                 <img src="https://limak.az/new_front//assets/img/icons/instagram.svg" alt="">
                                             </a>
-                                            <a class="news-details-share-button" href="https://www.instagram.com/limak.az/">
+                                            <a class="news-details-share-button" href="@settings["TwitterLink"]/">
                                                 <img src="https://limak.az/front/new/img/telegram.png" alt="">
                                             </a>
-                                            <a class="news-details-share-button" href="https://www.instagram.com/limak.az/">
+                                            <a class="news-details-share-button" href="@settings["YoutubeLink"]">
                                                 <img src="https://limak.az/new_front//assets/img/icons/youtube.svg" alt="">
                                             </a>
-                                            <a class="news-details-share-button" href="https://www.instagram.com/limak.az/">
+                                            <a class="news-details-share-button" href="@settings["TiktokLink"]">
                                                 <img src="https://limak.az/new_front//assets/img/icons/tik-tok.png" alt="">
                                             </a>
                                         </div>
@@ -78,7 +69,7 @@
                             </article>
                             <div class="backBtnBlock">
                                 <i class="fa-solid fa-angle-left"></i>
-                                <a href="#" class="backBtn">GERİ</a>
+                                <a href="#" class="backBtn">@_localizer.GetValue("Back")</a>
                             </div>
 
                         </div>
@@ -86,88 +77,29 @@
                             <div class="news-sidebar">
                                 <div class="card">
                                     <div class="sidebar-head">
-                                        <h3 class="sidebar-head-text">DİGƏR XƏBƏRLƏR</h3>
+                                        <h3 class="sidebar-head-text">@_localizer.GetValue("OtherNews")</h3>
                                         <i class="fa-solid fa-arrow-right-long"></i>
                                     </div>
                                     <div class="sidebar-card-list">
-                                        <a href="#" class="news-card">
+                                        @foreach (var item in Model.RecommendedNews ?? [])
+                                        {
+
+                                        <a asp-controller="news" asp-action="details" asp-route-id="@item.Id" class="news-card">
                                             <div class="news-side-bar-article">
-                                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg"
+                                                <img src="@item.ImagePath"
                                                      class="card-img-left" alt="">
                                                 <div class="news-sidebar-article-body">
-                                                    <h4 class="card-title">Yeni il bayramınız m...</h4>
+                                                        <h4 class="card-title">@item.NewsDetails.FirstOrDefault()?.Title</h4>
                                                     <p class="news-card-date-sidebar">
                                                         <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                                        <span>2023-12-29 11:50:21</span>
+                                                        <span>@item.UpdatedAt</span>
                                                     </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <a href="#" class="news-card">
-                                            <div class="news-side-bar-article">
-                                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg"
-                                                     class="card-img-left" alt="">
-                                                <div class="news-sidebar-article-body">
-                                                    <h4 class="card-title">Yeni il bayramınız m...</h4>
-                                                    <p class="news-card-date-sidebar">
-                                                        <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                                        <span>2023-12-29 11:50:21</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="news-card">
-                                            <div class="news-side-bar-article">
-                                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg"
-                                                     class="card-img-left" alt="">
-                                                <div class="news-sidebar-article-body">
-                                                    <h4 class="card-title">Yeni il bayramınız m...</h4>
-                                                    <p class="news-card-date-sidebar">
-                                                        <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                                        <span>2023-12-29 11:50:21</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="news-card">
-                                            <div class="news-side-bar-article">
-                                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg"
-                                                     class="card-img-left" alt="">
-                                                <div class="news-sidebar-article-body">
-                                                    <h4 class="card-title">Yeni il bayramınız m...</h4>
-                                                    <p class="news-card-date-sidebar">
-                                                        <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                                        <span>2023-12-29 11:50:21</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="news-card">
-                                            <div class="news-side-bar-article">
-                                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg"
-                                                     class="card-img-left" alt="">
-                                                <div class="news-sidebar-article-body">
-                                                    <h4 class="card-title">Yeni il bayramınız m...</h4>
-                                                    <p class="news-card-date-sidebar">
-                                                        <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                                        <span>2023-12-29 11:50:21</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="news-card">
-                                            <div class="news-side-bar-article">
-                                                <img src="https://limakaz.s3.eu-west-2.amazonaws.com/public/news/news-170383622116394.png.jpeg"
-                                                     class="card-img-left" alt="">
-                                                <div class="news-sidebar-article-body">
-                                                    <h4 class="card-title">Yeni il bayramınız m...</h4>
-                                                    <p class="news-card-date-sidebar">
-                                                        <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
-                                                        <span>2023-12-29 11:50:21</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
+                                            
+                                        }
+                                        
                                     </div>
                                 </div>
                             </div>

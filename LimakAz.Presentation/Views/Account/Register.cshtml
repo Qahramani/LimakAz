@@ -1,5 +1,6 @@
 ﻿@model RegisterDto
 
+
 <div class="main-middle-content">
 
     <!-- Middle Sections -->
@@ -340,10 +341,15 @@
                                             <span>QEYDİYYAT</span>
                                         </button>
                                     </div>
+                                    
+                                    <div class="validation-summary">
+                                            <div asp-validation-summary="ModelOnly"></div>
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
-                        <strong><div class="text-danger" asp-validation-summary="ModelOnly"></div></strong>
+                       
                     </div>
 
                 </div>

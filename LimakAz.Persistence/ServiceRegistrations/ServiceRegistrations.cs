@@ -1,4 +1,5 @@
 ﻿using LimakAz.Application.Interfaces.Helpers;
+using LimakAz.Application.Interfaces.Services.UI;
 using LimakAz.Persistence.Contexts;
 using LimakAz.Persistence.DataInitializers;
 using LimakAz.Persistence.Helpers;
@@ -80,10 +81,7 @@ public static class ServiceRegistrations
 
         services.AddScoped<ILayoutService, LayoutService>();
         services.AddScoped<IHomeService, HomeService>();
-
-        //services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-        //services.AddScoped<IUrlHelper, UrlHelper>();
-        //services.AddHttpContextAccessor();
+        services.AddScoped<ICalculatorService, CalculatorService>();
 
     }
 
@@ -110,6 +108,7 @@ public static class ServiceRegistrations
         services.AddSingleton<TariffsLocalizer>();
         services.AddSingleton<ContactLocalizer>();
         services.AddSingleton<ContentLocalizer>();
+        services.AddSingleton<NewsLocalizer>();
         services.AddSingleton<ValidationMessagesLocalizer>();
 
     }

@@ -16,6 +16,10 @@ public class CurrencyController : Controller
     {
         var rates = await _currencyService.GetExchangeRatesAsync();
 
+        if (!rates.ContainsKey(from) || !rates.ContainsKey(to))
+        {
+            return BadRequest("Invalid currency codes.");
+        }
         decimal convertedAmount;
 
         if (from == "AZN")
@@ -31,10 +35,6 @@ public class CurrencyController : Controller
             return Ok(new { convertedAmount });
         }
 
-        if (!rates.ContainsKey(from) || !rates.ContainsKey(to))
-        {
-            return BadRequest("Invalid currency codes.");
-        }
 
         decimal fromRate = rates[from];
         decimal toRate = rates[to];

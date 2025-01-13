@@ -1,4 +1,20 @@
-﻿
+﻿@model CalculatorDto
+
+<style>
+    .form-calc-btn-ruxel {
+        width: 262px;
+        height: 40px;
+        background: linear-gradient(180deg,#FC7B5D 0%,#F05835 100%);
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+    }
+
+    input{
+        padding-left:8px;
+    }
+</style>
 <div class="main-middle-content">
 
     <!-- Middle Sections -->
@@ -30,15 +46,15 @@
                         <div class="row calc-card-row">
                             <div class="col-lg-8 col-12">
                                 <div class="calc-card">
-                                    <form class="form-calc">
+                                    <form class="form-calc" method="post" asp-controller="calculator" asp-action="index">
                                         <div class="form-calc-head">
-                                            <div class="form-calc-title" >
+                                            <div class="form-calc-title">
                                                 <img src="https://limak.az/new_front/assets/img/icons/box.svg"
                                                      alt="">
                                                 <h3>Kalkulyator</h3>
                                             </div>
                                             <div class="form-calc-reset">
-                                                <button class="calc-resetBtn" type="button">
+                                                <button class="calc-resetBtn" type="button" onclick="resetCalculator()">
                                                     <img src="https://limak.az/new_front/assets/img/icons/reset.svg"
                                                          alt="">
                                                     <span>Kalkulyatoru sıfırla</span>
@@ -47,78 +63,71 @@
                                         </div>
                                         <div class="row calc-input">
                                             <div class="col-6">
-                                                <select class="select-region">
-                                                    <option value="1">Türkiyə</option>
-                                                    <option value="2">Amerika</option>
+                                                <select asp-for="CountryId" class="select-region">
+                                                    @foreach (var item in Model.Countries)
+                                                    {
+                                                        <option value="@item.Id">@item.CountryDetails.FirstOrDefault()?.Name</option>
+
+                                                    }
                                                 </select>
                                             </div>
                                             <div class="col-6">
-                                                <select class="select-filial" id="">
-                                                    <option value="1">Bakı-İçərişəhər</option>
-                                                    <option value="2">Bakı-Xalqlar</option>
-                                                    <option value="3">Xırdalan</option>
-                                                    <option value="4">Sumqayıt</option>
-                                                    <option value="5">Gəncə</option>
-                                                    <option value="6">Zaqatala</option>
-                                                    <option value="7">Balakən</option>
-                                                    <option value="8">Bakı-Gənclik</option>
-                                                    <option value="9">Bakıxanov</option>
-                                                    <option value="10">Xətai</option>
-                                                    <option value="11">İnşaatçılar</option>
-                                                    <option value="12">Badamdar</option>
-                                                    <option value="13">Həzi Aslanov</option>
-                                                    <option value="14">Zabrat</option>
+                                                <select asp-for="LocalPointId" class="select-filial" id="">
+                                                    @foreach (var item in Model.LocalPoints)
+                                                    {
+                                                        <option value="@item.Id">@item.LocalPointDetails.FirstOrDefault()?.Name</option>
+                                                    }
                                                 </select>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input class="weight" min="0" type="number" name="weight"
+                                                        <input asp-for="Weight" class="weight" min="0" step="0.001" type="number" name="weight"
                                                                placeholder="Çəki">
                                                     </div>
                                                     <div class="input-weight">
-                                                        <button type="submit">
+                                                        <button type="button">
                                                             kg
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <input class="input-count" type="number" name="count" min="1"
+                                                <input asp-for="Count" class="input-count" type="number" name="count" min="1"
                                                        value="1" placeholder="Bağlama sayı">
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input type="number" placeholder="En">
+                                                        <input asp-for="Width" type="number" placeholder="En">
                                                     </div>
                                                     <div class="input-en">
-                                                        <button>sm</button>
+                                                        <button type="button">sm</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input type="number" placeholder="Uzunluq">
+                                                        <input asp-for="Lenght" type="number" placeholder="Uzunluq">
                                                     </div>
                                                     <div class="input-uzun">
-                                                        <button>sm</button>
+                                                        <button type="button">sm</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input type="number" placeholder="Hündürlük">
+                                                        <input asp-for="Height" type="number" placeholder="Hündürlük">
                                                     </div>
                                                     <div class="input-height">
-                                                        <button>sm</button>
+                                                        <button type="button">sm</button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <select class="select-region">
+                                                <select asp-for="MatterType" class="select-region">
                                                     <option value="1">Standart</option>
                                                     <option value="2">Maye</option>
                                                 </select>
@@ -129,12 +138,21 @@
                                                         <span>Cəmi:</span>
                                                     </div>
                                                     <div class="total-price">
-                                                        <span class="all-count">AZN 0.00 | $0.00</span>
+                                                        <span class="all-count">
+                                                            @if (Model.TotalPriceInAzn > 0)
+                                                            {
+                                                                @:AZN @Model.TotalPriceInAzn.ToString("0.00") | $@Model.TotalPriceInUsd.ToString("0.00")
+                                                            }
+                                                            else
+                                                            {
+                                                                @:AZN 0.00 | $0.00
+                                                            }
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12 calc-Btn">
-                                                <button type="submit" class="form-calc-btn">Hesabla</button>
+                                                <button type="submit" class="form-calc-btn-ruxel">Hesabla</button>
                                             </div>
                                             <div class="col-sm-6 col-12 calc-info-icn">
                                                 <div class="form-info"
@@ -170,3 +188,24 @@
     </div>
 
 </div>
+
+<script>
+    function resetCalculator() {
+        // Clear all inputs
+        const inputs = document.querySelectorAll('.form-calc input, .form-calc select');
+        inputs.forEach(input => {
+            if (input.type === 'number') {
+                input.value = '';  // Reset number inputs
+            } else if (input.type === 'select-one') {
+                input.selectedIndex = 0;  // Reset select options to the first item
+            }
+        });
+
+        // Clear the total amount display
+        const totalPrice = document.querySelector('.total-price .all-count');
+        if (totalPrice) {
+            totalPrice.textContent = 'AZN 0.00 | $0.00';  // Reset total amount
+        }
+    }
+
+</script>

@@ -117,17 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TariffsByCountries" xml:space="preserve">
-    <value>ТАРИФЫ</value>
+  <data name="News" xml:space="preserve">
+    <value>Xəbərlər</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tariffs" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="NewsAndUpdates" xml:space="preserve">
+    <value>Xəbərlər və yeniliklər</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Главная страница</value>
+    <value>Ana səhifə</value>
   </data>
-  <data name="Kg" xml:space="preserve">
-    <value>кг</value>
+  <data name="OtherNews" xml:space="preserve">
+    <value>Digər xəbərlər</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Geri</value>
   </data>
 </root>

@@ -1,0 +1,8 @@
+﻿.validation-summary-errors {
+    color: #b94a48; /* Red color for text */
+    font-weight: bold; /* Make the text bold */
+    font-size: 16px; /* Adjust the font size if needed */
+    padding: 5px 0; /* Optional padding to create space around the text */
+    margin: 10px 0; /* Add margin for spacing */
+    text-align: left; /* Align text to the left if needed */
+}

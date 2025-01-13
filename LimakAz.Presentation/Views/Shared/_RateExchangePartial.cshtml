@@ -4,6 +4,10 @@
     var currencyTRY = await _service.GetCurrencyCoefficientAsync("TRY");
 }
 
+<style>
+
+</style>
+
 <div class="currency-card">
     <div class="currency-exc">
         <div class="form-exc-body">
@@ -21,7 +25,7 @@
                            placeholder="Məbləğ (0.0)"
                            type="number">
                     <div>
-                        <select class="currency-type1">
+                        <select class="currency-type1" style="border-radius:3px; height:39px; border-color:lightgray;margin-left:5px">
                             <option value="USD">USD</option>
                             <option value="TRY">TRY</option>
                             <option value="AZN">AZN</option>
@@ -36,7 +40,8 @@
                            type="number"
                            readonly>
                     <div>
-                        <select class="currency-type2">
+                        <select class="currency-type2" style="border-radius:3px; height:39px; border-color:lightgray;margin-left:5px">
+                            >
                             <option value="AZN">AZN</option>
                             <option value="TRY">TRY</option>
                             <option value="USD">USD</option>

@@ -41,8 +41,8 @@ internal class AuthService : IAuthService
         _contextAccessor = contextAccessor;
         _userManager = userManager;
         _localizer = localizer;
-        var root = _fileHelper.GetSolutionRoot();
-        _staticFilesPath = Path.Combine(root, "Infrastructure", "LimakAz.Infrastructure", "StaticFiles");
+        var root = fileHelper.GetSolutionRoot();
+        _staticFilesPath = Path.Combine(root, "LimakAz.Infrastructure", "StaticFiles");
 
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
         _signInManager = signInManager;
@@ -180,7 +180,7 @@ internal class AuthService : IAuthService
         var link = _urlHelper.Action(context);
 
 
-        string emailBody = await _getTemplateContentAsync(link ?? "", user.UserName ?? "", "ConfirmEmailBody.html");
+        string emailBody = await _getTemplateContentAsync(link ?? "", user.Firstname ?? "", "ConfirmEmailBody.html");
 
 
         EmailSendDto emailSendDto = new()

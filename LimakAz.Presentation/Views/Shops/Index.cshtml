@@ -3,12 +3,15 @@
 @inject ICountryService countryService;
 @{
     var language = await cookieService.GetSelectedLanguageTypeAsync();
-    var categories =  categoryService.GetAll(language);
+    var categories = categoryService.GetAll(language);
     var countries = countryService.GetAll(language);
 }
-  
+
+@{
+    ViewData["Template"] = "Template2";
+}
 <!-- Main Start -->
-  <style>
+<style>
     /* Default style for nav-link */
     .nav-link {
         font-weight: normal; /* Normal weight */
@@ -24,7 +27,7 @@
             border: none; /* Remove any border effects if applied by Bootstrap */
         }
 
-  </style>
+</style>
 <main id="main"
       style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat; background-size: 100%; background-position: top center;"
       class="bg-full">
@@ -51,17 +54,17 @@
                                     <li class="nav-item" data-target-item="all">
                                         <a href="#" class="nav-link active" data-category-id="0">
                                             <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1735604470/LimakAz/yum7v6w5cs7n3hkyd7cw.png" alt="All Categories" style="width:18px; height:18px; margin-right:8px;">
-                                            Bütün kateqoriyalar 
+                                            Bütün kateqoriyalar
                                         </a>
                                     </li>
                                     @foreach (var item in categories)
                                     {
-                                    <li class="nav-item">
+                                        <li class="nav-item">
                                             <a href="#" class="nav-link" data-category-id="@item.Id">
-                                            <img src="@item.LogoPath" alt="Clothes" style="width:18px; height:18px; margin-right:8px;">
-                                            @item.CategoryDetails.FirstOrDefault()?.Name
-                                        </a>
-                                    </li>
+                                                <img src="@item.LogoPath" alt="Clothes" style="width:18px; height:18px; margin-right:8px;">
+                                                @item.CategoryDetails.FirstOrDefault()?.Name
+                                            </a>
+                                        </li>
                                     }
                                 </ul>
                             </div>
@@ -72,23 +75,23 @@
                                 <ul id="headerList" class="nav nav nav-tabs card-tabs-nav">
                                     @foreach (var item in countries)
                                     {
-                                        
-                                    <li class="nav-item">
+
+                                        <li class="nav-item">
                                             <a href="#" class="nav-link" data-category-id="@item.Id">
-                                            <img src="@item.ImagePath" alt="" style="border-radius:50%"
-                                                    class="card-tabs-nav-icon">
-                                            <span class="card-tabs-nav-title">
-                                                @item.CountryDetails.FirstOrDefault()?.Name
-                                            </span>
-                                        </a>
-                                    </li>
+                                                <img src="@item.ImagePath" alt="" style="border-radius:50%"
+                                                     class="card-tabs-nav-icon">
+                                                <span class="card-tabs-nav-title">
+                                                    @item.CountryDetails.FirstOrDefault()?.Name
+                                                </span>
+                                            </a>
+                                        </li>
                                     }
                                 </ul>
                             </div>
                             <div class="store-list">
                                 <div data-id="1" class="active active-tab tab-pane">
                                     <partial name="_ShopsPartial"></partial>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -121,41 +124,41 @@
                 // Get selected category ID
                 selectedCategoryId = link.getAttribute("data-category-id");
                 fetchShops(selectedCategoryId, selectedCountryId);
-        }); // Missing closing brace for `link.addEventListener` (Line 122)
+            }); // Missing closing brace for `link.addEventListener` (Line 122)
 
-        // Handle country selection
-        document.querySelectorAll(".nav-link[data-country-id]").forEach(link => { // Line 125
-            link.addEventListener("click", (e) => { // Line 126
-                e.preventDefault();
+            // Handle country selection
+            document.querySelectorAll(".nav-link[data-country-id]").forEach(link => { // Line 125
+                link.addEventListener("click", (e) => { // Line 126
+                    e.preventDefault();
 
-                console.log("Country clicked:", link.getAttribute("data-country-id"));
-                // Remove 'active' class from previous selection
-                document.querySelectorAll(".nav-link[data-country-id]").forEach(el => el.classList.remove("active"));
+                    console.log("Country clicked:", link.getAttribute("data-country-id"));
+                    // Remove 'active' class from previous selection
+                    document.querySelectorAll(".nav-link[data-country-id]").forEach(el => el.classList.remove("active"));
 
-                // Mark the clicked link as active
-                link.classList.add("active");
+                    // Mark the clicked link as active
+                    link.classList.add("active");
 
-                // Get selected country ID
-                selectedCountryId = link.getAttribute("data-country-id");
-                fetchShops(selectedCategoryId, selectedCountryId);
-            }); // Correct closing brace for `link.addEventListener`
-        }); // Correct closing brace for `country.forEach`
+                    // Get selected country ID
+                    selectedCountryId = link.getAttribute("data-country-id");
+                    fetchShops(selectedCategoryId, selectedCountryId);
+                }); // Correct closing brace for `link.addEventListener`
+            }); // Correct closing brace for `country.forEach`
 
-        function fetchShops(categoryId, countryId) { // Line 139
-            if (!categoryId || !countryId) return;
+            function fetchShops(categoryId, countryId) { // Line 139
+                if (!categoryId || !countryId) return;
 
-            console.log(`Fetching shops for category: ${categoryId}, country: ${countryId}`);
-            // Send a request to your backend
-            fetch(`/GetShops?categoryId=${categoryId}&countryId=${countryId}`)
-                .then(response => response.json())
-                .then(data => displayShops(data))
-                .catch(error => console.error("Error fetching shops:", error));
-        } // Correct closing brace for `fetchShops`
+                console.log(`Fetching shops for category: ${categoryId}, country: ${countryId}`);
+                // Send a request to your backend
+                fetch(`/GetShops?categoryId=${categoryId}&countryId=${countryId}`)
+                    .then(response => response.json())
+                    .then(data => displayShops(data))
+                    .catch(error => console.error("Error fetching shops:", error));
+            } // Correct closing brace for `fetchShops`
 
-        function displayShops(data) { // Line 149
-            console.log("Shops data:", data);
-            // Implement this to update your UI with the fetched shops
-        } // Correct closing brace for `displayShops`
-    }); // Missing closing brace for `document.addEventListener` (Line 154)
+            function displayShops(data) { // Line 149
+                console.log("Shops data:", data);
+                // Implement this to update your UI with the fetched shops
+            } // Correct closing brace for `displayShops`
+        }); // Missing closing brace for `document.addEventListener` (Line 154)
 
 </script>

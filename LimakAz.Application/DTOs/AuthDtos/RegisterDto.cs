@@ -30,10 +30,3 @@ public class RegisterDto
     public int UserPositionId { get; set; }
     public List<SelectListItem> UserPositions { get; set; } = [];
 }
-
-public class LoginDto
-{
-    public string? Email { get; set; }
-    public string? Password { get; set; }
-    public bool RememberMe { get; set; } = false;
-}

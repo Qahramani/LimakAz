@@ -15,25 +15,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="wwwroot\assets\node_modules\.package-lock.json" />
-		<Content Include="wwwroot\assets\node_modules\anymatch\package.json" />
-		<Content Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json" />
-		<Content Include="wwwroot\assets\node_modules\binary-extensions\package.json" />
-		<Content Include="wwwroot\assets\node_modules\braces\package.json" />
-		<Content Include="wwwroot\assets\node_modules\chokidar\package.json" />
-		<Content Include="wwwroot\assets\node_modules\fill-range\package.json" />
-		<Content Include="wwwroot\assets\node_modules\glob-parent\package.json" />
-		<Content Include="wwwroot\assets\node_modules\immutable\package.json" />
-		<Content Include="wwwroot\assets\node_modules\is-binary-path\package.json" />
-		<Content Include="wwwroot\assets\node_modules\is-extglob\package.json" />
-		<Content Include="wwwroot\assets\node_modules\is-glob\package.json" />
-		<Content Include="wwwroot\assets\node_modules\is-number\package.json" />
-		<Content Include="wwwroot\assets\node_modules\normalize-path\package.json" />
-		<Content Include="wwwroot\assets\node_modules\picomatch\package.json" />
-		<Content Include="wwwroot\assets\node_modules\readdirp\package.json" />
-		<Content Include="wwwroot\assets\node_modules\sass\package.json" />
-		<Content Include="wwwroot\assets\node_modules\source-map-js\package.json" />
-		<Content Include="wwwroot\assets\node_modules\to-regex-range\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\.package-lock.json" />
+	  <Content Include="wwwroot\assets\node_modules\anymatch\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json" />
+	  <Content Include="wwwroot\assets\node_modules\binary-extensions\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\braces\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\chokidar\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\fill-range\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\glob-parent\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\immutable\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\is-binary-path\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\is-extglob\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\is-glob\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\is-number\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\normalize-path\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\picomatch\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\readdirp\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\sass\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\source-map-js\package.json" />
+	  <Content Include="wwwroot\assets\node_modules\to-regex-range\package.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -161,40 +161,40 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\anymatch\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\chokidar\types\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\immutable\dist\immutable.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\is-binary-path\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\readdirp\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\compile.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\exception.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\importer.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\exception.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\function.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\importer.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\options.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\plugin_this.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\render.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_location.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_span.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\options.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\util\promise_or.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\argument_list.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\boolean.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\calculation.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\color.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\function.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\index.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\list.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\map.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\mixin.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\number.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\string.d.ts" />
-		<TypeScriptCompile Include="wwwroot\assets\node_modules\source-map-js\source-map.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\anymatch\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\binary-extensions.json.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\binary-extensions\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\chokidar\types\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\immutable\dist\immutable.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\is-binary-path\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\readdirp\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\compile.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\exception.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\importer.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\exception.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\function.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\importer.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\options.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\plugin_this.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\legacy\render.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_location.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\logger\source_span.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\options.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\util\promise_or.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\argument_list.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\boolean.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\calculation.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\color.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\function.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\index.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\list.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\map.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\mixin.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\number.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\sass\types\value\string.d.ts" />
+	  <TypeScriptCompile Include="wwwroot\assets\node_modules\source-map-js\source-map.d.ts" />
 	</ItemGroup>
 
 </Project>

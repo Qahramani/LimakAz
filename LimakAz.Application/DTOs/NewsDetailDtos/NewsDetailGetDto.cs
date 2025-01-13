@@ -22,4 +22,3 @@ public class NewsDetailUpdateDto : IDto
     public string? Description { get; set; }
     public int LanguageId { get; set; }
 }
-

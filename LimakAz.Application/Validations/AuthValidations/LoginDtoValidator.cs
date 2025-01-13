@@ -3,7 +3,7 @@ using LimakAz.Application.Interfaces.Helpers;
 
 namespace LimakAz.Application.Validations.AuthValidations;
 
-class LoginDtoValidator : AbstractValidator<LoginDto>
+public class LoginDtoValidator : AbstractValidator<LoginDto>
 {
     public LoginDtoValidator(IValidationMessageProvider messageProvider)
     {
