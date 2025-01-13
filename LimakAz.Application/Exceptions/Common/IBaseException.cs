@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace LimakAz.Persistence.Exceptions;
+namespace LimakAz.Application.Exceptions    ;
 
 public interface IBaseException
 {

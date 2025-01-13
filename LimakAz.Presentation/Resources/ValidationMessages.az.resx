@@ -286,4 +286,7 @@
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Uyğunlaşma xətası baş verdi.</value>
   </data>
+  <data name="CannotBeEmpty" xml:space="preserve">
+    <value>boş ola bilməz</value>
+  </data>
 </root>

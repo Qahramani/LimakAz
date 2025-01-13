@@ -1,7 +1,7 @@
 ﻿@inject ICurrencyService _service;
 @{
-    var currencyUSD = await _service.GetCurrencyCoefficientAsync("USD");
-    var currencyTRY = await _service.GetCurrencyCoefficientAsync("TRY");
+    var currencyUSD = Math.Round(1 / (await _service.GetCurrencyCoefficientAsync("USD")), 5);
+    var currencyTRY = Math.Round(1 / (await _service.GetCurrencyCoefficientAsync("TRY")),5);
 }
 
 <style>

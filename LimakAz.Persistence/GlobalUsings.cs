@@ -4,4 +4,4 @@ global using AutoMapper;
 global using LimakAz.Application.DTOs;
 global using LimakAz.Application.Interfaces.Repositories;
 global using LimakAz.Application.Interfaces.Services;
-global using LimakAz.Persistence.Exceptions;
+global using LimakAz.Application.Exceptions;

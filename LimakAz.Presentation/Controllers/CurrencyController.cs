@@ -14,31 +14,7 @@ public class CurrencyController : Controller
 
     public async Task<IActionResult> Convert(decimal amount, string from, string to)
     {
-        var rates = await _currencyService.GetExchangeRatesAsync();
-
-        if (!rates.ContainsKey(from) || !rates.ContainsKey(to))
-        {
-            return BadRequest("Invalid currency codes.");
-        }
-        decimal convertedAmount;
-
-        if (from == "AZN")
-        {
-            convertedAmount = amount / rates[to];
-
-            return Ok(new { convertedAmount });
-        }
-
-        if (to == "AZN")
-        {
-            convertedAmount = amount * rates[from];
-            return Ok(new { convertedAmount });
-        }
-
-
-        decimal fromRate = rates[from];
-        decimal toRate = rates[to];
-         convertedAmount = (amount / fromRate) * toRate;
+        var convertedAmount = await _currencyService.ConvertAsync(amount, from, to);
 
         return Ok(new { convertedAmount });
 

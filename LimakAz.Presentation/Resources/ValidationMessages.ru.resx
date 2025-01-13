@@ -292,4 +292,7 @@
   <data name="ConcurrencyFailure" xml:space="preserve">
     <value>Произошла ошибка синхронизации.</value>
   </data>
+  <data name="CannotBeEmpty" xml:space="preserve">
+    <value>не может быть пустым</value>
+  </data>
 </root>

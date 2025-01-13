@@ -1,4 +1,5 @@
 ﻿using LimakAz.Application.DTOs;
+using LimakAz.Application.Exceptions;
 using LimakAz.Application.Interfaces.Services.External;
 using System.Xml.Serialization;
 
@@ -17,7 +18,7 @@ public class CurrencyService : ICurrencyService
 
     public async Task<decimal> GetCurrencyCoefficientAsync(string code)
     {
-        if (code == "azn") return 1;
+        if (code.ToLower() == "azn") return 1;
 
         var url = $"{_currencyBasePath}{DateTime.Now.ToString("dd.MM.yyyy")}.xml";
 
@@ -65,9 +66,17 @@ public class CurrencyService : ICurrencyService
         }
     }
 
-
-    public class ExchangeRateResponse
+    public async Task<decimal> ConvertAsync(decimal amount, string from, string to)
     {
-        public Dictionary<string, decimal> Rates { get; set; } = [];
+        var rates = await GetExchangeRatesAsync();
+
+        if (!rates.ContainsKey(from) || !rates.ContainsKey(to))
+            throw new InvalidRateExchangeException();
+
+        decimal inputInAzn = rates[from] * amount;
+        decimal toRate = rates[to];
+        decimal convertedAmount = inputInAzn / toRate;
+
+        return convertedAmount;
     }
 }

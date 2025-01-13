@@ -1,8 +1,6 @@
 ﻿using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Application.Interfaces.Services.UI;
 using LimakAz.Domain.Enums;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using System.Runtime.CompilerServices;
 
 namespace LimakAz.Persistence.Implementations.Services.UI;
 
@@ -25,38 +23,42 @@ internal class CalculatorService : ICalculatorService
     public async Task<CalculatorDto> CalculateAsync(CalculatorDto dto, LanguageType language = LanguageType.Azerbaijan)
     {
         var calculatorDto = GetCalculatorDto(language);
+
         dto.Countries = calculatorDto.Countries;
         dto.LocalPoints = calculatorDto.LocalPoints;
 
-        decimal liquidFee = (int)dto.MatterType == 2 ? 2 : 0;
-
         var tariffs = await _tariffService.GetTariffsByCountry(dto.CountryId);
 
+        decimal weigth = dto.Weight ?? 0;
 
-        decimal weigth = dto.Weight;
         if (dto.Width >= 60 || dto.Lenght >= 60 || dto.Height >= 60)
         {
-            decimal volumetricWeight = (dto.Width * dto.Height * dto.Lenght) / 6000;
+            decimal volumetricWeight = ((dto.Width * dto.Height * dto.Lenght) ?? 0) / 6000;
 
-            weigth = Math.Max(volumetricWeight, dto.Weight);
+            weigth = Math.Max(volumetricWeight, dto.Weight ?? 0);
         }
+
+        decimal liquidFee = 0;
+
+        if ((int)dto.MatterType == 2 && weigth > 3)
+            liquidFee = 2 * dto.Count ?? 0;
 
         decimal totalAmount;
 
         if (weigth > tariffs.Max(x => x.MaxValue))
         {
-            totalAmount = (weigth * tariffs.Max(x => x.Price) + liquidFee) * dto.Count;
+            totalAmount = weigth * tariffs.Max(x => x.Price) * dto.Count ?? 0 + liquidFee;
         }
         else
         {
             var price = tariffs.FirstOrDefault(x => x.MinValue <= weigth && x.MaxValue >= weigth) != null ? tariffs.FirstOrDefault(x => x.MinValue <= weigth && x.MaxValue >= weigth)!.Price : tariffs.Max(x => x.Price);
 
-            totalAmount = (price + liquidFee) * dto.Count;
+            totalAmount = (price * dto.Count) ?? 0 + liquidFee;
         }
 
         var usdCoefficient = await _currencyService.GetCurrencyCoefficientAsync("USD");
 
-        dto.TotalPriceInAzn = Math.Round(totalAmount,2);
+        dto.TotalPriceInAzn = Math.Round(totalAmount, 2);
         dto.TotalPriceInUsd = Math.Round(totalAmount / usdCoefficient, 2);
 
         return dto;
@@ -74,6 +76,7 @@ internal class CalculatorService : ICalculatorService
         {
             Countries = countries,
             LocalPoints = localPoints,
+            
         };
 
         return dto;
