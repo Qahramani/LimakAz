@@ -77,7 +77,6 @@ public static class ServiceRegistrations
         services.AddScoped<IAuthService, AuthService>();
 
         services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
-        services.AddScoped<IFilePathHelper,FilePathHelper>();
 
         services.AddScoped<ILayoutService, LayoutService>();
         services.AddScoped<IHomeService, HomeService>();

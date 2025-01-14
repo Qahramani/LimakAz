@@ -11,13 +11,11 @@ public class AccountController : Controller
 {
     private readonly IAuthService _authService;
     private readonly ICookieService _cookieService;
-    private readonly UserManager<AppUser> _userManager;
 
-    public AccountController(IAuthService authService, ICookieService cookieService, UserManager<AppUser> usesrManager)
+    public AccountController(IAuthService authService, ICookieService cookieService)
     {
         _authService = authService;
         _cookieService = cookieService;
-        _userManager = usesrManager;
     }
 
     public async Task<IActionResult> Register()
@@ -76,26 +74,14 @@ public class AccountController : Controller
 
     public async Task<IActionResult> VerifyEmail(string token, string email)
     {
-        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
+       var result = await _authService.EmailVerificationAsync(token, email);
+
+        if (!result)
         {
-            return BadRequest("Token or email is invalid");
+            return View("EmailVerificationFailure");
         }
 
-        var user = await _userManager.FindByEmailAsync(email);
-
-        if (user == null)
-        {
-            return NotFound("User not found");
-        }
-
-        var result = await _userManager.ConfirmEmailAsync(user, token);
-
-        if (!result.Succeeded)
-        {
-            return View("EmailVerificationFailure", result.Errors);
-        }
-
-        return View("EmailVerificationSuccess", user.Firstname);
+        return View("EmailVerificationSuccess");
     }
 
     public IActionResult ForgotPassword()

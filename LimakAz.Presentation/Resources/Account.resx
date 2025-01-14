@@ -153,7 +153,39 @@
   <data name="Send" xml:space="preserve">
     <value>Göndər</value>
   </data>
-  <data name="SuccessMessage" xml:space="preserve">
+  <data name="ResetPasswordSuccessMessage" xml:space="preserve">
     <value>Şifrəniz yeniləndi! Təzədən giriş edə bilərsiniz</value>
+  </data>
+  <data name="EmailVerificationSuccess" xml:space="preserve">
+    <value>E-poçt Uğurla Doğrulandı!</value>
+  </data>
+  <data name="EmailVerificationSuccessMessage" xml:space="preserve">
+    <value>E-poçtunuz uğurla təsdiqləndi. İndi daxil ola bilərsiniz.</value>
+  </data>
+  <data name="GoToHome" xml:space="preserve">
+    <value>Əsas səhifəyə keçin</value>
+  </data>
+  <data name="EmailVerificationFailure" xml:space="preserve">
+    <value>Doğrulama alınmadı.
+</value>
+  </data>
+  <data name="EmailVerificationFailureMessage" xml:space="preserve">
+    <value>E-poçtunuzu doğrulaya bilmədik. Yenidən cəhd edin və ya dəstək ilə əlaqə saxlayın.
+</value>
+  </data>
+  <data name="LOGIN" xml:space="preserve">
+    <value>HESABA DAXIL OL</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Şifrə</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Məni xatırla</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Qeydiyyat</value>
+  </data>
+  <data name="LoginLowerCase" xml:space="preserve">
+    <value>Daxil ol</value>
   </data>
 </root>

@@ -1,10 +1,8 @@
-﻿using LimakAz.Application.Interfaces.Helpers;
+﻿namespace LimakAz.Persistence.Helpers;
 
-namespace LimakAz.Persistence.Helpers;
-
-internal class FilePathHelper : IFilePathHelper
+public static class FilePathHelper 
 {
-    public string GetSolutionRoot()
+    public static string GetSolutionRoot()
     {
         var currentDirectory = Directory.GetCurrentDirectory();
         while (Directory.GetParent(currentDirectory) != null)
@@ -13,12 +11,12 @@ internal class FilePathHelper : IFilePathHelper
             {
                 return currentDirectory;
             }
-            currentDirectory = Directory.GetParent(currentDirectory).FullName;
+            currentDirectory = Directory.GetParent(currentDirectory)?.FullName ?? "";
         }
         throw new Exception("Solution file (.sln) not found.");
     }
 
-    public string GetStaticFilesPath()
+    public static string GetStaticFilesPath()
     {
         var solutionRoot = GetSolutionRoot();
 

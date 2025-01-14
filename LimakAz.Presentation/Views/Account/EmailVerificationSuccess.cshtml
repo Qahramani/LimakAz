@@ -1,6 +1,7 @@
-﻿@model string
+﻿
+@inject AccountLocalizer _localizer;
 <div style="text-align: center; margin: 100px auto;">
-    <h1>Email Verified Successfully!</h1>
-    <p>Your email has been successfully verified @Model. You can now log in.</p>
-    <a asp-controller="home" asp-action="index" class="btn btn-primary">Go to Home</a>
+    <h1>@_localizer.GetValue("EmailVerificationSuccess")</h1>
+    <p>@_localizer.GetValue("EmailVerificationSuccessMessage")</p>
+    <a asp-controller="home" asp-action="index" class="btn btn-primary">@_localizer.GetValue("GoToHome")</a>
 </div>

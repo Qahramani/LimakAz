@@ -10,4 +10,5 @@ public interface IAuthService
     Task<bool> ResetPasswordConfirmationAsync(ForgotPasswordDto dto, ModelStateDictionary ModelState);
     Task<bool> ResetPasswordAsync(ResetPasswordDto dto, ModelStateDictionary ModelState);
     Task<bool> LogoutAsync();
+    Task<bool> EmailVerificationAsync(string token, string email);
 }

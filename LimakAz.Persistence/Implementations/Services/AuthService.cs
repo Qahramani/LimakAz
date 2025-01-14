@@ -1,7 +1,7 @@
 ﻿using LimakAz.Application.Interfaces.Helpers;
 using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.Enums;
-using Microsoft.AspNetCore.Hosting;
+using LimakAz.Persistence.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,11 +26,10 @@ internal class AuthService : IAuthService
     private readonly ICitizenShipService _cityShipService;
     private readonly IUserPositionService _userPositionService;
     private readonly IValidationMessageProvider _localizer;
-    private readonly IFilePathHelper _fileHelper;
     public AuthService(ILocalPointService localPointService, IGenderService genderService, ICitizenShipService cityShipService,
                        IUserPositionService userPositionService, IMapper mapper, IEmailService emailService, IHttpContextAccessor contextAccessor,
                        UserManager<AppUser> userManager, IValidationMessageProvider localizer, IUrlHelperFactory urlHelperFactory,
-                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager, IFilePathHelper fileHelper)
+                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager)
     {
         _localPointService = localPointService;
         _genderService = genderService;
@@ -41,10 +40,10 @@ internal class AuthService : IAuthService
         _contextAccessor = contextAccessor;
         _userManager = userManager;
         _localizer = localizer;
-        var root = fileHelper.GetSolutionRoot();
+        var root = FilePathHelper.GetSolutionRoot();
         _staticFilesPath = Path.Combine(root, "LimakAz.Infrastructure", "StaticFiles");
 
-        _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
+        _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext ?? new());
         _signInManager = signInManager;
     }
 
@@ -290,7 +289,13 @@ internal class AuthService : IAuthService
         if (!ModelState.IsValid)
             return false;
 
-        var user = await _userManager.FindByEmailAsync(dto.Email);
+        if(string.IsNullOrEmpty(dto.Email))
+        {
+            ModelState.AddModelError("", _localizer.GetValue("InvalidToken"));
+            return false;
+        }
+
+        var user = await _userManager.FindByEmailAsync(dto.Email!);
 
         if (user == null)
         {
@@ -298,7 +303,7 @@ internal class AuthService : IAuthService
             return false;
         }
 
-        var result = await _userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
+        var result = await _userManager.ResetPasswordAsync(user, dto.Token!, dto.NewPassword!);
 
         if (!result.Succeeded)
         {
@@ -315,6 +320,24 @@ internal class AuthService : IAuthService
             return false;
 
         await _signInManager.SignOutAsync();
+
+        return true;
+    }
+
+    public async Task<bool> EmailVerificationAsync(string token, string email)
+    {
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
+            return false;
+
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user == null)
+            return false;
+
+        var result = await _userManager.ConfirmEmailAsync(user, token);
+
+        if (!result.Succeeded)
+            return false;
 
         return true;
     }
