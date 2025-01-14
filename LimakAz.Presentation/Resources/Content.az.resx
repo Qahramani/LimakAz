@@ -129,22 +129,4 @@
   <data name="Policy" xml:space="preserve">
     <value>Gizlilik şərtləri</value>
   </data>
-  <data name="ConcurrencyFailure" xml:space="preserve">
-    <value>İstifadəçi bloklanıb,zəhmət olmasa 10 dəqiqə sonra yenidən yoxlayın.</value>
-  </data>
-  <data name="DefaultError" xml:space="preserve">
-    <value>Uyğunlaşma xətası baş verdi.</value>
-  </data>
-  <data name="DuplicateRoleName" xml:space="preserve">
-    <value>'{0}' rol artıq mövcuddur.</value>
-  </data>
-  <data name="DuplicateUserName" xml:space="preserve">
-    <value>'{0}' istifadəçi adı artıq götürülüb.</value>
-  </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>İstifadəçi adı və ya parol yanlışdır.</value>
-  </data>
-  <data name="InvalidEmail" xml:space="preserve">
-    <value>'{0}' email etibarsızdır.</value>
-  </data>
 </root>

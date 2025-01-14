@@ -109,6 +109,8 @@ public static class ServiceRegistrations
         services.AddSingleton<ContactLocalizer>();
         services.AddSingleton<ContentLocalizer>();
         services.AddSingleton<NewsLocalizer>();
+        services.AddSingleton<CalculatorLocalizer>();
+        services.AddSingleton<AccountLocalizer>();
         services.AddSingleton<ValidationMessagesLocalizer>();
 
     }
@@ -126,7 +128,7 @@ public static class ServiceRegistrations
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
 
-            options.SignIn.RequireConfirmedPhoneNumber = true;
+            options.SignIn.RequireConfirmedEmail = true;
 
             options.User.RequireUniqueEmail = true;
         }).AddEntityFrameworkStores<AppDbContext>()

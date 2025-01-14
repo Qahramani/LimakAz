@@ -47,7 +47,9 @@ internal class CalculatorService : ICalculatorService
 
         if (weigth > tariffs.Max(x => x.MaxValue))
         {
-            totalAmount = weigth * tariffs.Max(x => x.Price) * dto.Count ?? 0 + liquidFee;
+            totalAmount = weigth * tariffs.Max(x => x.Price) * dto.Count ?? 0;
+
+            totalAmount = totalAmount + liquidFee;
         }
         else
         {

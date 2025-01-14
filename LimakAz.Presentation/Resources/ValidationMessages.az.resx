@@ -266,7 +266,7 @@
     <value>Şifrənin uzunluğu 100 simvoldan uzun ola bilməz</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>İstifadəçi adı və ya parol yanlışdır.</value>
+    <value>İstifadəçi maili və ya parol yanlışdır.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>'{0}' email etibarsızdır.</value>

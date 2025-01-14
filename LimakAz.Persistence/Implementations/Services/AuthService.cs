@@ -30,7 +30,7 @@ internal class AuthService : IAuthService
     public AuthService(ILocalPointService localPointService, IGenderService genderService, ICitizenShipService cityShipService,
                        IUserPositionService userPositionService, IMapper mapper, IEmailService emailService, IHttpContextAccessor contextAccessor,
                        UserManager<AppUser> userManager, IValidationMessageProvider localizer, IUrlHelperFactory urlHelperFactory,
-                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager,  IFilePathHelper fileHelper)
+                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager, IFilePathHelper fileHelper)
     {
         _localPointService = localPointService;
         _genderService = genderService;
@@ -195,13 +195,13 @@ internal class AuthService : IAuthService
 
     private async Task<string> _getTemplateContentAsync(string url, string username, string filename)
     {
-        string path = Path.Combine(_staticFilesPath,filename);
+        string path = Path.Combine(_staticFilesPath, filename);
 
-            if (!File.Exists(path))
+        if (!File.Exists(path))
             throw new FileNotFoundException("Bele bir Template tapilmadi");
 
         string templateContent;
-        using(var reader = new StreamReader(path))
+        using (var reader = new StreamReader(path))
         {
             templateContent = await reader.ReadToEndAsync();
         }
@@ -218,13 +218,13 @@ internal class AuthService : IAuthService
 
         var user = await _userManager.FindByEmailAsync(dto.Email!);
 
-        if(user == null)
+        if (user == null)
         {
             ModelState.AddModelError("", _localizer.GetValue("InvalidCredentials"));
             return false;
         }
 
-        if(user.EmailConfirmed == false)
+        if (user.EmailConfirmed == false)
         {
             ModelState.AddModelError("", _localizer.GetValue("UnconfirmedEmail"));
             await _sendConfirmEmailTokenAsync(user);
@@ -247,17 +247,75 @@ internal class AuthService : IAuthService
         return true;
     }
 
-    //private async Task<string> _getTemplateContentAsync(string url, string username, string filename)
-    //{
-    //    string path = Path.Combine(_staticFilesPath, filename);
+    public async Task<bool> ResetPasswordConfirmationAsync(ForgotPasswordDto dto, ModelStateDictionary ModelState)
+    {
+        if (!ModelState.IsValid)
+            return false;
 
-    //    using StreamReader streamReader = new StreamReader(path);
-    //    string result = await streamReader.ReadToEndAsync();
+        var user = await _userManager.FindByEmailAsync(dto.Email);
 
-    //    result = result.Replace("[REPLACE_URL]", url);
-    //    result = result.Replace("[REPLACE_USERNAME]", username);
+        if (user == null)
+            return false;
 
-    //    streamReader.Close();
-    //    return result;
-    //}
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+        UrlActionContext context = new()
+        {
+            Action = "ResetPassword",
+            Controller = "Account",
+            Values = new { token, email = user.Email },
+            Protocol = _contextAccessor.HttpContext?.Request.Scheme
+        };
+
+        var link = _urlHelper.Action(context);
+
+
+        string emailBody = await _getTemplateContentAsync(link ?? "", user.Firstname ?? "", "ConfirmEmailBody.html");
+
+
+        EmailSendDto emailSendDto = new()
+        {
+            Body = emailBody,
+            Subject = "Email Təsdiqləmə",
+            ToEmail = user.Email ?? "undifined@undifined.com"
+        };
+
+        await _emailService.SendEmailAsync(emailSendDto);
+
+        return true;
+    }
+
+    public async Task<bool> ResetPasswordAsync(ResetPasswordDto dto, ModelStateDictionary ModelState)
+    {
+        if (!ModelState.IsValid)
+            return false;
+
+        var user = await _userManager.FindByEmailAsync(dto.Email);
+
+        if (user == null)
+        {
+            ModelState.AddModelError("", _localizer.GetValue("InvalidEmail"));
+            return false;
+        }
+
+        var result = await _userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
+
+        if (!result.Succeeded)
+        {
+            ModelState.AddModelError("", string.Join(",", result.Errors.Select(x => x.Description)));
+            return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> LogoutAsync()
+    {
+        if (!_contextAccessor.HttpContext?.User.Identity?.IsAuthenticated ?? false)
+            return false;
+
+        await _signInManager.SignOutAsync();
+
+        return true;
+    }
 }

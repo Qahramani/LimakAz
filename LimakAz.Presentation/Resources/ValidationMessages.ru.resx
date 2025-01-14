@@ -272,7 +272,7 @@
     <value>Длина пароли не может быть больше 100 символов</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
-    <value>Имя пользователя или пароль неверны.</value>
+    <value>Электронная почта или пароль неверны.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Электронная почта '{0}' недействительна.</value>

@@ -117,16 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Рассчитать</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>Калькулятор</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="CurrencyCalculator" xml:space="preserve">
+    <value>Конвертер валют</value>
+  </data>
+  <data name="DailyCurrency" xml:space="preserve">
+    <value>Ежедневный курс</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Высота</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Главная страница</value>
   </data>
-  <data name="Questions" xml:space="preserve">
-    <value>Вопросы</value>
+  <data name="Label" xml:space="preserve">
+    <value>Посчитать в соответствии с курсом дня</value>
   </data>
-  <data name="Rules" xml:space="preserve">
-    <value>Правила</value>
+  <data name="Length" xml:space="preserve">
+    <value>Длина</value>
   </data>
-  <data name="Policy" xml:space="preserve">
-    <value>Политика конфиденциальности</value>
+  <data name="Liquid" xml:space="preserve">
+    <value>Жидкость</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Примечание</value>
+  </data>
+  <data name="NoteText" xml:space="preserve">
+    <value>Стоимость доставки заказанной посылки рассчитывается в зависимости от веса. Размер от 60 сантиметров
+Стоимость доставки больших посылок определяется объемом и весом.
+Если ваш продукт жидкий и весит более трех литров, за провоз каждого продукта добавляется 2 маната.</value>
+  </data>
+  <data name="ResetCalculator" xml:space="preserve">
+    <value>Cбросить калькулятор</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Итого</value>
+  </data>
+  <data name="Standart" xml:space="preserve">
+    <value>Стандарт</value>
+  </data>
+  <data name="Tooltip" xml:space="preserve">
+    <value>Введите общее количество выбранных товаров в раздел «Конвертер». Общая сумма, которую вы заплатите, в калькуляторе будет указана в манатах.
+</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>Вес</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Ширина</value>
   </data>
 </root>

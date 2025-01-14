@@ -49,6 +49,7 @@
         <link rel="stylesheet" href="~/assets/Styles/scss/news-details.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/contact.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/register.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/passwordrecovery.css">
     }
 
    
@@ -125,7 +126,7 @@
                             <a asp-controller="contact" asp-action="index" class="nav-name">@_localizer.GetValue("contact")</a>
                         </li>
                         <li class="list-unstyled">
-                            <a class="nav-name">@_localizer.GetValue("cargomat")</a>
+                            <a asp-controller="content" asp-action="questions" class="nav-name">FAQ</a>
                         </li>
                     </ul>
                 </nav>
@@ -351,40 +352,40 @@
     </footer>
 
     <script>
-        document.querySelector('.login-form-action').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevents the default form submission behavior
+        // document.querySelector('.login-form-action').addEventListener('submit', function (event) {
+        //     event.preventDefault(); // Prevents the default form submission behavior
 
-            const form = event.target; // Gets the form element
-            const formData = new FormData(form); // Collects all form data
-            console.log(formData);
-            fetch(form.action, {
-                method: 'POST', // Send as a POST request
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: formData // Send form data
-            })
-                .then(response => response.text()) // Get the HTML response
-                .then(html => {
-                    console.log(html); // Log the HTML response to the console
-                    const modalContent = document.querySelector('#staticBackdrop .modal-content');
-                    modalContent.innerHTML = html;
+        //     const form = event.target; // Gets the form element
+        //     const formData = new FormData(form); // Collects all form data
+        //     console.log(formData);
+        //     fetch(form.action, {
+        //         method: 'POST', // Send as a POST request
+        //         headers: {
+        //             'X-Requested-With': 'XMLHttpRequest'
+        //         },
+        //         body: formData // Send form data
+        //     })
+        //         .then(response => response.text()) // Get the HTML response
+        //         .then(html => {
+        //             console.log(html); // Log the HTML response to the console
+        //             const modalContent = document.querySelector('#staticBackdrop .modal-content');
+        //             modalContent.innerHTML = html;
 
-                    console.log(modalContent);
+        //             console.log(modalContent);
 
-                    // Force reflow by toggling a class or similar method
-                    modalContent.offsetHeight;
-                    const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-                        backdrop: 'static', // Dinamik modal üçün dəstək verir
-                        keyboard: false
-                    });
-                    modal.show();
+        //             // Force reflow by toggling a class or similar method
+        //             modalContent.offsetHeight;
+        //             const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+        //                 backdrop: 'static', // Dinamik modal üçün dəstək verir
+        //                 keyboard: false
+        //             });
+        //             modal.show();
 
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //         });
+        // });
 
 
     </script>

@@ -1,5 +1,5 @@
 ﻿@model CalculatorDto
-
+@inject CalculatorLocalizer _localizer;
 <style>
     .form-calc-btn-ruxel {
         width: 262px;
@@ -28,17 +28,17 @@
                 <div class="calculator-block">
                     <div class="calc-head">
                         <div>
-                            <h4>Kalkulyator</h4>
+                            <h4>@_localizer.GetValue("Calculator")</h4>
                         </div>
                         <ol class="calc-breadcamp">
                             <li>
-                                <a href="#" class="calc-breadcamp-tag">Ana səhifə</a>
+                                <a asp-controller="home" asp-action="index" class="calc-breadcamp-tag">@_localizer.GetValue("Home")</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-angle-right"></i>
                             </li>
                             <li>
-                                <span>Kalkulyator</span>
+                                <span>@_localizer.GetValue("Calculator")</span>
                             </li>
                         </ol>
                     </div>
@@ -51,14 +51,14 @@
                                             <div class="form-calc-title">
                                                 <img src="https://limak.az/new_front/assets/img/icons/box.svg"
                                                      alt="">
-                                                <h3>Kalkulyator</h3>
+                                                <h3>@_localizer.GetValue("Calculator")</h3>
                                             </div>
                                             <div asp-validation-summary="ModelOnly"></div>
                                             <div class="form-calc-reset">
                                                 <button class="calc-resetBtn" type="button" onclick="resetCalculator()">
                                                     <img src="https://limak.az/new_front/assets/img/icons/reset.svg"
                                                          alt="">
-                                                    <span>Kalkulyatoru sıfırla</span>
+                                                    <span>@_localizer.GetValue("ResetCalculator")</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -84,64 +84,65 @@
                                                 <div class="input-group">
                                                     <div>
                                                         <input asp-for="Weight" class="weight" min="0" step="0.001" type="number" name="weight"
-                                                               placeholder="Çəki">
-                                                               <span asp-validation-for="Weight"></span>
+                                                               placeholder="@_localizer.GetValue("Weight")">
+                                                               
                                                     </div>
                                                     <div class="input-weight">
                                                         <button type="button">
                                                             kg
                                                         </button>
                                                     </div>
+                                                    <span class="text-danger" asp-validation-for="Weight"></span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <input asp-for="Count" class="input-count" type="number" name="count" min="1"
-                                                        placeholder="Bağlama sayı">
-                                                <span asp-validation-for="Count"></span>
+                                                       placeholder="@_localizer.GetValue("Count")">
+                                                <span class="text-danger" asp-validation-for="Count"></span>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input asp-for="Width" type="number" placeholder="En">
-                                                        <span asp-validation-for="Width"></span>
+                                                        <input asp-for="Width" type="number" placeholder="@_localizer.GetValue("Width")">
                                                     </div>
                                                     <div class="input-en">
                                                         <button type="button">sm</button>
                                                     </div>
+                                                        <span class="text-danger"  asp-validation-for="Width"></span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input asp-for="Lenght" type="number" placeholder="Uzunluq">
-                                                        <span asp-validation-for="Lenght"></span>
+                                                        <input asp-for="Lenght" type="number" placeholder="@_localizer.GetValue("Length")">
                                                     </div>
                                                     <div class="input-uzun">
                                                         <button type="button">sm</button>
                                                     </div>
+                                                        <span class="text-danger" asp-validation-for="Lenght"></span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group">
                                                     <div>
-                                                        <input asp-for="Height" type="number" placeholder="Hündürlük">
-                                                        <span asp-validation-for="Height"></span>
+                                                        <input asp-for="Height" type="number" placeholder="@_localizer.GetValue("Height")">
                                                     </div>
                                                     <div class="input-height">
                                                         <button type="button">sm</button>
                                                     </div>
+                                                        <span class="text-danger" asp-validation-for="Height"></span>
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <select asp-for="MatterType" class="select-region">
-                                                    <option value="1">Standart</option>
-                                                    <option value="2">Maye</option>
+                                                    <option value="1">@_localizer.GetValue("Standart")</option>
+                                                    <option value="2">@_localizer.GetValue("Liquid")</option>
                                                 </select>
                                             </div>
                                             <div class="col-6 total-lbl">
                                                 <div class="calc-total">
                                                     <div class="total-label">
-                                                        <span>Cəmi:</span>
+                                                        <span>@_localizer.GetValue("Result"):</span>
                                                     </div>
                                                     <div class="total-price">
                                                         <span class="all-count">
@@ -158,11 +159,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-12 calc-Btn">
-                                                <button type="submit" class="form-calc-btn-ruxel">Hesabla</button>
+                                                <button type="submit" class="form-calc-btn-ruxel">@_localizer.GetValue("Calculate")</button>
                                             </div>
                                             <div class="col-sm-6 col-12 calc-info-icn">
                                                 <div class="form-info"
-                                                     tooltip='Seçdiyiniz məhsulların toplam məbləğini "Konvertor" yazılan hissəyə qeyd edin. Kalkulyatorda ödəyəcəyiniz toplam məbləğ manat ilə göstəriləcək'>
+                                                     tooltip='@_localizer.GetValue("Tooltip")'>
                                                     <i class="fa-solid fa-circle-info"></i>
                                                 </div>
                                             </div>
@@ -181,10 +182,9 @@
                             </div>
                         </div>
                         <div class="currency-card-info">
-                            <h3 class="card-info-title">Qeyd:</h3>
+                            <h3 class="card-info-title">@_localizer.GetValue("Note"):</h3>
                             <p>
-                                Sifariş olunan bağlamanın çatdırılma haqqı çəkiyə görə hesablanır. Ölçüsü 1 metrdən
-                                böyük olan bağlamaların çatdırılma haqqı isə həcmi çəkiyə görə müəyyən edilir.
+                                @_localizer.GetValue("NoteText")
                             </p>
                         </div>
                     </div>

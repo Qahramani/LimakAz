@@ -117,16 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddEmailAddress" xml:space="preserve">
+    <value>Добавьте свою электронную почту</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Проверьте свой почтовый адрес</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Электронная почта</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забыл пароль</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Главная страница</value>
   </data>
-  <data name="Questions" xml:space="preserve">
-    <value>Вопросы</value>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
   </data>
-  <data name="Rules" xml:space="preserve">
-    <value>Правила</value>
+  <data name="PasswordRecovery" xml:space="preserve">
+    <value>Восстановление пароля</value>
   </data>
-  <data name="Policy" xml:space="preserve">
-    <value>Политика конфиденциальности</value>
+  <data name="RepeatPassword" xml:space="preserve">
+    <value>Еще раз введите пароль</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>Отправьте ещё раз</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправь</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Ваш пароль обновлен!  Вы можете войти снова</value>
   </data>
 </root>

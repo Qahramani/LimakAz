@@ -1,6 +1,7 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Domain.Entities;
+using LimakAz.Presentation.Extentions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +13,11 @@ public class AccountController : Controller
     private readonly ICookieService _cookieService;
     private readonly UserManager<AppUser> _userManager;
 
-    public AccountController(IAuthService authService, ICookieService cookieService, UserManager<AppUser> userManager)
+    public AccountController(IAuthService authService, ICookieService cookieService, UserManager<AppUser> usesrManager)
     {
         _authService = authService;
         _cookieService = cookieService;
-        _userManager = userManager;
+        _userManager = usesrManager;
     }
 
     public async Task<IActionResult> Register()
@@ -28,7 +29,13 @@ public class AccountController : Controller
         return View(dto);
     }
 
-    [HttpPost]  
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+
+    [HttpPost]
     public async Task<IActionResult> Login(LoginDto dto)
     {
 
@@ -39,7 +46,7 @@ public class AccountController : Controller
             return PartialView("_LoginModalPartial", dto);
         }
 
-        return RedirectToAction("Index","Home");
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpPost]
@@ -58,16 +65,25 @@ public class AccountController : Controller
         return View("ConfirmEmail");
     }
 
+    public async Task<IActionResult> Logout()
+    {
+        await _authService.LogoutAsync();
+
+        var returlUrl = Request.GetReturnUrl();
+
+        return Redirect(returlUrl);
+    }
+
     public async Task<IActionResult> VerifyEmail(string token, string email)
     {
-        if(string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
+        if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
         {
             return BadRequest("Token or email is invalid");
         }
 
         var user = await _userManager.FindByEmailAsync(email);
 
-        if(user == null)
+        if (user == null)
         {
             return NotFound("User not found");
         }
@@ -76,9 +92,47 @@ public class AccountController : Controller
 
         if (!result.Succeeded)
         {
-           return View("EmailVerificationFailure", result.Errors);
+            return View("EmailVerificationFailure", result.Errors);
         }
 
-        return  View("EmailVerificationSuccess", user.Firstname);
+        return View("EmailVerificationSuccess", user.Firstname);
+    }
+
+    public IActionResult ForgotPassword()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> ForgotPassword(ForgotPasswordDto dto)
+    {
+        var result = await _authService.ResetPasswordConfirmationAsync(dto, ModelState);
+
+        if (!result)
+            return View(dto);
+
+        return View("ResetPasswordConfirmation");
+    }
+
+    public IActionResult ResetPassword(string token)
+    {
+        if (string.IsNullOrEmpty(token))
+            return BadRequest();
+
+        ResetPasswordDto dto = new()
+        {
+            Token = token
+        };
+        return View(dto);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
+    {
+        var result = await _authService.ResetPasswordAsync(dto, ModelState);
+
+        if (!result)
+            return View(dto);
+
+        return View("ResetPasswordSuccess");
     }
 }

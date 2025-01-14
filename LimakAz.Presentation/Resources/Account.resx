@@ -117,16 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddEmailAddress" xml:space="preserve">
+    <value>E-mail ünvanınızı daxil edin</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="CheckEmail" xml:space="preserve">
+    <value>Email ünvanınızı yoxlayın</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Təsdiqlə</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>E-mail ünvanı</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Şifrəni unutdum</value>
+  </data>
   <data name="Home" xml:space="preserve">
-    <value>Главная страница</value>
+    <value>Ana səhifə</value>
   </data>
-  <data name="Questions" xml:space="preserve">
-    <value>Вопросы</value>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Yeni parol</value>
   </data>
-  <data name="Rules" xml:space="preserve">
-    <value>Правила</value>
+  <data name="PasswordRecovery" xml:space="preserve">
+    <value>Şifrə bərpası</value>
   </data>
-  <data name="Policy" xml:space="preserve">
-    <value>Политика конфиденциальности</value>
+  <data name="RepeatPassword" xml:space="preserve">
+    <value>Yeniden parolu daxil edin</value>
+  </data>
+  <data name="Resend" xml:space="preserve">
+    <value>Yenidən göndər</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Göndər</value>
+  </data>
+  <data name="SuccessMessage" xml:space="preserve">
+    <value>Şifrəniz yeniləndi! Təzədən giriş edə bilərsiniz</value>
   </data>
 </root>
