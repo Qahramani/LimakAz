@@ -77,6 +77,6 @@ public class CurrencyService : ICurrencyService
         decimal toRate = rates[to];
         decimal convertedAmount = inputInAzn / toRate;
 
-        return convertedAmount;
+        return Math.Round(convertedAmount,5);
     }
 }

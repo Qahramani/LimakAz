@@ -1,6 +1,6 @@
 ﻿using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.Enums;
-using LimakAz.Persistence.Helpers;
+using LimakAz.Persistence.Extentions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -274,8 +274,11 @@ internal class ShopService : IShopService
         return dto;
     }
 
-    public async Task<PaginateDto<ShopGetDto>> GetFileteredShopsAsync(int categoryId, int countryId, LanguageType languageType = LanguageType.Azerbaijan)
+    public async Task<ShopPageDto> GetFileteredShopsAsync(int countryId, int categoryId, int page , LanguageType language = LanguageType.Azerbaijan)
     {
+        var countries = _countryService.GetAll(language);
+        var categories = _categoryService.GetAll(language);
+
         var query = _repository.GetAll(include: _getWithIncludes());
 
         if(countryId != 0)
@@ -288,22 +291,34 @@ internal class ShopService : IShopService
 
         if (categoryId != 0)
         {
-            if (!(await _countryService.IsExistAsync(categoryId)))
+            if (!(await _categoryService.IsExistAsync(categoryId)))
                 throw new NotFoundException();
 
             query = query.Where(x => x.ShopCategories.Any(x => x.CategoryId == categoryId));
         }
+        var count = query.Count();
 
-        var shops =  await _repository.Paginate(query, 9, 1).ToListAsync();
+        var pageCount = (int)Math.Ceiling((decimal)count / 2);
 
+        if (page > pageCount)
+            page = pageCount;
+
+        if (page < 1)
+            page = 1;
+
+        query = _repository.Paginate(query, 2, page);
+
+        var shops =  await query.ToListAsync();
         
         var dtos = _mapper.Map<List<ShopGetDto>>(shops);
 
-        PaginateDto<ShopGetDto> paginateDto = new()
+        ShopPageDto paginateDto = new()
         {
-            Items = dtos ?? new(),
-            CurrentPage = 1,
-            PageCount = 9
+            Countries = countries,
+            Categories = categories,
+            Shops = dtos,
+            PageCount = pageCount,
+            CurrentPage = page
         };
        
         return paginateDto;

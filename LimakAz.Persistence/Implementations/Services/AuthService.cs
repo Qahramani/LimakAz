@@ -40,7 +40,7 @@ internal class AuthService : IAuthService
         _contextAccessor = contextAccessor;
         _userManager = userManager;
         _localizer = localizer;
-        var root = FilePathHelper.GetSolutionRoot();
+        var root = Helper.GetSolutionRoot();
         _staticFilesPath = Path.Combine(root, "LimakAz.Infrastructure", "StaticFiles");
 
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext ?? new());
@@ -146,7 +146,9 @@ internal class AuthService : IAuthService
 
         user.PhoneNumber = ((int)(dto.NumberPrefixType)).ToString() + dto.PhoneNumber;
 
-        user.UserName = dto.Firstname + "_" + Guid.NewGuid().ToString().Substring(0, 5);
+        user.UserName = dto.Firstname + Guid.NewGuid().ToString().Substring(0, 5);
+
+        user.Code = Helper.GenerateUserCode();
 
         var result = await _userManager.CreateAsync(user, dto.Password!);
 

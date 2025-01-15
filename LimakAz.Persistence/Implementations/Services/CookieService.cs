@@ -3,6 +3,7 @@ using LimakAz.Application.Interfaces.Services;
 using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
+using System.Security.Claims;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
@@ -38,5 +39,15 @@ internal class CookieService : ICookieService
             type = LanguageType.Russian;
 
         return type;
+    }
+
+    public string GetUserId()
+    {
+        return _contextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
+    }
+
+    public bool IsAuthorized()
+    {
+        return _contextAccessor.HttpContext?.User.Identity?.IsAuthenticated ?? false;
     }
 }

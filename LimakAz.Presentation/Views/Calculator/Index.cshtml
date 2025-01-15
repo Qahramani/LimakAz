@@ -12,7 +12,11 @@
     }
 
     input{
-        padding-left:8px;
+        padding-left:6px;
+    }
+
+    .weigth-btn button{
+        width:40px;
     }
 </style>
 <div class="main-middle-content">
@@ -88,7 +92,7 @@
                                                                
                                                     </div>
                                                     <div class="input-weight">
-                                                        <button type="button">
+                                                        <button type="button" class="weigth-btn" style="width:66px">
                                                             kg
                                                         </button>
                                                     </div>
@@ -106,7 +110,7 @@
                                                         <input asp-for="Width" type="number" placeholder="@_localizer.GetValue("Width")">
                                                     </div>
                                                     <div class="input-en">
-                                                        <button type="button">sm</button>
+                                                        <button type="button" class="weigth-btn" style="width:66px">sm</button>
                                                     </div>
                                                         <span class="text-danger"  asp-validation-for="Width"></span>
                                                 </div>
@@ -117,7 +121,7 @@
                                                         <input asp-for="Lenght" type="number" placeholder="@_localizer.GetValue("Length")">
                                                     </div>
                                                     <div class="input-uzun">
-                                                        <button type="button">sm</button>
+                                                        <button type="button" class="weigth-btn" style="width:66px">sm</button>
                                                     </div>
                                                         <span class="text-danger" asp-validation-for="Lenght"></span>
                                                 </div>
@@ -128,7 +132,7 @@
                                                         <input asp-for="Height" type="number" placeholder="@_localizer.GetValue("Height")">
                                                     </div>
                                                     <div class="input-height">
-                                                        <button type="button">sm</button>
+                                                        <button type="button" class="weigth-btn" style="width:66px">sm</button>
                                                     </div>
                                                         <span class="text-danger" asp-validation-for="Height"></span>
                                                 </div>

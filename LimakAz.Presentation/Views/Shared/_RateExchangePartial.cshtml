@@ -4,10 +4,16 @@
     var currencyUSD = Math.Round(1 / (await _service.GetCurrencyCoefficientAsync("USD")), 5);
     var currencyTRY = Math.Round(1 / (await _service.GetCurrencyCoefficientAsync("TRY")),5);
 }
-
 <style>
+    input{
+        padding-left:5px;
+    }
 
-</style>
+    .daily-currency-info{
+        width:210px;
+    }
+    
+    </style>
 
 <div class="currency-card">
     <div class="currency-exc">

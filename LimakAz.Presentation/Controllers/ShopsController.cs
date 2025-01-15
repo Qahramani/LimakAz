@@ -1,4 +1,5 @@
-﻿using LimakAz.Application.Interfaces.Services;
+﻿using LimakAz.Application.DTOs;
+using LimakAz.Application.Interfaces.Services;
 using LimakAz.Persistence.Contexts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +15,17 @@ public class ShopsController : Controller
         _cookieService = cookieService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index(int countryId = 0, int categoryId = 0, int page = 1)
     {
-        return View();
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+        var dto = await _shopService.GetFileteredShopsAsync(countryId, categoryId, page,language);
+
+        ViewBag.CountryId = countryId;
+        ViewBag.CategoryId = categoryId;
+        ViewBag.Page = page;
+
+        return View(dto);
     }
 
     [HttpGet]
@@ -24,7 +33,7 @@ public class ShopsController : Controller
     {
         var language = await _cookieService.GetSelectedLanguageTypeAsync();
 
-        var dtos = await _shopService.GetFileteredShopsAsync(categoryId, countryId, language);
+        var dtos = await _shopService.GetFileteredShopsAsync(categoryId, countryId, (int)language);
 
         return PartialView("_ShopsPartial",dtos);
     }

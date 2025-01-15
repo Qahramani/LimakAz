@@ -2,13 +2,13 @@
 
 namespace LimakAz.Persistence.Localizers;
 
-public class TariffsLocalizer
+public class ShopsLocalizer
 {
     private readonly IStringLocalizer _stringLocalizer;
 
-    public TariffsLocalizer(IStringLocalizerFactory stringLocalizer)
+    public ShopsLocalizer(IStringLocalizerFactory stringLocalizer)
     {
-        _stringLocalizer = stringLocalizer.Create("Tariff", "LimakAz.Presentation");
+        _stringLocalizer = stringLocalizer.Create("Shops", "LimakAz.Presentation");
     }
 
     public string GetValue(string key)

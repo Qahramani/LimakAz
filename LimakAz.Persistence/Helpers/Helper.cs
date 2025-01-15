@@ -1,7 +1,7 @@
 ﻿namespace LimakAz.Persistence.Helpers;
 
-public static class FilePathHelper 
-{
+public static class Helper
+{   
     public static string GetSolutionRoot()
     {
         var currentDirectory = Directory.GetCurrentDirectory();
@@ -10,16 +10,20 @@ public static class FilePathHelper
             if (Directory.GetFiles(currentDirectory, "*.sln").Length > 0)
             {
                 return currentDirectory;
-            }
+            }       
             currentDirectory = Directory.GetParent(currentDirectory)?.FullName ?? "";
         }
         throw new Exception("Solution file (.sln) not found.");
     }
 
-    public static string GetStaticFilesPath()
+    public static string GenerateUserCode()
     {
-        var solutionRoot = GetSolutionRoot();
+        var timestamp = DateTime.UtcNow.Ticks.ToString().Substring(10,7);
+        var random = new Random();
+        var randomDigits = random.Next(1000, 9999);
 
-        return Path.Combine(solutionRoot, "Infrastructure", "LimakAz.Infrastructure", "StaticFiles");
+        var uniquuCode = timestamp + randomDigits.ToString();
+
+        return uniquuCode;
     }
 }

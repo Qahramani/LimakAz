@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace LimakAz.Persistence.Helpers;
+namespace LimakAz.Persistence.Extentions;
 
-public static class FileValidations
+public static class FileExtentionMethods
 {
     public static bool CheckType(this IFormFile file, string fileType = "image")
     {

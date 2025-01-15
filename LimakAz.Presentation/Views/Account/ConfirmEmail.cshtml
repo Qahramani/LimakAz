@@ -1,42 +1,48 @@
-﻿@{
-    ViewData["Title"] = "Confirm Your Email";
-}
+﻿@inject AccountLocalizer _localizer;
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body class="bg-light">
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
-            <div class="text-center">
-                <h1 class="h4 mb-3 text-primary">Confirm Your Email</h1>
-                <p class="text-muted">
-                    We've sent a confirmation email to your registered address. Please check your inbox and click the confirmation link to complete your registration.
-                </p>
-            </div>
+<div class="main-middle-content">
 
-            <div class="d-grid mb-3">
-                <form asp-action="ResendEmail" method="post">
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Resend Confirmation Email
-                    </button>
-                </form>
-            </div>
+    <!-- Middle Sections -->
+    <div>
+        <!-- Middle Section -->
+        <div class="middlecontainer">
+            <!-- Tariff Plans -->
+            <div class="recovery-main-pg">
+                <div class="recovery-block password-block">
+                    <div class="recovery-head">
+                        <div>
+                            <h4>@_localizer.GetValue("Registration")</h4>
+                        </div>
+                        <ol class="recovery-breadcamp">
+                            <li>
+                                <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <span>@_localizer.GetValue("Registration")</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="password-block-body">
+                        <div class="password-card">
+                            <div class="row">
+                                <div class="col-md-12 col-12" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                    <div class="password-card-header" style="margin:150px; display: flex; flex-direction: column; align-items: center;">
+                                        <img src="https://limak.az/new_front/assets/img/icons/lock.svg" alt="" style="width: 60px; height: 60px; margin-bottom: 10px;">
+                                        <h3 class="text-info text-warning" style="font-size: 18px; font-weight: bold;">@_localizer.GetValue("CheckEmail")</h3>
+                                    </div>
+                                </div>
 
-            <div class="text-center mt-3">
-                <p class="text-muted">Haven't registered yet?</p>
-                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-secondary">
-                    Back to Registration
-                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>

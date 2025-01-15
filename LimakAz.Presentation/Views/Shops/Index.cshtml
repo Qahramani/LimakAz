@@ -1,97 +1,121 @@
-﻿@inject ICategoryService categoryService;
-@inject ICookieService cookieService;
-@inject ICountryService countryService;
-@{
-    var language = await cookieService.GetSelectedLanguageTypeAsync();
-    var categories = categoryService.GetAll(language);
-    var countries = countryService.GetAll(language);
-}
-
+﻿@model ShopPageDto
+@inject ShopsLocalizer _localizer;
 @{
     ViewData["Template"] = "Template2";
+    int CountryId = ViewBag.CountryId ?? 0;
+    int CategoryId = ViewBag.CategoryId ?? 0;
+    int Page = ViewBag.Page ?? 0;
 }
-<!-- Main Start -->
+
+
 <style>
-    /* Default style for nav-link */
     .nav-link {
-        font-weight: normal; /* Normal weight */
-        color: black; /* Default text color */
-        transition: color 0.3s, font-weight 0.3s; /* Smooth transitions */
+        color:black; /* Default color for all links */
+        text-decoration: none; /* Remove underline */
+        transition: color 0.3s ease; /* Smooth transition for hover effects */
     }
 
-        /* Style for active nav-link */
         .nav-link.active {
-            font-weight: bold; /* Bold text */
-            color: gray; /* Gray color for active links */
-            background-color: transparent; /* Ensure no background interference */
-            border: none; /* Remove any border effects if applied by Bootstrap */
+            color: orange; /* Color for the active link */
+            font-weight: bold; /* Optional: Make the active link bold */
         }
 
+        .nav-link:hover {
+            color:darkorange; /* Optional: Color on hover */
+        }
+
+
 </style>
+
+<!-- Main Start -->
 <main id="main"
       style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat; background-size: 100%; background-position: top center;"
       class="bg-full">
     <div class="main-container">
         <!-- Currency -->
-        <div class="shop">
+        <div class="shop">  
             <div class="block">
                 <div class="block-header">
-                    <h2 class="block-title">MAĞAZALAR</h2>
+                    <h2 class="block-title">@_localizer.GetValue("Shops")</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana səhifə</a>
+                            <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <span>Mağazalar</span>
+                            <span>@_localizer.GetValue("ShopInLowercase")</span>
                         </li>
                     </ul>
                 </div>
                 <div class="block-body">
                     <div class="row">
                         <div class="col-md-4 col-lg-3 col-12">
-                            <div class="card card-sidebar">
+                            <div class="card card card-sidebar">
                                 <ul class="nav flex-column">
                                     <li class="nav-item" data-target-item="all">
-                                        <a href="#" class="nav-link active" data-category-id="0">
-                                            <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1735604470/LimakAz/yum7v6w5cs7n3hkyd7cw.png" alt="All Categories" style="width:18px; height:18px; margin-right:8px;">
-                                            Bütün kateqoriyalar
+                                        <a asp-action="Index" asp-route-page="@Page" asp-route-categoryId="0" asp-route-countryId="@CountryId" target="_self" class="nav-link @(CategoryId==0 ? "active":"" ) ">
+                                            <span class="nav-icon">
+                                                <svg width="18" height="19" viewBox="0 0 18 19" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M4.80439 0.998403C4.52449 0.99907 4.24458 0.999736 3.96467 0.999736H1.51149C0.605797 1.00573 0 1.60553 0 2.50523C0 4.16068 0 5.82212 0.00599799 7.47157C0.00599799 8.2813 0.629789 8.91109 1.43952 8.91109C3.10096 8.91708 4.7684 8.91708 6.42985 8.91109C7.30555 8.91109 7.91735 8.30529 7.91735 7.42958C7.92335 5.76814 7.92335 4.1007 7.91735 2.43925C7.91735 1.62353 7.29356 1.00573 6.48383 0.999736C5.92402 0.995737 5.3642 0.99707 4.80439 0.998403ZM10.0826 2.46268V4.95785V7.45301C10.0826 8.29273 10.7003 8.91652 11.5401 8.91652H16.5304C17.3761 8.91652 17.9999 8.29873 17.9999 7.45901V2.46868C17.9999 1.62896 17.3821 1.00517 16.5424 1.00517H11.5521C10.7063 1.00517 10.0826 1.62297 10.0826 2.46268ZM7.92339 15.0645V17.5356C7.92339 18.3754 7.2996 18.9992 6.45988 18.9992H1.46955C0.629834 18.9992 0.0120404 18.3814 0.00604239 17.5356V12.5453C0.00604239 11.7056 0.629834 11.0878 1.46955 11.0818H6.45988C7.2996 11.0818 7.91739 11.6996 7.92339 12.5453V15.0645ZM10.0826 14.9988C10.0826 17.2301 11.828 18.9995 14.0412 18.9995C16.2305 18.9995 17.9939 17.2361 17.9999 15.0468C18.0059 12.8755 16.2485 11.0881 14.1012 11.0821C11.87 11.0761 10.0886 12.8155 10.0826 14.9988Z"
+                                                          fill="#9B9B9B"></path>
+                                                </svg>
+                                            </span>
+                                            <span style="color:black; font-weight:700">@_localizer.GetValue("AllCategories")</span>
                                         </a>
                                     </li>
-                                    @foreach (var item in categories)
+                                    @foreach (CategoryGetDto category in Model.Categories ?? new())
                                     {
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" data-category-id="@item.Id">
-                                                <img src="@item.LogoPath" alt="Clothes" style="width:18px; height:18px; margin-right:8px;">
-                                                @item.CategoryDetails.FirstOrDefault()?.Name
+                                        <li class="nav-item" data-target-item="clothes">
+                                            <a asp-action="Index" asp-route-page="@Page" asp-route-categoryId="@category.Id" asp-route-countryId="@CountryId" target="_self"
+                                               class='nav-link @(CategoryId==category.Id ? "active":"" )'>
+                                                <span class="nav-icon">
+                                                    <img src="@category.LogoPath" alt="Clothes" style="width:18px; height:18px; margin-right:8px;">
+                                                </span>
+                                                <span>@category.CategoryDetails.FirstOrDefault()?.Name</span>
                                             </a>
                                         </li>
                                     }
+
                                 </ul>
                             </div>
                         </div>
-
                         <div class="col-md-8 col-lg-9 col-12">
                             <div>
                                 <ul id="headerList" class="nav nav nav-tabs card-tabs-nav">
-                                    @foreach (var item in countries)
+                                    @foreach (var item in Model.Countries ?? new())
                                     {
-
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" data-category-id="@item.Id">
-                                                <img src="@item.ImagePath" alt="" style="border-radius:50%"
-                                                     class="card-tabs-nav-icon">
-                                                <span class="card-tabs-nav-title">
-                                                    @item.CountryDetails.FirstOrDefault()?.Name
-                                                </span>
-                                            </a>
-                                        </li>
+                                        
+                                    <li class="nav-item">
+                                        <a data-target="1" asp-action="Index" asp-route-page="@Page" asp-route-categoryId="@CategoryId" asp-route-countryId="@item.Id" class="nav-link @(CountryId==item.Id ? "active":"" )">
+                                            <img src="@item.ImagePath" style="border-radius:50%;" alt=""
+                                                 class="card-tabs-nav-icon">
+                                                <span class="card-tabs-nav-title link-names">
+                                                @item.CountryDetails.FirstOrDefault()?.Name
+                                            </span>
+                                        </a>
+                                    </li>
                                     }
                                 </ul>
                             </div>
                             <div class="store-list">
                                 <div data-id="1" class="active active-tab tab-pane">
-                                    <partial name="_ShopsPartial"></partial>
+                                    <div class="row">
+                                        @foreach (ShopGetDto shop in Model.Shops ?? new())
+                                        {
+                                            <div class="col-md-6 col-lg-4 col-6 item-box" data-item="electronic">
+                                                <a href=" @shop.Link"
+                                                   target="_blank" class="store-item">
+                                                    <article class="card">
+                                                        <img src="@shop.ImagePath"
+                                                             alt="shop" class="card-img"
+                                                             style="width: 70%;">
+                                                    </article>
+                                                </a>
+                                            </div>
+                                        }
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,66 +123,39 @@
                 </div>
             </div>
         </div>
+
+
+        <nav aria-label="Page navigation example" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <!-- Previous Page Link -->
+                <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <!-- Page Numbers -->
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index", new { page = i , categoryId = CategoryId, countryId = CountryId})">@i</a>
+                    </li>
+                }
+
+                <!-- Next Page Link -->
+                <li class="page-item @(Model.CurrentPage == Model.PageCount ? "disabled" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </main>
 <!-- Main End -->
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => { // Line 104
-        let selectedCategoryId = null;
-        let selectedCountryId = null;
 
-        console.log(document.querySelectorAll(".nav-link[data-category-id]"));
 
-        document.querySelectorAll(".nav-link[data-category-id]").forEach(link => { // Line 109
-            link.addEventListener("click", (e) => { // Line 110
-                e.preventDefault();
-                console.log("Category clicked:", link.getAttribute("data-category-id"));
 
-                // Remove 'active' class from previous selection
-                document.querySelectorAll(".nav-link[data-category-id]").forEach(el => el.classList.remove("active"));
 
-                // Mark the clicked link as active
-                link.classList.add("active");
-
-                // Get selected category ID
-                selectedCategoryId = link.getAttribute("data-category-id");
-                fetchShops(selectedCategoryId, selectedCountryId);
-            }); // Missing closing brace for `link.addEventListener` (Line 122)
-
-            // Handle country selection
-            document.querySelectorAll(".nav-link[data-country-id]").forEach(link => { // Line 125
-                link.addEventListener("click", (e) => { // Line 126
-                    e.preventDefault();
-
-                    console.log("Country clicked:", link.getAttribute("data-country-id"));
-                    // Remove 'active' class from previous selection
-                    document.querySelectorAll(".nav-link[data-country-id]").forEach(el => el.classList.remove("active"));
-
-                    // Mark the clicked link as active
-                    link.classList.add("active");
-
-                    // Get selected country ID
-                    selectedCountryId = link.getAttribute("data-country-id");
-                    fetchShops(selectedCategoryId, selectedCountryId);
-                }); // Correct closing brace for `link.addEventListener`
-            }); // Correct closing brace for `country.forEach`
-
-            function fetchShops(categoryId, countryId) { // Line 139
-                if (!categoryId || !countryId) return;
-
-                console.log(`Fetching shops for category: ${categoryId}, country: ${countryId}`);
-                // Send a request to your backend
-                fetch(`/GetShops?categoryId=${categoryId}&countryId=${countryId}`)
-                    .then(response => response.json())
-                    .then(data => displayShops(data))
-                    .catch(error => console.error("Error fetching shops:", error));
-            } // Correct closing brace for `fetchShops`
-
-            function displayShops(data) { // Line 149
-                console.log("Shops data:", data);
-                // Implement this to update your UI with the fetched shops
-            } // Correct closing brace for `displayShops`
-        }); // Missing closing brace for `document.addEventListener` (Line 154)
-
-</script>
+﻿

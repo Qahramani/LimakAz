@@ -10,4 +10,3 @@ public class NotFoundException : Exception, IBaseException
     }
     public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.NotFound;
 }
-

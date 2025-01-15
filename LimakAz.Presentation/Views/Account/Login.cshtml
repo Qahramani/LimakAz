@@ -1,98 +1,118 @@
 ﻿@model LoginDto
+@inject AccountLocalizer _localzier;
+
 @{
-    Layout = null;
+    ViewData["Template"] = "Template2";
 }
-<style>
-    #staticBackdrop {
-        z-index: 1050 !important; /* Ensure it's above other elements */
-    }
-    .modal {
-        z-index: 1050 !important; /* Bootstrap default z-index for modals */
-    }
-
-    .modal-backdrop {
-        z-index: 1040 !important; /* Ensure the backdrop is slightly behind the modal */
-    }
-
-    .modal-dialog {
-        position: relative; /* Ensure positioning is relative for the modal */
-        z-index: 1050 !important; /* Ensure it stays on top */
-    }
-</style>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="login">
-                    <div class="modal-block">
-                        <div class="modal-block-body">
-                            <div class="modal-card">
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="login-modal-head">
-                                            <img class="login-modal-icon" src="https://limak.az/new_front/assets/img/icons/user-color.svg" alt="">
-                                            <h1 class="login-modal-head-title upper">HESABA DAXIL OL</h1>
-                                        </div>
-                                        <form method="post" class="login-form-action" asp-action="login" asp-controller="account">
-                                            <div class="validation-summary">
-                                                <div asp-validation-summary="ModelOnly"></div>
-                                            </div>
-                                            <input asp-for="Email" name="email" id="login-email"
-                                                   placeholder="E-mail*" class="login-email-input">
-                                            <span asp-validation-for="Email"></span>
-                                            <div class="login-password-input">
-                                                <input asp-for="Password" name="password" id="login-password"
-                                                       placeholder="Şifrə*" class="login-email-input">
-                                                <span asp-validation-for="Password"></span>
-                                                <a class="visibility-btn-password">
-                                                    <span class="show-password hide-eye">
-
-                                                    </span>
-                                                </a>
-                                            </div>
-                                            <div class="remember-me-radio">
-                                                <div>
+<main id="main"
+      style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat; background-size: 100%; background-position: top center;"
+      class="bg-full">
+    <div class="main-container">
+        <div class="login-sec">
+            <div class="block">
+                <!-- Block Header -->
+                <div class="block-header">
+                    <h2 class="title page-title"> @_localzier.GetValue("LOGIN")</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-controller="home" asp-action="index">@_localzier.GetValue("Home")</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span> @_localzier.GetValue("LoginLowerCase")</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-body">
+                    <div class="card card-auth card-reg mb-20">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="modal-site">
+                                    <div class="login">
+                                        <div class="block">
+                                            <div class="block-body">
+                                                <div class="card card-auth mb-20">
                                                     <div class="row">
-                                                        <div class="col-5">
-                                                            <div>
-                                                                <input asp-for="RememberMe" id="__Rem-Me" class="_rememberMe" type="checkbox" value="">
-                                                                <label for="__Rem-Me">Məni xatırla</label>
+                                                        <div class="col-md-8 col-12">
+                                                            <div class="card-auth-header" style="margin-bottom:auto">
+                                                                <img src="~/assets2/images/user-color.svg" alt=""
+                                                                     class="card-auth-icon">
+                                                                <h1 class="card-auth-title upper">
+                                                                    @_localzier.GetValue("LOGIN")
+                                                                </h1>
                                                             </div>
+                                                            <form asp-controller="account" asp-action="login" method="post" class="card-auth-form">
+                                                                <div asp-validation-summary="ModelOnly"></div>
+                                                                <input asp-for="Email" id="login-email" name="email" type="email"
+                                                                       placeholder="@_localzier.GetValue("EmailAddress")*" required="required"
+                                                                       aria-required="true" class="form-control">
+                                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                                                <div role="group" class="input-group">
+                                                                    <input id="login-password" name="password"
+                                                                           type="password" placeholder="@_localzier.GetValue("Password")*"
+                                                                           required="required" aria-required="true"
+                                                                           class="form-control">
+                                                                    @* <a class="visiblity-btn-password showPass">
+                                                                        <span aria-hidden="true"
+                                                                              class="show-password hide-eye"></span>
+                                                                    </a> *@
+                                                                     <span asp-validation-for="Password" class="text-danger"></span> 
+                                                                </div>
+                                                                <fieldset class="form-group">
+                                                                    <div>
+                                                                        <div class="row" style="margin:30px">
+                                                                            <div class="col-5">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input asp-for="RememberMe" type="checkbox"
+                                                                                           class="custom-control-input">
+                                                                                    <label for=""
+                                                                                           class="custom-control-label">
+                                                                                        @_localzier.GetValue("RememberMe")
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <div class="text-right">
+                                                                                    <a asp-controller="account" asp-action="ForgotPassword" class="form-link">
+                                                                                        <img src="~/assets2/images/help.svg"
+                                                                                             alt="">
+                                                                                        <span>
+                                                                                            @_localzier.GetValue("ForgotPassword")
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <div class="login-submit">
+                                                                            <button type="submit"
+                                                                                    class="btn btn-submit btn-primary">
+                                                                                <span>@_localzier.GetValue("LoginLowerCase")</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <div class="login-submit-reg">
+                                                                            <a asp-controller="account" asp-action="register"
+                                                                               class="btn btn-primary btn-submit">
+                                                                                @_localzier.GetValue("Registration")
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <div class="col-7">
-                                                            <div class="text-right">
-                                                                <a asp-controller="account" asp-action="ForgotPassword" target="_self">
-                                                                    <img src="https://limak.az/new_front/assets/img/icons/help.svg" alt="">
-                                                                    <span>Şifrəni unutmusuz</span>
-                                                                </a>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="card-auth-image text-right">
+                                                                <img src="~/assets2/images/login-image.svg" alt=""
+                                                                     class="card-img">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="login-submit">
-                                                        <button type="submit" class="login-btn-modal">
-                                                            <span>Daxil ol</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="register-btn-modal">
-                                                        <a asp-controller="account" asp-action="register" target="_self" class="register-btn">QEYDIYYAT</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="modal-card-img login-modal-right">
-                                            <img src="https://limak.az/new_front/assets/img/login-image.svg"
-                                                 class="login-modal-img" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +123,4 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
+</main>

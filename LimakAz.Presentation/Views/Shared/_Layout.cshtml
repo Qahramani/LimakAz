@@ -1,5 +1,6 @@
 ﻿@inject ILayoutService _layoutService;
 @inject LayoutLocalizer _localizer;
+@inject ICookieService _cookieService;
 @{
     var selectedLanguage = await _layoutService.GetSelectedLanguageAsync();
     var settings = await _layoutService.GetSettingsDictionary();
@@ -37,25 +38,86 @@
 
     @if (ViewData["Template"]?.ToString() == "Template2")
     {
-         <link rel="stylesheet" href="~/assets2/css/style.css">
+
+        <link rel="stylesheet" href="~/assets2/css/style.css">
     }
     else
     {
 
         <link rel="stylesheet" href="~/assets/Styles/scss/main.css">
-        <link rel="stylesheet" href="~/assets/Styles/scss/calculator.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/tariff.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/news.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/news-details.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/contact.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/register.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/passwordrecovery.css">
+
     }
 
-   
-        <link rel="stylesheet" href="~/assets/Styles/scss/footer.css">
-        <link rel="stylesheet" href="~/assets/Styles/scss/index.css">
+    <link rel="stylesheet" href="~/assets/Styles/scss/userpanel.css">
+    <link rel="stylesheet" href="~/assets/Styles/scss/calculator.css">
+
+    <link rel="stylesheet" href="~/assets/Styles/scss/footer.css">
+    <link rel="stylesheet" href="~/assets/Styles/scss/index.css">
     <link rel="stylesheet" href="~/mine/ruxel.css">
+
+    <style>
+        .user-panel {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-icon {
+            font-size: 40px; /* Adjust icon size */
+            color: #333;
+            cursor: pointer;
+            height: 67px;
+            margin-right: 10px;
+        }
+
+        .user-actions {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 50px; /* Adjust according to the icon size */
+            right: 0;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            min-width: 150px; /* Ensures the dropdown width is consistent */
+        }
+
+            .user-actions li {
+                padding: 10px 15px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+                .user-actions li:last-child {
+                    border-bottom: none;
+                }
+
+                .user-actions li a {
+                    text-decoration: none;
+                    color: #333;
+                    display: block;
+                }
+
+                    .user-actions li a:hover {
+                        background-color: #f5f5f5;
+                        color: #007bff;
+                    }
+
+            /* Keep dropdown visible when hovering over it */
+            .user-panel:hover .user-actions,
+            .user-actions:hover {
+                display: block;
+            }
+
+    </style>
 </head>
 
 <body>
@@ -220,18 +282,30 @@
                     </ul>
                     <input type="search" class="search-head-input">
                 </div>
+                @if (_cookieService.IsAuthorized())
+                {
+
+                    <div class="user-panel">
+                        <div class="user-icon">
+                            <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1736900132/LimakAz/ojrocoswegl66oooxnil.png" style="width: 20px; height: 20px;" />
+                        </div>
+                        <ul class="user-actions">
+                            <li><a asp-controller="userpanel" asp-action="index">User Panel</a></li>
+                            <li><a asp-controller="account" asp-action="settings">Settings</a></li>
+                            <li><a asp-controller="account" asp-action="notifications">Notifications</a></li>
+                        </ul>
+                    </div>
+                }
+
+
                 <div class="outer-box-item3 basket-svg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                     </svg>
                 </div>
-                <div class="outer-box-item4 login-btn"> 
-                    <a href="" type="button" class="login-tag " data-bs-toggle="modal" data-bs-target="#staticBackdrop">@_localizer.GetValue("login")</a>
+                <div class="outer-box-item4 login-btn">
+                    <a asp-controller="account" asp-action="login" class="login-tag">@_localizer.GetValue("login")</a>
                 </div>
-                <!-- LOG IN MODAL -->
-                <partial name="_LoginModalPartial" model="new LoginDto()"></partial>
-
-
                 <div class="person-icon-mobile">
                     <div>
                         <a href="" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -350,47 +424,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // document.querySelector('.login-form-action').addEventListener('submit', function (event) {
-        //     event.preventDefault(); // Prevents the default form submission behavior
-
-        //     const form = event.target; // Gets the form element
-        //     const formData = new FormData(form); // Collects all form data
-        //     console.log(formData);
-        //     fetch(form.action, {
-        //         method: 'POST', // Send as a POST request
-        //         headers: {
-        //             'X-Requested-With': 'XMLHttpRequest'
-        //         },
-        //         body: formData // Send form data
-        //     })
-        //         .then(response => response.text()) // Get the HTML response
-        //         .then(html => {
-        //             console.log(html); // Log the HTML response to the console
-        //             const modalContent = document.querySelector('#staticBackdrop .modal-content');
-        //             modalContent.innerHTML = html;
-
-        //             console.log(modalContent);
-
-        //             // Force reflow by toggling a class or similar method
-        //             modalContent.offsetHeight;
-        //             const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-        //                 backdrop: 'static', // Dinamik modal üçün dəstək verir
-        //                 keyboard: false
-        //             });
-        //             modal.show();
-
-        //         })
-        //         .catch(error => {
-        //             console.error('Error:', error);
-        //         });
-        // });
-
-
-    </script>
-
-
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -409,7 +442,7 @@
 
     <script src="~/assets2/js/store.js"></script>
 
-    
+
 
 
 

@@ -81,6 +81,7 @@ public static class ServiceRegistrations
         services.AddScoped<ILayoutService, LayoutService>();
         services.AddScoped<IHomeService, HomeService>();
         services.AddScoped<ICalculatorService, CalculatorService>();
+        services.AddScoped<IUserPanelService, UserPanelService>();
 
     }
 
@@ -110,6 +111,7 @@ public static class ServiceRegistrations
         services.AddSingleton<NewsLocalizer>();
         services.AddSingleton<CalculatorLocalizer>();
         services.AddSingleton<AccountLocalizer>();
+        services.AddSingleton<ShopsLocalizer>();
         services.AddSingleton<ValidationMessagesLocalizer>();
 
     }

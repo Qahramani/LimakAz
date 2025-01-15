@@ -33,3 +33,13 @@ public class ShopUpdateDto : IDto
     public List<int> SelectedCategoryIds { get; set; } = [];
     public List<SelectListItem> Categories { get; set; } = [];
 }
+
+
+public class ShopPageDto
+{
+    public List<ShopGetDto>? Shops { get; set; } = [];
+    public List<CategoryGetDto>? Categories { get; set; } = [];
+    public List<CountryGetDto>? Countries { get; set; } = [];
+    public int PageCount { get; set; }
+    public int CurrentPage { get; set; }
+}

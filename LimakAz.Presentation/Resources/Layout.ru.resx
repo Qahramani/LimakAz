@@ -132,9 +132,6 @@
   <data name="cargomat" xml:space="preserve">
     <value>КАРГОМАТ</value>
   </data>
-  <data name="shops" xml:space="preserve">
-    <value>МАГАЗИНЫ</value>
-  </data>
   <data name="login" xml:space="preserve">
     <value>ВОЙТИ</value>
   </data>
@@ -149,5 +146,8 @@
   </data>
   <data name="confidentialitry" xml:space="preserve">
     <value>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</value>
+  </data>
+  <data name="shops" xml:space="preserve">
+    <value>МАГАЗИНЫ</value>
   </data>
 </root>

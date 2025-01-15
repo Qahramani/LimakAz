@@ -6,4 +6,6 @@ public interface ICookieService
 {
     Task<LanguageGetDto> GetSelectedLanguageAsync();
     Task<LanguageType> GetSelectedLanguageTypeAsync();
+    bool IsAuthorized();
+    string GetUserId();
 }

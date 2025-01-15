@@ -188,4 +188,46 @@
   <data name="LoginLowerCase" xml:space="preserve">
     <value>Daxil ol</value>
   </data>
+  <data name="ProfileInfo" xml:space="preserve">
+    <value>Profil məlumatları</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Fiziki şəxs</value>
+  </data>
+  <data name="Juridical" xml:space="preserve">
+    <value>Hüquqi şəxs</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="LocalPoint" xml:space="preserve">
+    <value>Çatdırma ofisi</value>
+  </data>
+  <data name="NotificationType" xml:space="preserve">
+    <value>Bildiriş tipi</value>
+  </data>
+  <data name="PasportInfo" xml:space="preserve">
+    <value>Şəxsiyyət vəsiqəsi məlumatları</value>
+  </data>
+  <data name="SerialNumber" xml:space="preserve">
+    <value>Seriya nömrəsi</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Cinsi</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Ş/V-dəki ünvan</value>
+  </data>
+  <data name="AcceptTerms" xml:space="preserve">
+    <value>İstifadəçi qaydaları ilə razıyam</value>
+  </data>
+  <data name="Citizenship" xml:space="preserve">
+    <value>Vətəndaşlıq</value>
+  </data>
 </root>

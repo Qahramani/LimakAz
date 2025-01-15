@@ -117,117 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddEmailAddress" xml:space="preserve">
-    <value>Добавьте свою электронную почту</value>
-  </data>
-  <data name="Back" xml:space="preserve">
-    <value>Назад</value>
-  </data>
-  <data name="CheckEmail" xml:space="preserve">
-    <value>Проверьте свой почтовый адрес</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Подтвердить</value>
-  </data>
-  <data name="EmailAddress" xml:space="preserve">
-    <value>Электронная почта</value>
-  </data>
-  <data name="ForgotPassword" xml:space="preserve">
-    <value>Забыл пароль</value>
+  <data name="AllCategories" xml:space="preserve">
+    <value>Все категории</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Главная страница</value>
   </data>
-  <data name="NewPassword" xml:space="preserve">
-    <value>Новый пароль</value>
+  <data name="ShopInLowercase" xml:space="preserve">
+    <value>Магазины</value>
   </data>
-  <data name="PasswordRecovery" xml:space="preserve">
-    <value>Восстановление пароля</value>
-  </data>
-  <data name="RepeatPassword" xml:space="preserve">
-    <value>Еще раз введите пароль</value>
-  </data>
-  <data name="Resend" xml:space="preserve">
-    <value>Отправьте ещё раз</value>
-  </data>
-  <data name="Send" xml:space="preserve">
-    <value>Отправь</value>
-  </data>
-  <data name="ResetPasswordSuccessMessage" xml:space="preserve">
-    <value>Ваш пароль обновлен!  Вы можете войти снова</value>
-  </data>
-  <data name="EmailVerificationSuccess" xml:space="preserve">
-    <value>Электронная почта успешно проверена!
-</value>
-  </data>
-  <data name="EmailVerificationSuccessMessage" xml:space="preserve">
-    <value>Ваш адрес электронной почты успешно проверен. Теперь вы можете войти в систему.
-</value>
-  </data>
-  <data name="GoToHome" xml:space="preserve">
-    <value>Перейти на главную страницу</value>
-  </data>
-  <data name="EmailVerificationFailure" xml:space="preserve">
-    <value>Проверка не удалась</value>
-  </data>
-  <data name="EmailVerificationFailureMessage" xml:space="preserve">
-    <value>Мы не смогли проверить ваш адрес электронной почты. Попробуйте еще раз или свяжитесь со службой поддержки.</value>
-  </data>
-  <data name="LOGIN" xml:space="preserve">
-    <value>ВОЙТИ В СВОЙ АККАУНТ</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Пароль</value>
-  </data>
-  <data name="RememberMe" xml:space="preserve">
-    <value>Запомни меня</value>
-  </data>
-  <data name="Registration" xml:space="preserve">
-    <value>Регистрация</value>
-  </data>
-  <data name="LoginLowerCase" xml:space="preserve">
-    <value>Войти</value>
-  </data>
-  <data name="ProfileInfo" xml:space="preserve">
-    <value>Данные аккаунта</value>
-  </data>
-  <data name="Firstname" xml:space="preserve">
-    <value>Имя</value>
-  </data>
-  <data name="Lastname" xml:space="preserve">
-    <value>Фамилия</value>
-  </data>
-  <data name="Individual" xml:space="preserve">
-    <value>Физическое лицо</value>
-  </data>
-  <data name="Juridical" xml:space="preserve">
-    <value>Юридическое лицо</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Телефон</value>
-  </data>
-  <data name="LocalPoint" xml:space="preserve">
-    <value>Офис доставки</value>
-  </data>
-  <data name="NotificationType" xml:space="preserve">
-    <value>Тип уведомления</value>
-  </data>
-  <data name="PasportInfo" xml:space="preserve">
-    <value>Данные удостоверения личности</value>
-  </data>
-  <data name="SerialNumber" xml:space="preserve">
-    <value>Номер серии</value>
-  </data>
-  <data name="Gender" xml:space="preserve">
-    <value>Пол</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>Место фактического проживания</value>
-  </data>
-  <data name="AcceptTerms" xml:space="preserve">
-    <value>Согласен с правилами пользователя</value>
-  </data>
-  <data name="Citizenship" xml:space="preserve">
-    <value>Гражданство</value>
+  <data name="Shops" xml:space="preserve">
+    <value>МАГАЗИНЫ</value>
   </data>
 </root>

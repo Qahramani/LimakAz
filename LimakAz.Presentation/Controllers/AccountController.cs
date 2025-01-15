@@ -41,10 +41,10 @@ public class AccountController : Controller
 
         if (!result)
         {
-            return PartialView("_LoginModalPartial", dto);
+            return View(dto);
         }
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("index", "userpanel");
     }
 
     [HttpPost]
@@ -67,9 +67,7 @@ public class AccountController : Controller
     {
         await _authService.LogoutAsync();
 
-        var returlUrl = Request.GetReturnUrl();
-
-        return Redirect(returlUrl);
+        return RedirectToAction("Index", "Home");
     }
 
     public async Task<IActionResult> VerifyEmail(string token, string email)

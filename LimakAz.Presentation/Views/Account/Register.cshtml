@@ -1,6 +1,18 @@
 ﻿@model RegisterDto
+@inject AccountLocalizer _localizer;
+<style>
+    .register-card {
+        height: auto;
+    }
 
+    .text-danger {
+        font-size: smaller;
+    }
 
+    .middlecontainer {
+        margin-bottom: 120px;
+    }
+</style>
 <div class="main-middle-content">
 
     <!-- Middle Sections -->
@@ -12,18 +24,18 @@
                 <div class="register-block">
                     <div class="register-head">
                         <div>
-                            <h4>İSTİFADƏÇİ QEYDİYYATI</h4>
+                            <h4>@_localizer.GetValue("Registration")</h4>
                         </div>
-                        
+
                         <ol class="register-breadcamp">
                             <li>
-                                <a href="#" class="regr-breadcamp-tag">Ana səhifə</a>
+                                <a asp-controller="home" asp-action="index" class="regr-breadcamp-tag">@_localizer.GetValue("Home")</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-angle-right"></i>
                             </li>
                             <li>
-                                <span>QEYDİYYAT</span>
+                                <span>@_localizer.GetValue("Registration")</span>
                             </li>
                         </ol>
                     </div>
@@ -31,31 +43,31 @@
                         <div class="register-card">
                             <div class="register-card-head">
                                 <img src="" alt="">
-                                <h3 class="register-card-head-first">İSTİFADƏÇİ <b>QEYDİYYATI</b></h3>
+                                <h3 class="register-card-head-first">@_localizer.GetValue("Registration")</h3>
                             </div>
                             <form class="form-regr needs-validation" method="post">
                                 <div class="row form-regr-main-row">
                                     <div class="col-md-6 col-12 form-con-first-row">
                                         <h3 class="form-title">
-                                            Profil məlumatları
+                                            @_localizer.GetValue("ProfileInfo")
                                         </h3>
                                         <div class="row">
                                             <div class="col-12">
                                                 <select class="regr-form-select-person" asp-for="UserPositionId" asp-items="Model.UserPositions">
-                                                    <option disabled="disabled">Secin</option>
+                                                    @*  <option disabled="disabled">Secin</option> *@
                                                 </select>
                                                 <span class="text-danger" asp-validation-for="UserPositionId"></span>
                                             </div>
                                             <div class="col-6">
-                                                <input asp-for="Firstname" placeholder="FirstName" class="form-control reg-name" required>
-                                            <span class="text-danger" asp-validation-for="Firstname"></span>
+                                                <input asp-for="Firstname" placeholder="@_localizer.GetValue("Firstname")" class="form-control reg-name" required>
+                                                <span class="text-danger" asp-validation-for="Firstname"></span>
                                             </div>
                                             <div class="col-6">
-                                                <input asp-for="Lastname" placeholder="Surname"  class="form-control reg-surname" required>
+                                                <input asp-for="Lastname" placeholder="@_localizer.GetValue("Lastname")" class="form-control reg-surname" required>
                                                 <span class="text-danger" asp-validation-for="Lastname"></span>
                                             </div>
                                             <div class="col-12">
-                                                <input asp-for="Email" placeholder="E-mail"
+                                                <input asp-for="Email" placeholder="@_localizer.GetValue("EmailAddress")"
                                                        class="form-control reg-email" id="validationCustom06" required>
                                                 <span class="text-danger" asp-validation-for="Email"></span>
                                             </div>
@@ -64,7 +76,7 @@
                                                     <div class="phone-prefix-regr">
                                                         <div class="dropdown b-dropdown btn-group">
                                                             <!-- <button type="button">050</button> -->
-                                                            <select class="dropdown-select-prefix" asp-for="NumberPrefixType" >
+                                                            <select class="dropdown-select-prefix" asp-for="NumberPrefixType">
                                                                 <option value="50">
                                                                     <a href="#" target="_self"
                                                                        class="dropdown-option">050</a>
@@ -92,15 +104,15 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <input asp-for="PhoneNumber" placeholder="Telefon"
+                                                    <input asp-for="PhoneNumber" placeholder="@_localizer.GetValue("Phone")"
                                                            class="form-control reg-phoneNum" id="validationCustom"
                                                            required>
-                                                    <span class="text-danger" style="margin-left:10px" asp-validation-for="PhoneNumber"></span>
                                                 </div>
+                                                <span class="text-danger" style="margin-left:10px" asp-validation-for="PhoneNumber"></span>
                                             </div>
                                             <div class="pass col-md-6 col-12">
                                                 <input id="password-regr" autocomplete="new-password"
-                                                       asp-for="Password" placeholder="Şifrə"
+                                                       asp-for="Password" placeholder="@_localizer.GetValue("Password")"
                                                        required="required">
                                                 <a class="visibility-btn-new-password">
                                                     <span class="hide-eye-pas shop-p"></span>
@@ -110,7 +122,7 @@
                                             <div class="pass col-md-6 col-12">
                                                 <input id="password-confirmation-regr" asp-for="ConfirmPassword"
                                                        autocomplete="current-password"
-                                                       placeholder="Şifrənin təkrarı" required="required">
+                                                       placeholder="@_localizer.GetValue("RepeatPassword")" required="required">
                                                 <a class="visibility-btn-password-confirm">
                                                     <span class="confr-password-show shop-p"></span>
                                                 </a>
@@ -119,13 +131,13 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="col-12">
                                                     <select class="delivary-office-regr" asp-for="LocalPointId" asp-items="Model.LocalPoints">
-                                                        <option disabled="disabled">Çatdırılma ofisi</option>
+                                                        <option disabled="disabled">@_localizer.GetValue("LocalPoint")</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <select class="notif-type-regr" asp-for="NotificationType">
-                                                    <option disabled="disabled">Bildiriş tipi</option>
+                                                    <option disabled="disabled">@_localizer.GetValue("NotificationType")</option>
                                                     <option value="1">SMS</option>
                                                     <option value="2">Whatsapp</option>
                                                 </select>
@@ -134,20 +146,20 @@
                                     </div>
                                     <div class="col-md-6 col-12 form-con-second-row">
                                         <h3 class="form-title">
-                                            Şəxsiyyət vəsiqəsi məlumatları
+                                            @_localizer.GetValue("PasportInfo")
                                         </h3>
                                         <div class="row">
                                             <div class="col-12">
-                                
+
                                                 <div class="col-12">
                                                     <select class="select-nation-regr" asp-for="CitizenShipId" asp-items="Model.CitizenShips">
-                                                        <option disabled="disabled">Seçin</option>
+                                                        @* <option disabled="disabled">Seçin</option> *@
                                                     </select>
                                                     <span class="text-danger" asp-validation-for="CitizenShipId"></span>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <input asp-for="SerialNumber" placeholder="Seriya nömrəsi" required="required"
+                                                <input asp-for="SerialNumber" placeholder="@_localizer.GetValue("SerialNumber")" required="required"
                                                        id="serial-num" class="serial-number form-control">
                                                 <span class="text-danger" asp-validation-for="SerialNumber"></span>
                                             </div>
@@ -162,11 +174,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <select class="select-gender-regr" asp-for="GenderId">
-                                                    <option disabled="disabled">Cinsi</option>
-                                                    <option value="1">Kişi</option>
-                                                    <option value="2">Qadın</option>
-                                                </select>
+                                                <select class="select-gender-regr" asp-for="GenderId" asp-items="Model.Genders">@_localizer.GetValue("Gender")</select>
                                                 <span class="text-danger" asp-validation-for="GenderId"></span>
                                             </div>
                                             <div class="col-12">
@@ -190,13 +198,13 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="passport-images">
-                                                                    <img src="https://limak.az/new_front/assets2/images/passport/1.svg"
+                                                                    <img src="https://limak.az/new_front/assets/images/passport/1.svg"
                                                                          alt="">
-                                                                    <img src="https://limak.az/new_front/assets2/images/passport/2.svg"
+                                                                    <img src="https://limak.az/new_front/assets/images/passport/2.svg"
                                                                          alt="">
-                                                                    <img src="https://limak.az/new_front/assets2/images/passport/3.svg"
+                                                                    <img src="https://limak.az/new_front/assets/images/passport/3.svg"
                                                                          alt="">
-                                                                    <img src="https://limak.az/new_front/assets2/images/passport/4.svg"
+                                                                    <img src="https://limak.az/new_front/assets/images/passport/4.svg"
                                                                          alt="">
                                                                 </div>
                                                             </div>
@@ -206,7 +214,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <input asp-for="Address" id="regr-adress" required="required"
-                                                       placeholder="Ş/V-dəki ünvan" class="form-control">
+                                                       placeholder="@_localizer.GetValue("Address")" class="form-control">
                                                 <span class="text-danger" asp-validation-for="Address"></span>
                                             </div>
                                         </div>
@@ -217,139 +225,29 @@
                                                 <input class="form-check-input" asp-for="IsTermsAccepted" type="checkbox"
                                                        id="invalidCheck" required>
                                                 <label class="form-check-label" for="invalidCheck">
-                                                    <a  id="terms-link" data-bs-toggle="modal"
+                                                    <a id="terms-link" data-bs-toggle="modal"
                                                        data-bs-target="#exampleTermandCondi" required="required">
-                                                        İstifadəçi qaydaları ilə razıyam
+                                                        @_localizer.GetValue("AcceptTerms")
                                                     </a>
                                                 </label>
                                                 <br />
-                                                    <span class="text-danger" asp-validation-for="IsTermsAccepted"></span>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleTermandCondi" tabindex="-1"
-                                                     aria-labelledby="exampleTermsLabel" aria-hidden="true">
-                                                    <div class="modal-dialog terms-modal-dialog">
-                                                        <div class="modal-content terms-modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title modal-terms-title fs-5"
-                                                                    id="exampleTermsLabel">
-                                                                    "LİMAK AZ" MMC-NİN
-                                                                    İSTİFADƏÇİ QAYDALARI
-                                                                </h1>
-                                                                <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body terms-modal-body">
-                                                                <div class="reminder-modal">
-                                                                    <div>
-                                                                        <ul>
-                                                                            <li>
-                                                                                İstifadəçi sistemdə qeydiyyatdan
-                                                                                keçməklə, şəxsi məlumatlarını tələb
-                                                                                olunan qaydada qeyd etməlidir.
-                                                                            </li>
-                                                                            <li>
-                                                                                İstifadəçi qeydiyyatdan keçmək üçün
-                                                                                daxil etdiyi məlumatların
-                                                                                doğruluğuna görə məsuliyyət daşıyır.
-                                                                            </li>
-                                                                            <li>
-                                                                                Sonradan qeyd olunmuş məlumatlarda
-                                                                                dəyişikliklər olarsa, bununla
-                                                                                bağlı sistemə məlumatların
-                                                                                yenilənməsi üçün bildiriş göndərmək
-                                                                                istifadəçinin öhdəliyidir.
-                                                                            </li>
-                                                                            <li>
-                                                                                Qadağan olunmuş məhsullar sifariş
-                                                                                verilərsə, xidmət həmin istifadəçi
-                                                                                üçün bloklana bilər.
-                                                                            </li>
-                                                                            <li>
-
-                                                                                Sistemin tələb etdiyi qaydada ödəmə
-                                                                                etmək istifadəçinin öhdəliyidir.
-                                                                            </li>
-                                                                            <li>
-
-                                                                                Öz şifrə və məlumatlarını digər
-                                                                                şəxslərlə paylaşmamalıdır. Belə
-                                                                                hallar
-                                                                                baş verərsə borclanmaya və sifarişin
-                                                                                statusunun dəyişməsinə görə,
-                                                                                şəxs özü cavabdehdir.
-                                                                            </li>
-                                                                            <li>
-
-                                                                                İstifadəçi ay ərzində dəyəri 300 (üç
-                                                                                yüz) ABŞ dolları məbləğinədək
-                                                                                əşya sifariş etdikdə, istifadəçidən
-                                                                                gömrük rüsumu tutulmur.
-                                                                            </li>
-                                                                            <li>
-
-                                                                                Sifarişin dəyəri bir ay ərzində 300
-                                                                                (üç yüz) ABŞ dolları məbləğindən
-                                                                                artıq olarsa, İstifadəçi sifarişin
-                                                                                ümumi dəyərinin 36%-i (otuz altı
-                                                                                faiz)
-                                                                                miqdarında gömrük orqanlarına gömrük
-                                                                                rüsumu ödəmək öhdəliyini öz
-                                                                                üzərinə götürür.
-                                                                            </li>
-                                                                            <li>
-
-                                                                                Daşıyıcı bütün sifarişlərin
-                                                                                daşımasını həyata keçirərkən yalnız
-                                                                                300
-                                                                                ABŞ dollarınadək sifariş olduqda
-                                                                                gömrük sənədləşmələrini öz üzərinə
-                                                                                götürür. Dəyəri daha yüksək məbləğdə
-                                                                                sifariş verilərsə, daşıyıcı malı
-                                                                                Gömrük terminalınadək gətirməyi,
-                                                                                istifadəçi isə digər sənədləşmə və
-                                                                                malın terminaldan təhvil
-                                                                                götürülməsini öz üzərinə götürür.
-                                                                            </li>
-                                                                            <li>
-
-                                                                                Daşınan bağlamanın çatdırılma üçün
-                                                                                xidmət haqqı iki meyar üzrə, çəki
-                                                                                və həcmə görə hesablanır. İstifadəçi
-                                                                                bu meyarlar üzrə hesablanmış
-                                                                                daşıma haqqının daha çox olanı üzrə
-                                                                                ödəniş aparmalıdır.
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="reminder-modal-btn">
-                                                                    <button type="button"
-                                                                            class="btn-terms-agree">
-                                                                        <div>
-                                                                            Təsdiq
-                                                                        </div>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <span class="text-danger" asp-validation-for="IsTermsAccepted"></span>
+                                                
                                             </div>
                                         </div>
                                         <button type="submit" class="btn btn-submit btn-primary">
-                                            <span>QEYDİYYAT</span>
+                                            <span>@_localizer.GetValue("Registration")</span>
                                         </button>
                                     </div>
-                                    
+
                                     <div class="validation-summary">
-                                            <div asp-validation-summary="ModelOnly"></div>
+                                        <div asp-validation-summary="ModelOnly"></div>
                                     </div>
 
                                 </div>
                             </form>
                         </div>
-                       
+
                     </div>
 
                 </div>
