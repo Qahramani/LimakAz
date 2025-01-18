@@ -8,10 +8,12 @@ public class UserPanelController : Controller
 {
     private readonly IUserPanelService _userPanelService;
     private readonly ICookieService _cookieService;
-    public UserPanelController(IUserPanelService userPanelService, ICookieService cookieService)
+    private readonly IAddressLineService _addressLineService;
+    public UserPanelController(IUserPanelService userPanelService, ICookieService cookieService, IAddressLineService addressLineService)
     {
         _userPanelService = userPanelService;
         _cookieService = cookieService;
+        _addressLineService = addressLineService;
     }
 
     public IActionResult Index()
@@ -19,6 +21,12 @@ public class UserPanelController : Controller
         return View();
     }
 
+    public async Task<IActionResult> AbroadAddresses()
+    {
+        var dictionary = await _addressLineService.GetDictionaryAsync(1);
+
+        return View(dictionary);
+    }
     public async Task<IActionResult> Settings()
     {
         var language = await _cookieService.GetSelectedLanguageTypeAsync();

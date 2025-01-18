@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250117020855_WareHouseEntityAdded")]
+    partial class WareHouseEntityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,148 +49,6 @@ namespace LimakAz.Persistence.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("AddressLines");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-VergiNo",
-                            Value = "6081089593"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-Ulke",
-                            Value = "Türkiye"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-VergiDairesi",
-                            Value = "Şişli"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-PostKodu",
-                            Value = "34060"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-Telefon",
-                            Value = "05364700021"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-İlce",
-                            Value = "Eyüpsultan"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-TCKimlik",
-                            Value = "35650276048"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-Semt",
-                            Value = "Güzeltepe mahallesi"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-IlSehir",
-                            Value = "İstanbul"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-AdressSatir",
-                            Value = ",Güzeltepe mahallesi,Akdeniz caddesi no:33/A"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-AdressBasligi",
-                            Value = "LIMAK"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CountryId = 4,
-                            Key = "XaricdekiUnvanlar-AdSoyad",
-                            Value = "LİMAK TAŞIMACILIK DIŞ TİCARET LİMİTED ŞİRKETİ"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CountryId = 4,
-                            Key = "Is-Saatlari",
-                            Value = "Həftəiçi 5 gün: 09:00 - 17:00\r\nŞənbə: 09:00 - 14:00\r\nBazar günü qeyri-iş günüdür."
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CountryId = 5,
-                            Key = "Street-Address",
-                            Value = "1234 Elm Street, Suite 567"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CountryId = 5,
-                            Key = "City",
-                            Value = "New York"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CountryId = 5,
-                            Key = "State",
-                            Value = "NY"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CountryId = 5,
-                            Key = "ZIP-Code",
-                            Value = "10001"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CountryId = 5,
-                            Key = "Country",
-                            Value = "USA"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CountryId = 5,
-                            Key = "Phone-Number",
-                            Value = "+1-555-123-4567"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CountryId = 5,
-                            Key = "Working-Hours",
-                            Value = "Mon-Fri, 9:00 AM - 5:00 PM EST"
-                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.AppUser", b =>
@@ -348,21 +209,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 18, 2, 13, 48, 291, DateTimeKind.Utc).AddTicks(3382),
+                            CreatedAt = new DateTime(2025, 1, 17, 2, 8, 54, 336, DateTimeKind.Utc).AddTicks(9145),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 18, 2, 13, 48, 291, DateTimeKind.Utc).AddTicks(3383),
+                            UpdatedAt = new DateTime(2025, 1, 17, 2, 8, 54, 336, DateTimeKind.Utc).AddTicks(9145),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 18, 2, 13, 48, 291, DateTimeKind.Utc).AddTicks(3386),
+                            CreatedAt = new DateTime(2025, 1, 17, 2, 8, 54, 336, DateTimeKind.Utc).AddTicks(9148),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 18, 2, 13, 48, 291, DateTimeKind.Utc).AddTicks(3387),
+                            UpdatedAt = new DateTime(2025, 1, 17, 2, 8, 54, 336, DateTimeKind.Utc).AddTicks(9149),
                             UpdatedBy = "default"
                         });
                 });
@@ -481,51 +342,6 @@ namespace LimakAz.Persistence.Migrations
                             ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/l9ropu52ecsgkqyd3uej.png",
                             Link = "https://apagroup.az/az"
                         });
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.Chat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ModeratorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModeratorId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Chats");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.CitizenShip", b =>
@@ -919,51 +735,6 @@ namespace LimakAz.Persistence.Migrations
                     b.ToTable("LocalPointDetails");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ChatId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChatId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("LimakAz.Domain.Entities.News", b =>
                 {
                     b.Property<int>("Id")
@@ -1027,72 +798,6 @@ namespace LimakAz.Persistence.Migrations
                     b.HasIndex("NewsId");
 
                     b.ToTable("NewDetails");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("Notifications");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.NotificationDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NotificationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageId");
-
-                    b.HasIndex("NotificationId");
-
-                    b.ToTable("NotificationDetails");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Setting", b =>
@@ -1797,25 +1502,6 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.Chat", b =>
-                {
-                    b.HasOne("LimakAz.Domain.Entities.AppUser", "Moderator")
-                        .WithMany()
-                        .HasForeignKey("ModeratorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("LimakAz.Domain.Entities.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Moderator");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("LimakAz.Domain.Entities.CitizenShipDetail", b =>
                 {
                     b.HasOne("LimakAz.Domain.Entities.CitizenShip", "CitizenShip")
@@ -1911,25 +1597,6 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("LocalPoint");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.Message", b =>
-                {
-                    b.HasOne("LimakAz.Domain.Entities.Chat", "Chat")
-                        .WithMany("Messages")
-                        .HasForeignKey("ChatId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("LimakAz.Domain.Entities.AppUser", "User")
-                        .WithMany("Messages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Chat");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("LimakAz.Domain.Entities.NewsDetail", b =>
                 {
                     b.HasOne("LimakAz.Domain.Entities.Language", "Language")
@@ -1947,32 +1614,6 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("Language");
 
                     b.Navigation("News");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.Notification", b =>
-                {
-                    b.HasOne("LimakAz.Domain.Entities.AppUser", null)
-                        .WithMany("Notifications")
-                        .HasForeignKey("AppUserId");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.NotificationDetail", b =>
-                {
-                    b.HasOne("LimakAz.Domain.Entities.Language", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LimakAz.Domain.Entities.Notification", "Notification")
-                        .WithMany("NotificationDetails")
-                        .HasForeignKey("NotificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Language");
-
-                    b.Navigation("Notification");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.SettingDetail", b =>
@@ -2105,21 +1746,9 @@ namespace LimakAz.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.AppUser", b =>
-                {
-                    b.Navigation("Messages");
-
-                    b.Navigation("Notifications");
-                });
-
             modelBuilder.Entity("LimakAz.Domain.Entities.Category", b =>
                 {
                     b.Navigation("CategoryDetails");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.Chat", b =>
-                {
-                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.CitizenShip", b =>
@@ -2154,11 +1783,6 @@ namespace LimakAz.Persistence.Migrations
             modelBuilder.Entity("LimakAz.Domain.Entities.News", b =>
                 {
                     b.Navigation("NewsDetails");
-                });
-
-            modelBuilder.Entity("LimakAz.Domain.Entities.Notification", b =>
-                {
-                    b.Navigation("NotificationDetails");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Setting", b =>

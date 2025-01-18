@@ -2,6 +2,5 @@
 
 public class Notification : BaseAuditableEntity
 {
-    public DateTime? SentTime { get; set; }
-    public List<NotificationDetail> NotificationDetails { get; set; } = [];
+    public ICollection<NotificationDetail> NotificationDetails { get; set; } = [];
 }

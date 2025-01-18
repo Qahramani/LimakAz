@@ -54,6 +54,10 @@ public static class ServiceRegistrations
         services.AddScoped<IGenderRepository, GenderRepository>();
         services.AddScoped<IUserPositionRepository, UserPositionRepository>();
         services.AddScoped<ICitizenShipRepository, CitizenShipRepository>();
+        services.AddScoped<IAddressLineRepository, AddressLineRepository>();
+        services.AddScoped<INotificationRepository, NotificationRepository>();
+        services.AddScoped<IChatRepository, ChatRepository>();
+        services.AddScoped<IMessageRepository, MessageRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -75,6 +79,7 @@ public static class ServiceRegistrations
         services.AddScoped<IUserPositionService, UserPositionService>();
         services.AddScoped<ICitizenShipService, CitizenShipService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<INotificationService, NotificationService>();;
 
         services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
 

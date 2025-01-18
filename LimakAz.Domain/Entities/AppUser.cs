@@ -24,4 +24,6 @@ public class AppUser : IdentityUser
     public CitizenShip? CitizenShip { get; set; }
     public int UserPositionId { get; set; }
     public UserPosition? UserPosition { get; set; }
+    public ICollection<Message> Messages { get; set; } = [];
+    public ICollection<Notification> Notifications{ get; set; } = [];
 }

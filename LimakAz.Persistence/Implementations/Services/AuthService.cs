@@ -26,10 +26,11 @@ internal class AuthService : IAuthService
     private readonly ICitizenShipService _cityShipService;
     private readonly IUserPositionService _userPositionService;
     private readonly IValidationMessageProvider _localizer;
+    private readonly ICookieService _cookieService;
     public AuthService(ILocalPointService localPointService, IGenderService genderService, ICitizenShipService cityShipService,
                        IUserPositionService userPositionService, IMapper mapper, IEmailService emailService, IHttpContextAccessor contextAccessor,
                        UserManager<AppUser> userManager, IValidationMessageProvider localizer, IUrlHelperFactory urlHelperFactory,
-                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager)
+                       IActionContextAccessor actionContextAccessor, SignInManager<AppUser> signInManager, ICookieService cookieService)
     {
         _localPointService = localPointService;
         _genderService = genderService;
@@ -45,6 +46,7 @@ internal class AuthService : IAuthService
 
         _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext ?? new());
         _signInManager = signInManager;
+        _cookieService = cookieService;
     }
 
     public RegisterDto GetRegisterDto(RegisterDto dto, LanguageType language = LanguageType.Azerbaijan)
@@ -342,5 +344,17 @@ internal class AuthService : IAuthService
             return false;
 
         return true;
+    }
+
+    public async Task<AppUser> GetAutrhorizedUser()
+    {
+        var userId =  _cookieService.GetUserId();
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (userId == null)
+            throw new NotFoundException("");
+
+        return user!;
     }
 }

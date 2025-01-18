@@ -13,6 +13,7 @@ public static class SeedDataService
         modelBuilder.AddSettings();
         modelBuilder.AddCitizenShips();
         modelBuilder.AddUserPositions();
+        modelBuilder.AddAddressLines();
     }
 
     public static void AddLanguages(this ModelBuilder modelBuilder)
@@ -150,6 +151,33 @@ public static class SeedDataService
             new UserPositionDetail { Id = 2, Name = "Физическое лицо", UserPositionId = 1, LanguageId = 2 },
             new UserPositionDetail { Id = 3, Name = "Hüquq şəxs", UserPositionId = 2, LanguageId = 1 },
             new UserPositionDetail { Id = 4, Name = "Юридическое лицо", UserPositionId = 2, LanguageId = 2 }
+            );
+    }
+
+    public static void AddAddressLines(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<AddressLine>().HasData(
+            new AddressLine { Id = 1, Key= "XaricdekiUnvanlar-VergiNo", Value = "6081089593", CountryId =4 },
+            new AddressLine { Id = 2, Key= "XaricdekiUnvanlar-Ulke", Value = "Türkiye", CountryId =4 },
+            new AddressLine { Id = 3, Key= "XaricdekiUnvanlar-VergiDairesi", Value = "Şişli", CountryId =4 },
+            new AddressLine { Id = 4, Key= "XaricdekiUnvanlar-PostKodu", Value = "34060", CountryId =4 },
+            new AddressLine { Id = 5, Key= "XaricdekiUnvanlar-Telefon", Value = "05364700021", CountryId =4 },
+            new AddressLine { Id = 6, Key= "XaricdekiUnvanlar-İlce", Value = "Eyüpsultan", CountryId =4 },
+            new AddressLine { Id = 7, Key= "XaricdekiUnvanlar-TCKimlik", Value = "35650276048", CountryId =4 },
+            new AddressLine { Id = 8, Key= "XaricdekiUnvanlar-Semt", Value = "Güzeltepe mahallesi", CountryId =4 },
+            new AddressLine { Id = 9, Key= "XaricdekiUnvanlar-IlSehir", Value = "İstanbul", CountryId =4 },
+            new AddressLine { Id = 10, Key= "XaricdekiUnvanlar-AdressSatir", Value = ",Güzeltepe mahallesi,Akdeniz caddesi no:33/A", CountryId =4 },
+            new AddressLine { Id = 11, Key= "XaricdekiUnvanlar-AdressBasligi", Value ="LIMAK", CountryId =4 },
+            new AddressLine { Id = 12, Key= "XaricdekiUnvanlar-AdSoyad", Value = "LİMAK TAŞIMACILIK DIŞ TİCARET LİMİTED ŞİRKETİ", CountryId = 4},
+            new AddressLine { Id = 13,Key ="Is-Saatlari", Value = "Həftəiçi 5 gün: 09:00 - 17:00\r\nŞənbə: 09:00 - 14:00\r\nBazar günü qeyri-iş günüdür.", CountryId = 4},
+
+            new AddressLine { Id = 14,Key = "Street-Address", Value = "1234 Elm Street, Suite 567", CountryId = 5},
+            new AddressLine { Id = 15,Key = "City", Value = "New York", CountryId = 5},
+            new AddressLine { Id = 16,Key ="State", Value = "NY", CountryId = 5},
+            new AddressLine { Id = 17,Key = "ZIP-Code", Value = "10001", CountryId = 5},
+            new AddressLine { Id = 18,Key = "Country", Value = "USA", CountryId = 5},
+            new AddressLine { Id = 19,Key = "Phone-Number", Value = "+1-555-123-4567", CountryId = 5},
+            new AddressLine { Id = 20,Key ="Working-Hours", Value = "Mon-Fri, 9:00 AM - 5:00 PM EST", CountryId = 5}
             );
     }
 

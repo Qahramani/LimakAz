@@ -18,25 +18,27 @@ public class CurrencyService : ICurrencyService
 
     public async Task<decimal> GetCurrencyCoefficientAsync(string code)
     {
-        if (code.ToLower() == "azn") return 1;
+        return 1;
+        //if (code.ToLower() == "azn") return 1;
 
-        var url = $"{_currencyBasePath}{DateTime.Now.ToString("dd.MM.yyyy")}.xml";
+        //var url = $"{_currencyBasePath}{DateTime.Now.ToString("dd.MM.yyyy")}.xml";
 
-        var response = await _httpClient.GetStringAsync(url);
 
-        XmlSerializer serializer = new XmlSerializer(typeof(ValCurs));
-        ValCurs valCurs = new();
+        //var response = await _httpClient.GetStringAsync(url);
 
-        using (StringReader reader = new StringReader(response))
-        {
-            valCurs = (ValCurs)serializer.Deserialize(reader)!;
-        }
+        //XmlSerializer serializer = new XmlSerializer(typeof(ValCurs));
+        //ValCurs valCurs = new();
 
-        var currencies = valCurs?.ValType.FirstOrDefault(x => x.Type == "Xarici valyutalar");
+        //using (StringReader reader = new StringReader(response))
+        //{
+        //    valCurs = (ValCurs)serializer.Deserialize(reader)!;
+        //}
 
-        var selectedCurrency = currencies?.Valute.FirstOrDefault(x => x.Code.Equals(code, StringComparison.CurrentCultureIgnoreCase));
+        //var currencies = valCurs?.ValType.FirstOrDefault(x => x.Type == "Xarici valyutalar");
 
-        return (decimal)(selectedCurrency?.Value ?? 1);
+        //var selectedCurrency = currencies?.Valute.FirstOrDefault(x => x.Code.Equals(code, StringComparison.CurrentCultureIgnoreCase));
+
+        //return (decimal)(selectedCurrency?.Value ?? 1);
     }
 
     public async Task<Dictionary<string,decimal>> GetExchangeRatesAsync()

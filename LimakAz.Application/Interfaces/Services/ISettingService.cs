@@ -1,5 +1,4 @@
-﻿using LimakAz.Application.DTOs.LanguageDtos;
-using LimakAz.Application.Interfaces.Services.Generic;
+﻿using LimakAz.Application.Interfaces.Services.Generic;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace LimakAz.Application.Interfaces.Services;

@@ -1,0 +1,345 @@
+﻿﻿@using System.Security.Claims
+@inject IAuthService _authService;
+@model Dictionary<string,string>
+
+@{
+    ViewData["Template"] = "Template2";
+    var user = await _authService.GetAutrhorizedUser();
+}
+<!-- Main Start -->
+<main id="main"
+      style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")') no-repeat; background-size: 100%; background-position: top center;"
+      class="bg-full">
+    <div class="main-container" style="max-width: 114rem;">
+        <section id="user-panel">
+            <div class="block">
+                <div class="block-header">
+                    <h2 class="block-title" style="font-size: 17px;text-transform: uppercase;">
+                        İstifadəçi Paneli
+                    </h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Ana səhifə</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <span>İstifadəçi Paneli</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Aside -->
+                <div class="col-md-4 col-lg-3 col-12">
+                    @await Component.InvokeAsync("UserPanel")
+                </div>
+                <!-- Content -->
+                <div class="col-sm-12 col-md-8 col-lg-9">
+                    <div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-lg-12 col-12">
+                                    <div>
+                                        <ul id="headerList" class="nav nav nav-tabs card-tabs-nav">
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link active" data-target="1">
+                                                    <img src="~/assets2/images/tr-circle.svg" alt=""
+                                                         class="card-tabs-nav-icon">
+                                                    <span class="card-tabs-nav-title">
+                                                        Türkiyə
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item card-tabs">
+                                                <a href="#" class="nav-link" data-target="2">
+                                                    <img src="~/assets2/images/usa-circle.svg" alt=""
+                                                         class="card-tabs-nav-icon">
+                                                    <span class="card-tabs-nav-title">Amerika</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content card-tabs-body">
+                                        <div class="tab-pane active active-tab" data-id="1">
+                                            <div class="card order-item order-item-address address-block">
+                                                <div class="card-header">
+                                                    <div class="custom-list-group">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Ad, Soyad
+                                                            </h5>
+                                                            <div class="order-item-copy">
+                                                                <p data-id="1" id="copyText"
+                                                                   class="order-item-value noselect">
+                                                                    @user.Firstname - @Model["XaricdekiUnvanlar-AdSoyad"]
+                                                                </p>
+                                                                <div data-target="1" class="copy">
+                                                                    <button class="btn btn-link">
+                                                                        <i class="fas fa-copy"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Adres başlığı
+                                                            </h5>
+                                                            <div class="order-item-copy">
+                                                                <p data-id="2" id="copyText"
+                                                                   class="order-item-value noselect">
+                                                                    @Model["XaricdekiUnvanlar-AdressBasligi"] - @user.Code - @user.Firstname @user.Lastname
+                                                                </p>
+                                                                <div data-target="2" class="copy">
+                                                                    <button class="btn btn-link">
+                                                                        <i class="fas fa-copy"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Adres satır 1
+                                                            </h5>
+                                                            <p class="order-item-label-info">
+                                                                ( Müştəri kodu,ad və
+                                                                soyadınızla birgə tam olaraq kopyalayın )
+                                                            </p>
+                                                            <div class="order-item-copy">
+                                                                <p id="copyText" data-id="3"
+                                                                   class="order-item-value noselect">
+                                                                    @User.FindFirstValue(ClaimTypes.Name) @user.Firstname @user.Lastname ,@Model["XaricdekiUnvanlar-AdressSatir"]
+                                                                    <div class="copy" data-target="3">
+                                                                        <button class="btn btn-link">
+                                                                            <i class="fas fa-copy"></i>
+                                                                        </button>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="list-group list-group-horizontal">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                İl-Şehir
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-IlSehir"]
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Semt
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-Semt"]
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                TC kimlik
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-TCKimlik"]
+
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list-group list-group-horizontal">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                İlçe
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-İlce"]
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Post Kodu
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-PostKodu"]
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Telefon
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-Telefon"]
+
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list-group list-group-horizontal">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Vergi dairesi
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-VergiDairesi"]
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Ulke
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-Ulke"]
+
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Vergi No
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["XaricdekiUnvanlar-VergiNo"]
+
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="card-header">
+                                                    <div class="custom-list-group">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Is Saatlari
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["Is-Saatlari"]
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane active-tab" data-id="2">
+                                            <div class="card order-item order-item-address address-block">
+                                                <div class="card-header">
+                                                    <div class="custom-list-group">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Name
+                                                            </h5>
+                                                            <div class="order-item-copy">
+                                                                <p data-id="1" id="copyText"
+                                                                   class="order-item-value noselect">
+                                                                    @user.Firstname -  @Model["Country"] -  @Model["City"]
+                                                                </p>
+                                                                <div data-target="1" class="copy">
+                                                                    <button class="btn btn-link">
+                                                                        <i class="fas fa-copy"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Address Line
+                                                            </h5>
+                                                            <div class="order-item-copy">
+                                                                <p data-id="2" id="copyText"
+                                                                   class="order-item-value noselect">
+                                                                    LİMAK - @user.Code - @user.Firstname @user.Lastname
+                                                                </p>
+                                                                <div data-target="2" class="copy">
+                                                                    <button class="btn btn-link">
+                                                                        <i class="fas fa-copy"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Address Line 2
+                                                            </h5>
+                                                            <p class="order-item-label-info">
+                                                                ( Müştəri kodu,ad və
+                                                                soyadınızla birgə tam olaraq kopyalayın )
+                                                            </p>
+                                                            <div class="order-item-copy">
+                                                                <p id="copyText" data-id="3"
+                                                                   class="order-item-value noselect">
+                                                                    @user.Code - @user.Firstname @user.Lastname, @Model["Street-Address"]
+                                                                </p>
+                                                                <div class="copy" data-target="3">
+                                                                    <button class="btn btn-link">
+                                                                        <i class="fas fa-copy"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="list-group list-group-horizontal">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                State
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["State"]
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                City
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["City"]
+                                                            </p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                ZIP-Code
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["ZIP-Code"]
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="list-group list-group-horizontal">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Phone
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["Phone-Number"]
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr />
+                                                <div class="card-header">
+                                                    <div class="custom-list-group">
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">
+                                                                Working Hours
+                                                            </h5>
+                                                            <p class="order-item-value">
+                                                                @Model["Working-Hours"]
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<!-- Main End -->

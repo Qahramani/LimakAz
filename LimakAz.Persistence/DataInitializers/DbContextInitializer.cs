@@ -47,19 +47,31 @@ public class DbContextInitializer
     {
         var admin = _configuration.GetSection("Admin").Get<Admin>();
 
-        if (admin != null)
+        if (admin == null)
             return;
 
-        var existUser = _userManager.FindByNameAsync(admin!.Username);
+        var existUser = await _userManager.FindByNameAsync(admin.Username);
 
         if (existUser != null)
             return;
 
         var newUser = new AppUser
         {
-            UserName = admin!.Username,
-            Email = admin!.Email,
-            Firstname = admin.Fullname
+            UserName = admin.Username,
+            Email = admin.Email,
+            Firstname = admin.Firstname,
+            Lastname = admin.Lastname,
+            Code = "1111111",
+            FinCode = "AA11111",
+            PhoneNumber = "558983567",
+            SerialNumber = "AA1111111",
+            Address = "Azerbaijan/Baku",
+            LocalPointId = 1,
+            GenderId = 1,
+            CitizenShipId =1,
+            NotificationType = NotificationType.Whatsapp,
+            UserPositionId = 1,
+            BirthDate = DateTime.Now,
         };
 
         var result = await _userManager.CreateAsync(newUser,admin.Password);
