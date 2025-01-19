@@ -4,6 +4,7 @@ using LimakAz.Persistence.Interceptors;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace LimakAz.Persistence.Contexts;
 
@@ -15,38 +16,66 @@ public class AppDbContext : IdentityDbContext<AppUser>
         _entityInterceptor = entityInterceptor;
     }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        builder.AddSeedData();
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.AddSeedData();
 
-        builder.Entity<Chat>()
+        modelBuilder.Entity<Chat>()
             .HasOne(x => x.User)
             .WithMany()
             .HasForeignKey(x =>x.UserId)
             .OnDelete(DeleteBehavior.Restrict);
-        builder.Entity<Chat>()
+        modelBuilder.Entity<Chat>()
             .HasOne(x => x.Moderator)
             .WithMany()
             .HasForeignKey(x => x.ModeratorId)
             .OnDelete(DeleteBehavior.Restrict);
-        builder.Entity<Message>()
+        modelBuilder.Entity<Message>()
             .HasOne(x => x.Chat)
             .WithMany(x => x.Messages)
             .HasForeignKey(x => x.ChatId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Order>()
+       .HasOne(o => o.User)
+       .WithMany()  // Assuming User has many Orders
+       .HasForeignKey(o => o.UserId)
+       .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
 
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.Country)
+            .WithMany()  // Assuming Country has many Orders
+            .HasForeignKey(o => o.CountryId)
+            .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
 
-       builder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<News>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<Tariff>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<LocalPoint>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<Content>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<Notification>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<Message>().HasQueryFilter(x => !x.IsDeleted);
-       builder.Entity<Chat>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.Shop)
+            .WithMany()  // Assuming Shop has many Orders
+            .HasForeignKey(o => o.ShopId)
+            .OnDelete(DeleteBehavior.SetNull);  // Prevent cascading delete
+
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.LocalPoint)
+            .WithMany()  // Assuming LocalPoint has many Orders
+            .HasForeignKey(o => o.LocalPointId)
+            .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
+
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.Status)
+            .WithMany()  // Assuming Status has many Orders
+            .HasForeignKey(o => o.StatusId)
+            .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
+
+        modelBuilder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<News>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<Tariff>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<LocalPoint>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<Content>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<Notification>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<Message>().HasQueryFilter(x => !x.IsDeleted);
+       modelBuilder.Entity<Chat>().HasQueryFilter(x => !x.IsDeleted);
     
-        base.OnModelCreating(builder);
+        base.OnModelCreating(modelBuilder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -85,5 +114,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<NotificationDetail> NotificationDetails{ get; set; } = null!;
     public DbSet<Message> Messages{ get; set; } = null!;
     public DbSet<Chat> Chats{ get; set; } = null!;
+    public DbSet<Status> Statuses{ get; set; } = null!;
+    public DbSet<StatusDetail> StatusDetails{ get; set; } = null!;
 
 }

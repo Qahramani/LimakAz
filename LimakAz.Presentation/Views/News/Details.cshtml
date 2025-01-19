@@ -69,7 +69,7 @@
                             </article>
                             <div class="backBtnBlock">
                                 <i class="fa-solid fa-angle-left"></i>
-                                <a href="#" class="backBtn">@_localizer.GetValue("Back")</a>
+                                <a asp-controller="news" asp-action="index" class="backBtn">@_localizer.GetValue("Back")</a>
                             </div>
 
                         </div>
@@ -85,13 +85,13 @@
                                         {
 
                                         <a asp-controller="news" asp-action="details" asp-route-id="@item.Id" class="news-card">
-                                            <div class="news-side-bar-article">
+                                            <div class="news-side-bar-article" style="display:block">
                                                 <img src="@item.ImagePath"
                                                      class="card-img-left" alt="">
                                                 <div class="news-sidebar-article-body">
                                                         <h4 class="card-title">@item.NewsDetails.FirstOrDefault()?.Title</h4>
                                                     <p class="news-card-date-sidebar">
-                                                        <img src="https://limak.az/new_front//assets/img/icons/calendar.svg" alt="">
+                                                       
                                                         <span>@item.UpdatedAt</span>
                                                     </p>
                                                 </div>
@@ -112,3 +112,4 @@
     </div>
 
 </div>
+

@@ -4,7 +4,7 @@
 
 @{
     ViewData["Template"] = "Template2";
-    var user = await _authService.GetAutrhorizedUser();
+    var user = await _authService.GetAuthenticatedUserAsync();
 }
 <!-- Main Start -->
 <main id="main"

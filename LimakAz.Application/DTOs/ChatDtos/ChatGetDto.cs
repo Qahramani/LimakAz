@@ -1,11 +1,17 @@
 ﻿namespace LimakAz.Application.DTOs;
 
+public class ConnectionDto
+{
+    public string UserId { get; set; } = null!;
+    public List<string> ConnectionIds { get; set; } = [];
+}
+
 public class ChatGetDto : IDto
 {
     public int Id { get; set; }
-    public int UserId { get; set; }
+    public string UserId { get; set; } = null!;
     public AppUser? User { get; set; }
-    public int ModeratorId { get; set; }
+    public string? ModeratorId { get; set; }
     public AppUser? Moderator { get; set; }
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
@@ -14,7 +20,7 @@ public class ChatGetDto : IDto
 
 public class ChatCreateDto : IDto
 {
-    public int UserId { get; set; }
+    public string UserId { get; set; } = null!;
     public int ModeratorId { get; set; }
 }
 
@@ -22,9 +28,9 @@ public class ChatCreateDto : IDto
 public class ChatUpdateDto : IDto
 {
     public int Id { get; set; }
-    public int UserId { get; set; }
+    public string UserId { get; set; } = null!;
     public AppUser? User { get; set; }
-    public int ModeratorId { get; set; }
+    public string ModeratorId { get; set; } = null!;
     public AppUser? Moderator { get; set; }
     public bool IsActive { get; set; }
     public List<MessageGetDto> Messages { get; set; } = [];

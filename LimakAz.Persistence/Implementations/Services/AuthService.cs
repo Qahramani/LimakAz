@@ -346,15 +346,22 @@ internal class AuthService : IAuthService
         return true;
     }
 
-    public async Task<AppUser> GetAutrhorizedUser()
+    public async Task<AppUser> GetAuthenticatedUserAsync()
     {
         var userId =  _cookieService.GetUserId();
 
         var user = await _userManager.FindByIdAsync(userId);
 
-        if (userId == null)
-            throw new NotFoundException("");
+        if (user == null)
+            throw new UnAuthorizedException();
 
         return user!;
+    }
+
+    public async Task<List<AppUser>> GetAllMembersAsync()
+    {
+        var users = await _userManager.GetUsersInRoleAsync(RoleType.Member.ToString());
+
+        return users.ToList();
     }
 }

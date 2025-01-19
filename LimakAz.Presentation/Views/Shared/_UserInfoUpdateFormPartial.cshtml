@@ -1,0 +1,103 @@
+﻿@model UserProfileUpdateDto
+<style>
+    .regr-phone-group {
+        display: flex; /* Aligns the elements horizontally */
+        align-items: flex-start; /* Vertically centers them */
+    }
+
+    .phone-prefix-regr {
+        margin-right: 10px; /* Adds space between the prefix and phone number input */
+    }
+
+    .dropdown-select-prefix {
+        width: 80px; /* Adjust the width as needed for your country code options */
+        height: 38px; /* Matching height with the phone input */
+        padding: 5px;
+        font-size: 14px; /* Matching font size */
+        border-radius: 8px; /* Border radius to match the input */
+        border: 1px solid #ced4da; /* Border to match the input */
+    }
+
+    .reg-phoneNum {
+        flex: 1; /* Makes the phone number input take the remaining space */
+        height: 38px; /* Same height as the dropdown */
+        padding: 5px;
+        font-size: 14px; /* Ensures the font size is consistent */
+        border-radius: 0.25rem; /* Matches the border radius */
+        border: 1px solid #ced4da; /* Same border as the dropdown */
+    }
+
+    .text-danger {
+        margin-top: 5px;
+    }
+
+</style>
+<div class="card-step">
+    <form asp-controller="userpanel" asp-action="UpdateProfile" method="post" class="form-settings">
+        <div class="row">
+            <div class="col-6">
+                <input asp-for="Firstname" type="text" placeholder="Ad"
+                       class="form-control">
+                <span class="text-danger" asp-validation-for="Firstname"></span>
+            </div>
+            <div class="col-6">
+                <input asp-for="Lastname" type="text" placeholder="Soyad"
+                       class="form-control">
+                <span class="text-danger" asp-validation-for="Lastname"></span>
+            </div>
+            <div class="col-6">
+                <select asp-items="@Model.LocalPoints" asp-for="LocalPointId" class="custom-select">
+                    <option disabled="disabled" value="">
+                        -- Çatdırılma
+                        ofisi --
+                    </option>
+                </select>
+            </div>
+            <div class="col-6">
+                <div>
+                    <div class="date-input">
+                        <input asp-for="BirthDate" class="date-input-regr form-control"
+                               id="validationCustom08" max="2030-01-01"
+                               required="required">
+                        <span class="text-danger" asp-validation-for="BirthDate"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <input asp-for="Address" type="text" placeholder="Adress"
+                       class="form-control">
+                <span class="text-danger" asp-validation-for="Address"></span>
+            </div>
+            <div class="col-6">
+                <div class="regr-phone-group" role="group">
+                    <!-- Prefix Dropdown -->
+                    <div class="phone-prefix-regr">
+                        <select class="dropdown-select-prefix" asp-for="NumberPrefixType">
+                            <option value="50">050</option>
+                            <option value="99">099</option>
+                            <option value="55">055</option>
+                            <option value="51">051</option>
+                            <option value="70">070</option>
+                            <option value="77">077</option>
+                        </select>
+                    </div>
+
+                    <!-- Phone Number Input -->
+                    <input asp-for="PhoneNumber" placeholder="Telefon"
+                           class="form-control reg-phoneNum" id="validationCustom"
+                           required>
+                </div>
+                <span class="text-danger" style="margin-left:10px" asp-validation-for="PhoneNumber"></span>
+            </div>
+
+            <div class="col-6">
+                <button type="submit" class="btn btn-submit btn-primary">
+                    <span>Yadda saxla</span>
+                </button>
+                @*   @{
+                    var result = Model.UserProfileInfo;
+                } *@
+            </div>
+        </div>
+    </form>
+</div>

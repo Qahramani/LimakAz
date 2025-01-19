@@ -1,0 +1,194 @@
+﻿@using LimakAz.Application.Interfaces.Services
+@model List<ChatGetDto>
+@inject ICookieService _cookieService;
+<div class="container my-5">
+    <div class="chat-container">
+        <!-- User List -->
+        <div class="user-list">
+            <ul>
+                @foreach (var chat in Model)
+                {
+                    <li class="user-item" onclick="fetchMessages('@chat.Id')">@chat.User?.Firstname @chat.User?.Lastname</li>
+                }
+            </ul>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-section">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                Chat with User 1
+            </div>
+
+            <!-- Chat Body -->
+            <div class="chat-body"></div>
+            <input type="hidden" id="current-user-id" value="@_cookieService.GetUserId()" />
+
+            <!-- Chat Footer -->
+            <div class="chat-footer">
+                <form id="chatForm" class="sendMessageForm" onsubmit="sendMessage(event)">
+                    <div class="input-group">
+                        <input type="text" id="message-text" name="text" class="form-control messageInput" placeholder="Type a message..." />
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentChatId = null; // Global variable to store the selected chatId
+
+    async function fetchMessages(chatId) {
+        currentChatId = chatId; // Update currentChatId
+        const response = await fetch(`/Admin/Chat/GetMessages?chatId=${chatId}`);
+        const messages = await response.json();
+
+        const chatBody = document.querySelector('.chat-body');
+        chatBody.innerHTML = ""; // Clear chat body
+
+        const currentUserId = document.getElementById('current-user-id').value;
+
+        messages.forEach((message) => {
+            const isCurrentUser = message.userId === currentUserId;
+            const messageDiv = `
+                <div class="message-container ${isCurrentUser ? 'partner-message' : 'user-message'}">
+                    <p>${message.fullname}</p>
+                    <div class="message">
+                        <p class="message-text">${message.text}</p>
+                        <small class="message-time">${new Date(message.sendAt).toLocaleString()}</small>
+                    </div>
+                </div>
+            `;
+            chatBody.innerHTML += messageDiv;
+        });
+
+        chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+    }
+
+    async function sendMessage(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const messageText = document.getElementById("message-text").value.trim();
+
+        if (!messageText || !currentChatId) return; // Skip if no message or no chat selected
+
+        const response = await fetch(`/Admin/Chat/SendMessage?chatId=${currentChatId}&text=${messageText}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // body: JSON.stringify({ text: messageText, chatId: currentChatId }),
+        });
+
+        if (response.ok) {
+            const message = await response.json();
+
+            const chatBody = document.querySelector('.chat-body');
+            const messageDiv = `
+                <div class="message-container user-message">
+                    <p>${message.fullname}</p>
+                    <div class="message">
+                        <p class="message-text">${message.text}</p>
+                        <small class="message-time">${new Date(message.sendAt).toLocaleString()}</small>
+                    </div>
+                </div>
+            `;
+            chatBody.innerHTML += messageDiv;
+
+            document.getElementById("message-text").value = ""; // Clear input
+            chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+        } else {
+            console.error("Failed to send message");
+        }
+    }
+</script>
+
+<style>
+    .chat-container {
+        display: flex;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        height: 70vh;
+    }
+
+    .user-list {
+        flex: 1;
+        max-width: 250px;
+        border-right: 1px solid #ccc;
+        overflow-y: auto;
+    }
+
+        .user-list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+    .user-item {
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .user-item:hover {
+            background-color: #f0f0f0;
+        }
+
+    .chat-section {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chat-header {
+        padding: 10px;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background-color: #fafafa;
+    }
+
+    .message-container {
+        margin-bottom: 10px;
+    }
+
+    .user-message {
+        text-align: right;
+    }
+
+    .partner-message {
+        text-align: left;
+    }
+
+    .message {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #e0f7fa;
+    }
+
+    .user-message .message {
+        background-color: #bbdefb;
+    }
+
+    .message-time {
+        display: block;
+        font-size: 0.8em;
+        color: #777;
+    }
+
+    .chat-footer {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        background-color: #f7f7f7;
+    }
+</style>
+

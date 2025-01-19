@@ -1,6 +1,7 @@
 using LimakAz.Application.ServiceRegistration;
 using LimakAz.Infrastructure.ServiceRegistraions;
 using LimakAz.Persistence.DataInitializers;
+using LimakAz.Persistence.Implementations.Services.Hubs;
 using LimakAz.Persistence.ServiceRegistrations;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Options;
@@ -38,6 +39,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

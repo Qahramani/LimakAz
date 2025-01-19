@@ -1,45 +1,101 @@
 ﻿using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
 internal class ChatService : IChatService
 {
-    private readonly IChatRepository _chatRepository;
+    private readonly IChatRepository _repository;
     private readonly IMapper _mapper;
     private readonly IAuthService _authService;
-    public ChatService(IChatRepository chatRepository, IMapper mapper, IAuthService authService)
+    private readonly ICookieService _cookieService;
+    public ChatService(IChatRepository chatRepository, IMapper mapper, IAuthService authService, ICookieService cookieService)
     {
-        _chatRepository = chatRepository;
+        _repository = chatRepository;
         _mapper = mapper;
         _authService = authService;
+        _cookieService = cookieService;
     }
 
     public async Task<bool> CreateAsync(ChatCreateDto dto, ModelStateDictionary ModelState)
     {
-        var user = _authService.GetAutrhorizedUser();
+        var user = await _authService.GetAuthenticatedUserAsync();
 
+        Chat chat = new()
+        {
+            UserId = user.Id,
+            IsActive = true
+        };
+
+        await _repository.CreateAsync(chat);
+        await _repository.SaveChangesAsync();
         return true;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var chat = await _repository.GetAsync(id);
+
+        if (chat == null)
+            throw new Exception();
+
+        _repository.SoftDelete(chat);
+        await _repository.SaveChangesAsync();
     }
 
-    public List<ChatGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
+    public  List<ChatGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
-        throw new NotImplementedException();
+        var chats = _repository.GetAll(include: _getWithIncludes());
+
+        chats.OrderByDescending(x => x.CreatedAt);
+
+        var dtos = _mapper.Map<List<ChatGetDto>>(chats);
+
+
+        return dtos;
     }
 
-    public Task<ChatGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    public async Task<ChatGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
     {
-        throw new NotImplementedException();
+        var chat = await _repository.GetAsync(x => x.Id == id , include: _getWithIncludes());
+
+        var dto = _mapper.Map<ChatGetDto>(chat);
+
+        return dto;
     }
 
-    public Task<PaginateDto<ChatGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
+    public async Task<PaginateDto<ChatGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
-        throw new NotImplementedException();
+        var query = _repository.GetAll(include :  _getWithIncludes());
+
+        var count = query.Count();
+
+        var pageCount = (int)Math.Ceiling((decimal)count/limit);
+
+        if(page > pageCount)
+            page = pageCount;
+
+        if (page < 1)
+            page = 1;
+
+        query = _repository.Paginate(query, limit, page);
+
+        query.OrderByDescending(x => x.CreatedAt);
+
+        var chats = await query.ToListAsync();
+
+        var dtos = _mapper.Map<List<ChatGetDto>>(chats);
+
+        PaginateDto<ChatGetDto> dto = new()
+        {
+            Items = dtos,
+            PageCount = pageCount,
+            CurrentPage = page,
+        };
+
+        return dto;
     }
 
     public Task<ChatUpdateDto> GetUpdatedDtoAsync(int id)
@@ -55,6 +111,36 @@ internal class ChatService : IChatService
     public Task<bool> UpdateAsync(ChatUpdateDto dto, ModelStateDictionary ModelState)
     {
         throw new NotImplementedException();
+    }
+
+  
+    public async Task<ChatGetDto> GetChatOfAuthenticatedUserAsync()
+    {
+        var user = await _authService.GetAuthenticatedUserAsync();
+
+        var chat = await _repository.GetAsync(x => x.UserId == user.Id, include: _getWithIncludes());
+
+        var dto = _mapper.Map<ChatGetDto>(chat);
+
+        return dto;
+    }
+    private static Func<IQueryable<Chat>, IIncludableQueryable<Chat, object>> _getWithIncludes()
+    {
+        return x => x.Include(x => x.User).Include(x => x.Moderator).Include(x => x.Messages);
+    }
+
+    public async Task<List<ChatGetDto>> GetAllMembersAsync()
+    {
+        var members = await _authService.GetAllMembersAsync();
+        var memberIds = members.Select(x => x.Id).ToList();
+            
+        var chats = _repository.GetAll(x => memberIds.Contains(x.UserId),include: _getWithIncludes());
+
+        chats.OrderByDescending(x => x.CreatedAt);
+
+        var dtos = _mapper.Map<List<ChatGetDto>>(chats);
+
+        return dtos;
     }
 }
 

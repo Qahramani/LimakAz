@@ -27,6 +27,8 @@ public static class ServiceRegistrations
         services.AddScoped<BaseEntityInterceptor>();
         services.AddScoped<DbContextInitializer>();
 
+        services.AddSignalR();
+
         _addLocalizers(services);
         _addIdentiy(services);
         _addRepositories(services);
@@ -79,7 +81,10 @@ public static class ServiceRegistrations
         services.AddScoped<IUserPositionService, UserPositionService>();
         services.AddScoped<ICitizenShipService, CitizenShipService>();
         services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<INotificationService, NotificationService>();;
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<IAddressLineService, AddressLineService>();
+        services.AddScoped<IChatService, ChatService>();
+        services.AddScoped<IMessageService, MessageService>();
 
         services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
 

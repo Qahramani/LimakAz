@@ -43,6 +43,36 @@ public class UserPanelService : IUserPanelService
         return dto;
     }
 
+    public async Task<UserProfileUpdateDto> GetUserProfileUpdateDtoAsync(LanguageType language = LanguageType.Azerbaijan)
+    {
+        var userId = _cookieService.GetUserId();
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+            throw new NotFoundException();
+
+        var localPoints = _localPointService.GetAll(language);
+
+        UserProfileUpdateDto userInfo = new()
+        {
+            Firstname = user.Firstname,
+            Lastname = user.Lastname,
+            BirthDate = user.BirthDate,
+            LocalPointId = user.LocalPointId,
+            Address = user.Address,
+            PhoneNumber = user.PhoneNumber?.Substring(2),
+            LocalPoints = localPoints.Select(x => new SelectListItem
+            {
+                Text = x.LocalPointDetails.FirstOrDefault()?.Name,
+                Value = x.Id.ToString()
+            }).ToList()
+        };
+        
+
+        return userInfo;
+    }
+
     public async Task<UserSettingDto> GetUserUpdateDtoAsync(LanguageType language = LanguageType.Azerbaijan)
     {
         var userId = _cookieService.GetUserId();
@@ -61,7 +91,7 @@ public class UserPanelService : IUserPanelService
             BirthDate = user.BirthDate,
             LocalPointId = user.LocalPointId,
             Address = user.Address,
-            PhoneNumber = user.PhoneNumber,
+            PhoneNumber = user.PhoneNumber?.Substring(2),
             LocalPoints = localPoints.Select(x => new SelectListItem
             {
                 Text = x.LocalPointDetails.FirstOrDefault()?.Name,
@@ -136,9 +166,9 @@ public class UserPanelService : IUserPanelService
             return false;
         }
 
-        user.Firstname = dto.Firstname;
-        user.Firstname = dto.Firstname;
-        user.Address = dto.Address;
+        user.Firstname = dto.Firstname!;
+        user.Lastname = dto.Lastname!;
+        user.Address = dto.Address!;
         user.PhoneNumber = ((int)dto.NumberPrefixType).ToString() + dto.PhoneNumber;
         user.BirthDate = dto.BirthDate;
         user.LocalPointId = dto.LocalPointId;

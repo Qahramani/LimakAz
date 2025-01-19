@@ -35,11 +35,11 @@
                         <div class="news-card-1 col-sm-6 col-md-4 col-12">
                             <a asp-controller="news" asp-action="details" asp-route-id="@item.Id" class="news-card">
                                 <div class="card-text">
-                                    <img src="@item.ImagePath"
+                                        <img src="@item.ImagePath" style="width: 240px;height: 168px;object-fit: cover;"
                                          alt="@item.NewsDetails.FirstOrDefault()?.Title">
                                     <div class="card-body">
-                                            <span class="card-text-head">@item.NewsDetails.FirstOrDefault()?.Title</span>
-                                        <p class="card-date">
+                                            <span class="card-text-head" style="padding:3px">@item.NewsDetails.FirstOrDefault()?.Title</span>
+                                        <p class="card-date" style="margin:auto">
                                             <i class="fa-solid fa-calendar-days"></i>
                                             <span>@item.UpdatedAt</span>
                                         </p>

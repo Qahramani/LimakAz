@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250119190306_OrderAndStatusAndStatusDetailAdded")]
+    partial class OrderAndStatusAndStatusDetailAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,21 +354,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 19, 20, 2, 19, 248, DateTimeKind.Utc).AddTicks(8173),
+                            CreatedAt = new DateTime(2025, 1, 19, 19, 3, 3, 290, DateTimeKind.Utc).AddTicks(8935),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 19, 20, 2, 19, 248, DateTimeKind.Utc).AddTicks(8175),
+                            UpdatedAt = new DateTime(2025, 1, 19, 19, 3, 3, 290, DateTimeKind.Utc).AddTicks(8936),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 19, 20, 2, 19, 248, DateTimeKind.Utc).AddTicks(8180),
+                            CreatedAt = new DateTime(2025, 1, 19, 19, 3, 3, 290, DateTimeKind.Utc).AddTicks(8939),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 19, 20, 2, 19, 248, DateTimeKind.Utc).AddTicks(8181),
+                            UpdatedAt = new DateTime(2025, 1, 19, 19, 3, 3, 290, DateTimeKind.Utc).AddTicks(8940),
                             UpdatedBy = "default"
                         });
                 });
@@ -1149,7 +1152,7 @@ namespace LimakAz.Persistence.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ShopId")
+                    b.Property<int>("ShopId")
                         .HasColumnType("int");
 
                     b.Property<string>("Size")
@@ -2056,7 +2059,7 @@ namespace LimakAz.Persistence.Migrations
                     b.HasOne("LimakAz.Domain.Entities.Chat", "Chat")
                         .WithMany("Messages")
                         .HasForeignKey("ChatId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.AppUser", "User")
@@ -2124,24 +2127,25 @@ namespace LimakAz.Persistence.Migrations
                     b.HasOne("LimakAz.Domain.Entities.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.LocalPoint", "LocalPoint")
                         .WithMany()
                         .HasForeignKey("LocalPointId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.Shop", "Shop")
                         .WithMany()
                         .HasForeignKey("ShopId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("LimakAz.Domain.Entities.Status", null)
@@ -2151,7 +2155,7 @@ namespace LimakAz.Persistence.Migrations
                     b.HasOne("LimakAz.Domain.Entities.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Country");

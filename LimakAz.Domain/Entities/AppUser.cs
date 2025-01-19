@@ -14,6 +14,7 @@ public class AppUser : IdentityUser
     //public bool IsActive { get; set; } = true;
     public decimal AZNBalance { get; set; } 
     public decimal TRYBalance { get; set; } 
+    public decimal USDBalance { get; set; } 
     public NotificationType NotificationType { get; set; } 
     public DateTime BirthDate { get; set; }
     public int LocalPointId { get; set; }
@@ -26,4 +27,5 @@ public class AppUser : IdentityUser
     public UserPosition? UserPosition { get; set; }
     public ICollection<Message> Messages { get; set; } = [];
     public ICollection<Notification> Notifications{ get; set; } = [];
+    public ICollection<Order> Orders{ get; set; } = [];
 }

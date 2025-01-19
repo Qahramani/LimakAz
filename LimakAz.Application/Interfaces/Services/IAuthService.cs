@@ -11,5 +11,6 @@ public interface IAuthService
     Task<bool> ResetPasswordAsync(ResetPasswordDto dto, ModelStateDictionary ModelState);
     Task<bool> LogoutAsync();
     Task<bool> EmailVerificationAsync(string token, string email);
-    Task<AppUser> GetAutrhorizedUser();
+    Task<AppUser> GetAuthenticatedUserAsync();
+    Task<List<AppUser>> GetAllMembersAsync();
 }

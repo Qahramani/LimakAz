@@ -27,11 +27,20 @@ public class UserPanelController : Controller
 
         return View(dictionary);
     }
-    public async Task<IActionResult> Settings()
+    //public async Task<IActionResult> Settings()
+    //{
+    //    var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+    //    var dto = await _userPanelService.GetUserUpdateDtoAsync(language);
+
+    //    return View(dto);
+    //}
+
+    public async Task<IActionResult> UpdateProfile()
     {
         var language = await _cookieService.GetSelectedLanguageTypeAsync();
 
-        var dto = await _userPanelService.GetUserUpdateDtoAsync(language);
+        var dto = await _userPanelService.GetUserProfileUpdateDtoAsync(language);
 
         return View(dto);
     }
@@ -41,19 +50,24 @@ public class UserPanelController : Controller
     {
         var result = await _userPanelService.UpdateProfileAsync(dto, ModelState);
 
+            var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+            var profileDto = await _userPanelService.GetUserProfileUpdateDtoAsync(language);
+            
         if (!result)
         {
-            UserSettingDto settingDto = new()
-            {
-                UserProfileInfo = dto
-            };
 
-            return View("Settings", settingDto);
+            return View(profileDto);
         }
 
-        //TempData["SuccessMessage"] = "Password updated successfully!";
+        ViewBag.SuccessMessage = "Profile Info updated successfully!";
 
-        return RedirectToAction(nameof(Settings));
+        return View(profileDto);
+    }
+
+    public IActionResult UpdatePassword()
+    {
+        return View();
     }
 
     [HttpPost]
@@ -63,14 +77,12 @@ public class UserPanelController : Controller
 
         if (!result)
         {
-            
-
-            return View("Settings", dto);
+            return View(dto);
         }
 
-        //TempData["SuccessMessage"] = "Password updated successfully!";
+        ViewBag.SuccessMessage = "Password updated successfully!";
 
-        return RedirectToAction(nameof(Settings));
+        return View();
     }
 
 }
