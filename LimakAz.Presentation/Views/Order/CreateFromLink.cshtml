@@ -1,4 +1,6 @@
-﻿ <!-- Middle Sections -->
+﻿@model OrderCreateDto
+
+<!-- Middle Sections -->
 <div>
     <!-- Middle Section -->
     <div class="middlecontainer">
@@ -8,20 +10,20 @@
                 <div class="col-lg-9 col-12">
                     <div>
                         <div id="exTab2" class="container">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-tabs-head-list nav-tabs-active active">
-                                    <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
-                                    <a class="tabs-head" href="#1" data-toggle="tab">Türkiyə</a>
-                                </li>
-                                <li class="nav-tabs-head-list">
-                                    <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
-                                    <a class="tabs-head" href="#2" data-toggle="tab">Amerika</a>
-                                </li>
-                            </ul>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-tabs-head-list nav-tabs-active active">
+                                        <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
+                                        <a class="tabs-head" href="#1" data-toggle="tab">Türkiyə</a>
+                                    </li>
+                                    <li class="nav-tabs-head-list">
+                                        <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
+                                        <a class="tabs-head" href="#2" data-toggle="tab">Amerika</a>
+                                    </li>
+                                </ul>
                             <div class="tab-content ">
                                 <!-- TURKEY ORDER LIST -->
                                 <div class="tab-pane d-flex" id="1">
-                                    <form action="" class="tr-form d-flex">
+                                    <form asp-controller="order" asp-action="create" method="post" class="tr-form d-flex">
                                         <div class="ordercard-list tukish active">
                                             <div class="order-card-body order-turkish active">
                                                 <div class="form-ordercard">
@@ -30,8 +32,9 @@
                                                             <div>
                                                                 <label class="form-control-label" for="product-link">Məhsulun linki *</label>
                                                                 <div class="url-input-block">
-                                                                    <input type="url" placeholder="Məhsulun linki"
+                                                                    <input asp-for="Link" type="url" placeholder="Məhsulun linki"
                                                                            required="required" class="form-control-url">
+                                                                    <span asp-validation-for="Link" class="danger"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -40,10 +43,12 @@
                                                                 <label for="product-price" class="form-control-label-custom">Məbləğ *</label>
                                                                 <div>
                                                                     <div class="input-price-group">
-                                                                        <input class="price-input product-priceTr" type="number" min="1" required="required">
+                                                                        <input asp-for="ItemPrice" class="price-input product-priceTr" type="number" min="1" required="required">
                                                                         <div class="input-group-append">
                                                                             <div class="input-group-price-curency">TRY</div>
                                                                         </div>
+                                                                        <span asp-validation-for="ItemPrice" class="danger"></span>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -73,13 +78,15 @@
                                                                        for="product-kargo-price">Karqo məbləği *</label>
                                                                 <div>
                                                                     <div class="input-price-group">
-                                                                        <input class="price-input" placeholder="0"
+                                                                        <input asp-for="LocalCargoPrice" class="price-input" placeholder="0"
                                                                                id="olke-daxili-kargo"
                                                                                type="number"
                                                                                min="1" required="required" disabled>
                                                                         <div class="input-group-append">
                                                                             <div class="input-group-price-curency">TRY</div>
                                                                         </div>
+                                                                        <span asp-validation-for="LocalCargoPrice" class="danger"></span>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -90,12 +97,14 @@
                                                                        for="product-kargo-price">Cəmi(+5%)</label>
                                                                 <div>
                                                                     <div class="input-price-group">
-                                                                        <input class="price-input product-price-percentTr" placeholder="0"
+                                                                        <input asp-for="OrderTotalPrice" class="price-input product-price-percentTr" placeholder="0"
                                                                                type="number"
                                                                                min="1" required="required" disabled>
                                                                         <div class="input-group-append">
                                                                             <div class="input-group-price-curency">TRY</div>
                                                                         </div>
+                                                                        <span asp-validation-for="OrderTotalPrice" class="danger"></span>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -105,10 +114,12 @@
                                                                 <label for="product-count"
                                                                        class="form-control-label-custom">Say</label>
                                                                 <div class="product-count-input-body">
-                                                                    <input type="number" min="1"
+                                                                    <input asp-for="Count" type="number" min="1"
                                                                            placeholder="Say"
                                                                            value="1"
                                                                            class="product-count-input">
+                                                                    <span asp-validation-for="Count" class="danger"></span>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -117,9 +128,11 @@
                                                                 <label for="product-count"
                                                                        class="form-control-label-custom">Məhsulun rəngi *</label>
                                                                 <div class="product-count-input-body">
-                                                                    <input type="text"
+                                                                    <input asp-for="Color" type="text"
                                                                            placeholder="Məhsulun rəngi"
                                                                            class="product-count-input">
+                                                                    <span asp-validation-for="Color" class="danger"></span>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -128,9 +141,11 @@
                                                                 <label for="product-count"
                                                                        class="form-control-label-custom">Məhsulun ölçüsü *</label>
                                                                 <div class="product-count-input-body">
-                                                                    <input type="text"
+                                                                    <input asp-for="Size" type="text"
                                                                            placeholder="Məhsulun ölçüsü"
                                                                            class="product-count-input">
+                                                                    <span asp-validation-for="Size" class="danger"></span>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -139,10 +154,12 @@
                                                                 <label class="form-control-label-custom"
                                                                        for="product-desc">Qeydlər</label>
                                                                 <div>
-                                                                    <input type="text"
+                                                                    <input asp-for="Notes" type="text"
                                                                            placeholder="Ölçü, rəng və s. üçün qeydlər"
                                                                            required="required"
                                                                            class="desc-control-input">
+                                                                    <span asp-validation-for="Notes" class="danger"></span>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -204,18 +221,22 @@
                                                                         <a role="button">Məsafəli satış şərtləri</a>
                                                                     </label>
                                                                 </div>
-                                                                <select class="sidebar-depo-select">
-                                                                    <option disabled="disabled"> -- Anbar seçin --</option>
-                                                                    <option value="1">Bakı - İçərişəhər</option>
-                                                                    <option value="2">Gəncə</option>
-                                                                    <option value="3">Sumqayıt</option>
-                                                                    <option value="4">Zaqatala</option>
-                                                                    <option value="5">Bakı - Xalqlar Dostluğu</option>
-                                                                    <option value="7">Xırdalan</option>
-                                                                    <option value="8">Balakən</option>
-                                                                    <option value="9">Bakı - Gənclik</option>
-                                                                    <option value="10">Bakıxanov</option>
-                                                                    <option value="11">Xətai</option>
+                                                                <select asp-for="LocalPointId" class="sidebar-depo-select">
+                                                                    @foreach (var item in Model.LocalPoints)
+                                                                    {
+                                                                        if (item.Id == Model.SelectedLocalPointId)
+                                                                        {
+                                                                            <option value="@item.Id" selected>
+                                                                                @item.LocalPointDetails.FirstOrDefault()?.Name
+                                                                            </option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@item.Id">
+                                                                                @item.LocalPointDetails.FirstOrDefault()?.Name
+                                                                            </option>
+                                                                        }
+                                                                    }
                                                                 </select>
                                                                 <button type="button" disabled="disabled"
                                                                         class="payment-btn">
@@ -239,6 +260,146 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                                <!-- AMERIKA ORDER LIST -->
+                                <div class="tab-pane" id="2">
+                                    <div class="ordercard-list">
+                                        <div class="order-card-body">
+                                            <form class="form-ordercard">
+                                                <div class="row">
+                                                    <div class="col-sm-9 col-12">
+                                                        <div>
+                                                            <label class="form-control-label" for="product-link">Məhsulun linki *</label>
+                                                            <div class="url-input-block">
+                                                                <input type="url" placeholder="Məhsulun linki"
+                                                                       required="required" class="form-control-url">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 col-12">
+                                                        <div id="product-price">
+                                                            <label for="product-price" class="form-control-label-custom">Məbləğ *</label>
+                                                            <div>
+                                                                <div class="input-price-group">
+                                                                    <input class="price-input product-price-usd" type="number" min="1" required="required">
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-price-curency">USD</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-12">
+                                                        <div class="check-group-label">
+                                                            <label class="form-control-label-custom" for="check-label-head">Amerika içi kargo</label>
+                                                            <div class="input-radio-group">
+                                                                <div class="check-custom check-custom-radio">
+                                                                    <input type="radio" id="check-kargo-radio" value="true" name="some-radios" class="custom-control-input">
+                                                                    <label class="radio-label" for="check-kargo-radio">Bəli</label>
+                                                                </div>
+                                                                <div class="check-custom check-custom-radio">
+                                                                    <input type="radio" id="check-kargo-radio-not"
+                                                                           value="false" name="some-radios"
+                                                                           checked
+                                                                           class="custom-control-input">
+                                                                    <label class="radio-label" for="check-kargo-radio-not">Xeyr</label>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 col-12">
+                                                        <div id="product-kargo-price" class="kargo-daxil-price">
+                                                            <label class="form-control-label-custom"
+                                                                   for="product-kargo-price">Karqo məbləği *</label>
+                                                            <div>
+                                                                <div class="input-price-group">
+                                                                    <input class="price-input" placeholder="0"
+                                                                           id="olke-daxili-kargo"
+                                                                           type="number"
+                                                                           min="1" required="required" disabled>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-price-curency">USD</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3 col-12">
+                                                        <div id="product-kargo-price" class="kargo-daxil-price">
+                                                            <label class="form-control-label-custom"
+                                                                   for="product-kargo-price">Cəmi(+7%)</label>
+                                                            <div>
+                                                                <div class="input-price-group">
+                                                                    <input class="price-input price-percent-usd" placeholder="0"
+                                                                           type="number"
+                                                                           min="1" required="required" disabled>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-price-curency">USD</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-12">
+                                                        <div id="product-count" class="product-count-block">
+                                                            <label for="product-count"
+                                                                   class="form-control-label-custom">Say</label>
+                                                            <div class="product-count-input-body">
+                                                                <input type="number" min="1"
+                                                                       placeholder="Say"
+                                                                       value="1"
+                                                                       class="product-count-input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-12">
+                                                        <div id="product-count" class="product-count-block">
+                                                            <label for="product-count"
+                                                                   class="form-control-label-custom">Məhsulun rəngi *</label>
+                                                            <div class="product-count-input-body">
+                                                                <input type="text"
+                                                                       placeholder="Məhsulun rəngi"
+                                                                       class="product-count-input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4 col-12">
+                                                        <div id="product-count" class="product-count-block">
+                                                            <label for="product-count"
+                                                                   class="form-control-label-custom">Məhsulun ölçüsü *</label>
+                                                            <div class="product-count-input-body">
+                                                                <input type="text"
+                                                                       placeholder="Məhsulun ölçüsü"
+                                                                       class="product-count-input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div id="product-desc">
+                                                            <label class="form-control-label-custom"
+                                                                   for="product-desc">Qeydlər</label>
+                                                            <div>
+                                                                <input type="text"
+                                                                       placeholder="Ölçü, rəng və s. üçün qeydlər"
+                                                                       required="required"
+                                                                       class="desc-control-input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="order-card-actions">
+                                                    <div></div>
+                                                    <div>
+                                                        <button type="button" class="link-button">
+                                                            <img src="https://limak.az/new_front/assets/img/icons/plus-circle.svg" alt="">
+                                                            <span>Yeni link</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="extraTabContent"></div>

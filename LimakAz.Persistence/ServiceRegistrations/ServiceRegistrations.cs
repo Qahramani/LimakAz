@@ -60,6 +60,8 @@ public static class ServiceRegistrations
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<IChatRepository, ChatRepository>();
         services.AddScoped<IMessageRepository, MessageRepository>();
+        services.AddScoped<IStatusRepository, StatusRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -85,6 +87,8 @@ public static class ServiceRegistrations
         services.AddScoped<IAddressLineService, AddressLineService>();
         services.AddScoped<IChatService, ChatService>();
         services.AddScoped<IMessageService, MessageService>();
+        services.AddScoped<IStatusService, StatusService>();
+        services.AddScoped<IOrderService, OrderService>();
 
         services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
 
@@ -122,6 +126,7 @@ public static class ServiceRegistrations
         services.AddSingleton<CalculatorLocalizer>();
         services.AddSingleton<AccountLocalizer>();
         services.AddSingleton<ShopsLocalizer>();
+        services.AddSingleton<OrderLocalizer>();
         services.AddSingleton<ValidationMessagesLocalizer>();
 
     }

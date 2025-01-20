@@ -82,7 +82,7 @@
     const form = document.querySelector(".sendMessageForm");
     const message = document.querySelector(".messageInput");
     const chat = document.querySelector(".card-body");
-    const chatId = {@Model.Id};
+    const chatId = @Model.Id;
 
 
     form.addEventListener('submit', async (e) =>{
@@ -120,7 +120,7 @@
                                 chatBody.scrollTop = chatBody.scrollHeight;
 
                                 message.value = "";
-                                messageInput.blur();
+                                // messageInput.blur();
 
 
 

@@ -51,6 +51,8 @@
         <link rel="stylesheet" href="~/assets/Styles/scss/contact.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/register.css">
         <link rel="stylesheet" href="~/assets/Styles/scss/passwordrecovery.css">
+        <link rel="stylesheet" href="~/assets/Styles/scss/order.css">
+
 
     }
 
@@ -348,18 +350,18 @@
                 </div>
                 <div class="footer-menu">
                     <div class="footer-menu-col">
-                        <a asp-controller="tariffs">@_localizer.GetValue("tariffs")</a>
-                        <a asp-controller="calculator">@_localizer.GetValue("calculator")</a>
-                        <a asp-controller="shops">@_localizer.GetValue("shops")</a>
+                        <a asp-controller="tariffs" asp-action="index">@_localizer.GetValue("tariffs")</a>
+                        <a asp-controller="calculator" asp-action="index">@_localizer.GetValue("calculator")</a>
+                        <a asp-controller="shops" asp-action="index">@_localizer.GetValue("shops")</a>
                     </div>
                     <div class="footer-menu-col">
-                        <a asp-controller="news">@_localizer.GetValue("news")</a>
+                        <a asp-controller="news" asp-action="index">@_localizer.GetValue("news")</a>
                         <a asp-controller="content" asp-action="terms">@_localizer.GetValue("rules")</a>
                         <a asp-controller="content" asp-action="questions">@_localizer.GetValue("questions")</a>
                     </div>
                     <div class="footer-menu-col">
                         <a asp-controller="content" asp-action="privacy">@_localizer.GetValue("confidentialitry")</a>
-                        <a asp-controller="contact">@_localizer.GetValue("contact")</a>
+                        <a asp-controller="contact" asp-action="index">@_localizer.GetValue("contact")</a>
                     </div>
                     <div class="footer-social-mobile">
                         <a href="@settings["FacebookLink"]">

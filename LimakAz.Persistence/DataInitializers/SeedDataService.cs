@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace LimakAz.Persistence.DataInitializers;
 
@@ -14,6 +16,7 @@ public static class SeedDataService
         modelBuilder.AddCitizenShips();
         modelBuilder.AddUserPositions();
         modelBuilder.AddAddressLines();
+        modelBuilder.AddSStatuses();
     }
 
     public static void AddLanguages(this ModelBuilder modelBuilder)
@@ -153,32 +156,97 @@ public static class SeedDataService
             new UserPositionDetail { Id = 4, Name = "Юридическое лицо", UserPositionId = 2, LanguageId = 2 }
             );
     }
-
     public static void AddAddressLines(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AddressLine>().HasData(
-            new AddressLine { Id = 1, Key= "XaricdekiUnvanlar-VergiNo", Value = "6081089593", CountryId =4 },
-            new AddressLine { Id = 2, Key= "XaricdekiUnvanlar-Ulke", Value = "Türkiye", CountryId =4 },
-            new AddressLine { Id = 3, Key= "XaricdekiUnvanlar-VergiDairesi", Value = "Şişli", CountryId =4 },
-            new AddressLine { Id = 4, Key= "XaricdekiUnvanlar-PostKodu", Value = "34060", CountryId =4 },
-            new AddressLine { Id = 5, Key= "XaricdekiUnvanlar-Telefon", Value = "05364700021", CountryId =4 },
-            new AddressLine { Id = 6, Key= "XaricdekiUnvanlar-İlce", Value = "Eyüpsultan", CountryId =4 },
-            new AddressLine { Id = 7, Key= "XaricdekiUnvanlar-TCKimlik", Value = "35650276048", CountryId =4 },
-            new AddressLine { Id = 8, Key= "XaricdekiUnvanlar-Semt", Value = "Güzeltepe mahallesi", CountryId =4 },
-            new AddressLine { Id = 9, Key= "XaricdekiUnvanlar-IlSehir", Value = "İstanbul", CountryId =4 },
-            new AddressLine { Id = 10, Key= "XaricdekiUnvanlar-AdressSatir", Value = ",Güzeltepe mahallesi,Akdeniz caddesi no:33/A", CountryId =4 },
-            new AddressLine { Id = 11, Key= "XaricdekiUnvanlar-AdressBasligi", Value ="LIMAK", CountryId =4 },
-            new AddressLine { Id = 12, Key= "XaricdekiUnvanlar-AdSoyad", Value = "LİMAK TAŞIMACILIK DIŞ TİCARET LİMİTED ŞİRKETİ", CountryId = 4},
-            new AddressLine { Id = 13,Key ="Is-Saatlari", Value = "Həftəiçi 5 gün: 09:00 - 17:00\r\nŞənbə: 09:00 - 14:00\r\nBazar günü qeyri-iş günüdür.", CountryId = 4},
+            new AddressLine { Id = 1, Key = "XaricdekiUnvanlar-VergiNo", Value = "6081089593", CountryId = 4 },
+            new AddressLine { Id = 2, Key = "XaricdekiUnvanlar-Ulke", Value = "Türkiye", CountryId = 4 },
+            new AddressLine { Id = 3, Key = "XaricdekiUnvanlar-VergiDairesi", Value = "Şişli", CountryId = 4 },
+            new AddressLine { Id = 4, Key = "XaricdekiUnvanlar-PostKodu", Value = "34060", CountryId = 4 },
+            new AddressLine { Id = 5, Key = "XaricdekiUnvanlar-Telefon", Value = "05364700021", CountryId = 4 },
+            new AddressLine { Id = 6, Key = "XaricdekiUnvanlar-İlce", Value = "Eyüpsultan", CountryId = 4 },
+            new AddressLine { Id = 7, Key = "XaricdekiUnvanlar-TCKimlik", Value = "35650276048", CountryId = 4 },
+            new AddressLine { Id = 8, Key = "XaricdekiUnvanlar-Semt", Value = "Güzeltepe mahallesi", CountryId = 4 },
+            new AddressLine { Id = 9, Key = "XaricdekiUnvanlar-IlSehir", Value = "İstanbul", CountryId = 4 },
+            new AddressLine { Id = 10, Key = "XaricdekiUnvanlar-AdressSatir", Value = ",Güzeltepe mahallesi,Akdeniz caddesi no:33/A", CountryId = 4 },
+            new AddressLine { Id = 11, Key = "XaricdekiUnvanlar-AdressBasligi", Value = "LIMAK", CountryId = 4 },
+            new AddressLine { Id = 12, Key = "XaricdekiUnvanlar-AdSoyad", Value = "LİMAK TAŞIMACILIK DIŞ TİCARET LİMİTED ŞİRKETİ", CountryId = 4 },
+            new AddressLine { Id = 13, Key = "Is-Saatlari", Value = "Həftəiçi 5 gün: 09:00 - 17:00\r\nŞənbə: 09:00 - 14:00\r\nBazar günü qeyri-iş günüdür.", CountryId = 4 },
 
-            new AddressLine { Id = 14,Key = "Street-Address", Value = "1234 Elm Street, Suite 567", CountryId = 5},
-            new AddressLine { Id = 15,Key = "City", Value = "New York", CountryId = 5},
-            new AddressLine { Id = 16,Key ="State", Value = "NY", CountryId = 5},
-            new AddressLine { Id = 17,Key = "ZIP-Code", Value = "10001", CountryId = 5},
-            new AddressLine { Id = 18,Key = "Country", Value = "USA", CountryId = 5},
-            new AddressLine { Id = 19,Key = "Phone-Number", Value = "+1-555-123-4567", CountryId = 5},
-            new AddressLine { Id = 20,Key ="Working-Hours", Value = "Mon-Fri, 9:00 AM - 5:00 PM EST", CountryId = 5}
+            new AddressLine { Id = 14, Key = "Street-Address", Value = "1234 Elm Street, Suite 567", CountryId = 5 },
+            new AddressLine { Id = 15, Key = "City", Value = "New York", CountryId = 5 },
+            new AddressLine { Id = 16, Key = "State", Value = "NY", CountryId = 5 },
+            new AddressLine { Id = 17, Key = "ZIP-Code", Value = "10001", CountryId = 5 },
+            new AddressLine { Id = 18, Key = "Country", Value = "USA", CountryId = 5 },
+            new AddressLine { Id = 19, Key = "Phone-Number", Value = "+1-555-123-4567", CountryId = 5 },
+            new AddressLine { Id = 20, Key = "Working-Hours", Value = "Mon-Fri, 9:00 AM - 5:00 PM EST", CountryId = 5 }
             );
     }
+    public static void AddSStatuses(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Status>().HasData(
+            new Status { Id = 1 },
+            new Status { Id = 2 },
+            new Status { Id = 3 },
+            new Status { Id = 4 },
+            new Status { Id = 5 },
+            new Status { Id = 6 },
+            new Status { Id = 7 },
+            new Status { Id = 8 },
+            new Status { Id = 9 }
+            );
 
+        modelBuilder.Entity<StatusDetail>().HasData(
+            new StatusDetail { Id = 1, Name = "Ödəniş olunub", StatusId = 1, LanguageId = 1 },
+            new StatusDetail { Id = 2, Name = "Оплачено", StatusId = 1, LanguageId = 2 },
+            new StatusDetail { Id = 3, Name = "Sifariş edilib", StatusId = 2, LanguageId = 1 },
+            new StatusDetail { Id = 4, Name = "Заказано", StatusId = 2, LanguageId = 2 },
+            new StatusDetail { Id = 5, Name = "Sifariş edilməyib", StatusId = 3, LanguageId = 1 },
+            new StatusDetail { Id = 6, Name = "Не заказано", StatusId = 3, LanguageId = 2 },
+            new StatusDetail { Id = 7, Name = "Xarici anbardadır", StatusId = 4, LanguageId = 1 },
+            new StatusDetail { Id = 8, Name = "На иностранном складе", StatusId = 4, LanguageId = 2 },
+            new StatusDetail { Id = 9, Name = "Gömürükdədir", StatusId = 5, LanguageId = 1 },
+            new StatusDetail { Id = 10, Name = "На таможне", StatusId = 5, LanguageId = 2 },
+            new StatusDetail { Id = 11, Name = "Yoldadır", StatusId = 6, LanguageId = 1 },
+            new StatusDetail { Id = 12, Name = "В пути", StatusId = 6, LanguageId = 2 },
+            new StatusDetail { Id = 13, Name = "Yerli anbardadır", StatusId = 7, LanguageId = 1 },
+            new StatusDetail { Id = 14, Name = "На местном складе", StatusId = 7, LanguageId = 2 },
+            new StatusDetail { Id = 15, Name = "Təhvil verilib", StatusId = 8, LanguageId = 1 },
+            new StatusDetail { Id = 16, Name = "Доставлено", StatusId = 8, LanguageId = 2 },
+            new StatusDetail { Id = 17, Name = "Ləğv edilib", StatusId = 9, LanguageId = 1 },
+            new StatusDetail { Id = 18, Name = "Отменено", StatusId = 9, LanguageId = 2 }
+        );
+
+    }
+    public static void AddCountries(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Country>().HasData(
+            new Country
+            {
+                Id = 1,
+                ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735590904/rfvtik0wyqjxlieecbfm.png",
+                IsDeleted = false,
+                CreatedAt = DateTime.MinValue,
+                UpdatedAt = DateTime.MinValue,
+                CreatedBy = "Defaul",
+                UpdatedBy = "Default",
+            },
+            new Country
+            {
+                Id = 2,
+                ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735590817/gdrkuwphkhe9f2d0sovw.png",
+                IsDeleted = false,
+                CreatedAt = DateTime.MinValue,
+                UpdatedAt = DateTime.MinValue,
+                CreatedBy = "Defaul",
+                UpdatedBy = "Default",
+            });
+
+        modelBuilder.Entity<CountryDetail>().HasData(
+            new CountryDetail { Id = 1, Name = "Turkiye", CountryId = 1, LanguageId = 1 },
+            new CountryDetail { Id = 2, Name = "Турция", CountryId = 1, LanguageId = 2 },
+            new CountryDetail { Id = 3, Name = "Amerika", CountryId = 2, LanguageId = 1 },
+            new CountryDetail { Id = 4, Name = "Америка", CountryId = 2, LanguageId = 2 }
+        );
+    }
 }

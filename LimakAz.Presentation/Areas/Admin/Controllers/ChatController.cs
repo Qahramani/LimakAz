@@ -37,7 +37,6 @@ public class ChatController : Controller
     [HttpPost]
     public async Task<MessageDisplayDto> SendMessage(int chatId, string text)
     {
-        throw new Exception("haaa");
         var message = await _messageService.SendMessageAsync(text, chatId);
         
         return message;

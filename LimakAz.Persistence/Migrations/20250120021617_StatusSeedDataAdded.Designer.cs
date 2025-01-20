@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250120021617_StatusSeedDataAdded")]
+    partial class StatusSeedDataAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,21 +354,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 20, 2, 21, 51, 715, DateTimeKind.Utc).AddTicks(8838),
+                            CreatedAt = new DateTime(2025, 1, 20, 2, 16, 14, 232, DateTimeKind.Utc).AddTicks(6320),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 20, 2, 21, 51, 715, DateTimeKind.Utc).AddTicks(8838),
+                            UpdatedAt = new DateTime(2025, 1, 20, 2, 16, 14, 232, DateTimeKind.Utc).AddTicks(6321),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 20, 2, 21, 51, 715, DateTimeKind.Utc).AddTicks(8841),
+                            CreatedAt = new DateTime(2025, 1, 20, 2, 16, 14, 232, DateTimeKind.Utc).AddTicks(6324),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 20, 2, 21, 51, 715, DateTimeKind.Utc).AddTicks(8842),
+                            UpdatedAt = new DateTime(2025, 1, 20, 2, 16, 14, 232, DateTimeKind.Utc).AddTicks(6325),
                             UpdatedBy = "default"
                         });
                 });
@@ -1592,44 +1595,6 @@ namespace LimakAz.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1
-                        },
-                        new
-                        {
-                            Id = 2
-                        },
-                        new
-                        {
-                            Id = 3
-                        },
-                        new
-                        {
-                            Id = 4
-                        },
-                        new
-                        {
-                            Id = 5
-                        },
-                        new
-                        {
-                            Id = 6
-                        },
-                        new
-                        {
-                            Id = 7
-                        },
-                        new
-                        {
-                            Id = 8
-                        },
-                        new
-                        {
-                            Id = 9
-                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.StatusDetail", b =>
@@ -1657,134 +1622,6 @@ namespace LimakAz.Persistence.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("StatusDetails");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LanguageId = 1,
-                            Name = "Ödəniş olunub",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LanguageId = 2,
-                            Name = "Оплачено",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            LanguageId = 1,
-                            Name = "Sifariş edilib",
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            LanguageId = 2,
-                            Name = "Заказано",
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            LanguageId = 1,
-                            Name = "Sifariş edilməyib",
-                            StatusId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            LanguageId = 2,
-                            Name = "Не заказано",
-                            StatusId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            LanguageId = 1,
-                            Name = "Xarici anbardadır",
-                            StatusId = 4
-                        },
-                        new
-                        {
-                            Id = 8,
-                            LanguageId = 2,
-                            Name = "На иностранном складе",
-                            StatusId = 4
-                        },
-                        new
-                        {
-                            Id = 9,
-                            LanguageId = 1,
-                            Name = "Gömürükdədir",
-                            StatusId = 5
-                        },
-                        new
-                        {
-                            Id = 10,
-                            LanguageId = 2,
-                            Name = "На таможне",
-                            StatusId = 5
-                        },
-                        new
-                        {
-                            Id = 11,
-                            LanguageId = 1,
-                            Name = "Yoldadır",
-                            StatusId = 6
-                        },
-                        new
-                        {
-                            Id = 12,
-                            LanguageId = 2,
-                            Name = "В пути",
-                            StatusId = 6
-                        },
-                        new
-                        {
-                            Id = 13,
-                            LanguageId = 1,
-                            Name = "Yerli anbardadır",
-                            StatusId = 7
-                        },
-                        new
-                        {
-                            Id = 14,
-                            LanguageId = 2,
-                            Name = "На местном складе",
-                            StatusId = 7
-                        },
-                        new
-                        {
-                            Id = 15,
-                            LanguageId = 1,
-                            Name = "Təhvil verilib",
-                            StatusId = 8
-                        },
-                        new
-                        {
-                            Id = 16,
-                            LanguageId = 2,
-                            Name = "Доставлено",
-                            StatusId = 8
-                        },
-                        new
-                        {
-                            Id = 17,
-                            LanguageId = 1,
-                            Name = "Ləğv edilib",
-                            StatusId = 9
-                        },
-                        new
-                        {
-                            Id = 18,
-                            LanguageId = 2,
-                            Name = "Отменено",
-                            StatusId = 9
-                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Tariff", b =>
