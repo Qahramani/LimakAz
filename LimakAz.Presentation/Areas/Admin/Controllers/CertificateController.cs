@@ -1,9 +1,12 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize(Roles = "Admin,Moderator")]
+
 public class CertificateController : Controller
 {
     private readonly ICertificateService _certificateService;

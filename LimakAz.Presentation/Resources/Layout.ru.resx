@@ -150,4 +150,7 @@
   <data name="shops" xml:space="preserve">
     <value>МАГАЗИНЫ</value>
   </data>
+  <data name="order" xml:space="preserve">
+    <value>Заказать</value>
+  </data>
 </root>

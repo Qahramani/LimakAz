@@ -1,10 +1,12 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Text;
 
 namespace LimakAz.Presentation.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize(Roles = "Admin,Moderator")]
 public class ContentController : Controller
 {
     private readonly IContentService _contentService;

@@ -1,4 +1,5 @@
 ﻿using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -11,12 +12,14 @@ internal class ChatService : IChatService
     private readonly IMapper _mapper;
     private readonly IAuthService _authService;
     private readonly ICookieService _cookieService;
-    public ChatService(IChatRepository chatRepository, IMapper mapper, IAuthService authService, ICookieService cookieService)
+    private readonly UserManager<AppUser> _userManager;
+    public ChatService(IChatRepository chatRepository, IMapper mapper, IAuthService authService, ICookieService cookieService, UserManager<AppUser> userManager)
     {
         _repository = chatRepository;
         _mapper = mapper;
         _authService = authService;
         _cookieService = cookieService;
+        _userManager = userManager;
     }
 
     public async Task<bool> CreateAsync(ChatCreateDto dto, ModelStateDictionary ModelState)
@@ -141,6 +144,27 @@ internal class ChatService : IChatService
         var dtos = _mapper.Map<List<ChatGetDto>>(chats);
 
         return dtos;
+    }
+
+    public async Task<ChatGetDto> GetChatByUseIdAsync(string userId)
+    {
+        var chat = await _repository.GetAsync(x => x.UserId == userId, include: _getWithIncludes());
+
+        if(chat == null)
+        {
+            Chat newChat = new()
+            {
+                UserId = userId,
+            };
+
+            await _repository.CreateAsync(newChat);
+            await _repository.SaveChangesAsync();
+
+            chat = newChat;
+        }
+
+        var dto = _mapper.Map<ChatGetDto>(chat);
+        return dto;
     }
 }
 

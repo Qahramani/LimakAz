@@ -234,6 +234,12 @@ internal class AuthService : IAuthService
             return false;
         }
 
+        if (!user.IsActive)
+        {
+            ModelState.AddModelError("", _localizer.GetValue("BlockedUser"));
+            return false;
+        }
+
         var result = await _signInManager.PasswordSignInAsync(user, dto.Password!, dto.RememberMe, true);
 
         if (!result.Succeeded)
@@ -246,6 +252,11 @@ internal class AuthService : IAuthService
             ModelState.AddModelError("", _localizer.GetValue("InvalidCredentials"));
             return false;
         }
+
+        //var roles = await _userManager.GetRolesAsync(user);
+
+        //if(roles.Contains(RoleType.Admin.ToString()) || roles.Contains(RoleType.Moderator.ToString())) 
+        //    return "/Admin/Dashboard/Index";
 
         return true;
     }

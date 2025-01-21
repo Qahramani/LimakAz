@@ -6,4 +6,5 @@ public interface IChatService : IGetService<ChatGetDto>, IModifyService<ChatCrea
 {
     Task<ChatGetDto> GetChatOfAuthenticatedUserAsync();
     Task<List<ChatGetDto>> GetAllMembersAsync();
+    Task<ChatGetDto> GetChatByUseIdAsync(string userId);
 }

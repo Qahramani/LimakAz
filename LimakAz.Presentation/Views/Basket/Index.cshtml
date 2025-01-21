@@ -1,0 +1,961 @@
+﻿@model List<OrderGetDto>
+<div>
+    <!-- Middle Section -->
+    <div class="middlecontainer">
+        <!-- Order Plans -->
+        <div class="order-main-pg">
+            <div class="row order-card-main-row">
+                <div class="col-lg-9 col-12">
+                    <div>
+                        <div id="exTab2" class="container">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-tabs-head-list nav-tabs-active active">
+                                    <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
+                                    <a class="tabs-head" asp-controller="basket" asp-action="index" asp-route-countryId="4">Türkiyə</a>
+                                </li>
+                                <li class="nav-tabs-head-list">
+                                    <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
+                                    <a class="tabs-head" asp-controller="basket" asp-action="index" asp-route-countryId="5">Amerika</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content ">
+
+                                <div class="tab-content card-tabs-body snipcss0-4-4-22 snipcss0-5-5-23 snipcss0-3-3-21 snipcss-mQFHK" id="__BVID__23__BV_tab_container_">
+                                    <div role="tabpanel" aria-hidden="false" class="tab-pane active snipcss0-5-22-23 snipcss0-6-23-24 snipcss0-4-21-22" id="__BVID__24" aria-labelledby="__BVID__24___BV_tab_button__" style=""></div>
+                                    <div role="tabpanel" aria-hidden="true" class="tab-pane snipcss0-5-22-24 snipcss0-6-23-25 snipcss0-4-21-23 style-Eg3Ai" id="__BVID__26" aria-labelledby="__BVID__26___BV_tab_button__"></div>
+                                    <div role="tabpanel" aria-hidden="true" class="tab-pane snipcss0-5-22-25 snipcss0-6-23-26 snipcss0-4-21-24 style-x5V87" id="__BVID__28" aria-labelledby="__BVID__28___BV_tab_button__"></div>
+                                    <div class="card mt-10 mb-10 snipcss0-5-22-26 snipcss0-6-23-27 snipcss0-4-21-25">
+                                        <div class="card-body snipcss0-6-26-27 snipcss0-7-27-28 snipcss0-5-25-26">
+                                            <div class="d-flex justify-content-between align-items-center snipcss0-7-27-28 snipcss0-8-28-29 snipcss0-6-26-27">
+                                                <div class="default-checkbox custom-control custom-checkbox snipcss0-8-28-29 snipcss0-9-29-30 snipcss0-7-27-28"><input type="checkbox" class="custom-control-input snipcss0-9-29-30 snipcss0-10-30-31 snipcss0-8-28-29" value="true" id="__BVID__66"><label class="custom-control-label snipcss0-9-29-31 snipcss0-10-30-32 snipcss0-8-28-30" for="__BVID__66">Выберите все </label></div> <button type="button" class="btn btn-submit btn-primary btn-sm snipcss0-8-28-32 snipcss0-9-29-33 snipcss0-7-27-31">
+                                                    <span class="snipcss0-9-32-33 snipcss0-10-33-34 snipcss0-8-31-32">
+                                                        Обновить
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-arrow-repeat snipcss0-10-33-34 snipcss0-11-34-35 snipcss0-9-32-33">
+                                                            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"></path>
+                                                            <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"></path>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="snipcss0-5-22-35 snipcss0-6-23-36 snipcss0-4-21-34">
+                                        @foreach (var item in Model)
+                                        {
+
+                                            <div data-v-b1b3b5c6="" class="snipcss0-6-35-36 snipcss0-7-36-37 snipcss0-5-34-35">
+                                                <div data-v-b1b3b5c6="" class="card order-item order-item-report snipcss0-7-36-37 snipcss0-8-37-38 snipcss0-6-35-36">
+                                                    <div data-v-b1b3b5c6="" class="list-group list-group-horizontal snipcss0-8-37-38 snipcss0-9-38-39 snipcss0-7-36-37">
+                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-39 snipcss0-10-39-40 snipcss0-8-37-38">
+                                                            <div data-v-b1b3b5c6="" class="default-checkbox custom-control custom-checkbox snipcss0-10-39-40 snipcss0-11-40-41 snipcss0-9-38-39"><input type="checkbox" class="custom-control-input snipcss0-11-40-41 snipcss0-12-41-42 snipcss0-10-39-40" value="true" id="__BVID__71"><label class="custom-control-label snipcss0-11-40-42 snipcss0-12-41-43 snipcss0-10-39-41" for="__BVID__71"></label></div>
+                                                        </div>
+                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-43 snipcss0-10-39-44 snipcss0-8-37-42">
+                                                            <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-10-43-44 snipcss0-11-44-45 snipcss0-9-42-43">Ссылка на товар</h5> <a data-v-b1b3b5c6="" href="feeffefe" target="_blank" class="snipcss0-10-43-45 snipcss0-11-44-46 snipcss0-9-42-44">@item.Link</a>
+                                                        </div>
+                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-46 snipcss0-10-39-47 snipcss0-8-37-45">
+                                                            <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-10-46-47 snipcss0-11-47-48 snipcss0-9-45-46">За карго</h5>
+                                                            <p data-v-b1b3b5c6="" class="order-item-value snipcss0-10-46-48 snipcss0-11-47-49 snipcss0-9-45-47">@item.LocalCargoPrice TRY</p>
+                                                        </div>
+                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-49 snipcss0-10-39-50 snipcss0-8-37-48">
+                                                            <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-10-49-50 snipcss0-11-50-51 snipcss0-9-48-49">Стоимость товара</h5>
+                                                            <p data-v-b1b3b5c6="" class="order-item-value snipcss0-10-49-51 snipcss0-11-50-52 snipcss0-9-48-50">@item.ItemPrice TRY</p>
+                                                        </div>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">Количество</h5>
+                                                            <p class="order-item-value spinner_wrap">
+                                                                <!-- Decrease Button -->
+                                                                <button type="button" class="btn btn-secondary btn-sm dec_btn spinner_btn" data-action="/Basket/DecreaseCount" data-item-id="@item.Id">-</button>
+
+                                                                <!-- Count Display -->
+                                                                <span class="count">@item.Count</span>
+
+                                                                <!-- Increase Button -->
+                                                                <button type="button" class="btn btn-secondary btn-sm inc_btn spinner_btn" data-action="/Basket/IncreaseCount" data-item-id="@item.Id">+</button>
+                                                            </p>
+                                                        </div>
+
+                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-60 snipcss0-10-39-61 snipcss0-8-37-59">
+                                                            <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-10-60-61 snipcss0-11-61-62 snipcss0-9-59-60">Итоговая стоимость</h5>
+                                                            <p data-v-b1b3b5c6="" class="order-item-value snipcss0-10-60-62 snipcss0-11-61-63 snipcss0-9-59-61">@item.OrderTotalPrice</p>
+                                                        </div>
+                                                        <div data-v-b1b3b5c6="" class="list-group-item btn_group snipcss0-9-38-63 snipcss0-10-39-64 snipcss0-8-37-62">
+                                                            <div data-v-b1b3b5c6="" class="snipcss0-10-63-64 snipcss0-11-64-65 snipcss0-9-62-63 style-8Afkt" id="style-8Afkt">
+                                                                <form asp-controller="basket" asp-action="deleteFromBasket" asp-route-itemId="@item.Id">
+                                                                <button data-v-b1b3b5c6="" title="Отказ от посылки" type="submit" class="btn action-btn delete_btn btn-secondary btn-sm snipcss0-11-64-65 snipcss0-12-65-66 snipcss0-10-63-64">
+                                                                    <svg data-v-b1b3b5c6="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcss0-12-65-66 snipcss0-13-66-67 snipcss0-11-64-65">
+                                                                        <path data-v-b1b3b5c6="" d="M9 5.00024V4.50024C9 3.83724 9.264 3.20124 9.733 2.73224C10.201 2.26324 10.837 2.00024 11.5 2.00024H12.5C13.163 2.00024 13.799 2.26324 14.268 2.73224C14.737 3.20124 15 3.83724 15 4.50024V5.00024H20C20.552 5.00024 21 5.44824 21 6.00024C21 6.55224 20.552 7.00024 20 7.00024H19V18.0002C19 20.2092 17.21 22.0002 15 22.0002C13.168 22.0002 10.833 22.0002 9 22.0002C6.791 22.0002 5 20.2092 5 18.0002V7.00024H4C3.448 7.00024 3 6.55224 3 6.00024C3 5.44824 3.448 5.00024 4 5.00024H9ZM17 7.00024H7V18.0002C7 19.1052 7.896 20.0002 9 20.0002H15C16.105 20.0002 17 19.1052 17 18.0002V7.00024ZM13 10.0002V17.0002C13 17.5522 13.448 18.0002 14 18.0002C14.552 18.0002 15 17.5522 15 17.0002V10.0002C15 9.44824 14.552 9.00024 14 9.00024C13.448 9.00024 13 9.44824 13 10.0002ZM9 10.0002V17.0002C9 17.5522 9.448 18.0002 10 18.0002C10.552 18.0002 11 17.5522 11 17.0002V10.0002C11 9.44824 10.552 9.00024 10 9.00024C9.448 9.00024 9 9.44824 9 10.0002ZM13 5.00024V4.50024C13 4.36724 12.948 4.24024 12.854 4.14624C12.76 4.05324 12.633 4.00024 12.5 4.00024C12.173 4.00024 11.827 4.00024 11.5 4.00024C11.368 4.00024 11.241 4.05324 11.147 4.14624C11.053 4.24024 11 4.36724 11 4.50024V5.00024H13Z" fill="#BFBFBF"></path>
+                                                                    </svg>
+                                                                    </button>
+                                                                </form>
+                                                                 <button data-v-b1b3b5c6="" title="Изменить " type="button" class="btn action-btn delete_btn btn-secondary btn-sm snipcss0-11-64-67 snipcss0-12-65-68 snipcss0-10-63-66">
+                                                                    <svg data-v-b1b3b5c6="" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="bi bi-pencil-square snipcss0-12-67-68 snipcss0-13-68-69 snipcss0-11-66-67" style="width: 20px; height: 20px;">
+                                                                        <path data-v-b1b3b5c6="" d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" fill="#BFBFBF"></path>
+                                                                        <path data-v-b1b3b5c6="" fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" fill="#BFBFBF"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <button data-v-b1b3b5c6="" type="submit" class="btn btn-outline-danger btn-sm btn-edit action-btn snipcss0-11-64-69 snipcss0-12-65-70 snipcss0-10-63-68">
+                                                                    <svg data-v-b1b3b5c6="" width="13" height="20" viewBox="0 0 13 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcss0-12-69-70 snipcss0-13-70-71 snipcss0-11-68-69">
+                                                                        <path data-v-b1b3b5c6="" d="M12.1606 9.2196L2.69211 0.31951C2.47312 0.113495 2.18078 0 1.86907 0C1.55735 0 1.26501 0.113495 1.04602 0.31951L0.348731 0.974789C-0.105 1.40178 -0.105 2.09576 0.348731 2.52209L8.29966 9.99585L0.339909 17.4779C0.120914 17.6839 0 17.9586 0 18.2514C0 18.5446 0.120914 18.8192 0.339909 19.0254L1.0372 19.6805C1.25637 19.8865 1.54853 20 1.86024 20C2.17196 20 2.4643 19.8865 2.68329 19.6805L12.1606 10.7723C12.3801 10.5656 12.5007 10.2897 12.5 9.99634C12.5007 9.70187 12.3801 9.4261 12.1606 9.2196Z" fill="#F86F50"></path>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-v-b1b3b5c6="" id="__BVID__72" class="collapse snipcss0-8-37-71 snipcss0-9-38-72 snipcss0-7-36-70 style-8xdsN">
+                                                        <div data-v-b1b3b5c6="" class="list-group item_details list-group-horizontal snipcss0-9-71-72 snipcss0-10-72-73 snipcss0-8-70-71">
+                                                            <div data-v-b1b3b5c6="" class="list-group-item snipcss0-10-72-73 snipcss0-11-73-74 snipcss0-9-71-72">
+                                                                <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-11-73-74 snipcss0-12-74-75 snipcss0-10-72-73">Заметки:</h5>
+                                                                <p data-v-b1b3b5c6="" class="snipcss0-11-73-75 snipcss0-12-74-76 snipcss0-10-72-74">@item.Notes</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="extraTabContent"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    document.querySelectorAll(".spinner_btn").forEach(button => {
+         button.addEventListener("click", function () {
+             const actionUrl = this.dataset.action; // Get the action URL from the button
+             const itemId = this.dataset["itemId"]; // Get the itemId from the button
+             const spinnerWrap = this.closest(".spinner_wrap"); // Find the parent wrapper
+             const countSpan = spinnerWrap.querySelector(".count"); // Get the count span
+            
+            var data = fetch(`${actionUrl}?itemId=${itemId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+            }})
+
+            console.log(data);
+           
+     });
+
+
+     });
+</script>
+
+<style>
+    @@font -face {
+        font-family: system;
+        font-style: normal;
+        font-weight: 300;
+        src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Symbol"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Light.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Light.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Light.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Light.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Light.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Light.svg#SanFrancisco-Light') format('svg');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Medium.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Medium.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Medium.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Medium.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Medium.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Medium.svg#SanFrancisco-Medium') format('svg');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Bold.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Bold.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Bold.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Bold.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Bold.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Bold.svg#SanFrancisco-Bold') format('svg');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Black.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Black.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Black.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Black.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Black.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Black.svg#SanFrancisco-Black') format('svg');
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-ExtraBold.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-ExtraBold.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-ExtraBold.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-ExtraBold.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-ExtraBold.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-ExtraBold.svg#SanFrancisco-ExtraBold') format('svg');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-SemiBold.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-SemiBold.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-SemiBold.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-SemiBold.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-SemiBold.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-SemiBold.svg#SanFrancisco-SemiBold') format('svg');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco.svg#SanFrancisco') format('svg');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Thin.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-Thin.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Thin.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Thin.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Thin.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-Thin.svg#SanFrancisco-Thin') format('svg');
+        font-weight: 100;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @@font -face {
+        font-family: 'San Francisco';
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-UltraLight.eot');
+        src: url('https://limak.az/new_front/assets/fonts/SanFrancisco-UltraLight.eot?#iefix') format('embedded-opentype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-UltraLight.woff2') format('woff2'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-UltraLight.woff') format('woff'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-UltraLight.ttf') format('truetype'), url('https://limak.az/new_front/assets/fonts/SanFrancisco-UltraLight.svg#SanFrancisco-UltraLight') format('svg');
+        font-weight: 200;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    body {
+        font-size: 1rem;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        background: #F8F8F8 !important;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: 0;
+        font-size: 100%;
+    }
+
+    body {
+        margin: 0;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+    }
+
+    body {
+        color: #373736;
+        background: #F8F8F8 !important;
+    }
+
+    body {
+        padding-top: 0;
+    }
+
+    html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+        --theme-color1: #232331;
+        --theme-color2: #F15834;
+        --theme-color3: #ff9205;
+        --bg-theme-color1: var(--theme-color1);
+        --bg-theme-color2: var(--theme-color2);
+        --bg-theme-color3: var(--theme-color3);
+        --border-theme-color1: var(--theme-color1);
+        --border-theme-color2: var(--theme-color2);
+        --border-theme-color3: var(--theme-color3);
+        --headings-color: #003c38;
+        --text-font: "Source Sans Pro",sans-serif;
+        --title-font: "Source Sans Pro",sans-serif;
+        --h2-font-size: 42px;
+        --h2-font-weight: 800;
+        --sec-title-color: var(--headings-color);
+        --sec-title-font-size: var(--h2-font-size);
+        --sec-title-font-family: var(--title-font);
+        --sec-title-font-weight: var(--h2-font-weight);
+        --sec-title-subtitle-font-family: var(--text-font);
+        --theme-light-background-text-color: var(--headings-color);
+    }
+
+    *, :after, :before {
+        box-sizing: border-box;
+    }
+
+    .card-tabs-body {
+        padding: 10px 0;
+    }
+
+    .tab-content > .tab-pane {
+        display: none;
+    }
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+
+    .mb-10 {
+        margin-bottom: 10px;
+    }
+
+    .card {
+        background: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+    }
+
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1.25rem;
+    }
+
+    .d-flex {
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+
+    .justify-content-between {
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+    }
+
+    .align-items-center {
+        -ms-flex-align: center !important;
+        align-items: center !important;
+    }
+
+    .order-item {
+        margin-bottom: 20px;
+    }
+
+    .custom-control {
+        position: relative;
+        z-index: 1;
+        display: block;
+        min-height: 1.5rem;
+        padding-left: 1.5rem;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+
+    .custom-checkbox {
+        padding-left: 0;
+    }
+
+    button {
+        border-radius: 0;
+    }
+
+    button {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    button {
+        overflow: visible;
+    }
+
+    button {
+        text-transform: none;
+    }
+
+    [type="button"], button {
+        -webkit-appearance: button;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-sm {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
+
+    .btn-submit {
+        background: linear-gradient(180deg, #fc7b5d 0%, #f05835 100%);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 11px 38px;
+    }
+
+    [type="button"]:not(:disabled), button:not(:disabled) {
+        cursor: pointer;
+    }
+
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        color: #212529;
+        text-decoration: none;
+    }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+
+    .list-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        border-radius: .25rem;
+    }
+
+    .list-group-horizontal {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .card > .list-group {
+        border-top: inherit;
+        border-bottom: inherit;
+    }
+
+    .list-group-horizontal[data-v-b1b3b5c6] {
+        border-radius: 8px !important;
+    }
+
+    .order-item .list-group {
+        border-radius: 0;
+        border: none;
+    }
+
+    .card > .list-group:first-child {
+        border-top-width: 0;
+        border-top-left-radius: calc(.25rem - 1px);
+        border-top-right-radius: calc(.25rem - 1px);
+    }
+
+    .collapse:not(.show) {
+        display: none;
+    }
+
+    .collapse[data-v-b1b3b5c6] {
+        border-top: 1px solid #d5d5d5;
+    }
+
+    input {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    input {
+        overflow: visible;
+    }
+
+    .custom-control-input {
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        width: 1rem;
+        height: 1.25rem;
+        opacity: 0;
+    }
+
+    input[type="checkbox"] {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    .custom-checkbox .custom-control-input {
+        opacity: 0;
+        position: absolute;
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+    }
+
+    .default-checkbox.custom-checkbox .custom-control-input {
+        width: 24px;
+        min-width: 24px;
+        height: 24px;
+    }
+
+    label {
+        display: inline-block;
+        margin-bottom: .5rem;
+    }
+
+    label {
+        font-weight: 600 !important;
+        font-size: 12px !important;
+        line-height: 16px !important;
+        color: #373736;
+    }
+
+    .custom-control-label {
+        position: relative;
+        margin-bottom: 0;
+        vertical-align: top;
+    }
+
+    .custom-checkbox .custom-control-label {
+        position: relative;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 15px;
+        color: #818181;
+        padding-left: 30px;
+    }
+
+    .default-checkbox.custom-checkbox .custom-control-label {
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        color: #373736;
+    }
+
+    .default-checkbox.custom-checkbox .custom-control-label {
+        font-size: 12.5px;
+        padding-left: 35px;
+    }
+
+    .custom-control-label:before {
+        position: absolute;
+        top: .25rem;
+        left: -1.5rem;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        background-color: #fff;
+        border: #adb5bd solid 1px;
+    }
+
+    .custom-control-label:before, .custom-file-label, .custom-select {
+        transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .custom-checkbox .custom-control-label::before {
+        border-radius: .25rem;
+    }
+
+    .custom-checkbox .custom-control-label::after, .custom-checkbox .custom-control-label::before {
+        position: absolute;
+        left: -1.5rem;
+        display: block;
+        content: "";
+        border-radius: 50%;
+    }
+
+    .custom-checkbox .custom-control-label::after, .custom-checkbox .custom-control-label::before {
+        width: 20px !important;
+        min-width: 20px !important;
+        height: 20px !important;
+        top: 0;
+        left: 0;
+    }
+
+    .custom-checkbox .custom-control-label::before {
+        border: 2px solid #d7d7d7 !important;
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        color: #fff;
+        border-color: #007bff;
+        background-color: #007bff;
+    }
+
+    .default-checkbox.custom-checkbox .custom-control-input, .default-checkbox.custom-checkbox .custom-control-label::after, .default-checkbox.custom-checkbox .custom-control-label::before {
+        width: 24px;
+        min-width: 24px;
+        height: 24px;
+    }
+
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+        background: #fff;
+        border-color: #00B569 !important;
+    }
+
+    .custom-control-label:after {
+        position: absolute;
+        top: .25rem;
+        left: -1.5rem;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        content: "";
+        background: 50%/50% 50% no-repeat;
+    }
+
+    .custom-checkbox .custom-control-label::after {
+        background: no-repeat 50%/50% 50%;
+    }
+
+    .default-checkbox.custom-checkbox .custom-control-input, .default-checkbox.custom-checkbox .custom-control-label::after, .default-checkbox.custom-checkbox .custom-control-label::before {
+        width: 24px;
+        min-width: 24px;
+        height: 24px;
+    }
+
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
+    }
+
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+        background-image: url("https://limak.az/new_front/assets/images/icons/check.svg") !important;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: .75rem 1.25rem;
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,.125);
+    }
+
+        .list-group-item:first-child {
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+
+        .list-group-item[data-v-b1b3b5c6] {
+            width: calc(100% / 5) !important;
+        }
+
+    .order-item .list-group-item {
+        border: none;
+        border-left: 1px solid #d5d5d5;
+        padding: 20px;
+        height: 80px;
+        border-left-width: 1px !important;
+    }
+
+    .order-item-report .list-group-item {
+        border: none;
+        width: calc(100% / 4);
+        height: auto;
+    }
+
+    .list-group-horizontal > .list-group-item:first-child {
+        border-bottom-left-radius: .25rem;
+        border-top-right-radius: 0;
+    }
+
+    .order-item .list-group-item:first-child {
+        border-bottom-left-radius: 8px;
+    }
+
+    .list-group .list-group-item:first-child {
+        border-left: 0 !important;
+    }
+
+    .order-item-report .list-group-item:first-child {
+        border-bottom-left-radius: 0;
+    }
+
+    .list-group-horizontal .list-group-item[data-v-b1b3b5c6]:first-child {
+        max-width: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .list-group-item + .list-group-item {
+        border-top-width: 0;
+    }
+
+    .list-group-horizontal > .list-group-item + .list-group-item {
+        border-top-width: 1px;
+        border-left-width: 0;
+    }
+
+    .list-group-horizontal .list-group-item[data-v-b1b3b5c6]:nth-child(2) {
+        width: 30% !important;
+        overflow: hidden;
+    }
+
+    @@media screen and (min-width: 991px) {
+        .list-group-horizontal .list-group-item[data-v-b1b3b5c6]:nth-child(2) {
+            padding-right: 0;
+        }
+
+        .list-group-horizontal .list-group-item[data-v-b1b3b5c6]:nth-child(3) {
+            margin-left: 22px;
+        }
+    }
+
+    .list-group-item:last-child {
+        border-bottom-right-radius: inherit;
+        border-bottom-left-radius: inherit;
+    }
+
+    .list-group-horizontal > .list-group-item:last-child {
+        border-top-right-radius: .25rem;
+        border-bottom-left-radius: 0;
+    }
+
+    .list-group-item.btn_group[data-v-b1b3b5c6] {
+        min-width: 132px;
+    }
+
+    .order-item .list-group-item:last-child {
+        border-bottom-right-radius: 8px;
+        border-right-width: 0;
+        flex: 1;
+    }
+
+    .list-group .list-group-item:last-child {
+        border-left-width: 0 !important;
+    }
+
+    .list-group .list-group-item.btn_group[data-v-b1b3b5c6]:last-child {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }
+
+    svg {
+        overflow: hidden;
+        vertical-align: middle;
+    }
+
+    h5 {
+        margin-top: 0;
+        margin-bottom: .5rem;
+    }
+
+    h5 {
+        margin-bottom: .5rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    h5 {
+        font-size: 1.25rem;
+    }
+
+    h5 {
+        margin-bottom: 0;
+    }
+
+    .order-item-label {
+        font-weight: bold;
+        font-size: 13px;
+        line-height: 16px;
+        margin-bottom: 10px;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+        background-color: transparent;
+    }
+
+    a {
+        color: #373736;
+        outline: 0;
+    }
+
+    .list-group-horizontal .list-group-item a[data-v-b1b3b5c6] {
+        color: #058FFF;
+    }
+
+    @@media screen and (min-width: 991px) {
+        .list-group-horizontal .list-group-item a[data-v-b1b3b5c6] {
+            color: #058FFF;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 30px;
+        font-weight: 400;
+        color: #767676;
+        margin: 0;
+    }
+
+    .order-item-value {
+        font-weight: 500;
+        font-size: 14.5px;
+        line-height: 16px;
+        color: rgba(55, 55, 54, 0.7);
+        margin-bottom: 0;
+    }
+
+    .list-group .btn_group > div[data-v-b1b3b5c6] {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }
+
+    .list-group-horizontal .list-group-item:last-child div[data-v-b1b3b5c6] {
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+
+    .btn-secondary {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+        .btn-secondary:hover {
+            color: #fff;
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+    .action-btn[data-v-b1b3b5c6] {
+        border: none !important;
+        background: none !important;
+    }
+
+    .list-group .btn_group button {
+        transition: all 0.5s ease-in-out;
+    }
+
+    .btn-outline-danger {
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-edit {
+        border: 1px solid #058fff;
+        border-radius: 5px;
+        padding: 3px 6px;
+        color: #373736;
+        line-height: normal;
+        min-height: 22px;
+        align-items: center;
+        display: flex;
+    }
+
+    .btn-outline-danger:hover {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+
+    /* These were inline style tags. Uses id+class to override almost everything */
+    #__BVID__26.style-Eg3Ai {
+        display: none;
+    }
+
+    #__BVID__28.style-x5V87 {
+        display: none;
+    }
+
+    #style-8Afkt.style-8Afkt {
+        display: block;
+    }
+
+    #__BVID__72.style-8xdsN {
+        display: none;
+    }
+</style>

@@ -150,4 +150,7 @@
   <data name="shops" xml:space="preserve">
     <value>MAĞAZALAR</value>
   </data>
+  <data name="order" xml:space="preserve">
+    <value>Sifariş Et</value>
+  </data>
 </root>

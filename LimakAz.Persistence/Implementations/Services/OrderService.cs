@@ -16,7 +16,8 @@ internal class OrderService : IOrderService
     private readonly IStatusService _statusService;
     private readonly UserManager<AppUser> _userManager;
     private readonly ICookieService _cookieService;
-    public OrderService(IOrderRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ITariffService tariffService, IValidationMessageProvider localizer, IStatusService statusService, UserManager<AppUser> userManager, ICookieService cookieService)
+    private readonly IAuthService _authService;
+    public OrderService(IOrderRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ITariffService tariffService, IValidationMessageProvider localizer, IStatusService statusService, UserManager<AppUser> userManager, ICookieService cookieService, IAuthService authService)
     {
         _repository = repository;
         _mapper = mapper;
@@ -27,6 +28,7 @@ internal class OrderService : IOrderService
         _statusService = statusService;
         _userManager = userManager;
         _cookieService = cookieService;
+        _authService = authService;
     }
 
     public async Task<bool> CreateAsync(OrderCreateDto dto, ModelStateDictionary ModelState)
@@ -54,9 +56,19 @@ internal class OrderService : IOrderService
 
         var selectedCountry = await _countryService.GetAsync(dto.CountryId);
 
-        //if(selectedCountry. == )
-        order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.05m;
+        if (selectedCountry!.Id == (int)CountryName.Turkiye)
+            order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.05m;
+        else
+            order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.07m;
+
         order.StatusId = (int)StatusName.NotOrdered;
+
+        var user = await _authService.GetAuthenticatedUserAsync();
+
+        if (user == null)
+            throw new UnAuthorizedException();
+
+        order.UserId = user.Id;
 
         await _repository.CreateAsync(order);
         await _repository.SaveChangesAsync();
@@ -65,9 +77,32 @@ internal class OrderService : IOrderService
 
     }
 
-    public Task DeleteAsync(int id)
+    public async Task<int> DecreaseOrderCount(int itemId)
     {
-        throw new NotImplementedException();
+        var order = await _repository.GetAsync(itemId);
+
+        if (order == null)
+            throw new NotFoundException("Bu idli baglama tapilmadi");
+
+
+        order.Count = order.Count == 1 ? 1 : --order.Count;
+
+        _repository.Update(order);
+        await _repository.SaveChangesAsync();
+
+        return order.Count;
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+       var item = await _repository.GetAsync(id);
+
+        if (item == null)
+            throw new NotFoundException();
+
+        _repository.SoftDelete(item);
+
+        await _repository.SaveChangesAsync();
     }
     public List<OrderGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
@@ -86,18 +121,12 @@ internal class OrderService : IOrderService
 
         dto.Countries = countries;
         dto.LocalPoints = localPoints;
+        var userId = _cookieService.GetUserId();
 
-        if (dto.LocalPointId == 0)
-        {
-            var userId = _cookieService.GetUserId();
+        var user = await _userManager.FindByIdAsync(userId);
 
-            var user = await _userManager.FindByIdAsync(userId);
-
-            if (user == null)
-                throw new UnAuthorizedException();
-
+        if (dto.LocalPointId == 0 && user != null)
             dto.SelectedLocalPointId = user.LocalPointId;
-        }
 
         return dto;
     }
@@ -109,6 +138,37 @@ internal class OrderService : IOrderService
     public Task<OrderUpdateDto> GetUpdatedDtoAsync(int id)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<List<OrderGetDto>> GetUserOrdersByCountryId(int countryId)
+    {
+        var isExsist = await _countryService.IsExistAsync(countryId);
+
+        if (!isExsist)
+            throw new NotFoundException("Bu idli olke tapilmadi");
+
+        var user = await _authService.GetAuthenticatedUserAsync();
+
+        var orders =  _repository.GetAll(x => x.CountryId == countryId && x.UserId == user.Id);
+
+        var dtos =  _mapper.Map<List<OrderGetDto>>(orders);
+
+        return dtos;
+    }
+
+    public async Task<int> IncreaseOrderCount(int itemId)
+    {
+        var order = await _repository.GetAsync(itemId);
+
+        if (order == null)
+            throw new NotFoundException("Bu idli baglama tapilmadi");
+
+        order.Count += 1;
+
+         _repository.Update(order);
+        await _repository.SaveChangesAsync();
+
+        return order.Count;
     }
 
     public Task<bool> IsExistAsync(int id)

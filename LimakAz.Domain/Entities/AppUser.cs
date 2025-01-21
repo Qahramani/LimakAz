@@ -11,7 +11,7 @@ public class AppUser : IdentityUser
     public string FinCode { get; set; } = null!;
     public string SerialNumber { get; set; } = null!;
     public string Address { get; set; } = null!;
-    //public bool IsActive { get; set; } = true;
+    public bool IsActive { get; set; } = true;
     public decimal AZNBalance { get; set; } 
     public decimal TRYBalance { get; set; } 
     public decimal USDBalance { get; set; } 

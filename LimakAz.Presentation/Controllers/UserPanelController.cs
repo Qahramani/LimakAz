@@ -27,15 +27,6 @@ public class UserPanelController : Controller
 
         return View(dictionary);
     }
-    //public async Task<IActionResult> Settings()
-    //{
-    //    var language = await _cookieService.GetSelectedLanguageTypeAsync();
-
-    //    var dto = await _userPanelService.GetUserUpdateDtoAsync(language);
-
-    //    return View(dto);
-    //}
-
     public async Task<IActionResult> UpdateProfile()
     {
         var language = await _cookieService.GetSelectedLanguageTypeAsync();

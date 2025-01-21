@@ -96,6 +96,7 @@ public static class ServiceRegistrations
         services.AddScoped<IHomeService, HomeService>();
         services.AddScoped<ICalculatorService, CalculatorService>();
         services.AddScoped<IUserPanelService, UserPanelService>();
+        services.AddScoped<IAdminService, AdminService>();
 
     }
 

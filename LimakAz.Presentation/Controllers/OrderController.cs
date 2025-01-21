@@ -15,12 +15,13 @@ public class OrderController : Controller
         _cookieService = cookieService;
     }
 
+    [HttpGet]
     [HttpPost]
-    public async Task<IActionResult> CreateFromLink(string orderLink = "")
+    public async Task<IActionResult> CreateFromLink(string? orderLink = "")
     {
         var language = await _cookieService.GetSelectedLanguageTypeAsync();
 
-        var dto = await _orderService.GetCreateDtoAsync( new() { Link = orderLink},language);
+        var dto = await _orderService.GetCreateDtoAsync(new() { Link = orderLink }, language);
 
         return View(dto);
     }
@@ -30,15 +31,16 @@ public class OrderController : Controller
     {
         var result = await _orderService.CreateAsync(dto, ModelState);
 
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+        dto = await _orderService.GetCreateDtoAsync(dto, language);
+
         if (!result)
         {
-            var language = await _cookieService.GetSelectedLanguageTypeAsync();
 
-            dto = await _orderService.GetCreateDtoAsync(dto, language);
-
-            return View(result);
+            return View("CreateFromLink", dto);
         }
 
-        return View(dto);
+        return View("CreateFromLink", dto);
     }
 }

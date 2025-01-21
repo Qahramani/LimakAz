@@ -1,14 +1,11 @@
-﻿using Humanizer;
-using LimakAz.Application.DTOs;
+﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
-using LimakAz.Domain.Entities;
-using LimakAz.Presentation.Extentions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using Microsoft.AspNetCore.Routing;
 
 namespace LimakAz.Presentation.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize(Roles = "Admin,Moderator")]
 public class TariffController : Controller
 {
     private readonly ITariffService _tariffService;

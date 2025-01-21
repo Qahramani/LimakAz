@@ -13,26 +13,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@settings["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Manrope:wght@300;400;500;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&family=Roboto+Mono:ital,wght@0,100;0,200;0,400;0,500;0,600;1,100;1,200;1,400;1,500;1,600&display=swap"
-          rel="stylesheet">
+    rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Swiper cdn -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -65,59 +65,59 @@
 
     <style>
         .user-panel {
-            position: relative;
-            display: inline-block;
+        position: relative;
+        display: inline-block;
         }
 
         .user-icon {
-            font-size: 40px; /* Adjust icon size */
-            color: #333;
-            cursor: pointer;
-            height: 67px;
-            margin-right: 10px;
+        font-size: 40px; /* Adjust icon size */
+        color: #333;
+        cursor: pointer;
+        height: 67px;
+        margin-right: 10px;
         }
 
         .user-actions {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            top: 50px; /* Adjust according to the icon size */
-            right: 0;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 1000;
-            min-width: 150px; /* Ensures the dropdown width is consistent */
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 50px; /* Adjust according to the icon size */
+        right: 0;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 1000;
+        min-width: 150px; /* Ensures the dropdown width is consistent */
         }
 
-            .user-actions li {
-                padding: 10px 15px;
-                border-bottom: 1px solid #f0f0f0;
-            }
+        .user-actions li {
+        padding: 10px 15px;
+        border-bottom: 1px solid #f0f0f0;
+        }
 
-                .user-actions li:last-child {
-                    border-bottom: none;
-                }
+        .user-actions li:last-child {
+        border-bottom: none;
+        }
 
-                .user-actions li a {
-                    text-decoration: none;
-                    color: #333;
-                    display: block;
-                }
+        .user-actions li a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+        }
 
-                    .user-actions li a:hover {
-                        background-color: #f5f5f5;
-                        color: #007bff;
-                    }
+        .user-actions li a:hover {
+        background-color: #f5f5f5;
+        color: #007bff;
+        }
 
-            /* Keep dropdown visible when hovering over it */
-            .user-panel:hover .user-actions,
-            .user-actions:hover {
-                display: block;
-            }
+        /* Keep dropdown visible when hovering over it */
+        .user-panel:hover .user-actions,
+        .user-actions:hover {
+        display: block;
+        }
 
     </style>
 </head>
@@ -130,23 +130,23 @@
                 <ul>
                     <li class="list-unstyled">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f15834"
-                             class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                        class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                         </svg>
                         <span class="fs-8 fw-medium ">@settings["Address"]</span>
                     </li>
                     <li class="list-unstyled">
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="25" fill="#f15834"
-                             class="bi bi-clock-fill" viewBox="0 0 16 16">
+                        class="bi bi-clock-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                         </svg>
                         <span class="fs-8 fw-medium  ">@settings["WorkingHours"]</span>
                     </li>
                     <li class="list-unstyled">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f15834"
-                             class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
-                                  d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
+                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
                         </svg>
                         <span class="fw-medium">*@settings["SupportPhone"]</span>
                     </li>
@@ -262,7 +262,7 @@
                     }
 
                 </div>
-                <div class="outer-box-item2 search-icon-head">
+                @* <div class="outer-box-item2 search-icon-head">
                     <a class="search-link">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </a>
@@ -283,7 +283,7 @@
                         </li>
                     </ul>
                     <input type="search" class="search-head-input">
-                </div>
+                </div> *@
                 @if (_cookieService.IsAuthorized())
                 {
 
@@ -293,20 +293,28 @@
                         </div>
                         <ul class="user-actions">
                             <li><a asp-controller="userpanel" asp-action="index">User Panel</a></li>
-                            <li><a asp-controller="account" asp-action="settings">Settings</a></li>
+                            <li><a asp-controller="userpanel" asp-action="UpdateProfile">Settings</a></li>
                             <li><a asp-controller="account" asp-action="notifications">Notifications</a></li>
                         </ul>
                     </div>
                 }
 
-
-                <div class="outer-box-item3 basket-svg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                    </svg>
-                </div>
+                @if(_cookieService.IsAuthorized())
+                {
+                    <div class="outer-box-item3 basket-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg>
+                    </div>
+                }
                 <div class="outer-box-item4 login-btn">
+                    @if (_cookieService.IsAuthorized()){
+                        <a asp-controller="order" asp-action="CreateFromLink" class="login-tag">@_localizer.GetValue("order")</a>
+                    }
+                    else{
+
                     <a asp-controller="account" asp-action="login" class="login-tag">@_localizer.GetValue("login")</a>
+                    }
                 </div>
                 <div class="person-icon-mobile">
                     <div>

@@ -1,5 +1,5 @@
 ﻿@model OrderCreateDto
-
+@inject ICookieService _cookiesService
 <!-- Middle Sections -->
 <div>
     <!-- Middle Section -->
@@ -10,20 +10,23 @@
                 <div class="col-lg-9 col-12">
                     <div>
                         <div id="exTab2" class="container">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-tabs-head-list nav-tabs-active active">
-                                        <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
-                                        <a class="tabs-head" href="#1" data-toggle="tab">Türkiyə</a>
-                                    </li>
-                                    <li class="nav-tabs-head-list">
-                                        <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
-                                        <a class="tabs-head" href="#2" data-toggle="tab">Amerika</a>
-                                    </li>
-                                </ul>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-tabs-head-list nav-tabs-active active">
+                                    <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
+                                    <a class="tabs-head" href="#1" data-toggle="tab" onclick="setCountryId(4)">Türkiyə</a>
+                                </li>
+                                <li class="nav-tabs-head-list">
+                                    <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
+                                    <a class="tabs-head" href="#2" data-toggle="tab" onclick="setCountryId(5)">Amerika</a>
+                                </li>
+                            </ul>
                             <div class="tab-content ">
+
                                 <!-- TURKEY ORDER LIST -->
                                 <div class="tab-pane d-flex" id="1">
                                     <form asp-controller="order" asp-action="create" method="post" class="tr-form d-flex">
+                                        <input type="hidden" asp-for="CountryId" />
+                                        <div asp-validation-summary="ModelOnly"></div>
                                         <div class="ordercard-list tukish active">
                                             <div class="order-card-body order-turkish active">
                                                 <div class="form-ordercard">
@@ -32,7 +35,7 @@
                                                             <div>
                                                                 <label class="form-control-label" for="product-link">Məhsulun linki *</label>
                                                                 <div class="url-input-block">
-                                                                    <input asp-for="Link" type="url" placeholder="Məhsulun linki"
+                                                                    <input asp-for="Link" placeholder="Məhsulun linki"
                                                                            required="required" class="form-control-url">
                                                                     <span asp-validation-for="Link" class="danger"></span>
                                                                 </div>
@@ -40,12 +43,12 @@
                                                         </div>
                                                         <div class="col-sm-3 col-12">
                                                             <div id="product-price">
-                                                                <label for="product-price" class="form-control-label-custom">Məbləğ *</label>
+                                                                <label for="product-price" class="form-control-label-custom">Məbləğ *  @Model.CountryId</label>
                                                                 <div>
                                                                     <div class="input-price-group">
                                                                         <input asp-for="ItemPrice" class="price-input product-priceTr" type="number" min="1" required="required">
                                                                         <div class="input-group-append">
-                                                                            <div class="input-group-price-curency">TRY</div>
+                                                                            <div class="input-group-price-curency currency-label">TRY</div>
                                                                         </div>
                                                                         <span asp-validation-for="ItemPrice" class="danger"></span>
 
@@ -58,50 +61,46 @@
                                                                 <label class="form-control-label-custom" for="check-label-head">Türkiyə içi kargo</label>
                                                                 <div class="input-radio-group">
                                                                     <div class="check-custom check-custom-radio">
-                                                                        <input type="radio" id="check-kargo-radio" value="true" name="some-radios" class="custom-control-input">
+                                                                        <input asp-for="IsLocalCargoFree" type="radio" id="check-kargo-radio" value="true" name="some-radios" class="custom-control-input">
                                                                         <label class="radio-label" for="check-kargo-radio">Bəli</label>
                                                                     </div>
                                                                     <div class="check-custom check-custom-radio">
-                                                                        <input type="radio" id="check-kargo-radio-not"
-                                                                               value="false" name="some-radios"
-                                                                               checked
-                                                                               class="custom-control-input">
+                                                                        <input asp-for="IsLocalCargoFree" type="radio" id="check-kargo-radio-not" value="false" name="some-radios" checked class="custom-control-input">
                                                                         <label class="radio-label" for="check-kargo-radio-not">Xeyr</label>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-sm-3 col-12">
                                                             <div id="product-kargo-price" class="kargo-daxil-price">
-                                                                <label class="form-control-label-custom"
-                                                                       for="product-kargo-price">Karqo məbləği *</label>
+                                                                <label class="form-control-label-custom" for="product-kargo-price">Karqo məbləği *</label>
                                                                 <div>
                                                                     <div class="input-price-group">
                                                                         <input asp-for="LocalCargoPrice" class="price-input" placeholder="0"
-                                                                               id="olke-daxili-kargo"
-                                                                               type="number"
+                                                                               id="olke-daxili-kargo" type="number"
                                                                                min="1" required="required" disabled>
                                                                         <div class="input-group-append">
-                                                                            <div class="input-group-price-curency">TRY</div>
+                                                                            <div class="input-group-price-curency currency-label">TRY</div>
                                                                         </div>
                                                                         <span asp-validation-for="LocalCargoPrice" class="danger"></span>
-
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-sm-3 col-12">
                                                             <div id="product-kargo-price" class="kargo-daxil-price">
-                                                                <label class="form-control-label-custom"
-                                                                       for="product-kargo-price">Cəmi(+5%)</label>
+                                                                <label class="form-control-label-custom" for="product-kargo-price">
+                                                                    <span id="percentage-label">(+5%)</span>
+                                                                </label>
                                                                 <div>
                                                                     <div class="input-price-group">
                                                                         <input asp-for="OrderTotalPrice" class="price-input product-price-percentTr" placeholder="0"
                                                                                type="number"
                                                                                min="1" required="required" disabled>
                                                                         <div class="input-group-append">
-                                                                            <div class="input-group-price-curency">TRY</div>
+                                                                            <div class="input-group-price-curency currency-label">TRY</div>
                                                                         </div>
                                                                         <span asp-validation-for="OrderTotalPrice" class="danger"></span>
 
@@ -167,15 +166,18 @@
                                                     <div class="order-card-actions">
                                                         <div></div>
                                                         <div>
-                                                            <button type="button" class="link-button">
+                                                            <button type="submit" @(!_cookiesService.IsAuthorized() ? "disabled" : "") class="link-button" style="width:170px">
                                                                 <img src="https://limak.az/new_front/assets/img/icons/plus-circle.svg" alt="">
-                                                                <span>Yeni link</span>
+                                                                <span>Sebete elave et</span>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        @if(_cookiesService.IsAuthorized())
+                                        {
+
                                         <div class="col-lg-3 col-12">
                                             <div class="tab-content right-bar-payment">
                                                 <div class="sidebar">
@@ -259,148 +261,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        }
                                     </form>
                                 </div>
-                                <!-- AMERIKA ORDER LIST -->
-                                <div class="tab-pane" id="2">
-                                    <div class="ordercard-list">
-                                        <div class="order-card-body">
-                                            <form class="form-ordercard">
-                                                <div class="row">
-                                                    <div class="col-sm-9 col-12">
-                                                        <div>
-                                                            <label class="form-control-label" for="product-link">Məhsulun linki *</label>
-                                                            <div class="url-input-block">
-                                                                <input type="url" placeholder="Məhsulun linki"
-                                                                       required="required" class="form-control-url">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 col-12">
-                                                        <div id="product-price">
-                                                            <label for="product-price" class="form-control-label-custom">Məbləğ *</label>
-                                                            <div>
-                                                                <div class="input-price-group">
-                                                                    <input class="price-input product-price-usd" type="number" min="1" required="required">
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-price-curency">USD</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6 col-12">
-                                                        <div class="check-group-label">
-                                                            <label class="form-control-label-custom" for="check-label-head">Amerika içi kargo</label>
-                                                            <div class="input-radio-group">
-                                                                <div class="check-custom check-custom-radio">
-                                                                    <input type="radio" id="check-kargo-radio" value="true" name="some-radios" class="custom-control-input">
-                                                                    <label class="radio-label" for="check-kargo-radio">Bəli</label>
-                                                                </div>
-                                                                <div class="check-custom check-custom-radio">
-                                                                    <input type="radio" id="check-kargo-radio-not"
-                                                                           value="false" name="some-radios"
-                                                                           checked
-                                                                           class="custom-control-input">
-                                                                    <label class="radio-label" for="check-kargo-radio-not">Xeyr</label>
-                                                                </div>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 col-12">
-                                                        <div id="product-kargo-price" class="kargo-daxil-price">
-                                                            <label class="form-control-label-custom"
-                                                                   for="product-kargo-price">Karqo məbləği *</label>
-                                                            <div>
-                                                                <div class="input-price-group">
-                                                                    <input class="price-input" placeholder="0"
-                                                                           id="olke-daxili-kargo"
-                                                                           type="number"
-                                                                           min="1" required="required" disabled>
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-price-curency">USD</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-3 col-12">
-                                                        <div id="product-kargo-price" class="kargo-daxil-price">
-                                                            <label class="form-control-label-custom"
-                                                                   for="product-kargo-price">Cəmi(+7%)</label>
-                                                            <div>
-                                                                <div class="input-price-group">
-                                                                    <input class="price-input price-percent-usd" placeholder="0"
-                                                                           type="number"
-                                                                           min="1" required="required" disabled>
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-price-curency">USD</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4 col-12">
-                                                        <div id="product-count" class="product-count-block">
-                                                            <label for="product-count"
-                                                                   class="form-control-label-custom">Say</label>
-                                                            <div class="product-count-input-body">
-                                                                <input type="number" min="1"
-                                                                       placeholder="Say"
-                                                                       value="1"
-                                                                       class="product-count-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4 col-12">
-                                                        <div id="product-count" class="product-count-block">
-                                                            <label for="product-count"
-                                                                   class="form-control-label-custom">Məhsulun rəngi *</label>
-                                                            <div class="product-count-input-body">
-                                                                <input type="text"
-                                                                       placeholder="Məhsulun rəngi"
-                                                                       class="product-count-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-4 col-12">
-                                                        <div id="product-count" class="product-count-block">
-                                                            <label for="product-count"
-                                                                   class="form-control-label-custom">Məhsulun ölçüsü *</label>
-                                                            <div class="product-count-input-body">
-                                                                <input type="text"
-                                                                       placeholder="Məhsulun ölçüsü"
-                                                                       class="product-count-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div id="product-desc">
-                                                            <label class="form-control-label-custom"
-                                                                   for="product-desc">Qeydlər</label>
-                                                            <div>
-                                                                <input type="text"
-                                                                       placeholder="Ölçü, rəng və s. üçün qeydlər"
-                                                                       required="required"
-                                                                       class="desc-control-input">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="order-card-actions">
-                                                    <div></div>
-                                                    <div>
-                                                        <button type="button" class="link-button">
-                                                            <img src="https://limak.az/new_front/assets/img/icons/plus-circle.svg" alt="">
-                                                            <span>Yeni link</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="extraTabContent"></div>
                         </div>
@@ -412,3 +276,87 @@
     </div>
 
 </div>
+
+<script>
+    // // Set the countryId when a tab is clicked
+    // // function setcountryid(countryid) {
+    // //     document.getelementbyid("countryid").value = countryid;
+    // //
+    // // }
+</script>
+<script>
+    function setCountryId(countryId) {
+        // Set the CountryId value in the form
+        document.getElementById("CountryId").value = countryId;
+        console.log(countryId);
+
+        // Get the elements for currency and percentage labels
+        var currencyLabels = document.querySelectorAll('.currency-label');
+        var percentageLabel = document.getElementById("percentage-label");
+
+        // Update the active tab styling
+        var tabListItems = document.querySelectorAll('.nav-tabs-head-list');
+        tabListItems.forEach(function(item) {
+            item.classList.remove('active');
+        });
+
+        // Change currency and percentage based on the selected country
+        if (countryId === 4) {
+            // For Turkey (TR), set TRY and +5%
+            tabListItems[0].classList.add('active');
+
+            // Update all currency labels to TRY
+            currencyLabels.forEach(function(label) {
+                label.textContent = "TRY";
+            });
+
+            // Update percentage label
+            percentageLabel.textContent = "(+5%)";
+        } else if (countryId === 5) {
+            // For USA (USD), set USD and +7%
+            tabListItems[1].classList.add('active');
+
+            // Update all currency labels to USD
+            currencyLabels.forEach(function(label) {
+                label.textContent = "USD";
+            });
+
+            // Update percentage label
+            percentageLabel.textContent = "(+7%)";
+        }
+    }
+
+
+</script>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Get the radio buttons and the LocalCargoPrice input
+        const kargoRadioTrue = document.getElementById("check-kargo-radio");
+        const kargoRadioFalse = document.getElementById("check-kargo-radio-not");
+        const localCargoPriceInput = document.getElementById("olke-daxili-kargo");
+
+        // Function to toggle the disabled state of the input
+        function toggleLocalCargoPriceInput() {
+            if (kargoRadioTrue.checked) {
+                localCargoPriceInput.disabled = false; // Enable the input if "Bəli" is selected
+            } else {
+                localCargoPriceInput.disabled = true; // Disable the input if "Xeyr" is selected
+            }
+        }
+
+        // Add event listeners to both radio buttons
+        kargoRadioTrue.addEventListener("change", toggleLocalCargoPriceInput);
+        kargoRadioFalse.addEventListener("change", toggleLocalCargoPriceInput);
+
+        // Initial check to set the correct state when the page loads
+        toggleLocalCargoPriceInput();
+    });
+
+</script>
+
+<style>
+    button[disabled] {
+        background-color: #ccc; /* Disabled button color */
+        cursor: not-allowed; /* Change cursor to indicate disabled state */
+    }
+</style>

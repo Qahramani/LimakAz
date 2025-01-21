@@ -2,6 +2,6 @@
 
 public enum CountryName
 {
-    Turkiye = 1,
-    Amerika
+    Turkiye = 4,
+    Amerika = 5 
 }
