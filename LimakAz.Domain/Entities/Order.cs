@@ -23,5 +23,6 @@ public class Order : BaseAuditableEntity
     public int LocalPointId { get; set; }
     public LocalPoint? LocalPoint { get; set; }
     public int StatusId { get; set; }
-    public Status? Status { get; set; } 
+    public Status? Status { get; set; }
+
 }

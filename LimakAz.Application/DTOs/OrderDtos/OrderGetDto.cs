@@ -64,3 +64,15 @@ public class OrderUpdateDto : IDto
     public List<LocalPointGetDto> LocalPoints { get; set; } = [];
 }
 
+
+public class OrderItemUpdateDto
+{
+    public int Count { get; set; }
+    public decimal OrderTotalPrice { get; set; }
+}
+
+public class OrderBasketDto
+{
+    public List<OrderGetDto> Orders { get; set; } = [];
+    public List<int> SelectedOrderIds { get; set; } = [];
+}

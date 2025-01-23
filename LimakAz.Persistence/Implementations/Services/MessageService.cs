@@ -24,7 +24,7 @@ internal class MessageService : IMessageService
 
     public async Task<List<MessageDisplayDto>> GetMessagesByChatIdAsync(int chatId)
     {
-        var messages =  _repository.GetAll(x => x.ChatId == chatId, x => x.Include(x => x.User)).OrderBy(x => x.CreatedAt);
+        var messages = _repository.GetAll(x => x.ChatId == chatId, x => x.Include(x => x.User)).OrderBy(x => x.CreatedAt);
 
         var dtos = _mapper.Map<List<MessageDisplayDto>>(messages);
 
@@ -56,22 +56,33 @@ internal class MessageService : IMessageService
             Text = text,
             Fullname = chat.User?.Firstname + " " + chat.User?.Lastname,
             SendAt = DateTime.UtcNow,
+            ChatId = chatId.ToString(),
+            ModeratorFullname = chat.Moderator?.Firstname + " " + chat.Moderator.Lastname,
         };
 
 
-        var userConnectionIds = ChatHub.Connections.FirstOrDefault(x => x.UserId == chat.UserId)?.ConnectionIds;
 
-        foreach (var connection in userConnectionIds ?? [])
+
+        if (user.Id == chat.UserId)
         {
-            await _chatHub.Clients.Client(connection).SendAsync("ReceiveMessage", dto);
+            var MemberConnectionIds = ChatHub.Connections.FirstOrDefault(x => x.UserId == chat.ModeratorId)?.ConnectionIds;
+
+            foreach (var connectionId in MemberConnectionIds ?? [])
+            {
+                await _chatHub.Clients.Client(connectionId).SendAsync("ReceiveMessage", dto);
+            }
+        }
+        else
+        {
+            var userConnectionIds = ChatHub.Connections.FirstOrDefault(x => x.UserId == chat.UserId)?.ConnectionIds;
+
+            foreach (var connection in userConnectionIds ?? [])
+            {
+                await _chatHub.Clients.Client(connection).SendAsync("ReceiveMessage", dto);
+            }
         }
 
-        var MemberConnectionIds = ChatHub.Connections.FirstOrDefault(x => x.UserId == chat.ModeratorId)?.ConnectionIds;
 
-        foreach (var connectionId in MemberConnectionIds ?? [])
-        {
-            await _chatHub.Clients.Client(connectionId).SendAsync("ReceiveMessage", dto);
-        }
 
         return dto;
     }

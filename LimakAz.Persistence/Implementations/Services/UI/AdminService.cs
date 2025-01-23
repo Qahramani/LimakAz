@@ -15,11 +15,11 @@ internal class AdminService : IAdminService
         _chatService = chatService;
     }
 
-    public async Task<List<UserWithRolesViewModel>> GetUsersAsync()
+    public async Task<List<UserGetDto>> GetUsersAsync()
     {
         var users = await _userManager.Users.ToListAsync();
 
-        var userRoles = new List<UserWithRolesViewModel>();
+        var userRoles = new List<UserGetDto>();
 
         var chats = _chatService.GetAll();
 
@@ -32,7 +32,7 @@ internal class AdminService : IAdminService
 
             var chat = await _chatService.GetChatByUseIdAsync(user.Id);
 
-            userRoles.Add(new UserWithRolesViewModel
+            userRoles.Add(new UserGetDto
             {
                 Id = user.Id,
                 Fullname = user.Firstname + " " + user.Lastname,

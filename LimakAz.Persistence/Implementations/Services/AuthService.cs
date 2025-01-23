@@ -160,6 +160,7 @@ internal class AuthService : IAuthService
             return false;
         }
 
+
         await _userManager.AddToRoleAsync(user, RoleType.Member.ToString());
 
         await _sendConfirmEmailTokenAsync(user);
@@ -374,5 +375,17 @@ internal class AuthService : IAuthService
         var users = await _userManager.GetUsersInRoleAsync(RoleType.Member.ToString());
 
         return users.ToList();
+    }
+
+    public async Task<List<string>> GetUserRolesAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
+            throw new NotFoundException("User tapilmadi");
+
+        var roles = await _userManager.GetRolesAsync(user);
+
+        return roles.ToList();
     }
 }

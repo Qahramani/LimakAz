@@ -116,6 +116,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<NotificationDetail> NotificationDetails { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;
     public DbSet<Chat> Chats { get; set; } = null!;
+    public DbSet<Payment> Payments  { get; set; } = null!;
     public DbSet<Status> Statuses { get; set; } = null!;
     public DbSet<StatusDetail> StatusDetails { get; set; } = null!;
 

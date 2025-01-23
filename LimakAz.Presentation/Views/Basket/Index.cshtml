@@ -1,14 +1,14 @@
-﻿@model List<OrderGetDto>
+﻿@model OrderBasketDto
 <div>
     <!-- Middle Section -->
     <div class="middlecontainer">
         <!-- Order Plans -->
         <div class="order-main-pg">
             <div class="row order-card-main-row">
-                <div class="col-lg-9 col-12">
+                <div class="col-lg-12 col-12">
                     <div>
                         <div id="exTab2" class="container">
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs" style="width:100%">
                                 <li class="nav-tabs-head-list nav-tabs-active active">
                                     <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
                                     <a class="tabs-head" asp-controller="basket" asp-action="index" asp-route-countryId="4">Türkiyə</a>
@@ -39,16 +39,21 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <form asp-action="SubmitOrderIds" method="post">
                                     <div class="snipcss0-5-22-35 snipcss0-6-23-36 snipcss0-4-21-34">
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Orders)
                                         {
 
                                             <div data-v-b1b3b5c6="" class="snipcss0-6-35-36 snipcss0-7-36-37 snipcss0-5-34-35">
                                                 <div data-v-b1b3b5c6="" class="card order-item order-item-report snipcss0-7-36-37 snipcss0-8-37-38 snipcss0-6-35-36">
                                                     <div data-v-b1b3b5c6="" class="list-group list-group-horizontal snipcss0-8-37-38 snipcss0-9-38-39 snipcss0-7-36-37">
-                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-39 snipcss0-10-39-40 snipcss0-8-37-38">
-                                                            <div data-v-b1b3b5c6="" class="default-checkbox custom-control custom-checkbox snipcss0-10-39-40 snipcss0-11-40-41 snipcss0-9-38-39"><input type="checkbox" class="custom-control-input snipcss0-11-40-41 snipcss0-12-41-42 snipcss0-10-39-40" value="true" id="__BVID__71"><label class="custom-control-label snipcss0-11-40-42 snipcss0-12-41-43 snipcss0-10-39-41" for="__BVID__71"></label></div>
-                                                        </div>
+                                                            <div>
+                                                                <!-- Checkbox to select order -->
+                                                                <input type="checkbox"
+                                                                       name="SelectedOrderIds"
+                                                                       id="order_@item.Id"
+                                                                       value="@item.Id" style="margin: 50px 0px 50px 30px;" />
+                                                            </div>
                                                         <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-43 snipcss0-10-39-44 snipcss0-8-37-42">
                                                             <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-10-43-44 snipcss0-11-44-45 snipcss0-9-42-43">Ссылка на товар</h5> <a data-v-b1b3b5c6="" href="feeffefe" target="_blank" class="snipcss0-10-43-45 snipcss0-11-44-46 snipcss0-9-42-44">@item.Link</a>
                                                         </div>
@@ -74,20 +79,20 @@
                                                             </p>
                                                         </div>
 
-                                                        <div data-v-b1b3b5c6="" class="list-group-item snipcss0-9-38-60 snipcss0-10-39-61 snipcss0-8-37-59">
-                                                            <h5 data-v-b1b3b5c6="" class="order-item-label snipcss0-10-60-61 snipcss0-11-61-62 snipcss0-9-59-60">Итоговая стоимость</h5>
-                                                            <p data-v-b1b3b5c6="" class="order-item-value snipcss0-10-60-62 snipcss0-11-61-63 snipcss0-9-59-61">@item.OrderTotalPrice</p>
+                                                        <div class="list-group-item">
+                                                            <h5 class="order-item-label">Итоговая стоимость</h5>
+                                                            <p class="order-item-value total-price">@item.OrderTotalPrice</p>
                                                         </div>
                                                         <div data-v-b1b3b5c6="" class="list-group-item btn_group snipcss0-9-38-63 snipcss0-10-39-64 snipcss0-8-37-62">
                                                             <div data-v-b1b3b5c6="" class="snipcss0-10-63-64 snipcss0-11-64-65 snipcss0-9-62-63 style-8Afkt" id="style-8Afkt">
                                                                 <form asp-controller="basket" asp-action="deleteFromBasket" asp-route-itemId="@item.Id">
-                                                                <button data-v-b1b3b5c6="" title="Отказ от посылки" type="submit" class="btn action-btn delete_btn btn-secondary btn-sm snipcss0-11-64-65 snipcss0-12-65-66 snipcss0-10-63-64">
-                                                                    <svg data-v-b1b3b5c6="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcss0-12-65-66 snipcss0-13-66-67 snipcss0-11-64-65">
-                                                                        <path data-v-b1b3b5c6="" d="M9 5.00024V4.50024C9 3.83724 9.264 3.20124 9.733 2.73224C10.201 2.26324 10.837 2.00024 11.5 2.00024H12.5C13.163 2.00024 13.799 2.26324 14.268 2.73224C14.737 3.20124 15 3.83724 15 4.50024V5.00024H20C20.552 5.00024 21 5.44824 21 6.00024C21 6.55224 20.552 7.00024 20 7.00024H19V18.0002C19 20.2092 17.21 22.0002 15 22.0002C13.168 22.0002 10.833 22.0002 9 22.0002C6.791 22.0002 5 20.2092 5 18.0002V7.00024H4C3.448 7.00024 3 6.55224 3 6.00024C3 5.44824 3.448 5.00024 4 5.00024H9ZM17 7.00024H7V18.0002C7 19.1052 7.896 20.0002 9 20.0002H15C16.105 20.0002 17 19.1052 17 18.0002V7.00024ZM13 10.0002V17.0002C13 17.5522 13.448 18.0002 14 18.0002C14.552 18.0002 15 17.5522 15 17.0002V10.0002C15 9.44824 14.552 9.00024 14 9.00024C13.448 9.00024 13 9.44824 13 10.0002ZM9 10.0002V17.0002C9 17.5522 9.448 18.0002 10 18.0002C10.552 18.0002 11 17.5522 11 17.0002V10.0002C11 9.44824 10.552 9.00024 10 9.00024C9.448 9.00024 9 9.44824 9 10.0002ZM13 5.00024V4.50024C13 4.36724 12.948 4.24024 12.854 4.14624C12.76 4.05324 12.633 4.00024 12.5 4.00024C12.173 4.00024 11.827 4.00024 11.5 4.00024C11.368 4.00024 11.241 4.05324 11.147 4.14624C11.053 4.24024 11 4.36724 11 4.50024V5.00024H13Z" fill="#BFBFBF"></path>
-                                                                    </svg>
+                                                                    <button data-v-b1b3b5c6="" title="Отказ от посылки" type="submit" class="btn action-btn delete_btn btn-secondary btn-sm snipcss0-11-64-65 snipcss0-12-65-66 snipcss0-10-63-64">
+                                                                        <svg data-v-b1b3b5c6="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="snipcss0-12-65-66 snipcss0-13-66-67 snipcss0-11-64-65">
+                                                                            <path data-v-b1b3b5c6="" d="M9 5.00024V4.50024C9 3.83724 9.264 3.20124 9.733 2.73224C10.201 2.26324 10.837 2.00024 11.5 2.00024H12.5C13.163 2.00024 13.799 2.26324 14.268 2.73224C14.737 3.20124 15 3.83724 15 4.50024V5.00024H20C20.552 5.00024 21 5.44824 21 6.00024C21 6.55224 20.552 7.00024 20 7.00024H19V18.0002C19 20.2092 17.21 22.0002 15 22.0002C13.168 22.0002 10.833 22.0002 9 22.0002C6.791 22.0002 5 20.2092 5 18.0002V7.00024H4C3.448 7.00024 3 6.55224 3 6.00024C3 5.44824 3.448 5.00024 4 5.00024H9ZM17 7.00024H7V18.0002C7 19.1052 7.896 20.0002 9 20.0002H15C16.105 20.0002 17 19.1052 17 18.0002V7.00024ZM13 10.0002V17.0002C13 17.5522 13.448 18.0002 14 18.0002C14.552 18.0002 15 17.5522 15 17.0002V10.0002C15 9.44824 14.552 9.00024 14 9.00024C13.448 9.00024 13 9.44824 13 10.0002ZM9 10.0002V17.0002C9 17.5522 9.448 18.0002 10 18.0002C10.552 18.0002 11 17.5522 11 17.0002V10.0002C11 9.44824 10.552 9.00024 10 9.00024C9.448 9.00024 9 9.44824 9 10.0002ZM13 5.00024V4.50024C13 4.36724 12.948 4.24024 12.854 4.14624C12.76 4.05324 12.633 4.00024 12.5 4.00024C12.173 4.00024 11.827 4.00024 11.5 4.00024C11.368 4.00024 11.241 4.05324 11.147 4.14624C11.053 4.24024 11 4.36724 11 4.50024V5.00024H13Z" fill="#BFBFBF"></path>
+                                                                        </svg>
                                                                     </button>
                                                                 </form>
-                                                                 <button data-v-b1b3b5c6="" title="Изменить " type="button" class="btn action-btn delete_btn btn-secondary btn-sm snipcss0-11-64-67 snipcss0-12-65-68 snipcss0-10-63-66">
+                                                                <button data-v-b1b3b5c6="" title="Изменить " type="button" class="btn action-btn delete_btn btn-secondary btn-sm snipcss0-11-64-67 snipcss0-12-65-68 snipcss0-10-63-66">
                                                                     <svg data-v-b1b3b5c6="" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="bi bi-pencil-square snipcss0-12-67-68 snipcss0-13-68-69 snipcss0-11-66-67" style="width: 20px; height: 20px;">
                                                                         <path data-v-b1b3b5c6="" d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" fill="#BFBFBF"></path>
                                                                         <path data-v-b1b3b5c6="" fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" fill="#BFBFBF"></path>
@@ -111,9 +116,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                         }
+                                            <button type="submit" 
+                                                    class="payment-btn">
+                                                ÖDƏNİŞ ET
+                                            </button>
                                     </div>
+                                    </form>
                                 </div>
 
                             </div>
@@ -130,26 +140,43 @@
 
 
 <script>
-    document.querySelectorAll(".spinner_btn").forEach(button => {
-         button.addEventListener("click", function () {
-             const actionUrl = this.dataset.action; // Get the action URL from the button
-             const itemId = this.dataset["itemId"]; // Get the itemId from the button
-             const spinnerWrap = this.closest(".spinner_wrap"); // Find the parent wrapper
-             const countSpan = spinnerWrap.querySelector(".count"); // Get the count span
-            
-            var data = fetch(`${actionUrl}?itemId=${itemId}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Requested-With": "XMLHttpRequest"
-            }})
+        document.querySelectorAll(".spinner_btn").forEach(button => {
+            button.addEventListener("click", function () {
+                const actionUrl = this.dataset.action; // Get the action URL
+                const itemId = this.dataset.itemId; // Get the item ID
+                const spinnerWrap = this.closest(".spinner_wrap"); // Find the parent wrapper
+                const countSpan = spinnerWrap.querySelector(".count"); // Get the count span
+                const totalPriceElement = document.querySelector(".order-item-value.total-price"); // Get total price element
 
-            console.log(data);
-           
-     });
+                // Send fetch request
+                fetch(`${actionUrl}?itemId=${itemId}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.json(); // Parse response as JSON
+                    })
+                    .then(data => {
+                        // Update the count and total price dynamically
+                        console.log(data);
+                      console.log(data.count);
+                      console.log(data.orderTotalPrice);
+                        countSpan.innerHTML = data.count; // Update count
+                        totalPriceElement.innerHTML = data.orderTotalPrice;// Update total price
+                    })
+                    .catch(err => {
+                        console.error("Error:", err);
+                        alert("Something went wrong. Please try again!");
+                    });
+            });
+        });
 
-
-     });
 </script>
 
 <style>

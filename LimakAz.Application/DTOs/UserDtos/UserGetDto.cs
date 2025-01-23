@@ -1,6 +1,6 @@
 ﻿namespace LimakAz.Application.DTOs;
 
-public class UserWithRolesViewModel
+public class UserGetDto
 {
     public string Id { get; set; }
     public string Fullname { get; set; }

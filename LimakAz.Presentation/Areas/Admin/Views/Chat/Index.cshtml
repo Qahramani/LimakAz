@@ -37,10 +37,18 @@
     </div>
 </div>
 
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.7/signalr.min.js"></script>
+
+        
 <script>
     let currentChatId = null; // Global variable to store the selected chatId
-
     async function fetchMessages(chatId) {
+
+
         currentChatId = chatId; // Update currentChatId
         const response = await fetch(`/Admin/Chat/GetMessages?chatId=${chatId}`);
         const messages = await response.json();
@@ -53,7 +61,7 @@
         messages.forEach((message) => {
             const isCurrentUser = message.userId === currentUserId;
             const messageDiv = `
-                <div class="message-container ${isCurrentUser ? 'partner-message' : 'user-message'}">
+                <div class="message-container ${isCurrentUser ?  'user-message':'partner-message' }">
                     <p>${message.fullname}</p>
                     <div class="message">
                         <p class="message-text">${message.text}</p>
@@ -88,7 +96,7 @@
             const chatBody = document.querySelector('.chat-body');
             const messageDiv = `
                 <div class="message-container user-message">
-                    <p>${message.fullname}</p>
+                    <p>${message.moderatorFullname}</p>
                     <div class="message">
                         <p class="message-text">${message.text}</p>
                         <small class="message-time">${new Date(message.sendAt).toLocaleString()}</small>
@@ -103,6 +111,37 @@
             console.error("Failed to send message");
         }
     }
+
+
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chatHub")
+        .build();
+
+    const chatArea = document.querySelector(".card-body");
+
+
+    connection.on("ReceiveMessage", (message) => {
+
+          const chatBody2 = document.querySelector('.chat-body');
+
+          if(message.chatId==currentChatId){
+                const messageDiv2 = `
+                <div class="message-container partner-message">
+                    <p>${message.fullname}</p>
+                    <div class="message">
+                        <p class="message-text">${message.text}</p>
+                        <small class="message-time">${new Date(message.sendAt).toLocaleString()}</small>
+                    </div>
+                </div>
+            `;
+            chatBody2.innerHTML += messageDiv2;
+          chatBody2.scrollTop = chatBody2.scrollHeight;
+          }
+          
+    });
+
+    connection.start().catch(err => console.error(err));
 </script>
 
 <style>

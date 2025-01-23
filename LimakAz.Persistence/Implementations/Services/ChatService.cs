@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Data;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
@@ -25,6 +26,11 @@ internal class ChatService : IChatService
     public async Task<bool> CreateAsync(ChatCreateDto dto, ModelStateDictionary ModelState)
     {
         var user = await _authService.GetAuthenticatedUserAsync();
+
+        var roles = await _authService.GetUserRolesAsync(user.Id);
+
+        if (roles.Contains(RoleType.Admin.ToString()) || roles.Contains(RoleType.Moderator.ToString()))
+            return true;
 
         Chat chat = new()
         {
@@ -106,9 +112,9 @@ internal class ChatService : IChatService
         throw new NotImplementedException();
     }
 
-    public Task<bool> IsExistAsync(int id)
+    public async Task<bool> IsExistAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _repository.IsExistAsync(x => x.Id == id);
     }
 
     public Task<bool> UpdateAsync(ChatUpdateDto dto, ModelStateDictionary ModelState)
@@ -123,6 +129,21 @@ internal class ChatService : IChatService
 
         var chat = await _repository.GetAsync(x => x.UserId == user.Id, include: _getWithIncludes());
 
+        if(chat == null)
+        {
+            var roles = await _authService.GetUserRolesAsync(user.Id);
+
+            if (roles.Contains(RoleType.Admin.ToString()) || roles.Contains(RoleType.Moderator.ToString()))
+                throw new InvalidUserRoleException();
+
+            Chat newChat = new() { UserId  = user.Id };
+
+            await _repository.CreateAsync(newChat);
+            await _repository.SaveChangesAsync();
+
+            chat = newChat;
+        }
+
         var dto = _mapper.Map<ChatGetDto>(chat);
 
         return dto;
@@ -132,26 +153,17 @@ internal class ChatService : IChatService
         return x => x.Include(x => x.User).Include(x => x.Moderator).Include(x => x.Messages);
     }
 
-    public async Task<List<ChatGetDto>> GetAllMembersAsync()
-    {
-        var members = await _authService.GetAllMembersAsync();
-        var memberIds = members.Select(x => x.Id).ToList();
-            
-        var chats = _repository.GetAll(x => memberIds.Contains(x.UserId),include: _getWithIncludes());
-
-        chats.OrderByDescending(x => x.CreatedAt);
-
-        var dtos = _mapper.Map<List<ChatGetDto>>(chats);
-
-        return dtos;
-    }
-
     public async Task<ChatGetDto> GetChatByUseIdAsync(string userId)
     {
         var chat = await _repository.GetAsync(x => x.UserId == userId, include: _getWithIncludes());
 
         if(chat == null)
         {
+            var roles = await _authService.GetUserRolesAsync(userId);
+
+            if (roles.Contains(RoleType.Admin.ToString()) || roles.Contains(RoleType.Moderator.ToString()))
+                throw new InvalidUserRoleException();
+
             Chat newChat = new()
             {
                 UserId = userId,
@@ -166,6 +178,8 @@ internal class ChatService : IChatService
         var dto = _mapper.Map<ChatGetDto>(chat);
         return dto;
     }
+
+  
 }
 
 

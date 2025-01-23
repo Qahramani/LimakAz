@@ -1,5 +1,6 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
+using LimakAz.Application.Interfaces.Services.UI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
@@ -8,11 +9,12 @@ public class OrderController : Controller
 {
     private readonly IOrderService _orderService;
     private readonly ICookieService _cookieService;
-
-    public OrderController(IOrderService orderService, ICookieService cookieService)
+    private readonly IPaymentService _paymentService;
+    public OrderController(IOrderService orderService, ICookieService cookieService, IPaymentService paymentService)
     {
         _orderService = orderService;
         _cookieService = cookieService;
+        _paymentService = paymentService;
     }
 
     [HttpGet]
@@ -42,5 +44,16 @@ public class OrderController : Controller
         }
 
         return View("CreateFromLink", dto);
+    }
+    public async Task<IActionResult> CheckPayment(PaymentCheckDto dto)
+    {
+        var result = await _paymentService.ConfirmPaymentAsync(dto);
+
+        if (!result)
+        {
+            return RedirectToAction("Index","Basket");
+        }
+
+        return View();
     }
 }

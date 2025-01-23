@@ -1,7 +1,12 @@
-﻿using LimakAz.Application.Interfaces.Helpers;
+﻿using LimakAz.Application.DTOs;
+using LimakAz.Application.Interfaces.Helpers;
+using LimakAz.Application.Interfaces.Services;
 using LimakAz.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace LimakAz.Persistence.Implementations.Services;
 
@@ -77,25 +82,10 @@ internal class OrderService : IOrderService
 
     }
 
-    public async Task<int> DecreaseOrderCount(int itemId)
-    {
-        var order = await _repository.GetAsync(itemId);
-
-        if (order == null)
-            throw new NotFoundException("Bu idli baglama tapilmadi");
-
-
-        order.Count = order.Count == 1 ? 1 : --order.Count;
-
-        _repository.Update(order);
-        await _repository.SaveChangesAsync();
-
-        return order.Count;
-    }
-
+   
     public async Task DeleteAsync(int id)
     {
-       var item = await _repository.GetAsync(id);
+        var item = await _repository.GetAsync(id);
 
         if (item == null)
             throw new NotFoundException();
@@ -109,9 +99,33 @@ internal class OrderService : IOrderService
         throw new NotImplementedException();
     }
 
-    public Task<OrderGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    public async Task<OrderGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
     {
-        throw new NotImplementedException();
+        var order = await _repository.GetAsync(x => x.Id == id, _getWithIncludes(language));
+
+        if (order == null)
+            throw new NotFoundException();
+
+        var dto = _mapper.Map<OrderGetDto>(order);
+
+        return dto;
+    }
+
+    private static Func<IQueryable<Order>, IIncludableQueryable<Order, object>> _getWithIncludes(LanguageType language)
+    {
+        return x => x.Include(x => x.User)
+                .Include(x => x.Country).ThenInclude(x => x.CountryDetails.Where(x => x.LanguageId == (int)language))
+                .Include(x => x.Status).ThenInclude(x => x.StatusDetails.Where(x => x.LanguageId == (int)language))
+                .Include(x => x.Shop)
+                .Include(x => x.LocalPoint).ThenInclude(x => x.LocalPointDetails.Where(x => x.LanguageId == (int)language));
+    }
+    private static Func<IQueryable<Order>, IIncludableQueryable<Order, object>> _getWithIncludes()
+    {
+        return x => x.Include(x => x.User)
+                .Include(x => x.Country).ThenInclude(x => x.CountryDetails)
+                .Include(x => x.Status).ThenInclude(x => x.StatusDetails)
+                .Include(x => x.Shop)
+                .Include(x => x.LocalPoint).ThenInclude(x => x.LocalPointDetails);
     }
 
     public async Task<OrderCreateDto> GetCreateDtoAsync(OrderCreateDto dto, LanguageType language = LanguageType.Azerbaijan)
@@ -140,7 +154,7 @@ internal class OrderService : IOrderService
         throw new NotImplementedException();
     }
 
-    public async Task<List<OrderGetDto>> GetUserOrdersByCountryId(int countryId)
+    public async Task<OrderBasketDto> GetOrderBasketByCountryIdAsync(int countryId)
     {
         var isExsist = await _countryService.IsExistAsync(countryId);
 
@@ -149,14 +163,18 @@ internal class OrderService : IOrderService
 
         var user = await _authService.GetAuthenticatedUserAsync();
 
-        var orders =  _repository.GetAll(x => x.CountryId == countryId && x.UserId == user.Id);
+        var orders = _repository.GetAll(x => x.CountryId == countryId && x.UserId == user.Id && x.StatusId == (int)StatusName.NotOrdered);
 
-        var dtos =  _mapper.Map<List<OrderGetDto>>(orders);
+        var dtos = _mapper.Map<List<OrderGetDto>>(orders);
 
-        return dtos;
+        OrderBasketDto dto = new()
+        {
+            Orders = dtos
+        };
+        return dto;
     }
 
-    public async Task<int> IncreaseOrderCount(int itemId)
+    public async Task<OrderItemUpdateDto> IncreaseOrderCountAsync(int itemId)
     {
         var order = await _repository.GetAsync(itemId);
 
@@ -164,12 +182,44 @@ internal class OrderService : IOrderService
             throw new NotFoundException("Bu idli baglama tapilmadi");
 
         order.Count += 1;
+        if (order.CountryId == (int)CountryName.Turkiye)
+            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.05m;
+        else
+            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.07m;
 
-         _repository.Update(order);
+        _repository.Update(order);
         await _repository.SaveChangesAsync();
 
-        return order.Count;
+        OrderItemUpdateDto dto = new()
+        {
+            Count = order.Count,
+            OrderTotalPrice = order.OrderTotalPrice
+        };
+
+        return dto;
     }
+    public async Task<OrderItemUpdateDto> DecreaseOrderCountAsync(int itemId)
+    {
+        var order = await _repository.GetAsync(itemId);
+
+        if (order == null)
+            throw new NotFoundException("Bu idli baglama tapilmadi");
+
+
+        order.Count = order.Count == 1 ? 1 : --order.Count;
+
+        _repository.Update(order);
+        await _repository.SaveChangesAsync();
+
+        OrderItemUpdateDto dto = new()
+        {
+            Count = order.Count,
+            OrderTotalPrice = order.OrderTotalPrice
+        };
+
+        return dto;
+    }
+
 
     public Task<bool> IsExistAsync(int id)
     {
@@ -180,4 +230,33 @@ internal class OrderService : IOrderService
     {
         throw new NotImplementedException();
     }
+
+    public async Task<decimal> PayOrdersAsync(List<int> orderIds)
+    {
+        var user = await _authService.GetAuthenticatedUserAsync();
+
+        List<Order> orders = await  _repository.GetAll(x => orderIds.Contains(x.Id) ,include : _getWithIncludes()).ToListAsync();
+        var countryId = orders.FirstOrDefault()?.CountryId;
+
+        foreach (var order in orders)
+        {
+            if (order.UserId != user.Id || order.CountryId != countryId || order.Status?.Id != (int)StatusName.NotOrdered)
+                throw new NotFoundException("Sifaris tapilmadi");
+        }
+
+        decimal totolPrice = 0;
+
+        orders.ForEach(x => totolPrice += x.OrderTotalPrice);
+
+        //orders.ForEach(x =>
+        //{
+        //    x.StatusId = (int)StatusName.Paid;
+        //    _repository.Update(x);  
+        //});
+
+        await _repository.SaveChangesAsync();
+
+        return totolPrice;
+    }
+
 }

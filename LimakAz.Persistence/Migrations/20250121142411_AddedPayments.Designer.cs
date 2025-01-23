@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250121142411_AddedPayments")]
+    partial class AddedPayments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,21 +357,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 21, 14, 51, 7, 280, DateTimeKind.Utc).AddTicks(9564),
+                            CreatedAt = new DateTime(2025, 1, 21, 14, 24, 6, 556, DateTimeKind.Utc).AddTicks(1560),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 21, 14, 51, 7, 280, DateTimeKind.Utc).AddTicks(9565),
+                            UpdatedAt = new DateTime(2025, 1, 21, 14, 24, 6, 556, DateTimeKind.Utc).AddTicks(1562),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 21, 14, 51, 7, 280, DateTimeKind.Utc).AddTicks(9568),
+                            CreatedAt = new DateTime(2025, 1, 21, 14, 24, 6, 556, DateTimeKind.Utc).AddTicks(1567),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 21, 14, 51, 7, 280, DateTimeKind.Utc).AddTicks(9569),
+                            UpdatedAt = new DateTime(2025, 1, 21, 14, 24, 6, 556, DateTimeKind.Utc).AddTicks(1568),
                             UpdatedBy = "default"
                         });
                 });
@@ -1118,6 +1121,9 @@ namespace LimakAz.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ConfirmToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -1217,9 +1223,6 @@ namespace LimakAz.Persistence.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ConfirmToken")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -1232,6 +1235,9 @@ namespace LimakAz.Persistence.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
 
                     b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
@@ -1251,6 +1257,8 @@ namespace LimakAz.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Payments");
                 });
@@ -2388,6 +2396,17 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("Status");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LimakAz.Domain.Entities.Payment", b =>
+                {
+                    b.HasOne("LimakAz.Domain.Entities.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.SettingDetail", b =>

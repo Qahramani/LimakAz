@@ -11,6 +11,7 @@ using LimakAz.Persistence.Localizers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +34,12 @@ public static class ServiceRegistrations
         _addIdentiy(services);
         _addRepositories(services);
         _addServices(services);
+
+        services.AddHttpClient();
+
+        services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        services.AddHttpContextAccessor();
+
 
 
         return services;
@@ -62,6 +69,7 @@ public static class ServiceRegistrations
         services.AddScoped<IMessageRepository, MessageRepository>();
         services.AddScoped<IStatusRepository, StatusRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -89,6 +97,7 @@ public static class ServiceRegistrations
         services.AddScoped<IMessageService, MessageService>();
         services.AddScoped<IStatusService, StatusService>();
         services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IPaymentService, PaymentService>();
 
         services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
 

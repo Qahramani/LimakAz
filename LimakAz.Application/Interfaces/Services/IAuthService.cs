@@ -12,5 +12,6 @@ public interface IAuthService
     Task<bool> LogoutAsync();
     Task<bool> EmailVerificationAsync(string token, string email);
     Task<AppUser> GetAuthenticatedUserAsync();
+    Task<List<string>> GetUserRolesAsync(string userId);
     Task<List<AppUser>> GetAllMembersAsync();
 }
