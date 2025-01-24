@@ -9,6 +9,7 @@ public interface IOrderService : IGetService<OrderGetDto>, IModifyService<OrderC
     Task<OrderBasketDto> GetOrderBasketByCountryIdAsync(int countryId);
     Task<OrderItemUpdateDto> IncreaseOrderCountAsync(int itemId);
     Task<OrderItemUpdateDto> DecreaseOrderCountAsync(int itemId);
-    Task<decimal> PayOrdersAsync(List<int> orderIds);
+    Task<string> PayOrdersAsync(List<int> orderIds);
+    Task<List<PackageDto>> GetUserPackagesAsync(int statusId, int countryId = 4,  LanguageType language = LanguageType.Azerbaijan);
 
 }

@@ -1,5 +1,6 @@
 ﻿@model OrderCreateDto
 @inject ICookieService _cookiesService
+@inject ICurrencyService _currencyService;
 <!-- Middle Sections -->
 <div>
     <!-- Middle Section -->
@@ -11,13 +12,13 @@
                     <div>
                         <div id="exTab2" class="container">
                             <ul class="nav nav-tabs">
-                                <li class="nav-tabs-head-list nav-tabs-active active">
+                                <li class="nav-tabs-head-list ">
                                     <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
-                                    <a class="tabs-head" href="#1" data-toggle="tab" onclick="setCountryId(4)">Türkiyə</a>
+                                    <a class="tabs-head" onclick="setCountryId(4)">Türkiyə</a>
                                 </li>
                                 <li class="nav-tabs-head-list">
                                     <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
-                                    <a class="tabs-head" href="#2" data-toggle="tab" onclick="setCountryId(5)">Amerika</a>
+                                    <a class="tabs-head" onclick="setCountryId(5)">Amerika</a>
                                 </li>
                             </ul>
                             <div class="tab-content ">
@@ -43,10 +44,10 @@
                                                         </div>
                                                         <div class="col-sm-3 col-12">
                                                             <div id="product-price">
-                                                                <label for="product-price" class="form-control-label-custom">Məbləğ *  @Model.CountryId</label>
+                                                                <label for="product-price" class="form-control-label-custom">Məbləğ * </label>
                                                                 <div>
                                                                     <div class="input-price-group">
-                                                                        <input asp-for="ItemPrice" class="price-input product-priceTr" type="number" min="1" required="required">
+                                                                        <input asp-for="ItemPrice" id="itemPrice" class="price-input product-priceTr" type="number" min="1" required="required">
                                                                         <div class="input-group-append">
                                                                             <div class="input-group-price-curency currency-label">TRY</div>
                                                                         </div>
@@ -56,7 +57,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6 col-12">
+                                                        @* <div class="col-sm-6 col-12">
                                                             <div class="check-group-label">
                                                                 <label class="form-control-label-custom" for="check-label-head">Türkiyə içi kargo</label>
                                                                 <div class="input-radio-group">
@@ -71,15 +72,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-sm-3 col-12">
+ *@
+                                                        <div class="col-sm-4 col-12">
                                                             <div id="product-kargo-price" class="kargo-daxil-price">
                                                                 <label class="form-control-label-custom" for="product-kargo-price">Karqo məbləği *</label>
                                                                 <div>
                                                                     <div class="input-price-group">
-                                                                        <input asp-for="LocalCargoPrice" class="price-input" placeholder="0"
+                                                                        <input asp-for="LocalCargoPrice" id="localCargoPrice" class="price-input" placeholder="0"
                                                                                id="olke-daxili-kargo" type="number"
-                                                                               min="1" required="required" disabled>
+                                                                               min="1" required="required">
                                                                         <div class="input-group-append">
                                                                             <div class="input-group-price-curency currency-label">TRY</div>
                                                                         </div>
@@ -89,14 +90,14 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-sm-3 col-12">
+                                                        <div class="col-sm-4 col-12">
                                                             <div id="product-kargo-price" class="kargo-daxil-price">
                                                                 <label class="form-control-label-custom" for="product-kargo-price">
                                                                     <span id="percentage-label">(+5%)</span>
                                                                 </label>
                                                                 <div>
                                                                     <div class="input-price-group">
-                                                                        <input asp-for="OrderTotalPrice" class="price-input product-price-percentTr" placeholder="0"
+                                                                        <input asp-for="OrderTotalPrice" id="orderTotalPrice" class="price-input product-price-percentTr" placeholder="0"
                                                                                type="number"
                                                                                min="1" required="required" disabled>
                                                                         <div class="input-group-append">
@@ -113,7 +114,7 @@
                                                                 <label for="product-count"
                                                                        class="form-control-label-custom">Say</label>
                                                                 <div class="product-count-input-body">
-                                                                    <input asp-for="Count" type="number" min="1"
+                                                                    <input asp-for="Count" id="count" type="number" min="1"
                                                                            placeholder="Say"
                                                                            value="1"
                                                                            class="product-count-input">
@@ -175,84 +176,50 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @if(_cookiesService.IsAuthorized())
+                                        @if (_cookiesService.IsAuthorized())
                                         {
 
-                                        <div class="col-lg-3 col-12">
-                                            <div class="tab-content right-bar-payment">
-                                                <div class="sidebar">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="ordercard-payment">
-                                                                <div class="payment-group">
-                                                                    <div class="check-custom-payment">
-                                                                        <input type="radio" name="payment-radio" id="sidebar-payment"
-                                                                               class="custom-payment-input" value="1">
-                                                                        <label for="sidebar-payment" class="custom-control-label">
-                                                                            <h4>Kart ilə ödəniş</h4>
-                                                                            <p>İstənilən kredit və ya debet kartı ödəniş edə bilərsiniz</p>
-                                                                        </label>
+                                            <div class="col-lg-3 col-12">
+                                                <div class="tab-content right-bar-payment">
+                                                    <div class="sidebar" style="margin-top:60px">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="ordercard-payment">
+                                                                    <div class="payment-total" style="font-size:20px">
+                                                                        <span>Cəmi:</span>
+                                                                        <strong class="payment-total-price">0</strong> AZN
                                                                     </div>
-                                                                    <div class="check-custom-payment check-payment-usd">
-                                                                        <input type="radio" name="payment-radio"
-                                                                               class="custom-payment-input" value="2">
-                                                                        <label for="" class="custom-control-label">
-                                                                            <h4>TRY balansı ilə ödəniş</h4>
-                                                                            <p>
-                                                                                TRY balansınızda kifayət qədər vəsait varsa, ödəniş edə bilərsiniz
-                                                                                TRY balansınız: <b>0.00TRY</b>
-                                                                            </p>
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="check-custom-payment check-payment-usd">
-                                                                        <input type="radio" name="payment-radio"
-                                                                               class="custom-payment-input" value="3">
-                                                                        <label for="" class="custom-control-label">
-                                                                            <h4>Birkart ilə ödə</h4>
-                                                                            <p>İstədiyin məhsulu seç, birkart ilə 3 aya ödə</p>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="payment-total">
-                                                                    <span>Cəmi:</span>
-                                                                    <strong class="payment-total-price">0</strong>
-                                                                </div>
-                                                                <div class="form-payment-checkbox">
-                                                                    <input class="checkbox-terms-input" type="checkbox" id="checkbox-terms" value="true">
-                                                                    <label for="checkbox-terms">
-                                                                        <a role="button">Məsafəli satış şərtləri</a>
-                                                                    </label>
-                                                                </div>
-                                                                <select asp-for="LocalPointId" class="sidebar-depo-select">
-                                                                    @foreach (var item in Model.LocalPoints)
-                                                                    {
-                                                                        if (item.Id == Model.SelectedLocalPointId)
+
+                                                                    <select asp-for="LocalPointId" class="sidebar-depo-select" style="width:100%">
+                                                                        @foreach (var item in Model.LocalPoints)
                                                                         {
-                                                                            <option value="@item.Id" selected>
-                                                                                @item.LocalPointDetails.FirstOrDefault()?.Name
-                                                                            </option>
+                                                                            if (item.Id == Model.SelectedLocalPointId)
+                                                                            {
+                                                                                <option value="@item.Id" selected>
+                                                                                    @item.LocalPointDetails.FirstOrDefault()?.Name
+                                                                                </option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="@item.Id">
+                                                                                    @item.LocalPointDetails.FirstOrDefault()?.Name
+                                                                                </option>
+                                                                            }
                                                                         }
-                                                                        else
-                                                                        {
-                                                                            <option value="@item.Id">
-                                                                                @item.LocalPointDetails.FirstOrDefault()?.Name
-                                                                            </option>
-                                                                        }
-                                                                    }
-                                                                </select>
-                                                                <button type="button" disabled="disabled"
-                                                                        class="payment-btn">
-                                                                    ÖDƏNİŞ ET
-                                                                </button>
-                                                                <div class="payment">
-                                                                    <span class="desc">və ya səbətə gedin</span>
-                                                                    <div class="badgeBtn-body">
-                                                                        <a href="#" target="_self" class="badgetBtn ">
-                                                                            <div class="d-flex align-items-center gap-2 justify-content-center">
-                                                                                SƏBƏTƏ GET
-                                                                                <span class="badge badge-warning">1</span>
-                                                                            </div>
-                                                                        </a>
+                                                                    </select>
+                                                                    @* <button type="button" disabled="disabled"
+                                                                            class="payment-btn">
+                                                                        ÖDƏNİŞ ET
+                                                                    </button> *@
+                                                                    <div class="payment">
+                                                                        @* <span class="desc">və ya səbətə gedin</span> *@
+                                                                        <div class="badgeBtn-body">
+                                                                            <a asp-controller="basket" asp-action="index" target="_self" class="badgetBtn ">
+                                                                                <div class="d-flex align-items-center gap-2 justify-content-center">
+                                                                                    SƏBƏTƏ GET
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -260,7 +227,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         }
                                     </form>
                                 </div>
@@ -277,19 +243,18 @@
 
 </div>
 
+
 <script>
-    // // Set the countryId when a tab is clicked
-    // // function setcountryid(countryid) {
-    // //     document.getelementbyid("countryid").value = countryid;
-    // //
-    // // }
-</script>
-<script>
+    let selectedCountryId = null;
+
     function setCountryId(countryId) {
         // Set the CountryId value in the form
         document.getElementById("CountryId").value = countryId;
-        console.log(countryId);
 
+
+        selectedCountryId = countryId;
+        console.log("countryId ftom set methid" + countryId)
+        console.log("countryId ftom set methid" + selectedCountryId)
         // Get the elements for currency and percentage labels
         var currencyLabels = document.querySelectorAll('.currency-label');
         var percentageLabel = document.getElementById("percentage-label");
@@ -325,31 +290,75 @@
             percentageLabel.textContent = "(+7%)";
         }
     }
+    // console.log("countryId outside methid" + selectedCountryId)
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const itemPriceInput = document.getElementById('itemPrice');
+        const localCargoPriceInput = document.getElementById('localCargoPrice');
+        const countInput = document.getElementById('count');
+        const orderTotalPriceOutput = document.getElementById('orderTotalPrice');
+        const totalPriceElement = document.querySelector('.payment-total-price');
+
+        console.log("countryId in price method methid" + selectedCountryId)
+        // Function to calculate the total price
+        async function calculateTotalPrice() {
+            const itemPrice = parseFloat(itemPriceInput.value) || 0; // Default to 0 if not a valid number
+            const localCargoPrice = parseFloat(localCargoPriceInput.value) || 0; // Default to 0 if not a valid number
+            const count = parseInt(countInput.value) || 1; // Default to 1 if not a valid number
+
+            var orderTotalPrice = 0;
+            // Calculate the order total price
+            console.log(selectedCountryId)
+            if(selectedCountryId == 5){
+            orderTotalPrice = (itemPrice * count + localCargoPrice) * 1.07;
+            }
+            else{
+            orderTotalPrice = (itemPrice * count + localCargoPrice) * 1.05;
+
+            }
+
+            // Display the calculated total price
+            orderTotalPriceOutput.value = orderTotalPrice.toFixed(2); // Format to 2 decimal places
+
+            var totalPriceInAzn = 0;
+
+            if(selectedCountryId == 5){
+                totalPriceInAzn = await convertCurrency(orderTotalPrice, "USD", "AZN");
+            }
+            else{
+                totalPriceInAzn = await convertCurrency(orderTotalPrice, "TRY", "AZN");
+
+            }
+
+             totalPriceElement.textContent = orderTotalPrice.toFixed(2);
+             totalPriceElement.textContent = totalPriceInAzn.toFixed(2);
 
 
-</script>
-<script>
-        document.addEventListener("DOMContentLoaded", function() {
-        // Get the radio buttons and the LocalCargoPrice input
-        const kargoRadioTrue = document.getElementById("check-kargo-radio");
-        const kargoRadioFalse = document.getElementById("check-kargo-radio-not");
-        const localCargoPriceInput = document.getElementById("olke-daxili-kargo");
+              async function convertCurrency(amount, fromCurrency, toCurrency) {
+            try {
+                const response = await fetch(`/currency/convert?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`);
 
-        // Function to toggle the disabled state of the input
-        function toggleLocalCargoPriceInput() {
-            if (kargoRadioTrue.checked) {
-                localCargoPriceInput.disabled = false; // Enable the input if "Bəli" is selected
-            } else {
-                localCargoPriceInput.disabled = true; // Disable the input if "Xeyr" is selected
+                if (!response.ok) {
+                    console.error("Error fetching conversion data:", response.statusText);
+                    return 0;
+                }
+
+                const data = await response.json();
+                return data.convertedAmount;
+            } catch (error) {
+                console.error("Error during conversion:", error);
+                return 0;
             }
         }
+        }
 
-        // Add event listeners to both radio buttons
-        kargoRadioTrue.addEventListener("change", toggleLocalCargoPriceInput);
-        kargoRadioFalse.addEventListener("change", toggleLocalCargoPriceInput);
+        // Event listeners for input changes to recalculate the total price
+        itemPriceInput.addEventListener('input', calculateTotalPrice);
+        localCargoPriceInput.addEventListener('input', calculateTotalPrice);
+        countInput.addEventListener('input', calculateTotalPrice);
 
-        // Initial check to set the correct state when the page loads
-        toggleLocalCargoPriceInput();
+        // Initial calculation (in case there are default values)
+        calculateTotalPrice();
     });
 
 </script>
@@ -358,5 +367,9 @@
     button[disabled] {
         background-color: #ccc; /* Disabled button color */
         cursor: not-allowed; /* Change cursor to indicate disabled state */
+    }
+
+    .input-price-group {
+        justify-content: start;
     }
 </style>

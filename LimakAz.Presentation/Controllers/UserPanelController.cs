@@ -9,11 +9,13 @@ public class UserPanelController : Controller
     private readonly IUserPanelService _userPanelService;
     private readonly ICookieService _cookieService;
     private readonly IAddressLineService _addressLineService;
-    public UserPanelController(IUserPanelService userPanelService, ICookieService cookieService, IAddressLineService addressLineService)
+    private readonly IOrderService _orderService;
+    public UserPanelController(IUserPanelService userPanelService, ICookieService cookieService, IAddressLineService addressLineService, IOrderService orderService)
     {
         _userPanelService = userPanelService;
         _cookieService = cookieService;
         _addressLineService = addressLineService;
+        _orderService = orderService;
     }
 
     public IActionResult Index()
@@ -74,6 +76,13 @@ public class UserPanelController : Controller
         ViewBag.SuccessMessage = "Password updated successfully!";
 
         return View();
+    }
+
+    public async Task<IActionResult> Packages(int countryId = 4, int status = 0)
+    {
+        var packages = await _orderService.GetUserPackagesAsync(status, countryId);
+
+        return View(packages);
     }
 
 }

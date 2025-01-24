@@ -65,6 +65,12 @@ public class AppDbContext : IdentityDbContext<AppUser>
             .WithMany()  // Assuming Status has many Orders
             .HasForeignKey(o => o.StatusId)
             .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
+        modelBuilder.Entity<Order>()
+           .HasOne(o => o.Payment)
+           .WithMany(p => p.Orders)
+           .HasForeignKey(o => o.PaymentId)
+           .OnDelete(DeleteBehavior.Cascade); // This will delete orders when the payment is deleted.
+
 
         modelBuilder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
         modelBuilder.Entity<News>().HasQueryFilter(x => !x.IsDeleted);
@@ -116,7 +122,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<NotificationDetail> NotificationDetails { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;
     public DbSet<Chat> Chats { get; set; } = null!;
-    public DbSet<Payment> Payments  { get; set; } = null!;
+    public DbSet<Payment> Payments { get; set; } = null!;
     public DbSet<Status> Statuses { get; set; } = null!;
     public DbSet<StatusDetail> StatusDetails { get; set; } = null!;
 

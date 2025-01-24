@@ -49,16 +49,11 @@ public class BasketController : Controller
     [HttpPost]
     public async Task<IActionResult> SubmitOrderIds(OrderBasketDto model)
     {
-        decimal totalCount = await _orderService.PayOrdersAsync(model.SelectedOrderIds);
+        var url = await _orderService.PayOrdersAsync(model.SelectedOrderIds);
 
-        var result = await _paymentService.CreateAsync(new()
-        {
-            Amount = totalCount,
-            Description = "Limak odenis"
-        });
+        if (string.IsNullOrEmpty(url))
+            RedirectToAction(nameof(Index));
 
-        string url = $"{result.Order.HppUrl}?id={result.Order.Id}&password={result.Order.Password}";
-        
         return Redirect(url);
     }
 

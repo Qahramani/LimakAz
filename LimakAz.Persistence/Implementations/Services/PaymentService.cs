@@ -37,7 +37,7 @@ internal class PaymentService : IPaymentService
 
     public async Task<bool> ConfirmPaymentAsync(PaymentCheckDto dto)
     {
-        var payment = await _repository.GetAsync(x => x.ConfirmToken == dto.Token && x.ReceptId == dto.ID);
+        var payment = await _repository.GetAsync(x => x.ConfirmToken == dto.Token && x.ReceptId == dto.ID, include : x => x.Include(x => x.Orders));
 
         if (payment is null)
             throw new NotFoundException();
@@ -45,6 +45,13 @@ internal class PaymentService : IPaymentService
         if (dto.STATUS == PaymentStatuses.FullyPaid)
         {
             payment.PaymentStatus = PaymentStatuses.FullyPaid;
+
+            foreach (var order in payment.Orders)
+            {
+                order.IsPaid = true;
+                order.StatusId = (int)StatusName.Paid;
+                order.CreatedAt = DateTime.UtcNow;
+            }
 
             _repository.Update(payment);
             await _repository.SaveChangesAsync();

@@ -75,4 +75,15 @@ public class OrderBasketDto
 {
     public List<OrderGetDto> Orders { get; set; } = [];
     public List<int> SelectedOrderIds { get; set; } = [];
+    public int SelectedCountryId { get; set; } 
+}
+
+
+public class PackageDto
+{
+    public string? NO { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public decimal Weigth { get; set; }
+    public decimal Price { get; set; }
+    public string? Status { get; set; }
 }

@@ -1,9 +1,8 @@
-﻿using LimakAz.Application.DTOs;
-using LimakAz.Application.Interfaces.Helpers;
-using LimakAz.Application.Interfaces.Services;
+﻿using LimakAz.Application.Interfaces.Helpers;
+using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.Enums;
+using LimakAz.Persistence.Helpers;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -22,7 +21,9 @@ internal class OrderService : IOrderService
     private readonly UserManager<AppUser> _userManager;
     private readonly ICookieService _cookieService;
     private readonly IAuthService _authService;
-    public OrderService(IOrderRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ITariffService tariffService, IValidationMessageProvider localizer, IStatusService statusService, UserManager<AppUser> userManager, ICookieService cookieService, IAuthService authService)
+    private readonly IPaymentService _paymentService;
+    private readonly ICurrencyService _currencyService;
+    public OrderService(IOrderRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ITariffService tariffService, IValidationMessageProvider localizer, IStatusService statusService, UserManager<AppUser> userManager, ICookieService cookieService, IAuthService authService, IPaymentService paymentService, ICurrencyService currencyService)
     {
         _repository = repository;
         _mapper = mapper;
@@ -34,6 +35,8 @@ internal class OrderService : IOrderService
         _userManager = userManager;
         _cookieService = cookieService;
         _authService = authService;
+        _paymentService = paymentService;
+        _currencyService = currencyService;
     }
 
     public async Task<bool> CreateAsync(OrderCreateDto dto, ModelStateDictionary ModelState)
@@ -62,11 +65,19 @@ internal class OrderService : IOrderService
         var selectedCountry = await _countryService.GetAsync(dto.CountryId);
 
         if (selectedCountry!.Id == (int)CountryName.Turkiye)
+        {
             order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.05m;
+        }
         else
-            order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.07m;
+        {
 
+            order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.07m;
+        }
+
+        
+        
         order.StatusId = (int)StatusName.NotOrdered;
+        order.NO = Helper.GenerateOrderNO();
 
         var user = await _authService.GetAuthenticatedUserAsync();
 
@@ -165,11 +176,13 @@ internal class OrderService : IOrderService
 
         var orders = _repository.GetAll(x => x.CountryId == countryId && x.UserId == user.Id && x.StatusId == (int)StatusName.NotOrdered);
 
+        orders.OrderByDescending(x => x.CreatedAt);
         var dtos = _mapper.Map<List<OrderGetDto>>(orders);
 
         OrderBasketDto dto = new()
         {
-            Orders = dtos
+            Orders = dtos,
+            SelectedCountryId = countryId
         };
         return dto;
     }
@@ -208,6 +221,11 @@ internal class OrderService : IOrderService
 
         order.Count = order.Count == 1 ? 1 : --order.Count;
 
+        if (order.CountryId == (int)CountryName.Turkiye)
+            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.05m;
+        else
+            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.07m;
+
         _repository.Update(order);
         await _repository.SaveChangesAsync();
 
@@ -231,9 +249,12 @@ internal class OrderService : IOrderService
         throw new NotImplementedException();
     }
 
-    public async Task<decimal> PayOrdersAsync(List<int> orderIds)
+    public async Task<string> PayOrdersAsync(List<int> orderIds)
     {
         var user = await _authService.GetAuthenticatedUserAsync();
+
+        if (orderIds.Count == 0)
+            throw new EmptyBasketException();
 
         List<Order> orders = await  _repository.GetAll(x => orderIds.Contains(x.Id) ,include : _getWithIncludes()).ToListAsync();
         var countryId = orders.FirstOrDefault()?.CountryId;
@@ -241,22 +262,66 @@ internal class OrderService : IOrderService
         foreach (var order in orders)
         {
             if (order.UserId != user.Id || order.CountryId != countryId || order.Status?.Id != (int)StatusName.NotOrdered)
-                throw new NotFoundException("Sifaris tapilmadi");
+                throw new NotFoundException($"{order.Id}li sifaris tapilmadi");
         }
 
-        decimal totolPrice = 0;
+        decimal totalPrice = 0;
 
-        orders.ForEach(x => totolPrice += x.OrderTotalPrice);
+        orders.ForEach(x => totalPrice += x.OrderTotalPrice);
 
-        //orders.ForEach(x =>
-        //{
-        //    x.StatusId = (int)StatusName.Paid;
-        //    _repository.Update(x);  
-        //});
+        decimal totalPriceInAZN = 0;
 
-        await _repository.SaveChangesAsync();
+        if(countryId == 4)
+            totalPriceInAZN = await _currencyService.ConvertAsync( totalPrice, "TRY", "AZN");
+        else
+            totalPriceInAZN = await _currencyService.ConvertAsync( totalPrice, "USD", "AZN");
 
-        return totolPrice;
+        var result = await _paymentService.CreateAsync(new()
+        {
+            Amount = totalPriceInAZN,
+            Description = "Limak odenis"
+        });
+
+        string url = $"{result.Order.HppUrl}?id={result.Order.Id}&password={result.Order.Password}";
+
+        return url;
     }
 
+    public async Task<List<PackageDto>> GetUserPackagesAsync(int statusId, int countryId = 4,  LanguageType language = LanguageType.Azerbaijan)
+    {
+        var isExist = await _countryService.IsExistAsync(countryId);
+
+        if (!isExist)
+            throw new NotFoundException("Bu idli olke tapilmadi");
+
+        isExist = await _statusService.IsExistAsync(statusId);
+
+        if(statusId != 0 && !isExist)
+            throw new NotFoundException("Bu idli status tapilmadi");
+
+        var user = await _authService.GetAuthenticatedUserAsync();
+
+        var orders = _repository.GetAll(x => x.UserId == user.Id && x.CountryId == countryId && x.StatusId != (int)StatusName.NotOrdered,include : _getWithIncludes(language));
+
+        if (statusId != 0)
+            orders = orders.Where(x => x.StatusId == statusId);
+
+        List<PackageDto> dtos = new List<PackageDto>();
+
+        foreach (var order in orders)
+        {
+            PackageDto dto = new()
+            {
+                NO = order.NO,
+                Weigth = order.Weight,
+                CreatedAt = order.CreatedAt,
+                Status = order.Status?.StatusDetails.FirstOrDefault()?.Name,
+                Price = order.OrderTotalPrice
+            };
+
+            dtos.Add(dto);
+        }
+        
+        return dtos;
+    }
 }

@@ -4,6 +4,7 @@ using LimakAz.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LimakAz.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250123221725_RemovedOrderInAznProperty")]
+    partial class RemovedOrderInAznProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,21 +357,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2606),
+                            CreatedAt = new DateTime(2025, 1, 23, 22, 17, 22, 83, DateTimeKind.Utc).AddTicks(4580),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2608),
+                            UpdatedAt = new DateTime(2025, 1, 23, 22, 17, 22, 83, DateTimeKind.Utc).AddTicks(4581),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2613),
+                            CreatedAt = new DateTime(2025, 1, 23, 22, 17, 22, 83, DateTimeKind.Utc).AddTicks(4584),
                             CreatedBy = "default",
                             IsDeleted = false,
                             LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2614),
+                            UpdatedAt = new DateTime(2025, 1, 23, 22, 17, 22, 83, DateTimeKind.Utc).AddTicks(4585),
                             UpdatedBy = "default"
                         });
                 });
@@ -1152,9 +1155,6 @@ namespace LimakAz.Persistence.Migrations
 
                     b.Property<int>("LocalPointId")
                         .HasColumnType("int");
-
-                    b.Property<string>("NO")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
                         .IsRequired()
