@@ -1,9 +1,9 @@
 ﻿using LimakAz.Application.Interfaces.Services;
 using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class ContentController : Controller
 {
     private readonly IContentService _contentService;

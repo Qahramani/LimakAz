@@ -1,0 +1,169 @@
+﻿@model List<PackageGetDto>
+@{
+    int count = 1;
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Sifarişlər</h4>
+                        <p class="card-description">
+                            @* <a asp-action="Create" class="btn btn-success">Yenisini yarat</a> *@
+                            <select class="orderFilterInput">
+                                <option value="0">Hamısı</option>
+                                <option value="2">Sifariş edilmişlər</option>
+                                <option value="3">Ödənilmişlər</option>
+                                <option value="4">Yolda olanlar</option>
+                                <option value="5">Yerli anbarda</option>
+                                <option value="6">Tamamlanmış</option>
+                                <option value="7">Ləğv edilmişlər</option>
+                            </select>
+                            @* <select class="paymentFilterInput">
+                                <option value="0">Hamısı</option>
+                                <option value="@true">Ödəniş edilənlər</option>
+                                <option value="@false">Ödəniş edilməyənlər</option>
+                            </select> *@
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            Tarix
+                                        </th>
+                                        <th>
+                                            Ödəniş
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Proseslər
+                                        </th>
+                                        <th>
+                                            Silmək
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var package in Model)
+                                    {
+                                        <tr class="orderItem" data-status="@package.Status.Id" data-payment="">
+                                            <td class="py-1">
+                                                @(count++)
+                                            </td>
+                                            <td>
+                                                @package.CreatedAt.ToString("yyyy, dd MMMM")
+                                            </td>
+
+                                            <td>
+                                                @package.Payment?.Amount ₼
+                                            </td>
+                                            <td>
+                                                @package.Status.StatusDetails.FirstOrDefault()?.Name
+                                            </td>
+
+                                            <td>
+                                              @*   @if (package.Status.Id == 4)
+                                                {
+
+                                                    <a asp-action="RepairOrder" asp-route-id="@package.Id" class="btn btn-success "><i class="mdi mdi-play"></i></a>
+                                                }
+                                                else
+                                                { *@
+                                                    <a asp-action="Detail" asp-route-id="@package.Id" class="btn btn-primary "><i class="mdi mdi-information-outline"></i></a>
+                                                    <a asp-action="PrevStatus" asp-route-id="@package.Id" class="btn btn-warning "><i class="mdi mdi-arrow-left"></i> </a>
+                                                    <a asp-action="NextStatus" asp-route-id="@package.Id" class="btn btn-warning"><i class="mdi mdi-arrow-right"></i></a>
+                                                    <a asp-action="CancelOrder" asp-route-id="@package.Id" class="btn btn-danger "><i class="mdi mdi-pause"></i></a>
+                                                @* } *@
+                                            </td>
+                                            <td>
+                                                <a asp-action="Delete" asp-route-id="@package.Id" class="btn btn-danger deleteBtn"><i class="mdi mdi-delete"></i></a>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const filterInput=document.querySelector(".orderFilterInput");
+    const orderItems=document.querySelectorAll(".orderItem");
+
+
+    filterInput.addEventListener("change",(e)=>{
+        e.preventDefault();
+        orderItems.forEach(item=>{
+
+        if(item.dataset.status==e.target.value)
+        {
+            item.style.display="table-row"
+        }
+        else if(e.target.value=="0"){
+                      item.style.display="table-row"
+        }
+        else{
+            item.style.display="none"
+
+        }
+        })
+    })
+
+
+
+</script>
+
+<style>
+    .orderFilterInput {
+        padding: 10px 15px;
+        font-size: 16px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+    }
+
+        .orderFilterInput::after {
+            content: '\25BC'; 
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .orderFilterInput option {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .orderFilterInput:hover {
+            border-color: #888;
+        }
+
+        .orderFilterInput:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.5);
+        }
+</style>

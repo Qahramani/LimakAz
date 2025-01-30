@@ -45,16 +45,15 @@
 
         
 <script>
-    let currentChatId = null; // Global variable to store the selected chatId
+    let currentChatId = null; 
     async function fetchMessages(chatId) {
 
-
-        currentChatId = chatId; // Update currentChatId
+        currentChatId = chatId; 
         const response = await fetch(`/Admin/Chat/GetMessages?chatId=${chatId}`);
         const messages = await response.json();
 
         const chatBody = document.querySelector('.chat-body');
-        chatBody.innerHTML = ""; // Clear chat body
+        chatBody.innerHTML = ""; 
 
         const currentUserId = document.getElementById('current-user-id').value;
 
@@ -72,22 +71,21 @@
             chatBody.innerHTML += messageDiv;
         });
 
-        chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+        chatBody.scrollTop = chatBody.scrollHeight; 
     }
 
     async function sendMessage(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
 
         const messageText = document.getElementById("message-text").value.trim();
 
-        if (!messageText || !currentChatId) return; // Skip if no message or no chat selected
+        if (!messageText || !currentChatId) return; 
 
         const response = await fetch(`/Admin/Chat/SendMessage?chatId=${currentChatId}&text=${messageText}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            // body: JSON.stringify({ text: messageText, chatId: currentChatId }),
         });
 
         if (response.ok) {
@@ -105,8 +103,8 @@
             `;
             chatBody.innerHTML += messageDiv;
 
-            document.getElementById("message-text").value = ""; // Clear input
-            chatBody.scrollTop = chatBody.scrollHeight; // Scroll to the bottom
+            document.getElementById("message-text").value = ""; 
+            chatBody.scrollTop = chatBody.scrollHeight; 
         } else {
             console.error("Failed to send message");
         }

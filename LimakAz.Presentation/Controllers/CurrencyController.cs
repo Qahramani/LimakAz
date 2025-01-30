@@ -1,8 +1,8 @@
 ﻿using LimakAz.Application.Interfaces.Services.External;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class CurrencyController : Controller
 {
     private readonly ICurrencyService _currencyService;

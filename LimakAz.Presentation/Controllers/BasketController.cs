@@ -1,23 +1,29 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
+[Authorize(Roles = "Member")]
 public class BasketController : Controller
 {
     private readonly IOrderService _orderService;
     private readonly IPaymentService _paymentService;
-    public BasketController(IOrderService orderService, IPaymentService paymentService)
+    private readonly IPackageService _packageService;
+    private readonly ICookieService _cookieService;
+    public BasketController(IOrderService orderService, IPaymentService paymentService, IPackageService packageService, ICookieService cookieService)
     {
         _orderService = orderService;
         _paymentService = paymentService;
+        _packageService = packageService;
+        _cookieService = cookieService;
     }
 
-    public async Task<IActionResult> Index(int countryId = 4)
+    public async Task<IActionResult> Index(int countryId = 1)
     {
-        var basket = await _orderService.GetOrderBasketByCountryIdAsync(countryId);
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
+        var basket = await _orderService.GetUserBasketByAsync(countryId,language);
 
         return View(basket);
     }
@@ -47,9 +53,9 @@ public class BasketController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> SubmitOrderIds(OrderBasketDto model)
+    public async Task<IActionResult> SubmitOrderIds(OrderBasketDto dto)
     {
-        var url = await _orderService.PayOrdersAsync(model.SelectedOrderIds);
+        var url = await _packageService.CreatePacakageAsync(dto);
 
         if (string.IsNullOrEmpty(url))
             RedirectToAction(nameof(Index));

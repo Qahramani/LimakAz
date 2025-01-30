@@ -117,7 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="additionalNotes" xml:space="preserve">
+    <value>Ölçü, rəng və s. üçün qeydlər</value>
+  </data>
+  <data name="addToBasket" xml:space="preserve">
+    <value>Səbətə əlavə et</value>
+  </data>
+  <data name="america" xml:space="preserve">
+    <value>Amerika</value>
+  </data>
+  <data name="cargoPrice" xml:space="preserve">
+    <value>Kargo məbləği</value>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>Məhsulun rəngi</value>
+  </data>
+  <data name="count" xml:space="preserve">
+    <value>Say</value>
+  </data>
   <data name="FailureMessage" xml:space="preserve">
     <value>Nə isə yanlış oldu</value>
+  </data>
+  <data name="goToBasket" xml:space="preserve">
+    <value>Səbətə get</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>Məhsulun linki</value>
+  </data>
+  <data name="notes" xml:space="preserve">
+    <value>Qeydlər</value>
+  </data>
+  <data name="pay" xml:space="preserve">
+    <value>Ödəniş et</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Məbləğ</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Məhsulun ölçüsü</value>
+  </data>
+  <data name="sum" xml:space="preserve">
+    <value>Cəmi</value>
+  </data>
+  <data name="totalPrice" xml:space="preserve">
+    <value>Yekun məbləğ</value>
+  </data>
+  <data name="turkey" xml:space="preserve">
+    <value>Türkiyə</value>
   </data>
 </root>

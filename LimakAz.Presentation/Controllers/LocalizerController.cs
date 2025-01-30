@@ -1,10 +1,10 @@
 ﻿using LimakAz.Application.Interfaces.Services;
 using LimakAz.Presentation.Extentions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class LocalizerController : Controller
 {
     

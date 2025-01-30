@@ -1,11 +1,19 @@
-﻿@model List<PackageDto>
+﻿@model PackageGetUiDto
 
 @{
     ViewData["Template"] = "Template2";
     int count = 1;
 }
 
+<style>
+    table th{
+        padding: 23px 70px;
+    }
 
+    .detail-table-content{
+        margin-left:60px;
+    }
+</style>
 <!-- Main Start -->
 <main id="main"
       style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")')no-repeat; background-size: 100%; background-position: top center;"
@@ -36,33 +44,17 @@
                 <div class="col-sm-12 col-md-8 col-lg-9">
                     <div>
                         <div class="content">
-                            <div class="row mb-20">
-                                <div>
-                                    <ul class="nav nav-tabs" style="width:100%">
-                                        <li class="nav-tabs-head-list">
-                                            <img src="https://limak.az/new_front/assets/img/dashboard/icons/tr-circle.svg" alt="">
-                                            <a class="tabs-head" href="javascript:void(0);" data-country-id="4">>Türkiyə</a>
-                                        </li>
-                                        <li class="nav-tabs-head-list">
-                                            <img src="https://limak.az/new_front/assets/img/dashboard/icons/usa-circle.svg" alt="">
-                                            <a class="tabs-head" href="javascript:void(0);" data-country-id="5">>Amerika</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="content-header custom-card" style="margin-bottom: 1rem;">
-                                <button class="btn btn-submit btn-primary btn-sm">
-                                    <span>
-                                        Yenilə
-                                        <i class="fas fa-sync"></i>
-                                    </span>
-                                </button>
-                                <form action="" class="form-package">
-                                    <select name="" id="statusFilter" class="custom-select">
+                                <form asp-controller="userpanel" asp-action="packages" method="get" class="form-package">
+                                    <select name="statusId" id="statusFilter" class="custom-select" onchange="this.form.submit()">
                                         <option value="0">Hamısı</option>
-                                        <option value="1">Gözləmədə</option>
-                                        <option value="2">Icrada</option>
-                                        <option value="3">Problemli</option>
+                                        @foreach (var st in Model.Statuses)
+                                        {
+                                            <option value="@st.Id" selected="@(st.Id == Model.SelectedStatusId ? "selected" : null)">
+                                                @st.StatusDetails.FirstOrDefault()?.Name
+                                            </option>
+
+                                        }
                                     </select>
                                 </form>
                             </div>
@@ -74,89 +66,76 @@
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">Sifariş№</th>
-                                                    <th scope="col">Çatdırılma</th>
-                                                    <th scope="col">Mağaza</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Əməliyyat</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach (var item in Model)
+                                                @foreach (var item in Model.Packages)
                                                 {
 
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex v-center">
-                                                            <span>@(count++)</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex v-center">
-                                                            <span>@item.NO</span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span class="d-flex v-center">nese dolurariq</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="d-flex v-center">nese</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="d-flex v-center upper">@item.Status</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex flex-end">
-                                                            <button data-target="1"
-                                                                    class="btn btn-action btn-orange btn-secondary">
-                                                                <span>Bax</span>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="package-details">
-                                                    <td colspan="6" class="padding-0">
-                                                        <div data-id="1" class="collapse">
-                                                            <table class="table order-table package-table">
-                                                                <tbody class="detail-table">
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="detail-table-content">
-                                                                                <strong>Sifariş tarixi</strong>
-                                                                                <span>@item.CreatedAt</span>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="detail-table-content">
-                                                                                <strong>Çəkisi</strong>
-                                                                                <span>@item.Weigth кq</span>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td>
-                                                                            <div class="detail-table-content">
-                                                                                <strong>Qiymət TRY</strong>
-                                                                                <span>@item.Price TRY</span>
-                                                                            </div>
-                                                                        </td>
-
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex v-center">
+                                                                <span>@(count++)</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex v-center">
+                                                                <span>@item.NO</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span class="d-flex v-center upper">@item.Status?.StatusDetails.FirstOrDefault()?.Name</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex flex-end">
+                                                                <button data-target="@item.Id"
+                                                                        class="btn btn-action btn-orange btn-secondary">
+                                                                    <span>Bax</span>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="package-details">
+                                                        <td colspan="6" class="padding-0">
+                                                            <div data-id="@item.Id" class="collapse">
+                                                                <table class="table order-table package-table">
+                                                                    <tbody class="detail-table">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="detail-table-content">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="detail-table-content">
+                                                                                    <strong>Sifariş tarixi</strong>
+                                                                                    <span>@item.CreatedAt</span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="detail-table-content">
+                                                                                    <strong>Çəkisi</strong>
+                                                                                    <span>@item.TotalWeigth кq</span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td>
+                                                                                <div class="detail-table-content">
+                                                                                    <strong>Qiymət TRY</strong>
+                                                                                    <span>@item.TotalPrice TRY</span>
+                                                                                </div>
+                                                                            </td>
+                                                                           
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
 
                                                 }
                                             </tbody>
                                         </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-id="2" class="order-list tab-content card-tabs-body active-tab">
-                                <div>
-                                    <div class="card order-item">
-                                        <div class="order-item-title">
-                                            <h6>Amerika: anbarında bəyan gözləyən bağlamanız yoxdur.</h6>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -171,46 +150,10 @@
 <!-- Main End -->
 
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        let countryId = null;
-        let status = 0;  // Default value for 'Hamısı'
-
-        // Event listener for country tab clicks
-        document.querySelectorAll('.tabs-head').forEach(tab => {
-            tab.addEventListener('click', function () {
-                // Get selected countryId from clicked tab
-                countryId = this.getAttribute('data-country-id');
-                fetchData(countryId, status); // Fetch data with selected countryId and status
-            });
-        });
-
-        // Event listener for status dropdown change
-        document.getElementById('statusFilter').addEventListener('change', function () {
-            status = this.value;  // Get selected status
-            fetchData(countryId, status); // Fetch data with selected countryId and status
-        });
-
-        // Function to fetch data
-        function fetchData(countryId, status) {
-            // Send an AJAX request with selected countryId and status
-            fetch(`/basket/index?countryId=${countryId}&status=${status}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data); // Handle the response data
-                    // You can dynamically update the page with the data here
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        }
-    });
-
-</script>
-
-<script>
-
-    const showBtn = Array.from(document.querySelectorAll(".package-table button"));
+        const showBtn = Array.from(document.querySelectorAll(".package-table button"));
     const collapseDiv = Array.from(document.querySelectorAll(".collapse"));
 
-        showBtn.forEach(el => {
+    showBtn.forEach(el => {
         el.addEventListener("click", function () {
             let target = this.getAttribute("data-target")
             collapseDiv.forEach(el => {

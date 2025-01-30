@@ -196,20 +196,19 @@
 
 <script>
     function resetCalculator() {
-        // Clear all inputs
+        
         const inputs = document.querySelectorAll('.form-calc input, .form-calc select');
         inputs.forEach(input => {
             if (input.type === 'number') {
-                input.value = '';  // Reset number inputs
+                input.value = '';  
             } else if (input.type === 'select-one') {
-                input.selectedIndex = 0;  // Reset select options to the first item
+                input.selectedIndex = 0;  
             }
         });
 
-        // Clear the total amount display
         const totalPrice = document.querySelector('.total-price .all-count');
         if (totalPrice) {
-            totalPrice.textContent = 'AZN 0.00 | $0.00';  // Reset total amount
+            totalPrice.textContent = 'AZN 0.00 | $0.00'; 
         }
     }
 

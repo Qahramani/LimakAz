@@ -14,4 +14,5 @@ public interface IAuthService
     Task<AppUser> GetAuthenticatedUserAsync();
     Task<List<string>> GetUserRolesAsync(string userId);
     Task<List<AppUser>> GetAllMembersAsync();
+    Task<string> GetRedirectUrlAsync(string email);
 }

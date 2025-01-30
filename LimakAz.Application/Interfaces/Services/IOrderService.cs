@@ -3,13 +3,13 @@
 
 namespace LimakAz.Application.Interfaces.Services;
 
-public interface IOrderService : IGetService<OrderGetDto>, IModifyService<OrderCreateDto, OrderUpdateDto>
+public interface IOrderService : IGetService<OrderItemGetDto>, IModifyService<OrderItemCreateDto, OrderUpdateDto>
 {
-    Task<OrderCreateDto> GetCreateDtoAsync(OrderCreateDto dto, LanguageType language = LanguageType.Azerbaijan);
-    Task<OrderBasketDto> GetOrderBasketByCountryIdAsync(int countryId);
+    Task<OrderItemCreateDto> GetCreateDtoAsync(OrderItemCreateDto dto, LanguageType language = LanguageType.Azerbaijan);
+    Task<OrderBasketDto> GetUserBasketByAsync(int countryId, LanguageType language = LanguageType.Azerbaijan);
     Task<OrderItemUpdateDto> IncreaseOrderCountAsync(int itemId);
     Task<OrderItemUpdateDto> DecreaseOrderCountAsync(int itemId);
-    Task<string> PayOrdersAsync(List<int> orderIds);
-    Task<List<PackageDto>> GetUserPackagesAsync(int statusId, int countryId = 4,  LanguageType language = LanguageType.Azerbaijan);
+    Task<List<OrderItemGetDto>> GetUsersOrdersAsync(string userId);
+    Task SetPackageIdsAsync(List<OrderItemGetDto> dtos, int packageId);
 
 }

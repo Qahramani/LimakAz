@@ -6,4 +6,5 @@ public interface ITariffService : IGetService<TariffGetDto>, IModifyService<Tari
 {
     Task<List<TariffGetDto>> GetTariffsByCountry(int countryId, LanguageType language = LanguageType.Azerbaijan);
     Task<List<TariffUiGetDto>> GetTariffsUiDtosAsync(LanguageType language = LanguageType.Azerbaijan);
+    Task<decimal> GetCargoPriceByWeightAsync(decimal weight, int countryId);
 }

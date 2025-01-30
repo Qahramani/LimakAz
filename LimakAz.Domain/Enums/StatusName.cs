@@ -2,11 +2,9 @@
 
 public enum StatusName
 {
-    Paid = 1,
+    NotOrdered = 1,
     Ordered,
-    NotOrdered,
-    ForeignWareHouse,
-    Customs,
+    Paid ,
     OnTheWay,
     LocalWareHouse,
     OrderIsDone,

@@ -117,7 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="additionalNotes" xml:space="preserve">
+    <value>Заметки для размера, цвета и т.д</value>
+  </data>
+  <data name="addToBasket" xml:space="preserve">
+    <value>Добавь в корзину</value>
+  </data>
+  <data name="america" xml:space="preserve">
+    <value>Америка</value>
+  </data>
+  <data name="cargoPrice" xml:space="preserve">
+    <value>Цена доставки</value>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
+  <data name="count" xml:space="preserve">
+    <value>Количество</value>
+  </data>
   <data name="FailureMessage" xml:space="preserve">
     <value>Произошла ошибка</value>
+  </data>
+  <data name="goToBasket" xml:space="preserve">
+    <value>Перейти в корзину</value>
+  </data>
+  <data name="link" xml:space="preserve">
+    <value>Ссылка на продукт</value>
+  </data>
+  <data name="notes" xml:space="preserve">
+    <value>Заметки</value>
+  </data>
+  <data name="pay" xml:space="preserve">
+    <value>Сделать оплату</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Размер продукта</value>
+  </data>
+  <data name="sum" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="totalPrice" xml:space="preserve">
+    <value>Итоговая стоимость</value>
+  </data>
+  <data name="turkey" xml:space="preserve">
+    <value>Турция</value>
   </data>
 </root>

@@ -153,4 +153,7 @@
   <data name="order" xml:space="preserve">
     <value>Sifariş Et</value>
   </data>
+  <data name="UserPanel" xml:space="preserve">
+    <value>İstifadəçi paneli</value>
+  </data>
 </root>

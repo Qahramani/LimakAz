@@ -1,6 +1,9 @@
+using LimakAz.Application.Exceptions;
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Presentation.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using System.Diagnostics;
 
 namespace LimakAz.Presentation.Controllers;
@@ -26,11 +29,13 @@ public class HomeController : Controller
         return View(dto);
     }
 
-    public async Task<IActionResult> TestPayment()
+    public IActionResult Error(string message, int statusCode)
     {
-        var result = await _paymentService.CreateAsync(new() { Amount=100, Description="Limak sifaris"});
-
-        return Json(result);
+        ViewData["Message"] = message;
+        ViewData["StatusCode"]=statusCode;
+        return View();
     }
+
+
 
 }

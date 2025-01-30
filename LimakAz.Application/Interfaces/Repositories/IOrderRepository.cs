@@ -2,6 +2,6 @@
 
 namespace LimakAz.Application.Interfaces.Repositories;
 
-public interface IOrderRepository : IRepository<Order>
+public interface IOrderRepository : IRepository<OrderItem>
 {
 }

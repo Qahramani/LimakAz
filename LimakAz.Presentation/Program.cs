@@ -3,6 +3,7 @@ using LimakAz.Infrastructure.ServiceRegistraions;
 using LimakAz.Persistence.DataInitializers;
 using LimakAz.Persistence.Implementations.Services.Hubs;
 using LimakAz.Persistence.ServiceRegistrations;
+using LimakAz.Presentation.Extentions;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Options;
 
@@ -24,6 +25,8 @@ builder.Services.AddMvc().AddViewLocalization();
 
 
 var app = builder.Build();
+
+//app.UseMiddleware<GlobalExceptionHandler>();
 
 using(var scope = app.Services.CreateScope())
 {

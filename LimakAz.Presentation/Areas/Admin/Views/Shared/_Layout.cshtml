@@ -1,5 +1,8 @@
-﻿
-
+﻿@using LimakAz.Application.Interfaces.Services
+@inject IAuthService _authService;
+@{
+    var admin = await _authService.GetAuthenticatedUserAsync();
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +30,7 @@
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex justify-content-center">
                 <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                    <a class="navbar-brand brand-logo" href="index.html"><img src="~/admin/images/logo.svg" alt="logo" /></a>
+                    <a class="navbar-brand brand-logo" href="index.html"><img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1738126774/LimakAz/vxmhkwvr3eamdufuhge0.svg" alt="logo" /></a>
                     <a class="navbar-brand brand-logo-mini" href="index.html"><img src="~/admin/images/logo-mini.svg" alt="logo" /></a>
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                         <span class="mdi mdi-sort-variant"></span>
@@ -146,15 +149,15 @@
                     </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="~/admin/images/faces/face5.jpg" alt="profile" />
-                            <span class="nav-profile-name">Louis Barnett</span>
+                            <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1737221604/LimakAz/ecl6whxnykpaxnvbnf9q.svg" alt="profile" />
+                            <span class="nav-profile-name">@(admin.Firstname + " " + admin.Lastname) </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
-                                <i class="mdi mdi-settings text-primary"></i>
-                                Settings
+                            <a asp-area="" asp-controller="home" asp-action="index" class="dropdown-item">
+                                <i class="mdi mdi-home menu-icon"></i>
+                                Ana səhifə
                             </a>
-                            <a class="dropdown-item">
+                            <a asp-area="" asp-controller="account" asp-action="logout" class="dropdown-item">
                                 <i class="mdi mdi-logout text-primary"></i>
                                 Logout
                             </a>
@@ -179,21 +182,21 @@
                     </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                                <i class="mdi mdi-circle-outline menu-icon"></i>
-                                <span class="menu-title">Services</span>
+                            <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1738127185/LimakAz/oal9yacdd0kdsnrrel5q.png" style="width: 16px; margin-right: 16px;" />
+                            <span class="menu-title">Servislər</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="collapse" id="ui-basic">
                                 <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="category" asp-action="index">Categories</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="country" asp-action="index">Countries</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="certificate" asp-action="index">Certificates</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="news" asp-action="index">News</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="setting" asp-action="index">Settings</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="slider" asp-action="index">Sliders</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="shop" asp-action="index">Shops</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="localpoint" asp-action="index">Local Points</a></li>
-                                    <li class="nav-item"> <a class="nav-link" asp-controller="content" asp-action="index">Contents</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="category" asp-action="index">Kategoriyalar</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="country" asp-action="index">Ölkələr</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="certificate" asp-action="index">Sertifikatlar</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="news" asp-action="index">Xəbərlər</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="setting" asp-action="index">Parametrlər</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="slider" asp-action="index">Slaydlar</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="shop" asp-action="index">Mağazalar</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="localpoint" asp-action="index">Yerli Anbarlar</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="content" asp-action="index">Kontentlər</a></li>
                                 </ul>
 
                             </div>
@@ -201,47 +204,19 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="user" asp-action="index" >
                             <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1737402813/LimakAz/ffmjiickmycp3rw3zhoo.png" style="margin-right:17px" />
-                            <span class="menu-title">Customers</span>
+                            <span class="menu-title">İstifadəçilər</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="chat" asp-action="index">
                             <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1737399727/LimakAz/rarvv2678lixbtxwg7ev.png" style="margin-right:12px" />
-                            <span class="menu-title">Chats</span>
+                            <span class="menu-title">Əlaqə</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">
-                            <i class="mdi mdi-grid-large menu-icon"></i>
-                            <span class="menu-title">Tables</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
-                            <i class="mdi mdi-emoticon menu-icon"></i>
-                            <span class="menu-title">Icons</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                            <i class="mdi mdi-account menu-icon"></i>
-                            <span class="menu-title">User Pages</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="documentation/documentation.html">
-                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
+                        <a class="nav-link" asp-controller="order" asp-action="index">
+                            <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1737726730/LimakAz/vvsrytulmskagyqiyzvw.png" style="margin-right:12px" />
+                            <span class="menu-title">Sifarişlər</span>
                         </a>
                     </li>
                 </ul>

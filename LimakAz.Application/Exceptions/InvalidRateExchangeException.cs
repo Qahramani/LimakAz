@@ -4,7 +4,7 @@ namespace LimakAz.Application.Exceptions;
 
 public class InvalidRateExchangeException : Exception, IBaseException
 {
-    public InvalidRateExchangeException(string message = "Invalid exchange rate") : base(message)
+    public InvalidRateExchangeException(string message = "Etibarsız məzənnə") : base(message)
     {
 
     }

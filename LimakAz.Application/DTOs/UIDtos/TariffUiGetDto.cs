@@ -8,10 +8,3 @@ public class TariffUiGetDto
     public List<string> LocalPoints{ get; set; } = [];
 
 }
-
-public class FormattedTariffGetDto
-{
-    public string? Value { get; set; }
-    public string? PriceInAZN { get; set; }
-    public string? PriceInUSD { get; set; }
-}

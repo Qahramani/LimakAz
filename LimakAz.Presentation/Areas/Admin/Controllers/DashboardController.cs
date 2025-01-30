@@ -7,6 +7,7 @@ namespace LimakAz.Presentation.Areas.Admin.Controllers;
 [Authorize(Roles = "Admin,Moderator")]
 public class DashboardController : Controller
 {
+
     public IActionResult Index()
     {
         return View();

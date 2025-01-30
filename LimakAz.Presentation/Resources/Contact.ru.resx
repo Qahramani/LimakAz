@@ -138,4 +138,16 @@
   <data name="Hour" xml:space="preserve">
     <value>часа</value>
   </data>
+  <data name="Chats" xml:space="preserve">
+    <value>Чаты</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Вы всегда можете связаться с нами</value>
+  </data>
+  <data name="Typing" xml:space="preserve">
+    <value>Напишите сообщение</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
 </root>

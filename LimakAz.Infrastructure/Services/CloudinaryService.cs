@@ -42,7 +42,7 @@ internal class CloudinaryService : ICloudinaryService
             var uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(fileName, stream),
-                AssetFolder = "allup"
+                AssetFolder = "limakaz"
             };
             uploadResult = await _cloudinary.UploadAsync(uploadParams);
         }
@@ -55,7 +55,7 @@ internal class CloudinaryService : ICloudinaryService
     {
         try
         {
-            string publicIdWithExtension = filePath.Substring(filePath.LastIndexOf("allup"));
+            string publicIdWithExtension = filePath.Substring(filePath.LastIndexOf("limakaz"));
             string publicId = publicIdWithExtension.Substring(0, publicIdWithExtension.LastIndexOf('.'));
 
             var deleteParams = new DelResParams()

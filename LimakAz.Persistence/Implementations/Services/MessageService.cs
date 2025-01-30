@@ -24,6 +24,7 @@ internal class MessageService : IMessageService
 
     public async Task<List<MessageDisplayDto>> GetMessagesByChatIdAsync(int chatId)
     {
+       
         var messages = _repository.GetAll(x => x.ChatId == chatId, x => x.Include(x => x.User)).OrderBy(x => x.CreatedAt);
 
         var dtos = _mapper.Map<List<MessageDisplayDto>>(messages);
@@ -57,7 +58,7 @@ internal class MessageService : IMessageService
             Fullname = chat.User?.Firstname + " " + chat.User?.Lastname,
             SendAt = DateTime.UtcNow,
             ChatId = chatId.ToString(),
-            ModeratorFullname = chat.Moderator?.Firstname + " " + chat.Moderator.Lastname,
+            ModeratorFullname = "Operator",
         };
 
 

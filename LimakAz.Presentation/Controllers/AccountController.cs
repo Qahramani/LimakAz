@@ -18,14 +18,6 @@ public class AccountController : Controller
         _cookieService = cookieService;
     }
 
-    public async Task<IActionResult> Register()
-    {
-        var language = await _cookieService.GetSelectedLanguageTypeAsync();
-
-        var dto = _authService.GetRegisterDto(new RegisterDto(), language);
-
-        return View(dto);
-    }
 
     public IActionResult Login()
     {
@@ -44,7 +36,17 @@ public class AccountController : Controller
             return View(dto);
         }
 
-        return RedirectToAction("index", "userpanel");
+        var url = await _authService.GetRedirectUrlAsync(dto.Email!);
+
+        return Redirect(url);
+    }
+    public async Task<IActionResult> Register()
+    {
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+        var dto = _authService.GetRegisterDto(new RegisterDto(), language);
+
+        return View(dto);
     }
 
     [HttpPost]

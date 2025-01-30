@@ -6,6 +6,7 @@ using LimakAz.Persistence.Helpers;
 using LimakAz.Persistence.Implementations.Repositories;
 using LimakAz.Persistence.Implementations.Services;
 using LimakAz.Persistence.Implementations.Services.UI;
+using LimakAz.Persistence.Implementations.Servicesl;
 using LimakAz.Persistence.Interceptors;
 using LimakAz.Persistence.Localizers;
 using Microsoft.AspNetCore.Builder;
@@ -70,6 +71,7 @@ public static class ServiceRegistrations
         services.AddScoped<IStatusRepository, StatusRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IPaymentRepository, PaymentRepository>();
+        services.AddScoped<IPackageRepository, PackageRepository>();
     }
 
     private static void _addServices(IServiceCollection services)
@@ -98,6 +100,7 @@ public static class ServiceRegistrations
         services.AddScoped<IStatusService, StatusService>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IPaymentService, PaymentService>();
+        services.AddScoped<IPackageService, PackageService>();
 
         services.AddScoped<IValidationMessageProvider, ValidationMessagesLocalizer>();
 

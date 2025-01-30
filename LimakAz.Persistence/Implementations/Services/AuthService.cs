@@ -152,6 +152,7 @@ internal class AuthService : IAuthService
 
         user.Code = Helper.GenerateUserCode();
 
+
         var result = await _userManager.CreateAsync(user, dto.Password!);
 
         if (!result.Succeeded)
@@ -254,14 +255,27 @@ internal class AuthService : IAuthService
             return false;
         }
 
-        //var roles = await _userManager.GetRolesAsync(user);
-
-        //if(roles.Contains(RoleType.Admin.ToString()) || roles.Contains(RoleType.Moderator.ToString())) 
-        //    return "/Admin/Dashboard/Index";
 
         return true;
     }
 
+    public async Task<string> GetRedirectUrlAsync(string email)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user != null)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            if (roles.Contains(RoleType.Admin.ToString()) || roles.Contains(RoleType.Moderator.ToString()))
+            {
+                return "/Admin/Dashboard/Index";  
+            }
+            else
+            {
+                return "/Home/Index"; 
+            }
+        }
+        return "/Home/Index"; 
+    }
     public async Task<bool> ResetPasswordConfirmationAsync(ForgotPasswordDto dto, ModelStateDictionary ModelState)
     {
         if (!ModelState.IsValid)
@@ -388,4 +402,5 @@ internal class AuthService : IAuthService
 
         return roles.ToList();
     }
+
 }

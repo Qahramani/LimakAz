@@ -2,7 +2,7 @@
 
 public enum PaymentStatuses
 {
-    FullyPaid,
+    FullyPaid ,
     Cancelled,
     Rejected,
     Refused,

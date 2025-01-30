@@ -26,7 +26,7 @@ public static class Helper
 
         return uniquuCode;
     }
-    public static string GenerateOrderNO()
+    public static string GeneratePackageNO()
     {
         var timestamp = DateTime.UtcNow.Ticks.ToString().Substring(10,7);
         var orderNo = "LMK00" + timestamp;

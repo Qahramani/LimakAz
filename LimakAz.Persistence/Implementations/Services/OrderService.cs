@@ -1,7 +1,7 @@
-﻿using LimakAz.Application.Interfaces.Helpers;
-using LimakAz.Application.Interfaces.Services.External;
+﻿using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Domain.Enums;
 using LimakAz.Persistence.Helpers;
+using LimakAz.Persistence.Localizers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +16,13 @@ internal class OrderService : IOrderService
     private readonly ICountryService _countryService;
     private readonly ILocalPointService _localPointService;
     private readonly ITariffService _tariffService;
-    private readonly IValidationMessageProvider _localizer;
+    private readonly OrderLocalizer _localizer;
     private readonly IStatusService _statusService;
     private readonly UserManager<AppUser> _userManager;
     private readonly ICookieService _cookieService;
     private readonly IAuthService _authService;
-    private readonly IPaymentService _paymentService;
     private readonly ICurrencyService _currencyService;
-    public OrderService(IOrderRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ITariffService tariffService, IValidationMessageProvider localizer, IStatusService statusService, UserManager<AppUser> userManager, ICookieService cookieService, IAuthService authService, IPaymentService paymentService, ICurrencyService currencyService)
+    public OrderService(IOrderRepository repository, IMapper mapper, ICountryService countryService, ILocalPointService localPointService, ITariffService tariffService, OrderLocalizer localizer, IStatusService statusService, UserManager<AppUser> userManager, ICookieService cookieService, IAuthService authService, ICurrencyService currencyService)
     {
         _repository = repository;
         _mapper = mapper;
@@ -35,11 +34,10 @@ internal class OrderService : IOrderService
         _userManager = userManager;
         _cookieService = cookieService;
         _authService = authService;
-        _paymentService = paymentService;
         _currencyService = currencyService;
     }
 
-    public async Task<bool> CreateAsync(OrderCreateDto dto, ModelStateDictionary ModelState)
+    public async Task<bool> CreateAsync(OrderItemCreateDto dto, ModelStateDictionary ModelState)
     {
         if (!ModelState.IsValid)
             return false;
@@ -52,32 +50,23 @@ internal class OrderService : IOrderService
             return false;
         };
 
-        isExist = await _localPointService.IsExistAsync(dto.LocalPointId);
-
-        if (!isExist)
-        {
-            ModelState.AddModelError("", _localizer.GetValue("FailureMessage"));
-            return false;
-        };
-
-        var order = _mapper.Map<Order>(dto);
+        var order = _mapper.Map<OrderItem>(dto);
 
         var selectedCountry = await _countryService.GetAsync(dto.CountryId);
 
         if (selectedCountry!.Id == (int)CountryName.Turkiye)
         {
-            order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.05m;
+            order.OrderItemTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.05m;
         }
         else
         {
 
-            order.OrderTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.07m;
+            order.OrderItemTotalPrice = (dto.LocalCargoPrice + (dto.ItemPrice * dto.Count)) * 1.07m;
         }
 
         
         
         order.StatusId = (int)StatusName.NotOrdered;
-        order.NO = Helper.GenerateOrderNO();
 
         var user = await _authService.GetAuthenticatedUserAsync();
 
@@ -105,57 +94,75 @@ internal class OrderService : IOrderService
 
         await _repository.SaveChangesAsync();
     }
-    public List<OrderGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
+    public List<OrderItemGetDto> GetAll(LanguageType language = LanguageType.Azerbaijan)
     {
-        throw new NotImplementedException();
+        var orders = _repository.GetAll(include: _getWithIncludes(language));
+
+        var dtos = _mapper.Map<List<OrderItemGetDto>>(orders);
+
+        return dtos;
     }
 
-    public async Task<OrderGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
+    public async Task<OrderItemGetDto> GetAsync(int id, LanguageType language = LanguageType.Azerbaijan)
     {
         var order = await _repository.GetAsync(x => x.Id == id, _getWithIncludes(language));
 
         if (order == null)
             throw new NotFoundException();
 
-        var dto = _mapper.Map<OrderGetDto>(order);
+        var dto = _mapper.Map<OrderItemGetDto>(order);
 
         return dto;
     }
 
-    private static Func<IQueryable<Order>, IIncludableQueryable<Order, object>> _getWithIncludes(LanguageType language)
+
+    public async Task SetPackageIdsAsync(List<OrderItemGetDto> dtos,int packageId)
     {
-        return x => x.Include(x => x.User)
-                .Include(x => x.Country).ThenInclude(x => x.CountryDetails.Where(x => x.LanguageId == (int)language))
-                .Include(x => x.Status).ThenInclude(x => x.StatusDetails.Where(x => x.LanguageId == (int)language))
-                .Include(x => x.Shop)
-                .Include(x => x.LocalPoint).ThenInclude(x => x.LocalPointDetails.Where(x => x.LanguageId == (int)language));
-    }
-    private static Func<IQueryable<Order>, IIncludableQueryable<Order, object>> _getWithIncludes()
-    {
-        return x => x.Include(x => x.User)
-                .Include(x => x.Country).ThenInclude(x => x.CountryDetails)
-                .Include(x => x.Status).ThenInclude(x => x.StatusDetails)
-                .Include(x => x.Shop)
-                .Include(x => x.LocalPoint).ThenInclude(x => x.LocalPointDetails);
+        foreach (var dto in dtos)
+        {
+            var order = await _repository.GetAsync(x => x.Id == dto.Id);
+
+            if (order is null)
+                throw new NotFoundException();
+
+            order.PackageId=packageId;
+
+            _repository.Update(order);
+        }
+
+        await _repository.SaveChangesAsync();
     }
 
-    public async Task<OrderCreateDto> GetCreateDtoAsync(OrderCreateDto dto, LanguageType language = LanguageType.Azerbaijan)
+    private static Func<IQueryable<OrderItem>, IIncludableQueryable<OrderItem, object>> _getWithIncludes(LanguageType language)
+    {
+        return x => x.Include(x => x.User)
+                .Include(x => x.Shop)
+                .Include(x => x.Package)
+                .Include(x => x.Country).ThenInclude(x => x!.CountryDetails.Where(x => x.LanguageId == (int)language))
+                .Include(x => x.Status).ThenInclude(x => x!.StatusDetails.Where(x => x.LanguageId == (int)language));
+    }
+    private static Func<IQueryable<OrderItem>, IIncludableQueryable<OrderItem, object>> _getWithIncludes()
+    {
+        return x => x.Include(x => x.User)
+                .Include(x => x.Shop)
+                .Include(x => x.Package)
+                .Include(x => x.Country).ThenInclude(x => x!.CountryDetails)
+                .Include(x => x.Status).ThenInclude(x => x!.StatusDetails);
+    }
+
+    public async Task<OrderItemCreateDto> GetCreateDtoAsync(OrderItemCreateDto dto, LanguageType language = LanguageType.Azerbaijan)
     {
         var countries = _countryService.GetAll(language);
-        var localPoints = _localPointService.GetAll(language);
-
+            
         dto.Countries = countries;
-        dto.LocalPoints = localPoints;
         var userId = _cookieService.GetUserId();
 
         var user = await _userManager.FindByIdAsync(userId);
 
-        if (dto.LocalPointId == 0 && user != null)
-            dto.SelectedLocalPointId = user.LocalPointId;
 
         return dto;
     }
-    public Task<PaginateDto<OrderGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
+    public Task<PaginateDto<OrderItemGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         throw new NotImplementedException();
     }
@@ -165,7 +172,7 @@ internal class OrderService : IOrderService
         throw new NotImplementedException();
     }
 
-    public async Task<OrderBasketDto> GetOrderBasketByCountryIdAsync(int countryId)
+    public async Task<OrderBasketDto> GetUserBasketByAsync(int countryId, LanguageType language = LanguageType.Azerbaijan)
     {
         var isExsist = await _countryService.IsExistAsync(countryId);
 
@@ -177,12 +184,15 @@ internal class OrderService : IOrderService
         var orders = _repository.GetAll(x => x.CountryId == countryId && x.UserId == user.Id && x.StatusId == (int)StatusName.NotOrdered);
 
         orders.OrderByDescending(x => x.CreatedAt);
-        var dtos = _mapper.Map<List<OrderGetDto>>(orders);
+        var dtos = _mapper.Map<List<OrderItemGetDto>>(orders);
 
+        var localPoints =  _localPointService.GetAll(language);
         OrderBasketDto dto = new()
         {
             Orders = dtos,
-            SelectedCountryId = countryId
+            SelectedCountryId = countryId,
+            SelectedLLocalPointId = user.LocalPointId,
+            LocalPoints = localPoints
         };
         return dto;
     }
@@ -196,9 +206,9 @@ internal class OrderService : IOrderService
 
         order.Count += 1;
         if (order.CountryId == (int)CountryName.Turkiye)
-            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.05m;
+            order.OrderItemTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.05m;
         else
-            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.07m;
+            order.OrderItemTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.07m;
 
         _repository.Update(order);
         await _repository.SaveChangesAsync();
@@ -206,7 +216,7 @@ internal class OrderService : IOrderService
         OrderItemUpdateDto dto = new()
         {
             Count = order.Count,
-            OrderTotalPrice = order.OrderTotalPrice
+            OrderTotalPrice = order.OrderItemTotalPrice
         };
 
         return dto;
@@ -222,9 +232,9 @@ internal class OrderService : IOrderService
         order.Count = order.Count == 1 ? 1 : --order.Count;
 
         if (order.CountryId == (int)CountryName.Turkiye)
-            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.05m;
+            order.OrderItemTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.05m;
         else
-            order.OrderTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.07m;
+            order.OrderItemTotalPrice = (order.LocalCargoPrice + (order.ItemPrice * order.Count)) * 1.07m;
 
         _repository.Update(order);
         await _repository.SaveChangesAsync();
@@ -232,7 +242,7 @@ internal class OrderService : IOrderService
         OrderItemUpdateDto dto = new()
         {
             Count = order.Count,
-            OrderTotalPrice = order.OrderTotalPrice
+            OrderTotalPrice = order.OrderItemTotalPrice
         };
 
         return dto;
@@ -249,79 +259,12 @@ internal class OrderService : IOrderService
         throw new NotImplementedException();
     }
 
-    public async Task<string> PayOrdersAsync(List<int> orderIds)
+    public async Task<List<OrderItemGetDto>> GetUsersOrdersAsync(string userId)
     {
-        var user = await _authService.GetAuthenticatedUserAsync();
+        var orders = await _repository.GetAll(x => x.UserId == userId,include:_getWithIncludes()).ToListAsync();
 
-        if (orderIds.Count == 0)
-            throw new EmptyBasketException();
+        var dtos = _mapper.Map<List<OrderItemGetDto>>(orders);
 
-        List<Order> orders = await  _repository.GetAll(x => orderIds.Contains(x.Id) ,include : _getWithIncludes()).ToListAsync();
-        var countryId = orders.FirstOrDefault()?.CountryId;
-
-        foreach (var order in orders)
-        {
-            if (order.UserId != user.Id || order.CountryId != countryId || order.Status?.Id != (int)StatusName.NotOrdered)
-                throw new NotFoundException($"{order.Id}li sifaris tapilmadi");
-        }
-
-        decimal totalPrice = 0;
-
-        orders.ForEach(x => totalPrice += x.OrderTotalPrice);
-
-        decimal totalPriceInAZN = 0;
-
-        if(countryId == 4)
-            totalPriceInAZN = await _currencyService.ConvertAsync( totalPrice, "TRY", "AZN");
-        else
-            totalPriceInAZN = await _currencyService.ConvertAsync( totalPrice, "USD", "AZN");
-
-        var result = await _paymentService.CreateAsync(new()
-        {
-            Amount = totalPriceInAZN,
-            Description = "Limak odenis"
-        });
-
-        string url = $"{result.Order.HppUrl}?id={result.Order.Id}&password={result.Order.Password}";
-
-        return url;
-    }
-
-    public async Task<List<PackageDto>> GetUserPackagesAsync(int statusId, int countryId = 4,  LanguageType language = LanguageType.Azerbaijan)
-    {
-        var isExist = await _countryService.IsExistAsync(countryId);
-
-        if (!isExist)
-            throw new NotFoundException("Bu idli olke tapilmadi");
-
-        isExist = await _statusService.IsExistAsync(statusId);
-
-        if(statusId != 0 && !isExist)
-            throw new NotFoundException("Bu idli status tapilmadi");
-
-        var user = await _authService.GetAuthenticatedUserAsync();
-
-        var orders = _repository.GetAll(x => x.UserId == user.Id && x.CountryId == countryId && x.StatusId != (int)StatusName.NotOrdered,include : _getWithIncludes(language));
-
-        if (statusId != 0)
-            orders = orders.Where(x => x.StatusId == statusId);
-
-        List<PackageDto> dtos = new List<PackageDto>();
-
-        foreach (var order in orders)
-        {
-            PackageDto dto = new()
-            {
-                NO = order.NO,
-                Weigth = order.Weight,
-                CreatedAt = order.CreatedAt,
-                Status = order.Status?.StatusDetails.FirstOrDefault()?.Name,
-                Price = order.OrderTotalPrice
-            };
-
-            dtos.Add(dto);
-        }
-        
         return dtos;
     }
 }

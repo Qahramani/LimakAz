@@ -36,40 +36,65 @@ public class AppDbContext : IdentityDbContext<AppUser>
             .WithMany(x => x.Messages)
             .HasForeignKey(x => x.ChatId)
             .OnDelete(DeleteBehavior.Cascade);
-        modelBuilder.Entity<Order>()
-       .HasOne(o => o.User)
-       .WithMany()  // Assuming User has many Orders
-       .HasForeignKey(o => o.UserId)
-       .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
+        modelBuilder.Entity<OrderItem>()
+            .HasOne(o => o.User)
+            .WithMany(o => o.Orderitems)
+            .HasForeignKey(o => o.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
 
-        modelBuilder.Entity<Order>()
+        modelBuilder.Entity<OrderItem>()
             .HasOne(o => o.Country)
-            .WithMany()  // Assuming Country has many Orders
+            .WithMany()
             .HasForeignKey(o => o.CountryId)
-            .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
-
-        modelBuilder.Entity<Order>()
+            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<OrderItem>()
             .HasOne(o => o.Shop)
-            .WithMany()  // Assuming Shop has many Orders
+            .WithMany()
             .HasForeignKey(o => o.ShopId)
-            .OnDelete(DeleteBehavior.SetNull);  // Prevent cascading delete
+            .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<OrderItem>()
+            .HasOne(x => x.Package)
+            .WithMany(x => x.OrderItems)
+            .HasForeignKey (x => x.PackageId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<Order>()
-            .HasOne(o => o.LocalPoint)
-            .WithMany()  // Assuming LocalPoint has many Orders
-            .HasForeignKey(o => o.LocalPointId)
-            .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
 
-        modelBuilder.Entity<Order>()
+        modelBuilder.Entity<OrderItem>()
             .HasOne(o => o.Status)
-            .WithMany()  // Assuming Status has many Orders
+            .WithMany(x => x.OrderItems)
             .HasForeignKey(o => o.StatusId)
-            .OnDelete(DeleteBehavior.Restrict);  // Prevent cascading delete
-        modelBuilder.Entity<Order>()
-           .HasOne(o => o.Payment)
-           .WithMany(p => p.Orders)
-           .HasForeignKey(o => o.PaymentId)
-           .OnDelete(DeleteBehavior.Cascade); // This will delete orders when the payment is deleted.
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Package>()
+           .HasOne(p => p.Payment) 
+           .WithOne(p => p.Package) 
+           .HasForeignKey<Payment>(p => p.PackageId);
+
+        modelBuilder.Entity<Package>()
+            .HasOne(x => x.User)
+            .WithMany(x => x.Packages)
+            .HasForeignKey(x => x.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+        //modelBuilder.Entity<Package>()
+        //    .HasOne(x => x.Country)
+        //    .WithMany()
+        //    .HasForeignKey(x => x.CountryId)
+        //    .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Package>()
+           .HasOne(x => x.Country)
+           .WithMany()
+           .HasForeignKey(x => x.CountryId)
+           .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<Package>()
+           .HasOne(x => x.Status)
+           .WithMany()
+           .HasForeignKey(x => x.StatusId)
+           .OnDelete(DeleteBehavior.SetNull);
+        modelBuilder.Entity<Package>()
+           .HasOne(x => x.LocalPoint)
+           .WithMany()
+           .HasForeignKey(x => x.LocalPointId)
+           .OnDelete(DeleteBehavior.SetNull);
 
 
         modelBuilder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
@@ -81,7 +106,9 @@ public class AppDbContext : IdentityDbContext<AppUser>
         modelBuilder.Entity<Message>().HasQueryFilter(x => !x.IsDeleted);
         modelBuilder.Entity<Chat>().HasQueryFilter(x => !x.IsDeleted);
         modelBuilder.Entity<Country>().HasQueryFilter(x => !x.IsDeleted);
-        modelBuilder.Entity<Order>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<OrderItem>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<Payment>().HasQueryFilter(x => !x.IsDeleted);
+        modelBuilder.Entity<Package>().HasQueryFilter(x => !x.IsDeleted);
 
         base.OnModelCreating(modelBuilder);
     }
@@ -123,6 +150,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<Message> Messages { get; set; } = null!;
     public DbSet<Chat> Chats { get; set; } = null!;
     public DbSet<Payment> Payments { get; set; } = null!;
+    public DbSet<Package> Packages { get; set; } = null!;
     public DbSet<Status> Statuses { get; set; } = null!;
     public DbSet<StatusDetail> StatusDetails { get; set; } = null!;
 

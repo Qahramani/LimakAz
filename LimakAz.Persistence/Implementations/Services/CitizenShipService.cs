@@ -7,13 +7,11 @@ internal class CitizenShipService : ICitizenShipService
 {
     private readonly ICitizenShipRepository _repository;
     private readonly IMapper _mapper;
-    private readonly ILanguageService _languageService;
 
-    public CitizenShipService(ICitizenShipRepository repository, IMapper mapper, ILanguageService languageService)
+    public CitizenShipService(ICitizenShipRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
-        _languageService = languageService;
     }
 
     public List<CitizenShipGetDto> GetAllAsync(LanguageType language = LanguageType.Azerbaijan)

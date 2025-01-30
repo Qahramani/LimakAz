@@ -6,25 +6,30 @@ public class PaymentCheckDto : IDto
     public PaymentStatuses STATUS { get; set; }
 }
 
+public class PaymentGetDto : IDto
+{
+    public int Id { get; set; }
+    public int ReceptId { get; set; }
+    public string SecretId { get; set; }
+    public string? ConfirmToken { get; set; }
+    public PaymentStatuses PaymentStatus { get; set; }
+    public decimal Amount { get; set; }
+    public string Description { get; set; }
+    public List<OrderItemGetDto> Orders { get; set; } = [];
+}
+
 public class PaymentCreateDto : IDto
 {
     public decimal Amount { get; set; }
     public string Description { get; set; } = null!;
+    public int PackageId { get; set; }
 }
 
 
 
 public class PaymentResponseDto : IDto
 {
-    public OrderDto Order { get; set; } = null!;
+    public int PaymentId { get; set; }
+    public PackageDto Order { get; set; } = null!;
 }
 
-public class OrderDto : IDto
-{
-    public int Id { get; set; }
-    public string Password { get; set; } = null!;
-    public string Status { get; set; } = null!;
-    public string HppUrl { get; set; } = null!;
-    public string Cvv2AuthStatus { get; set; } = null!;
-    public string Secret { get; set; } = null!;
-}

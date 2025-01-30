@@ -21,6 +21,11 @@ public class UserController : Controller
         return View(users);
     }
 
+    public IActionResult GoToChat(string userId)
+    {
+        return RedirectToAction("Index","Chat", new {area = "Admin",  userId = userId});
+    }
+
     [HttpPost]
     //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> ChangeRole(string userId, List<string> newRoles)

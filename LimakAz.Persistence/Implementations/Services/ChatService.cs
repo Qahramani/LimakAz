@@ -25,7 +25,10 @@ internal class ChatService : IChatService
 
     public async Task<bool> CreateAsync(ChatCreateDto dto, ModelStateDictionary ModelState)
     {
-        var user = await _authService.GetAuthenticatedUserAsync();
+        var user = await _userManager.FindByIdAsync(dto.UserId);
+
+        if (user == null)
+            throw new NotFoundException();
 
         var roles = await _authService.GetUserRolesAsync(user.Id);
 
@@ -107,20 +110,11 @@ internal class ChatService : IChatService
         return dto;
     }
 
-    public Task<ChatUpdateDto> GetUpdatedDtoAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<bool> IsExistAsync(int id)
     {
         return await _repository.IsExistAsync(x => x.Id == id);
     }
 
-    public Task<bool> UpdateAsync(ChatUpdateDto dto, ModelStateDictionary ModelState)
-    {
-        throw new NotImplementedException();
-    }
 
   
     public async Task<ChatGetDto> GetChatOfAuthenticatedUserAsync()
@@ -179,7 +173,27 @@ internal class ChatService : IChatService
         return dto;
     }
 
-  
+    public async Task<bool> UpdateAsync(ChatUpdateDto dto, ModelStateDictionary ModelState)
+    {
+        if (!ModelState.IsValid)
+            return false;
+        var chat = await _repository.GetAsync(x => x.Id == dto.Id, include: _getWithIncludes());
+
+        if (chat == null) throw new NotFoundException();
+
+        chat = _mapper.Map(dto, chat);
+
+        _repository.Update(chat);
+        await _repository.SaveChangesAsync();
+
+        return true;
+    }
+
+    public Task<ChatUpdateDto> GetUpdatedDtoAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
 }
 
 

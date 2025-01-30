@@ -1,10 +1,10 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Application.Interfaces.Services.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class OrderController : Controller
 {
     private readonly IOrderService _orderService;
@@ -29,7 +29,7 @@ public class OrderController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(OrderCreateDto dto)
+    public async Task<IActionResult> Create(OrderItemCreateDto dto)
     {
         var result = await _orderService.CreateAsync(dto, ModelState);
 
@@ -42,7 +42,7 @@ public class OrderController : Controller
 
             return View("CreateFromLink", dto);
         }
-
+        ViewBag.SuccessMessage = "Item successfully added to the basket!";
         return View("CreateFromLink", dto);
     }
     public async Task<IActionResult> CheckPayment(PaymentCheckDto dto)

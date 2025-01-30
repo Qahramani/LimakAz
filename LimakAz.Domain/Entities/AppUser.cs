@@ -25,7 +25,10 @@ public class AppUser : IdentityUser
     public CitizenShip? CitizenShip { get; set; }
     public int UserPositionId { get; set; }
     public UserPosition? UserPosition { get; set; }
+    public int? ChatId { get; set; }
+    public Chat? Chat { get; set; }
     public ICollection<Message> Messages { get; set; } = [];
     public ICollection<Notification> Notifications{ get; set; } = [];
-    public ICollection<Order> Orders{ get; set; } = [];
+    public ICollection<OrderItem> Orderitems{ get; set; } = [];
+    public ICollection<Package> Packages{ get; set; } = [];
 }

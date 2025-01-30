@@ -37,7 +37,7 @@ internal class PaymentService : IPaymentService
 
     public async Task<bool> ConfirmPaymentAsync(PaymentCheckDto dto)
     {
-        var payment = await _repository.GetAsync(x => x.ConfirmToken == dto.Token && x.ReceptId == dto.ID, include : x => x.Include(x => x.Orders));
+        var payment = await _repository.GetAsync(x => x.ConfirmToken == dto.Token && x.ReceptId == dto.ID, include : x => x.Include(x => x.Package).ThenInclude(x => x.OrderItems));
 
         if (payment is null)
             throw new NotFoundException();
@@ -45,10 +45,11 @@ internal class PaymentService : IPaymentService
         if (dto.STATUS == PaymentStatuses.FullyPaid)
         {
             payment.PaymentStatus = PaymentStatuses.FullyPaid;
-
-            foreach (var order in payment.Orders)
+            payment.Package!.StatusId = (int)StatusName.Paid;
+            payment.Package.PaymentId = dto.ID; 
+            
+            foreach (var order in payment.Package.OrderItems)
             {
-                order.IsPaid = true;
                 order.StatusId = (int)StatusName.Paid;
                 order.CreatedAt = DateTime.UtcNow;
             }
@@ -58,6 +59,13 @@ internal class PaymentService : IPaymentService
 
             return true;
         }
+
+        foreach (var order in payment.Package.OrderItems)
+        {
+            order.PackageId = null;
+        }
+
+        payment.Package.StatusId = (int)StatusName.IsCanceled;
 
         _repository.SoftDelete(payment);
         await _repository.SaveChangesAsync();
@@ -119,11 +127,14 @@ internal class PaymentService : IPaymentService
             ReceptId = result.Order.Id,
             SecretId = result.Order.Secret,
             PaymentStatus = PaymentStatuses.Pending,
-            ConfirmToken = token
+            ConfirmToken = token,
+            PackageId = dto.PackageId
         };
 
         await _repository.CreateAsync(payment);
         await _repository.SaveChangesAsync();
+
+        result.PaymentId = payment.Id;
 
         return result;
     }

@@ -4,7 +4,7 @@ namespace LimakAz.Application.Exceptions;
 
 public class InvalidUserRoleException : Exception, IBaseException
 {
-    public InvalidUserRoleException(string message = "") : base(message)
+    public InvalidUserRoleException(string message = "İstifadəçi Rolu Yanlışdir") : base(message)
     {
         
     }

@@ -138,4 +138,16 @@
   <data name="Hour" xml:space="preserve">
     <value>hour</value>
   </data>
+  <data name="Chats" xml:space="preserve">
+    <value>Söhbətlər</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Hər zaman bizimlə əlaqə saxlaya bilərsiniz</value>
+  </data>
+  <data name="Typing" xml:space="preserve">
+    <value>Mesaj yazın</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Göndər</value>
+  </data>
 </root>

@@ -121,6 +121,22 @@ internal class TariffService : ITariffService
 
         return paginateDto;
     }
+
+    public async Task<decimal> GetCargoPriceByWeightAsync(decimal weight, int countryId)
+    {
+        var tariff = await _repository.GetAsync(x => x.MinValue <= weight && x.MaxValue >= weight && x.CountryId == countryId);
+        
+        if (tariff is null)
+        {
+            var tariffs = _repository.GetAll(x => x.CountryId == countryId);
+
+            var maxPrice = tariffs.Max(x => x.Price);
+
+            return maxPrice * weight;
+        }
+        return tariff.Price;
+    }
+
     public async Task<List<TariffGetDto>> GetTariffsByCountry(int countryId, LanguageType language = LanguageType.Azerbaijan)
     {
         var existingCountry = await _countryService.GetAsync(countryId);

@@ -1,10 +1,10 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Persistence.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class ShopsController : Controller
 {
     private readonly IShopService _shopService;

@@ -2,10 +2,10 @@
 using LimakAz.Application.Interfaces.Services;
 using LimakAz.Application.Interfaces.Services.External;
 using LimakAz.Application.Interfaces.Services.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class CalculatorController : Controller
 {
     private readonly ICalculatorService _calculatorService;

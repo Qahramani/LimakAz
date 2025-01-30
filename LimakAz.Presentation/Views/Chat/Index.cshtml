@@ -1,17 +1,28 @@
 ﻿@using System.Security.Claims
 @model ChatGetDto
+@inject ContactLocalizer _localizer;
 <section>
     <div class="container py-5">
 
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-4">
-
+            <div class="col-md-8 col-lg-6 col-xl-4" style="width:80%">
+                <ol class="contact-breadcamp" style="justify-content:end;">
+                    <li>
+                        <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <span>@_localizer.GetValue("Chats")</span>
+                    </li>
+                </ol>
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center p-3"
                          style="border-top: 4px solid #ffa900;">
-                        <h5 class="mb-0">Chat messages</h5>
+                        <h5 class="mb-0">@_localizer.GetValue("ContactUs")</h5>
                         <div class="d-flex flex-row align-items-center">
-                            <span class="badge bg-warning me-3">20</span>
+                            <span class="badge bg-warning me-3"></span>
                             <i class="fas fa-minus me-3 text-muted fa-xs"></i>
                             <i class="fas fa-comments me-3 text-muted fa-xs"></i>
                             <i class="fas fa-times text-muted fa-xs"></i>
@@ -56,13 +67,13 @@
                         }
 
                     </div>
-                    <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+                    <div class="card-footer text-muted align-items-center p-3">
                         <form method="post" class="sendMessageForm" asp-controller="chat" asp-action="sendmessage" asp-route-chatId="@Model.Id">
                             <div class="input-group mb-0">
-                                <input name="text" type="text" class="form-control messageInput" placeholder="Type message"
+                                <input name="text" type="text" class="form-control messageInput" placeholder="@_localizer.GetValue("Typing")"
                                        aria-label="Recipient's username" aria-describedby="button-addon2" />
                                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-warning" type="submit" id="button-addon2" style="padding-top: .55rem;">
-                                    Button
+                                    @_localizer.GetValue("Send")
                                 </button>
                             </div>
                         </form>
@@ -86,7 +97,7 @@
     connection.on("ReceiveMessage", (message) => {
 
          var messageDiv = `
-                                
+
                                   <div class="d-flex flex-row justify-content-start">
                                     <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1737221604/LimakAz/ecl6whxnykpaxnvbnf9q.svg"
                                          alt="avatar 1" style="width: 30px; height: 100%;">
@@ -99,8 +110,8 @@
                                     </div>
                                 </div>`
 
-       
-     
+
+
         chatArea.innerHTML+=messageDiv;
           chatArea.scrollTop = chatArea.scrollHeight;
     });
@@ -166,3 +177,16 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.7/signalr.min.js"></script>
+
+<script>
+    document.getElementById("chatToggle").addEventListener("click", toggleChat);
+
+    function toggleChat() {
+        const chatBox = document.getElementById("chatBox");
+        if (chatBox.style.display === "none" || chatBox.style.display === "") {
+            chatBox.style.display = "block";
+        } else {
+            chatBox.style.display = "none";
+        }
+    }
+</script>

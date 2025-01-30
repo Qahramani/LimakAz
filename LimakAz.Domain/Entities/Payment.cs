@@ -9,5 +9,7 @@ public class Payment:BaseAuditableEntity
     public PaymentStatuses PaymentStatus { get; set; }
     public decimal Amount { get; set; }
     public string? Description { get; set; }
-    public ICollection<Order> Orders { get; set; } = [];
+    public int PackageId { get; set; }
+    public Package? Package { get; set; }
+
 }

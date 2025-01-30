@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bağlamanız Ofisdədir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffa900;
+        }
+
+            .header img {
+                max-width: 150px;
+            }
+
+        .content {
+            padding: 20px;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #ffa900;
+        }
+
+        .details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffa900;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <img src="https://res.cloudinary.com/dsclrbdnp/image/upload/v1735148773/LimakAz/ovgeyi6xr3eahskj0u8f.png" alt="Şirkət Loqosu">
+        </div>
+        <div class="content">
+            <h2>📦 Bağlamanız Ofisdədir!</h2>
+            <p>Hörmətli <strong>{{Fullname}}</strong>,</p>
+            <p>Sizə məlumat vermək istərdik ki, bağlamanız ofisimizə çatdırılıb və onu götürə bilərsiniz. Bağlamanızın detalları aşağıdadır:</p>
+
+            <div class="details">
+                <p><strong>📦 Bağlama Kodu:</strong> {{NO}}</p>
+                <p><strong>💰 Kargo Qiyməti:</strong> <span class="highlight">{{CargoPrice}} AZN</span></p>
+                <p><strong>📍 Ofis Ünvanı:</strong> <span class="highlight">{{LocalPointName}}</span></p>
+            </div>
+
+            <p>Bağlamanızı götürmək üçün ofisimizə yaxınlaşmağınızı xahiş edirik. Əgər sualınız varsa, bizimlə əlaqə saxlaya bilərsiniz.</p>
+
+        </div>
+
+        <div class="footer">
+            <p>📞 Əlaqə: +994 55 898 35 67</p>
+            <p>📧 E-mail: newlimak@gmail.com</p>
+            <p>© @DateTime.Now.Year Şirkətiniz. Bütün hüquqlar qorunur.</p>
+        </div>
+    </div>
+</body>
+</html>

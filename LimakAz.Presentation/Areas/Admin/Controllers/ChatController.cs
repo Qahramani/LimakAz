@@ -3,6 +3,7 @@ using LimakAz.Application.Interfaces.Services;
 using LimakAz.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 
 namespace LimakAz.Presentation.Areas.Admin.Controllers;
 [Area("Admin")]
@@ -36,6 +37,7 @@ public class ChatController : Controller
 
         return Json(messages);
     }
+
 
     [HttpPost]
     public async Task<MessageDisplayDto> SendMessage(int chatId, string text)

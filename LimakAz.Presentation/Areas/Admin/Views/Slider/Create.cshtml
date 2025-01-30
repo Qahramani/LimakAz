@@ -89,13 +89,12 @@
                 document.getElementById('cropper-container').style.display = 'block';
                 document.getElementById('crop-button').style.display = 'inline-block';
 
-                // Destroy the previous cropper instance if it exists
                 if (cropper) {
                     cropper.destroy();
                 }
 
                 cropper = new Cropper(cropperPreview, {
-                    aspectRatio: 130 / 30, // Set your desired width-to-height ratio here
+                    aspectRatio: 130 / 30, 
                     viewMode: 1,
                     autoCropArea: 1,
                 });
@@ -106,14 +105,13 @@
 
     function cropImage() {
         const canvas = cropper.getCroppedCanvas({
-            width: 1000, // Desired cropped width
-            height: 300, // Desired cropped height
+            width: 1000, 
+            height: 300, 
         });
 
         canvas.toBlob((blob) => {
             croppedBlob = blob;
 
-            // Update the file input for form submission
             const file = new File([blob], "cropped-image.jpg", { type: "image/jpeg" });
             const dataTransfer = new DataTransfer();
             dataTransfer.items.add(file);

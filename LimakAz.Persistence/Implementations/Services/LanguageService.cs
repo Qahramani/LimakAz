@@ -25,15 +25,6 @@ internal class LanguageService : ILanguageService
         return dtos;
     }
 
-    //public async Task<LanguageGetDto> GetAsync(int id)
-    //{
-    //    var language = await _repository.GetAsync(id);
-
-    //    var dto = _mapper.Map<LanguageGetDto>(language);
-
-    //    return dto;
-    //}
-
     public async Task<LanguageGetDto> GetLanguageAsync(Expression<Func<Language, bool>> predicate)
     {
         var language = await _repository.GetAsync(predicate);

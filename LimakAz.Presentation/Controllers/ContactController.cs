@@ -1,8 +1,8 @@
 ﻿using LimakAz.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class ContactController : Controller
 {
     private readonly ILocalPointService _localPointService;

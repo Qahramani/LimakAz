@@ -1,9 +1,9 @@
 ﻿using LimakAz.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
 namespace LimakAz.Presentation.Controllers;
-
 public class NewsController : Controller
 {
     private readonly INewsService _newsService; 

@@ -2,8 +2,6 @@
 
 public class Country : BaseAuditableEntity
 {
-   
- //   public string Currency { get; set; } = null!;
     public string ImagePath { get; set; } = null!;
     public ICollection<CountryDetail> CountryDetails { get; set; } = [];
     public ICollection<Shop> Shops { get; set; } = [];

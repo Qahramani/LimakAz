@@ -8,7 +8,6 @@
                 <th>Fullname</th>
                 <th>Email</th>
                 <th>Status</th>
-                @* <th>Roles</th> *@
                 <th>Actions</th>
             </tr>
         </thead>
@@ -18,7 +17,6 @@
                     <tr>
                         <td>@user.Fullname</td>
                         <td>@user.Email</td>
-                        <!-- Button to Activate/Deactivate User -->
                         <td>
                         @if (user.IsActive)
                         {
@@ -29,21 +27,8 @@
                                     <span class="badge bg-danger">Inactive</span>
                         }
                         </td>
-                        @* <td>
-                        @if (user.Roles != null && user.Roles.Any())
-                        {
-                            @string.Join(", ", user.Roles)
-                        }
-                        else
-                        {
-                                    <span>No roles assigned</span>
-                        }
-                        </td> *@
                         <td>
-                            @* <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#changeRoleModal"
-                                    data-user-id="@user.Id" data-user-roles="@string.Join(",", user.Roles!)">
-                                Change Roles
-                            </button> *@
+                            
                         @if (user.IsActive)
                         {
                                     <form asp-action="DeactivateUser" method="post" class="d-inline">
@@ -106,9 +91,3 @@
         });
     });
 </script>
-@* <!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap Bundle (includes Popper.js) -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
- *@

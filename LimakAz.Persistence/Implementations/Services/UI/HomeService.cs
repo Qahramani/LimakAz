@@ -6,16 +6,14 @@ internal class HomeService : IHomeService
 {
     private readonly INewsService _newsService;
     private readonly ICertificateService _certificateService;
-    private readonly ICountryService _countryService;
     private readonly IShopService _shopService;
     private readonly ISliderService _sliderService;
     private readonly ITariffService _tariffService;
 
-    public HomeService(INewsService newsService, ICertificateService certificateService, ICountryService countryService, IShopService shopService, ISliderService sliderService, ITariffService tariffService)
+    public HomeService(INewsService newsService, ICertificateService certificateService, IShopService shopService, ISliderService sliderService, ITariffService tariffService)
     {
         _newsService = newsService;
         _certificateService = certificateService;
-        _countryService = countryService;
         _shopService = shopService;
         _sliderService = sliderService;
         _tariffService = tariffService;

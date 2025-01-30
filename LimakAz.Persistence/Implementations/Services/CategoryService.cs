@@ -93,8 +93,6 @@ internal class CategoryService : ICategoryService
         return dtos;
     }
 
-
-
     public async Task<PaginateDto<CategoryGetDto>> GetPagesAsync(LanguageType language = LanguageType.Azerbaijan, int page = 1, int limit = 10)
     {
         var query = _repository.GetAll(include: _getWithIncludes(language));
@@ -206,6 +204,10 @@ internal class CategoryService : ICategoryService
         return dto;
     }
 
+    public async Task<bool> IsExistAsync(int id)
+    {
+        return await _repository.IsExistAsync(x => x.Id == id);
+    }
     private static Func<IQueryable<Category>, IIncludableQueryable<Category, object>> _getWithIncludes(LanguageType language)
     {
         return x => x.Include(x => x.CategoryDetails.Where(x => x.LanguageId == (int)language));
@@ -213,10 +215,5 @@ internal class CategoryService : ICategoryService
     private static Func<IQueryable<Category>, IIncludableQueryable<Category, object>> _getWithIncludes()
     {
         return x => x.Include(x => x.CategoryDetails);
-    }
-
-    public async Task<bool> IsExistAsync(int id)
-    {
-       return await _repository.IsExistAsync(x => x.Id == id);
     }
 }

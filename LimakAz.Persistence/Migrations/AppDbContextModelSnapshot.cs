@@ -51,140 +51,140 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-VergiNo",
                             Value = "6081089593"
                         },
                         new
                         {
                             Id = 2,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-Ulke",
                             Value = "Türkiye"
                         },
                         new
                         {
                             Id = 3,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-VergiDairesi",
                             Value = "Şişli"
                         },
                         new
                         {
                             Id = 4,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-PostKodu",
                             Value = "34060"
                         },
                         new
                         {
                             Id = 5,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-Telefon",
                             Value = "05364700021"
                         },
                         new
                         {
                             Id = 6,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-İlce",
                             Value = "Eyüpsultan"
                         },
                         new
                         {
                             Id = 7,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-TCKimlik",
                             Value = "35650276048"
                         },
                         new
                         {
                             Id = 8,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-Semt",
                             Value = "Güzeltepe mahallesi"
                         },
                         new
                         {
                             Id = 9,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-IlSehir",
                             Value = "İstanbul"
                         },
                         new
                         {
                             Id = 10,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-AdressSatir",
                             Value = ",Güzeltepe mahallesi,Akdeniz caddesi no:33/A"
                         },
                         new
                         {
                             Id = 11,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-AdressBasligi",
                             Value = "LIMAK"
                         },
                         new
                         {
                             Id = 12,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "XaricdekiUnvanlar-AdSoyad",
                             Value = "LİMAK TAŞIMACILIK DIŞ TİCARET LİMİTED ŞİRKETİ"
                         },
                         new
                         {
                             Id = 13,
-                            CountryId = 4,
+                            CountryId = 1,
                             Key = "Is-Saatlari",
                             Value = "Həftəiçi 5 gün: 09:00 - 17:00\r\nŞənbə: 09:00 - 14:00\r\nBazar günü qeyri-iş günüdür."
                         },
                         new
                         {
                             Id = 14,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "Street-Address",
                             Value = "1234 Elm Street, Suite 567"
                         },
                         new
                         {
                             Id = 15,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "City",
                             Value = "New York"
                         },
                         new
                         {
                             Id = 16,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "State",
                             Value = "NY"
                         },
                         new
                         {
                             Id = 17,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "ZIP-Code",
                             Value = "10001"
                         },
                         new
                         {
                             Id = 18,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "Country",
                             Value = "USA"
                         },
                         new
                         {
                             Id = 19,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "Phone-Number",
                             Value = "+1-555-123-4567"
                         },
                         new
                         {
                             Id = 20,
-                            CountryId = 5,
+                            CountryId = 2,
                             Key = "Working-Hours",
                             Value = "Mon-Fri, 9:00 AM - 5:00 PM EST"
                         });
@@ -207,6 +207,9 @@ namespace LimakAz.Persistence.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("ChatId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CitizenShipId")
                         .HasColumnType("int");
@@ -298,6 +301,8 @@ namespace LimakAz.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ChatId");
+
                     b.HasIndex("CitizenShipId");
 
                     b.HasIndex("GenderId");
@@ -354,21 +359,21 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2606),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "default",
                             IsDeleted = false,
-                            LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2608),
+                            LogoPath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1736343697/slhpbhpb8kz0t8aounk7.png",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "default"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2613),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "default",
                             IsDeleted = false,
-                            LogoPath = "",
-                            UpdatedAt = new DateTime(2025, 1, 24, 3, 46, 1, 284, DateTimeKind.Utc).AddTicks(2614),
+                            LogoPath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1736343830/rqv6ofcjthjh5xvkbejy.png",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = "default"
                         });
                 });
@@ -709,6 +714,28 @@ namespace LimakAz.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735590904/rfvtik0wyqjxlieecbfm.png",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1735590817/gdrkuwphkhe9f2d0sovw.png",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.CountryDetail", b =>
@@ -736,6 +763,36 @@ namespace LimakAz.Persistence.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("CountryDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            LanguageId = 1,
+                            Name = "Turkiye"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 1,
+                            LanguageId = 2,
+                            Name = "Турция"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 2,
+                            LanguageId = 1,
+                            Name = "Amerika"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryId = 2,
+                            LanguageId = 2,
+                            Name = "Америка"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Gender", b =>
@@ -887,6 +944,26 @@ namespace LimakAz.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LocalPoints");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.LocalPointDetail", b =>
@@ -922,6 +999,44 @@ namespace LimakAz.Persistence.Migrations
                     b.HasIndex("LocalPointId");
 
                     b.ToTable("LocalPointDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Gəncə şəhəri, Kəpəz rayonu, Əziz Əliyev prospekti, 5A. (Köhnə Yevlax avtovağzalı və Neon dəyirmanının yaxınlığı)",
+                            LanguageId = 1,
+                            LocalPointId = 1,
+                            Name = "Limak - Gəncə",
+                            WorkingHourse = "Bazar ertəsi-şənbə\r\nSaat 10:00 - 20:00\r\n\r\nŞənbə\r\nSaat 10:00 - 20:00"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Город Гянджа, Кепазский район, проспект Азиза Алиева, 5А. (Рядом с автовокзалом Евлаха и Неоновой мельницей)",
+                            LanguageId = 2,
+                            LocalPointId = 1,
+                            Name = "Limak - Гянджа",
+                            WorkingHourse = "Понедельник-Суббота\r\nС 10:00 до 20:00\r\n\r\nСуббота\r\nС 10:00 до 20:00"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Nizami rayonu, Qara Qarayev prospekti, 125a (Səhhət klinikasının yaxınlığı)",
+                            LanguageId = 1,
+                            LocalPointId = 2,
+                            Name = "Limak - Xalqlar Dostluğu",
+                            WorkingHourse = "Bazar ertəsi-şənbə\r\nSaat 10:00 - 20:00\r\n\r\nŞənbə\r\nSaat 10:00 - 20:00"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Низаминский район, проспект Кара Караева, 125а ( возле поликлиники “SƏHHƏT” )",
+                            LanguageId = 2,
+                            LocalPointId = 2,
+                            Name = "Limak - Халглар Достлугу",
+                            WorkingHourse = "Понедельник-Суббота\r\nС 10:00 до 20:00\r\n\r\nСуббота\r\nС 10:00 до 20:00"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Message", b =>
@@ -1001,6 +1116,38 @@ namespace LimakAz.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("News");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1737841428/LimakAz/tkqkwproumeajbfifprs.jpg",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1737841438/LimakAz/m4yxdcrc4jy33iapjela.jpg",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "Defaul",
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1737841534/LimakAz/yccukiy8giu0hsx76ria.jpg",
+                            IsDeleted = false,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedBy = "Default"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.NewsDetail", b =>
@@ -1032,6 +1179,56 @@ namespace LimakAz.Persistence.Migrations
                     b.HasIndex("NewsId");
 
                     b.ToTable("NewDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Dəyərli müştərilər, çoxsaylı istəkləri nəzərə alaraq, yeni açılan Quba filialımız artıq xidmətinizdədir. Quba filialının ünvanı: Quba şəhəri, Fətəli xan və Səməd Vurğun küçəsinin kəsişməsi. \r\n \r\n Seçdiyiniz məhsulların linkini bizə göndərməklə sifarişlərinizi SifarişEt xidmətimizə həvalə edin. Amerika və Türkiyədən gələn bağlamalarınızı filiallardan, kuryerlərimizdən və ya kargomatlardan təhvil ala bilərsiniz. Limak komandası rahat alış-veriş və sürətli çatdırılma ilə xidmətinizdədir!",
+                            LanguageId = 1,
+                            NewsId = 1,
+                            Title = "Limakın yeni Quba filialı!"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Уважаемые клиенты, учитывая многочисленные запросы, наш филиал Губа теперь к вашим услугам. Адрес Губинского филиала: г. Губа, пересечение улиц Фатали Хана и Самеда Вургуна. \r\n \r\n Отправьте ссылку на выбранные вами продукты, и пусть наша служба «Заказать» обработает ваши заказы. Посылки из Америки и Турции вы можете получить в наших филиалах, в ближайших каргоматах или заказать доставку курьером. Команда Limak к вашим услугам, удобные покупки и быстрая доставка!",
+                            LanguageId = 2,
+                            NewsId = 1,
+                            Title = "Новый филиал Лимака в Губе!"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Amerikadan daşınma tariflərinə yenilik etdik!\r\n \r\n Hörmətli müştərilər, nəzərinizə çatdıraq ki, Amerika tariflərimiz 20 iyul 2024-cü il tarixindən etibarən yenilənir! \r\n \r\n\r\nQeyd olunan tarixdən başlayaraq xarici anbarımıza daxil olan bağlamaların daşınma haqqı çəkiyə uyğun olaraq, yeni tarifə əsasən hesablanacaq! Yeni qiymətlər hazırda bazar rəqabətinə uyğun tənzimlənib. \r\n \r\n\r\nLimak komandası güvənli alış-veriş və sürətli çatdırılma ilə xidmətinizdədir!\r\n \r\n\r\nUzağı yaxın etdik!  ",
+                            LanguageId = 1,
+                            NewsId = 2,
+                            Title = "Amerika tariflərimiz yeniləndi!"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Наши американские тарифы обновлены!\r\n \r\n\r\nУважаемые клиенты, позвольте обратить ваше внимание на то, что наши американские тарифы будут обновлены с 20 июля 2024 года! \r\n \r\n\r\nНачиная с указанной даты, стоимость доставки посылок, поступающих на наш зарубежный склад, будет рассчитываться в зависимости от веса, согласно новому тарифу! Обновленные цены в настоящее время скорректированы с учетом рыночной конкуренции.\r\n \r\n\r\nКоманда Limak к вашим услугам, вместе с удобным шоппингом и быстрой доставкой. \r\n \r\n\r\nМы стали еще ближе к вам! ",
+                            LanguageId = 2,
+                            NewsId = 2,
+                            Title = "Наши американские тарифы обновлены!"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Limak.az - güvənli və sürətli karqo xidməti\r\n \r\n 5 ildən çoxdur ki, sürətli və güvənli karqo şirkəti olaraq fəaliyyət göstəririk. Bizim üçün müştəri məmnuniyyəti ən vacib prioritetlərdən biridir. Biz, sifarişləri ən qısa zamanda, təhlükəsiz çatdıraraq, müştərilərin güvənini qazanmağı bacarmışıq. Bütün ehtiyaclarınızı nəzərə alaraq, xidmətlərimizi davamlı olaraq təkmilləşdirir və müştərilərimizə ən yüksək, keyfiyyətli xidmətlər təklif edirik.\r\n\r\n \r\n\r\nMüştəriləri sevindirəcək xəbər\r\n \r\n Daha sına biləcək bağlamalarınıza görə narahat olmağınıza ehtiyac yoxdur! Sifarişlərinizin güvənli çatdırılması üçün Limak.az karqo şirkəti olaraq, növbəti istəyinizi əlçatan etdik. Hər kəsə məlumdur ki, bir çox hallarda karqo şirkətləri bağlamaların təhlükəsizliyinə görə məsuliyyət daşımır. Lakin biz, müştəriləri düşünərək, sınma təhlükəsi olan bağlamaları xüsusi qablaşdırma və güvənli daşıma ilə sizə çatdırırıq. Beləliklə, sifariş olunan qablar sınmayacaq. Limak.az ilə Türkiyədən istənilən məhsulları əminliklə sifariş edə bilərsiniz.",
+                            LanguageId = 1,
+                            NewsId = 3,
+                            Title = "Türkiyədən bağlamalarınızı güvənli çatdırırıq"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Limak.az - надежная и быстрая служба доставки\r\n\r\nУже более 5 лет мы работаем как быстрая и надежная компания по доставке. Лояльность наших клиентов - один из наших главных приоритетов. Мы добились доверия клиентов, доставляя заказы в кратчайшие сроки и с полной безопасностью. Учитывая все ваши потребности, мы постоянно совершенствуем наши услуги и предлагаем нашим клиентам самые качественные сервисы.\r\n\r\n \r\n\r\nНовость, которая порадует клиентов\r\n\r\n\r\nТеперь вам больше не придется беспокоиться о своих посылках, с хрупким товаром! Для безопасной доставки ваших заказов компания Limak.az сделала ваш очередной запрос доступным. Всем известно, что во многих случаях грузовые компании не несут ответственности за сохранность посылок. Однако, думая о наших клиентах, мы доставляем посылки с риском повреждения в специальной упаковке и с безопасной транспортировкой. Так, заказанная посуда не разобьется. С Limak.az вы можете с уверенностью заказывать любые товары из Турции.",
+                            LanguageId = 2,
+                            NewsId = 3,
+                            Title = "Мы безопасно доставим ваши посылки из Турции"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Notification", b =>
@@ -1100,16 +1297,13 @@ namespace LimakAz.Persistence.Migrations
                     b.ToTable("NotificationDetails");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.Order", b =>
+            modelBuilder.Entity("LimakAz.Domain.Entities.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("CargoPrice")
                         .HasColumnType("decimal(18,2)");
@@ -1131,13 +1325,7 @@ namespace LimakAz.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsCanceled")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPaid")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("ItemPrice")
@@ -1150,20 +1338,14 @@ namespace LimakAz.Persistence.Migrations
                     b.Property<decimal>("LocalCargoPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("LocalPointId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NO")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Notes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("OrderTotalPrice")
+                    b.Property<decimal>("OrderItemTotalPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("PaymentId")
+                    b.Property<int?>("PackageId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ShopId")
@@ -1175,12 +1357,6 @@ namespace LimakAz.Persistence.Migrations
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
-
-                    b.Property<int?>("StatusId1")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -1198,23 +1374,83 @@ namespace LimakAz.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
-
                     b.HasIndex("CountryId");
 
-                    b.HasIndex("LocalPointId");
-
-                    b.HasIndex("PaymentId");
+                    b.HasIndex("PackageId");
 
                     b.HasIndex("ShopId");
 
                     b.HasIndex("StatusId");
 
-                    b.HasIndex("StatusId1");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OrderItem");
+                });
+
+            modelBuilder.Entity("LimakAz.Domain.Entities.Package", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LocalPointId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NO")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCargoPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalWeigth")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("LocalPointId");
+
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Packages");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Payment", b =>
@@ -1244,6 +1480,9 @@ namespace LimakAz.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("PackageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
 
@@ -1262,6 +1501,9 @@ namespace LimakAz.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PackageId")
+                        .IsUnique();
 
                     b.ToTable("Payments");
                 });
@@ -1644,6 +1886,18 @@ namespace LimakAz.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1737841750/LimakAz/r8uyjrt2rhcdmhte1ahu.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImagePath = "https://res.cloudinary.com/dsclrbdnp/image/upload/v1737841753/LimakAz/tysnef6of1mfpuur3ejj.jpg"
+                        });
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Status", b =>
@@ -1686,14 +1940,6 @@ namespace LimakAz.Persistence.Migrations
                         new
                         {
                             Id = 7
-                        },
-                        new
-                        {
-                            Id = 8
-                        },
-                        new
-                        {
-                            Id = 9
                         });
                 });
 
@@ -1728,14 +1974,14 @@ namespace LimakAz.Persistence.Migrations
                         {
                             Id = 1,
                             LanguageId = 1,
-                            Name = "Ödəniş olunub",
+                            Name = "Sifariş edilməyib",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 2,
                             LanguageId = 2,
-                            Name = "Оплачено",
+                            Name = "Не заказано",
                             StatusId = 1
                         },
                         new
@@ -1756,99 +2002,71 @@ namespace LimakAz.Persistence.Migrations
                         {
                             Id = 5,
                             LanguageId = 1,
-                            Name = "Sifariş edilməyib",
+                            Name = "Ödəniş olunub",
                             StatusId = 3
                         },
                         new
                         {
                             Id = 6,
                             LanguageId = 2,
-                            Name = "Не заказано",
+                            Name = "Оплачено",
                             StatusId = 3
                         },
                         new
                         {
                             Id = 7,
                             LanguageId = 1,
-                            Name = "Xarici anbardadır",
+                            Name = "Yoldadır",
                             StatusId = 4
                         },
                         new
                         {
                             Id = 8,
                             LanguageId = 2,
-                            Name = "На иностранном складе",
+                            Name = "В пути",
                             StatusId = 4
                         },
                         new
                         {
                             Id = 9,
                             LanguageId = 1,
-                            Name = "Gömürükdədir",
+                            Name = "Yerli anbardadır",
                             StatusId = 5
                         },
                         new
                         {
                             Id = 10,
                             LanguageId = 2,
-                            Name = "На таможне",
+                            Name = "На местном складе",
                             StatusId = 5
                         },
                         new
                         {
                             Id = 11,
                             LanguageId = 1,
-                            Name = "Yoldadır",
+                            Name = "Sifariş tamamlandı",
                             StatusId = 6
                         },
                         new
                         {
                             Id = 12,
                             LanguageId = 2,
-                            Name = "В пути",
+                            Name = "Заказ выполнен",
                             StatusId = 6
                         },
                         new
                         {
                             Id = 13,
                             LanguageId = 1,
-                            Name = "Yerli anbardadır",
+                            Name = "Ləğv edilib",
                             StatusId = 7
                         },
                         new
                         {
                             Id = 14,
                             LanguageId = 2,
-                            Name = "На местном складе",
-                            StatusId = 7
-                        },
-                        new
-                        {
-                            Id = 15,
-                            LanguageId = 1,
-                            Name = "Təhvil verilib",
-                            StatusId = 8
-                        },
-                        new
-                        {
-                            Id = 16,
-                            LanguageId = 2,
-                            Name = "Доставлено",
-                            StatusId = 8
-                        },
-                        new
-                        {
-                            Id = 17,
-                            LanguageId = 1,
-                            Name = "Ləğv edilib",
-                            StatusId = 9
-                        },
-                        new
-                        {
-                            Id = 18,
-                            LanguageId = 2,
                             Name = "Отменено",
-                            StatusId = 9
+                            StatusId = 7
                         });
                 });
 
@@ -2122,6 +2340,10 @@ namespace LimakAz.Persistence.Migrations
 
             modelBuilder.Entity("LimakAz.Domain.Entities.AppUser", b =>
                 {
+                    b.HasOne("LimakAz.Domain.Entities.Chat", "Chat")
+                        .WithMany()
+                        .HasForeignKey("ChatId");
+
                     b.HasOne("LimakAz.Domain.Entities.CitizenShip", "CitizenShip")
                         .WithMany()
                         .HasForeignKey("CitizenShipId")
@@ -2145,6 +2367,8 @@ namespace LimakAz.Persistence.Migrations
                         .HasForeignKey("UserPositionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Chat");
 
                     b.Navigation("CitizenShip");
 
@@ -2351,27 +2575,17 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("Notification");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.Order", b =>
+            modelBuilder.Entity("LimakAz.Domain.Entities.OrderItem", b =>
                 {
-                    b.HasOne("LimakAz.Domain.Entities.AppUser", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("LimakAz.Domain.Entities.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("LimakAz.Domain.Entities.LocalPoint", "LocalPoint")
-                        .WithMany()
-                        .HasForeignKey("LocalPointId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("LimakAz.Domain.Entities.Payment", "Payment")
-                        .WithMany("Orders")
-                        .HasForeignKey("PaymentId")
+                    b.HasOne("LimakAz.Domain.Entities.Package", "Package")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("PackageId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("LimakAz.Domain.Entities.Shop", "Shop")
@@ -2380,17 +2594,47 @@ namespace LimakAz.Persistence.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("LimakAz.Domain.Entities.Status", "Status")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("LimakAz.Domain.Entities.Status", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("StatusId1");
+                    b.HasOne("LimakAz.Domain.Entities.AppUser", "User")
+                        .WithMany("Orderitems")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Package");
+
+                    b.Navigation("Shop");
+
+                    b.Navigation("Status");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LimakAz.Domain.Entities.Package", b =>
+                {
+                    b.HasOne("LimakAz.Domain.Entities.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("LimakAz.Domain.Entities.LocalPoint", "LocalPoint")
+                        .WithMany()
+                        .HasForeignKey("LocalPointId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("LimakAz.Domain.Entities.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("LimakAz.Domain.Entities.AppUser", "User")
-                        .WithMany()
+                        .WithMany("Packages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2399,13 +2643,20 @@ namespace LimakAz.Persistence.Migrations
 
                     b.Navigation("LocalPoint");
 
-                    b.Navigation("Payment");
-
-                    b.Navigation("Shop");
-
                     b.Navigation("Status");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LimakAz.Domain.Entities.Payment", b =>
+                {
+                    b.HasOne("LimakAz.Domain.Entities.Package", "Package")
+                        .WithOne("Payment")
+                        .HasForeignKey("LimakAz.Domain.Entities.Payment", "PackageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Package");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.SettingDetail", b =>
@@ -2563,7 +2814,9 @@ namespace LimakAz.Persistence.Migrations
 
                     b.Navigation("Notifications");
 
-                    b.Navigation("Orders");
+                    b.Navigation("Orderitems");
+
+                    b.Navigation("Packages");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Category", b =>
@@ -2615,9 +2868,11 @@ namespace LimakAz.Persistence.Migrations
                     b.Navigation("NotificationDetails");
                 });
 
-            modelBuilder.Entity("LimakAz.Domain.Entities.Payment", b =>
+            modelBuilder.Entity("LimakAz.Domain.Entities.Package", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("OrderItems");
+
+                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Setting", b =>
@@ -2632,7 +2887,7 @@ namespace LimakAz.Persistence.Migrations
 
             modelBuilder.Entity("LimakAz.Domain.Entities.Status", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("OrderItems");
 
                     b.Navigation("StatusDetails");
                 });

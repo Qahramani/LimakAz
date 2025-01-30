@@ -1,21 +1,22 @@
 ﻿using LimakAz.Application.DTOs;
 using LimakAz.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LimakAz.Presentation.Controllers;
-
+[Authorize(Roles = "Member")]
 public class UserPanelController : Controller
 {
     private readonly IUserPanelService _userPanelService;
     private readonly ICookieService _cookieService;
     private readonly IAddressLineService _addressLineService;
-    private readonly IOrderService _orderService;
-    public UserPanelController(IUserPanelService userPanelService, ICookieService cookieService, IAddressLineService addressLineService, IOrderService orderService)
+    private readonly IPackageService _packageService;
+    public UserPanelController(IUserPanelService userPanelService, ICookieService cookieService, IAddressLineService addressLineService, IPackageService packageService)
     {
         _userPanelService = userPanelService;
         _cookieService = cookieService;
         _addressLineService = addressLineService;
-        _orderService = orderService;
+        _packageService = packageService;
     }
 
     public IActionResult Index()
@@ -78,9 +79,10 @@ public class UserPanelController : Controller
         return View();
     }
 
-    public async Task<IActionResult> Packages(int countryId = 4, int status = 0)
+    
+    public async Task<IActionResult> Packages(int statusId = 0)
     {
-        var packages = await _orderService.GetUserPackagesAsync(status, countryId);
+        var packages = await _packageService.GetAuthenticatedUserPackages(statusId);
 
         return View(packages);
     }
