@@ -20,8 +20,7 @@ public class OrderController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var language = await _cookieService.GetSelectedLanguageTypeAsync();
-        var packages = await _packageService.GetFilteredPackagesAsync(language);
+        var packages = await _packageService.GetFilteredPackagesAsync();
 
         return View(packages);
     }

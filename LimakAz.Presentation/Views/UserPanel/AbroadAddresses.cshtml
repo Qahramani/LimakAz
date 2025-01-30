@@ -2,6 +2,7 @@
 @inject IAuthService _authService;
 @model Dictionary<string,string>
 
+@inject UserPanelLocalizer _localizer;
 @{
     ViewData["Template"] = "Template2";
     var user = await _authService.GetAuthenticatedUserAsync();
@@ -15,14 +16,14 @@
             <div class="block">
                 <div class="block-header">
                     <h2 class="block-title" style="font-size: 17px;text-transform: uppercase;">
-                        İstifadəçi Paneli
+                        @_localizer.GetValue("UserPanel")
                     </h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana səhifə</a>
+                            <a href="index.html">@_localizer.GetValue("Home")</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <span>İstifadəçi Paneli</span>
+                            <span>@_localizer.GetValue("UserPanel")</span>
                         </li>
                     </ul>
                 </div>
@@ -45,7 +46,7 @@
                                                     <img src="~/assets2/images/tr-circle.svg" alt=""
                                                          class="card-tabs-nav-icon">
                                                     <span class="card-tabs-nav-title">
-                                                        Türkiyə
+                                                        @_localizer.GetValue("Turkey")
                                                     </span>
                                                 </a>
                                             </li>
@@ -53,7 +54,7 @@
                                                 <a href="#" class="nav-link" data-target="2">
                                                     <img src="~/assets2/images/usa-circle.svg" alt=""
                                                          class="card-tabs-nav-icon">
-                                                    <span class="card-tabs-nav-title">Amerika</span>
+                                                    <span class="card-tabs-nav-title">@_localizer.GetValue("America")</span>
                                                 </a>
                                             </li>
                                         </ul>

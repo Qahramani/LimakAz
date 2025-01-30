@@ -1,5 +1,5 @@
 ﻿@model PackageGetUiDto
-
+@inject UserPanelLocalizer _localizer;
 @{
     ViewData["Template"] = "Template2";
     int count = 1;
@@ -7,30 +7,33 @@
 
 <style>
     table th{
-        padding: 23px 70px;
+    padding: 23px 70px;
     }
 
     .detail-table-content{
-        margin-left:60px;
+    margin-left:60px;
+    }
+    .col{
+        padding: 15px 76px 15px !important;
     }
 </style>
 <!-- Main Start -->
 <main id="main"
-      style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")')no-repeat; background-size: 100%; background-position: top center;"
-      class="bg-full">
+style="background: url('@Url.Content("~/assets2/images/limak_bg.jpg")')no-repeat; background-size: 100%; background-position: top center;"
+class="bg-full">
     <div class="main-container" style="max-width: 114rem;">
         <section id="user-panel">
             <div class="block">
                 <div class="block-header">
                     <h2 class="block-title" style="font-size: 17px;text-transform: uppercase;">
-                        İstifadəçi Paneli
+                        @_localizer.GetValue("UserPanel")
                     </h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana səhifə</a>
+                            <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <span>İstifadəçi Paneli</span>
+                            <span>@_localizer.GetValue("UserPanel")</span>
                         </li>
                     </ul>
                 </div>
@@ -47,9 +50,12 @@
                             <div class="content-header custom-card" style="margin-bottom: 1rem;">
                                 <form asp-controller="userpanel" asp-action="packages" method="get" class="form-package">
                                     <select name="statusId" id="statusFilter" class="custom-select" onchange="this.form.submit()">
-                                        <option value="0">Hamısı</option>
+                                        <option value="0">@_localizer.GetValue("All")</option>
                                         @foreach (var st in Model.Statuses)
                                         {
+                                            if (st.Id == 1)
+                                                continue;
+
                                             <option value="@st.Id" selected="@(st.Id == Model.SelectedStatusId ? "selected" : null)">
                                                 @st.StatusDetails.FirstOrDefault()?.Name
                                             </option>
@@ -64,10 +70,10 @@
                                         <table class="table order-table package-table">
                                             <thead class="align-center mobile-none">
                                                 <tr>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Sifariş№</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Əməliyyat</th>
+                                                    <th scope="col" class="col">No</th>
+                                                    <th scope="col" class="col">@_localizer.GetValue("PackageNo")</th>
+                                                    <th scope="col" class="col">@_localizer.GetValue("Status")</th>
+                                                    <th scope="col" class="col">@_localizer.GetValue("Process")</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -92,7 +98,7 @@
                                                             <div class="d-flex flex-end">
                                                                 <button data-target="@item.Id"
                                                                         class="btn btn-action btn-orange btn-secondary">
-                                                                    <span>Bax</span>
+                                                                    <span>@_localizer.GetValue("Look")</span>
                                                                 </button>
                                                             </div>
                                                         </td>
@@ -109,20 +115,20 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div class="detail-table-content">
-                                                                                    <strong>Sifariş tarixi</strong>
+                                                                                    <strong>@_localizer.GetValue("OrderDate")</strong>
                                                                                     <span>@item.CreatedAt</span>
                                                                                 </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="detail-table-content">
-                                                                                    <strong>Çəkisi</strong>
+                                                                                    <strong>@_localizer.GetValue("Weigth")</strong>
                                                                                     <span>@item.TotalWeigth кq</span>
                                                                                 </div>
                                                                             </td>
                                                                             <td>
                                                                                 <div class="detail-table-content">
-                                                                                    <strong>Qiymət TRY</strong>
-                                                                                    <span>@item.TotalPrice TRY</span>
+                                                                                    <strong>@_localizer.GetValue("Price")</strong>
+                                                                                    <span>@item.TotalPrice </span>
                                                                                 </div>
                                                                             </td>
                                                                            

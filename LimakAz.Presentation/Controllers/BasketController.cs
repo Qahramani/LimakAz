@@ -29,6 +29,7 @@ public class BasketController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteFromBasket(int itemId)
     {
         await _orderService.DeleteAsync(itemId);

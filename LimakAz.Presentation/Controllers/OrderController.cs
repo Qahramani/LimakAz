@@ -29,6 +29,7 @@ public class OrderController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(OrderItemCreateDto dto)
     {
         var result = await _orderService.CreateAsync(dto, ModelState);

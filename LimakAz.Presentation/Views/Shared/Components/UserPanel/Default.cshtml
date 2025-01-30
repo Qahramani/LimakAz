@@ -1,5 +1,5 @@
 ﻿@model UserPanelSidebarGetDto
-
+@inject UserPanelLocalizer _localizer;
 <aside class="aside">
     <div class="card">
         <div class="card-body">
@@ -13,40 +13,40 @@
                 <div class="list-group-item">
                     <i class="far fa-user-circle"></i>
                     <h3 class="user-nav-title">
-                        <span>Müştəri̇ kodu</span>
+                        <span>@_localizer.GetValue("ClientCode")</span>
                         <strong>@Model.Code</strong>
                     </h3>
                 </div>
-                <div class="list-group-item user-nav-notf">
+               @*  <div class="list-group-item user-nav-notf">
                     <a href="notification.html">
                         <i class="fas fa-bell"></i>
                         <h3 class="user-nav-title">
                             Bildirişlər
                         </h3>
                     </a>
-                </div>
+                </div> *@
                 
 
             </div>
             
             <div class="list-group aside-nav-top">
-                <div class="list-group-item aside-nav mt-0">
+               @*  <div class="list-group-item aside-nav mt-0">
                     <a href="user-panel.html">
                         <i class="fas fa-shopping-bag"></i>
                         <h3 class="aside-nav-title">Sifarişlər</h3>
                     </a>
-                </div>
+                </div> *@
                 
                 <div class="list-group-item aside-nav">
                     <a asp-controller="userpanel" asp-action="packages">
                         <i class="fas fa-box-open"></i>
-                        <h3 class="aside-nav-title">Bağlamalar</h3>
+                        <h3 class="aside-nav-title">@_localizer.GetValue("Packages")</h3>
                     </a>
                 </div>
                 <div class="list-group-item aside-nav">
                     <a asp-controller="userpanel" asp-action="abroadaddresses">
                         <i class="fas fa-thumbtack"></i>
-                        <h3 class="aside-nav-title">Xaricdəki ünvanlar</h3>
+                        <h3 class="aside-nav-title">@_localizer.GetValue("AbroadAddresses")</h3>
                     </a>
                 </div>
                 
@@ -56,7 +56,7 @@
                     <a asp-controller="userpanel" asp-action="UpdateProfile">
                         <i class="fas fa-user-cog"></i>
                         <h3 class="aside-account-title">
-                            Tənzimləmələr
+                            @_localizer.GetValue("Settings")
                         </h3>
                     </a>
                 </div>
@@ -66,7 +66,7 @@
                        data-bs-toggle="modal"
                        data-bs-target="#logoutModalmobile">
                         <i class="fas fa-power-off"></i>
-                        <h3 class="aside-nav-title">Hesabdan çıx</h3>
+                        <h3 class="aside-nav-title">@_localizer.GetValue("Exit")</h3>
                     </a>
                 </div>
                 <!-- Modal Logout -->
@@ -77,7 +77,7 @@
                             <div class=" modal-logout-head">
                                 <h1 class="modal-title logout-modal-title fs-5"
                                     id="exampleModalLabel">
-                                    DİQQƏT!
+                                    @_localizer.GetValue("Attention")
                                 </h1>
                                 <button type="button" class="btn-close"
                                         data-bs-dismiss="modal" aria-label="Close"></button>
@@ -87,21 +87,20 @@
                                     <img src="https://limak.az/new_front/assets/img/SehifeYuklenmedi.png"
                                          alt="">
                                     <h4 class="logout-content-title">
-                                        Çıxış etməyə əminsiniz
-                                        ?
+                                        @_localizer.GetValue("AreYouSure")
                                     </h4>
                                 </div>
                             </div>
                             <div class="modal-footer-logout">
                                 <button type="button" class="btn btn-secondary btn-xeyr"
                                         data-bs-dismiss="modal">
-                                    XEYR
+                                    @_localizer.GetValue("No")
                                 </button>
                                 @* <button asp-controller="account" asp-action="logout" type="button" class="btn btn-secondary btn-xeyr">
                                     XEYR
                                 </button> *@
                                 <a asp-controller="account" asp-action="logout" class="btn btn-primary btn-beli text-center " style="padding:inherit">
-                                    BƏLİ
+                                    @_localizer.GetValue("Yes")
                                 </a>
                             </div>
                         </div>

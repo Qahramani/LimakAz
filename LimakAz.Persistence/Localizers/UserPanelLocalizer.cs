@@ -2,13 +2,13 @@
 
 namespace LimakAz.Persistence.Localizers;
 
-public class AccountLocalizer
+public class UserPanelLocalizer
 {
     private readonly IStringLocalizer _stringLocalizer;
 
-    public AccountLocalizer(IStringLocalizerFactory stringLocalizer)
+    public UserPanelLocalizer(IStringLocalizerFactory stringLocalizer)
     {
-        _stringLocalizer = stringLocalizer.Create("Account", "LimakAz.Presentation");
+        _stringLocalizer = stringLocalizer.Create("UserPanel", "LimakAz.Presentation");
     }
 
     public string GetValue(string key)

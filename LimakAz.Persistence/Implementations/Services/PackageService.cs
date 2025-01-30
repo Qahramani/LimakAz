@@ -127,8 +127,11 @@ internal class PackageService : IPackageService
 
         var packages = _repository.GetAll(x => x.UserId == user.Id , include: _getWithIncludes(language));
 
+        
         if (statusId != 0)
             packages = packages.Where(x => x.StatusId == statusId);
+
+        packages = packages.OrderByDescending(x => x.CreatedAt);
 
         var dtos = _mapper.Map<List<PackageGetDto>>(packages);
         

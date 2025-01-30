@@ -26,6 +26,7 @@ public class AccountController : Controller
 
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginDto dto)
     {
 
@@ -50,6 +51,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterDto dto)
     {
         var result = await _authService.RegisterAsync(dto, ModelState);
@@ -89,6 +91,7 @@ public class AccountController : Controller
         return View();
     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> ForgotPassword(ForgotPasswordDto dto)
     {
         var result = await _authService.ResetPasswordConfirmationAsync(dto, ModelState);
@@ -112,6 +115,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
     {
         var result = await _authService.ResetPasswordAsync(dto, ModelState);

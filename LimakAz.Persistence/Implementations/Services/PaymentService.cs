@@ -37,40 +37,42 @@ internal class PaymentService : IPaymentService
 
     public async Task<bool> ConfirmPaymentAsync(PaymentCheckDto dto)
     {
-        var payment = await _repository.GetAsync(x => x.ConfirmToken == dto.Token && x.ReceptId == dto.ID, include : x => x.Include(x => x.Package).ThenInclude(x => x.OrderItems));
+        var payment = await _repository.GetAsync(x => x.ConfirmToken == dto.Token && x.ReceptId == dto.ID, include: x => x.Include(x => x.Package).ThenInclude(x => x.OrderItems));
 
         if (payment is null)
             throw new NotFoundException();
 
-        if (dto.STATUS == PaymentStatuses.FullyPaid)
+        if (dto.STATUS == PaymentStatuses.Cancelled)
         {
-            payment.PaymentStatus = PaymentStatuses.FullyPaid;
-            payment.Package!.StatusId = (int)StatusName.Paid;
-            payment.Package.PaymentId = dto.ID; 
-            
+
+
             foreach (var order in payment.Package.OrderItems)
             {
-                order.StatusId = (int)StatusName.Paid;
-                order.CreatedAt = DateTime.UtcNow;
+                order.PackageId = null;
             }
 
-            _repository.Update(payment);
+            payment.Package.StatusId = (int)StatusName.IsCanceled;
+
+            _repository.SoftDelete(payment);
             await _repository.SaveChangesAsync();
 
-            return true;
+            return false;
         }
+
+        payment.PaymentStatus = PaymentStatuses.FullyPaid;
+        payment.Package!.StatusId = (int)StatusName.Paid;
+        payment.Package.PaymentId = dto.ID;
 
         foreach (var order in payment.Package.OrderItems)
         {
-            order.PackageId = null;
+            order.StatusId = (int)StatusName.Paid;
+            order.CreatedAt = DateTime.UtcNow;
         }
 
-        payment.Package.StatusId = (int)StatusName.IsCanceled;
-
-        _repository.SoftDelete(payment);
+        _repository.Update(payment);
         await _repository.SaveChangesAsync();
 
-        return false;
+        return true;
     }
 
     public async Task<PaymentResponseDto> CreateAsync(PaymentCreateDto dto)

@@ -26,6 +26,7 @@ public class CalculatorController : Controller
         return View(dto);
     }
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Index(CalculatorDto dto)
     {
         var language = await _cookieService.GetSelectedLanguageTypeAsync();

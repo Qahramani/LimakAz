@@ -21,7 +21,7 @@ public class UserPanelController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return RedirectToAction(nameof(Packages));
     }
 
     public async Task<IActionResult> AbroadAddresses()
@@ -40,6 +40,7 @@ public class UserPanelController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProfile(UserProfileUpdateDto dto)
     {
         var result = await _userPanelService.UpdateProfileAsync(dto, ModelState);
@@ -65,6 +66,7 @@ public class UserPanelController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdatePassword(UserPasswordUpdateDto dto)
     {
         var result = await _userPanelService.UpdatePasswordAsync(dto, ModelState);
@@ -82,7 +84,10 @@ public class UserPanelController : Controller
     
     public async Task<IActionResult> Packages(int statusId = 0)
     {
-        var packages = await _packageService.GetAuthenticatedUserPackages(statusId);
+
+        var language = await _cookieService.GetSelectedLanguageTypeAsync();
+
+        var packages = await _packageService.GetAuthenticatedUserPackages(statusId, language);
 
         return View(packages);
     }

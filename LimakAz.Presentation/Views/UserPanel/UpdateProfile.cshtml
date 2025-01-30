@@ -1,30 +1,31 @@
 ﻿@model UserProfileUpdateDto
+@inject UserPanelLocalizer _localizer;
 <style>
     .regr-phone-group {
-        display: flex; /* Aligns the elements horizontally */
-        align-items: flex-start; /* Vertically centers them */
+        display: flex;
+        align-items: flex-start;
     }
 
     .phone-prefix-regr {
-        margin-right: 10px; /* Adds space between the prefix and phone number input */
+        margin-right: 10px;
     }
 
     .dropdown-select-prefix {
-        width: 80px; /* Adjust the width as needed for your country code options */
-        height: 38px; /* Matching height with the phone input */
+        width: 80px; 
+        height: 38px; 
         padding: 5px;
-        font-size: 14px; /* Matching font size */
-        border-radius: 8px; /* Border radius to match the input */
-        border: 1px solid #ced4da; /* Border to match the input */
+        font-size: 14px;
+        border-radius: 8px; 
+        border: 1px solid #ced4da; 
     }
 
     .reg-phoneNum {
-        flex: 1; /* Makes the phone number input take the remaining space */
-        height: 38px; /* Same height as the dropdown */
+        flex: 1; 
+        height: 38px; 
         padding: 5px;
-        font-size: 14px; /* Ensures the font size is consistent */
-        border-radius: 0.25rem; /* Matches the border radius */
-        border: 1px solid #ced4da; /* Same border as the dropdown */
+        font-size: 14px;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da; 
     }
 
     .text-danger {
@@ -45,14 +46,14 @@
             <div class="block">
                 <div class="block-header">
                     <h2 class="block-title" style="font-size: 17px;text-transform: uppercase;">
-                        İstifadəçi Paneli
+                        @_localizer.GetValue("UserPanel")
                     </h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Ana səhifə</a>
+                            <a asp-controller="home" asp-action="index">@_localizer.GetValue("Home")</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            <span>İstifadəçi Paneli</span>
+                            <span>@_localizer.GetValue("UserPanel")</span>
                         </li>
                     </ul>
                 </div>
@@ -72,13 +73,13 @@
                                         <li class="nav-item">
                                             <a asp-action="UpdateProfile" class="nav-link active">
                                                 <span class="card-tabs-nav-title">
-                                                    Hesab məlumatları
+                                                    @_localizer.GetValue("ProfileInfo")
                                                 </span>
                                             </a>
                                         </li>
                                         <li class="nav-item card-tabs">
                                             <a asp-action="updatepassword" class="nav-link">
-                                                <span class="card-tabs-nav-title">Şifrə</span>
+                                                <span class="card-tabs-nav-title">@_localizer.GetValue("Password")</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -106,8 +107,7 @@
                                                         <div class="col-6">
                                                             <select asp-items="@Model.LocalPoints" asp-for="LocalPointId" class="custom-select">
                                                                 <option disabled="disabled" value="">
-                                                                    -- Çatdırılma
-                                                                    ofisi --
+                                                                    -- @_localizer.GetValue("DeliveryOffice") --
                                                                 </option>
                                                             </select>
                                                         </div>
@@ -150,7 +150,7 @@
 
                                                         <div class="col-6">
                                                             <button type="submit" class="btn btn-submit btn-primary">
-                                                                <span>Yadda saxla</span>
+                                                                <span>@_localizer.GetValue("Save")</span>
                                                             </button>
                                                             <span style="color:green;margin-left:30px;font-weight:700">@ViewBag.SuccessMessage</span>
 

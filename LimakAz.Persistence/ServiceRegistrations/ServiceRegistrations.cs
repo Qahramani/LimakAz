@@ -140,6 +140,7 @@ public static class ServiceRegistrations
         services.AddSingleton<AccountLocalizer>();
         services.AddSingleton<ShopsLocalizer>();
         services.AddSingleton<OrderLocalizer>();
+        services.AddSingleton<UserPanelLocalizer>();
         services.AddSingleton<ValidationMessagesLocalizer>();
 
     }
