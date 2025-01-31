@@ -51,7 +51,7 @@ internal class PaymentService : IPaymentService
                 order.PackageId = null;
             }
 
-            payment.Package.StatusId = (int)StatusName.IsCanceled;
+            payment.Package.StatusId = (int)StatusName.NotOrdered;
 
             _repository.SoftDelete(payment);
             await _repository.SaveChangesAsync();

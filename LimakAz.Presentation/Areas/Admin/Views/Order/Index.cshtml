@@ -1,4 +1,4 @@
-﻿@model List<PackageGetDto>
+﻿@model PackageGetAdminDto
 @{
     int count = 1;
 }
@@ -12,15 +12,17 @@
                         <h4 class="card-title">Sifarişlər</h4>
                         <p class="card-description">
                             @* <a asp-action="Create" class="btn btn-success">Yenisini yarat</a> *@
-                            <select class="orderFilterInput">
-                                <option value="0">Hamısı</option>
-                                <option value="2">Sifariş edilmişlər</option>
-                                <option value="3">Ödənilmişlər</option>
-                                <option value="4">Yolda olanlar</option>
-                                <option value="5">Yerli anbarda</option>
-                                <option value="6">Tamamlanmış</option>
-                                <option value="7">Ləğv edilmişlər</option>
-                            </select>
+
+                            <form method="get" action="/Admin/Order/Index" id="filterForm">
+                                <select name="statusId" class="orderFilterInput">
+                                    <option value="0" selected="@(Model.SelectedStatusId == 0 ? "selected" : null)">Hamısı</option>
+                                    <option value="3" selected="@(Model.SelectedStatusId == 3 ? "selected" : null)">Ödənilmişlər</option>
+                                    <option value="4" selected="@(Model.SelectedStatusId == 4 ? "selected" : null)">Yolda olanlar</option>
+                                    <option value="5" selected="@(Model.SelectedStatusId == 5 ? "selected" : null)">Yerli anbarda</option>
+                                    <option value="6" selected="@(Model.SelectedStatusId == 6 ? "selected" : null)">Tamamlanmış</option>
+                                    <option value="7" selected="@(Model.SelectedStatusId == 7 ? "selected" : null)">Ləğv edilmişlər</option>
+                                </select>
+                            </form>
                             @* <select class="paymentFilterInput">
                                 <option value="0">Hamısı</option>
                                 <option value="@true">Ödəniş edilənlər</option>
@@ -53,14 +55,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var package in Model)
+                                    @foreach (var package in Model.Packages)
                                     {
                                         <tr class="orderItem" data-status="@package.Status.Id" data-payment="">
                                             <td class="py-1">
                                                 @(count++)
                                             </td>
                                             <td>
-                                                @package.CreatedAt.ToString("yyyy, dd MMMM")
+                                                @package.CreatedAt.ToString("yyyy, dd MMMM", new System.Globalization.CultureInfo("az-Latn-AZ"))
                                             </td>
 
                                             <td>
@@ -71,18 +73,18 @@
                                             </td>
 
                                             <td>
-                                              @*   @if (package.Status.Id == 4)
+                                                @if (package.Status.Id == 7)
                                                 {
 
                                                     <a asp-action="RepairOrder" asp-route-id="@package.Id" class="btn btn-success "><i class="mdi mdi-play"></i></a>
                                                 }
                                                 else
-                                                { *@
+                                                {
                                                     <a asp-action="Detail" asp-route-id="@package.Id" class="btn btn-primary "><i class="mdi mdi-information-outline"></i></a>
                                                     <a asp-action="PrevStatus" asp-route-id="@package.Id" class="btn btn-warning "><i class="mdi mdi-arrow-left"></i> </a>
                                                     <a asp-action="NextStatus" asp-route-id="@package.Id" class="btn btn-warning"><i class="mdi mdi-arrow-right"></i></a>
                                                     <a asp-action="CancelOrder" asp-route-id="@package.Id" class="btn btn-danger "><i class="mdi mdi-pause"></i></a>
-                                                @* } *@
+                                                }
                                             </td>
                                             <td>
                                                 <a asp-action="Delete" asp-route-id="@package.Id" class="btn btn-danger deleteBtn"><i class="mdi mdi-delete"></i></a>
@@ -102,8 +104,13 @@
 </div>
 
 
-
 <script>
+    document.querySelector(".orderFilterInput").addEventListener("change", function () {
+        document.getElementById("filterForm").submit();
+    });
+</script>
+
+@* <script>
     const filterInput=document.querySelector(".orderFilterInput");
     const orderItems=document.querySelectorAll(".orderItem");
 
@@ -129,7 +136,7 @@
 
 
 </script>
-
+ *@
 <style>
     .orderFilterInput {
         padding: 10px 15px;

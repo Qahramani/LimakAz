@@ -25,16 +25,16 @@
             <div class="row mb-4">
                 <div class="col-md-6">
                     <ul class="list-group">
-                        <li class="list-group-item"><strong>Sifariş Nömrəsi:</strong> <span class="text-muted">@Model.NO</span></li>
+                        <li class="list-group-item"><strong>Sifariş Nömrəsi: </strong> <span class="text-muted">@Model.NO</span></li>
+                        <li class="list-group-item"><strong>Ölkə: </strong> <span class="text-muted">@Model.Country?.CountryDetails.FirstOrDefault()?.Name</span></li>
                         <li class="list-group-item">
                             <strong>Çəki: <span class="text-muted">@Model.TotalWeigth kg</span></strong><br />
-                            <form asp-action="UpdateWeight" method="post" class="d-inline" onsubmit="fixDecimalSeparator(event)" data-culture="en-US">
-                                <input type="hidden" name="id" value="@Model.Id" />
-                                <input type="text" step="0.01" id="newWeight" name="newWeight" style="margin-top:10px"
-                                       value="@Model.TotalWeigth.ToString(System.Globalization.CultureInfo.InvariantCulture)"
-                                       class="form-control" required />
+                            <form asp-action="UpdateWeight" method="post" class="d-inline d-flex align-items-center gap-2" data-culture="en-US">
+                                <input type="hidden" name="id" value="@Model.Id" style="height:35px ; margin:3px 3px 3px 0px"/>
+                                <input type="text" class="form-control" required name="newWeight" placeholder="Dəyər daxil edin" id="weightInput" style="height:32px ; margin:3px 10px 3px 0px">
                                 <button type="submit" class="btn btn-sm btn-primary">Yenilə</button>
                             </form>
+
                         </li>
                         <li class="list-group-item"><strong>Karqo Qiyməti:</strong> <span class="text-muted">@Model.TotalCargoPrice ₼</span></li>
                         <li class="list-group-item"><strong>Ödənilmiş Məbləğ:</strong> <span class="text-muted">@Model.Payment?.Amount ₼</span></li>
@@ -56,13 +56,14 @@
                         </li>
                         <li class="list-group-item">
                             <strong>Yaradılma Tarixi:</strong>
-                            <span class="text-muted">@Model.CreatedAt.ToString("dd MMM yyyy HH:mm")</span>
+                            <span class="text-muted">@Model.CreatedAt.ToString("dd MMM yyyy HH:mm", new System.Globalization.CultureInfo("az-Latn-AZ"))</span>
                         </li>
                         
                             <form asp-controller="Order" asp-action="SendNotificationEmail" method="post">
                                 <input type="hidden" name="packageId" value="@Model.Id" />
                             <button type="submit" style="margin: 10px 0px;width:100%" class="btn btn-warning">📩 E-poçta bildiriş göndərin</button>
                             </form>
+                        <a asp-action="finishorder" asp-route-id="@Model.Id" style="margin: 10px 0px;width:100%;background-color:lightblue;border:none"  class="btn btn-warning">✅ Sifarişi tamamla</a>
                         
                     </ul>
                 </div>
@@ -120,15 +121,19 @@
 </div>
 
 <script>
-       function fixDecimalSeparator(event) {
-        let input = document.getElementById("newWeight");
+    document.querySelector("form").addEventListener("submit", function () {
+        let weightInput = document.getElementById("weightInput");
+        weightInput.value = weightInput.value.replace(",", "."); 
+    });
 
-        console.log("Original value:", input.value);
+    function fixDecimalSeparator(event) {
+        event.preventDefault();
+        let input = document.getElementById("weightInput");
+
         input.value = input.value.replace(",", ".");
-        console.log("Modified value:", input.value);
 
-        event.preventDefault(); // Formu saxlayırıq
-        event.target.submit();  // Yenidən submit edirik
+        console.log("Fixed weight:", input.value);
     }
+
 
 </script>

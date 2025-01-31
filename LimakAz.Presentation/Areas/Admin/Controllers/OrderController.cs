@@ -3,6 +3,7 @@ using LimakAz.Application.Interfaces.Services;
 using LimakAz.Application.Interfaces.Services.External;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
+using System.Globalization;
 
 namespace LimakAz.Presentation.Areas.Admin.Controllers;
 [Area("Admin")]
@@ -18,9 +19,9 @@ public class OrderController : Controller
         _emailService = emailService;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int statusId = 0)
     {
-        var packages = await _packageService.GetFilteredPackagesAsync();
+        var packages = await _packageService.GetFilteredPackagesAsync(statusId);
 
         return View(packages);
     }
@@ -40,9 +41,13 @@ public class OrderController : Controller
         TempData["Success"] = "Email sent successfully!";
         return RedirectToAction("Detail", new { id = packageId });
     }
-    public async Task<IActionResult> UpdateWeight([FromForm] int id, [FromForm] decimal newWeight)
+    [HttpPost]
+    public async Task<IActionResult> UpdateWeight(int id, string newWeight)
     {
-        await _packageService.UpdateWeigth(id, newWeight);
+        decimal result;
+
+        if (decimal.TryParse(newWeight, NumberStyles.Any, CultureInfo.InvariantCulture, out result))
+            await _packageService.UpdateWeigth(id, result);
 
         return RedirectToAction(nameof(Detail), new { id = id });
     }
@@ -62,14 +67,14 @@ public class OrderController : Controller
 
     public async Task<IActionResult> CancelOrder(int id)
     {
-        await _packageService.CancelOrderAsync(id);
+        await _packageService.CancelPackageAsync(id);
 
         return RedirectToAction(nameof(Index));
     }
 
     public async Task<IActionResult> RepairOrder(int id)
     {
-        await _packageService.RepairOrderAsync(id);
+        await _packageService.RepairPackageAsync(id);
 
         return RedirectToAction(nameof(Index));
     }
@@ -82,6 +87,11 @@ public class OrderController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-   
+    public async Task<IActionResult> FinishOrder(int id)
+    {
+        await _packageService.FinishOrderAsync(id);
+
+        return RedirectToAction(nameof(Detail), new { id = id });
+    }
 
 }

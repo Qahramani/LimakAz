@@ -1,4 +1,4 @@
-﻿@model PackageGetUiDto
+﻿@model PackageGetUserDto
 @inject UserPanelLocalizer _localizer;
 @{
     ViewData["Template"] = "Template2";
@@ -53,7 +53,7 @@ class="bg-full">
                                         <option value="0">@_localizer.GetValue("All")</option>
                                         @foreach (var st in Model.Statuses)
                                         {
-                                            if (st.Id == 1)
+                                            if (st.Id == 1 || st.Id == 2)
                                                 continue;
 
                                             <option value="@st.Id" selected="@(st.Id == Model.SelectedStatusId ? "selected" : null)">

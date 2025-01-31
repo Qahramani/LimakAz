@@ -39,6 +39,7 @@ internal class AdminService : IAdminService
                 Email = user.Email!,
                 Roles = roles.ToList(),
                 IsActive = user.IsActive,
+                PhoneNumber = user.PhoneNumber!,
                 ChatId = chat.Id
             });
         }

@@ -19,11 +19,19 @@ public class PackageGetDto : IDto
     public StatusGetDto? Status { get; set; }
     public List<OrderItemGetDto> OrderItems { get; set; } = []; 
     public DateTime CreatedAt { get; set; }
+    public int CountryId { get; set; }
+    public Country? Country { get; set; }
 }
 
-public class PackageGetUiDto
+public class PackageGetUserDto
 {
     public List<StatusGetDto> Statuses { get; set; } = [];
     public List<PackageGetDto> Packages { get; set; } = [];
     public int SelectedStatusId { get; set; }
+}
+
+public class PackageGetAdminDto
+{
+    public int SelectedStatusId { get; set; }
+    public List<PackageGetDto> Packages { get; set; } = [];
 }

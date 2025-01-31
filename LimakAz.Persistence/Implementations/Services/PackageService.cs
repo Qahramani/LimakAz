@@ -82,7 +82,7 @@ internal class PackageService : IPackageService
             UserId = user.Id,
             CountryId = (int)countryId!,
             TotalPrice = totalPrice,
-            StatusId = (int)StatusName.Ordered,
+            StatusId = (int)StatusName.NotOrdered,
             NO = packageNo,
             LocalPointId= dto.LocalPointId
         };
@@ -115,7 +115,7 @@ internal class PackageService : IPackageService
         return url;
     }
 
-    public async Task<PackageGetUiDto> GetAuthenticatedUserPackages(int statusId, LanguageType language = LanguageType.Azerbaijan)
+    public async Task<PackageGetUserDto> GetAuthenticatedUserPackages(int statusId, LanguageType language = LanguageType.Azerbaijan)
     {
 
         var isExist = await _statusService.IsExistAsync(statusId);
@@ -125,7 +125,7 @@ internal class PackageService : IPackageService
 
         var user = await _authService.GetAuthenticatedUserAsync();
 
-        var packages = _repository.GetAll(x => x.UserId == user.Id , include: _getWithIncludes(language));
+        var packages = _repository.GetAll(x => x.UserId == user.Id && x.StatusId != (int)StatusName.NotOrdered && x.StatusId != (int)StatusName.Ordered, include: _getWithIncludes(language));
 
         
         if (statusId != 0)
@@ -137,7 +137,7 @@ internal class PackageService : IPackageService
         
         var statuses = _statusService.GetAll(language);
 
-        PackageGetUiDto dto = new()
+        PackageGetUserDto dto = new()
         {
             Packages = dtos,
             Statuses = statuses,
@@ -169,18 +169,32 @@ internal class PackageService : IPackageService
     }
 
 
-    public async Task<List<PackageGetDto>> GetFilteredPackagesAsync(LanguageType language = LanguageType.Azerbaijan)
+    public async Task<PackageGetAdminDto> GetFilteredPackagesAsync(int statusId = 0, LanguageType language = LanguageType.Azerbaijan)
     {
         var query = _repository.GetAll(include : _getWithIncludes(language)); 
+
+        var isExist = await _statusService.IsExistAsync(statusId);
+
+        if (statusId != 0 && !isExist)
+            throw new NotFoundException($"{statusId}-li status tapilmadi");
+
+        if (statusId != 0)
+            query = query.Where(x => x.StatusId == statusId);
 
         var packages = await _repository.OrderByDescending(query,x => x.CreatedAt).ToListAsync();
 
         var dtos = _mapper.Map<List<PackageGetDto>>(packages);
 
-        return dtos;
+        PackageGetAdminDto dto = new()
+        {
+            Packages = dtos,
+            SelectedStatusId = statusId
+        };
+
+        return dto;
     }
 
-    public async Task CancelOrderAsync(int id)
+    public async Task CancelPackageAsync(int id)
     {
         var order = await _repository.GetAsync(x => x.Id == id, x => x.Include(x => x.OrderItems));
 
@@ -193,9 +207,20 @@ internal class PackageService : IPackageService
         await _repository.SaveChangesAsync();
     }
 
-    public Task RepairOrderAsync(int id)
+    public async Task RepairPackageAsync(int id)
     {
-        throw new NotImplementedException();
+        var package = await _repository.GetAsync(x => x.Id == id, x => x.Include(x => x.OrderItems));
+
+        if (package is null)
+            throw new NotFoundException();
+
+        if (package.StatusId != (int)StatusName.IsCanceled)
+            return;
+
+        package.StatusId = (int)StatusName.Paid;
+
+        _repository.Update(package);
+        await _repository.SaveChangesAsync();
     }
 
     public async Task NextOrderStatusAsync(int id)
@@ -264,7 +289,7 @@ internal class PackageService : IPackageService
 
         if (package == null) throw new NotFoundException($"{id}-li baglama tapilmadi");
 
-        var cargoPrice = await _tariffService.GetCargoPriceByWeightAsync(weigth,(int)package.CountryId);
+        var cargoPrice = await _tariffService.GetCargoPriceByWeightAsync(weigth,(int)package.CountryId!);
 
         package.TotalCargoPrice = cargoPrice;
         package.TotalWeigth = weigth;
@@ -283,9 +308,10 @@ internal class PackageService : IPackageService
         NotificationEmailDto dto = new()
         {
             Fullname = package.User?.Firstname + " " + package.User?.Lastname,
-            NO = package.NO,
+            NO = package.NO!,
             CargoPrice = package.TotalCargoPrice.ToString(),
-            LocalPointName = package.LocalPoint.LocalPointDetails.FirstOrDefault().Name,
+            LocalPointName = package.LocalPoint.LocalPointDetails.FirstOrDefault()!.Name,
+            CreatedAt = DateTime.UtcNow,
         };
 
         string emailBody = await _getTemplateContentAsync( dto, "NitificationBody.html");
@@ -295,7 +321,7 @@ internal class PackageService : IPackageService
         {
             Body = emailBody,
             Subject = "Email Təsdiqləmə",
-            ToEmail = package.User.Email ?? "undifined@undifined.com"
+            ToEmail = package.User!.Email ?? "undifined@undifined.com"
         };
 
         await _emailService.SendEmailAsync(emailSendDto);
@@ -317,17 +343,23 @@ internal class PackageService : IPackageService
 
         templateContent = templateContent
             .Replace("{{Fullname}}", dto.Fullname).Replace("{{NO}}", dto.NO)
-            .Replace("{{CargoPrice}}", dto.CargoPrice).Replace("{{LocalPointName}}", dto.LocalPointName);
+            .Replace("{{CargoPrice}}", dto.CargoPrice).Replace("{{LocalPointName}}", dto.LocalPointName)
+            .Replace("{{CreatedAt}}", dto.CreatedAt.ToString("yyyy, dd MMMM", new System.Globalization.CultureInfo("az-Latn-AZ")));
 
         return templateContent;
     }
+
+    public async Task FinishOrderAsync(int id)
+    {
+        var package = await _repository.GetAsync(id);
+
+        if (package == null)
+            throw new NotFoundException();
+
+        package.StatusId = (int)StatusName.OrderIsDone;
+
+        _repository.Update(package);
+        await _repository.SaveChangesAsync();
+    }
 }
 
-public class NotificationEmailDto
-{
-    public string Fullname { get; set; }
-    public string NO { get; set; }
-    public string CargoPrice { get; set; }
-    public string LocalPointName { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-}
